@@ -5,27 +5,36 @@
   <meta charset="UTF-8" name="vaadin-version" content="7.7.0">
  </head> 
  <body> 
-  <vaadin-horizontal-split-panel style-name="signUpMajorLayout"> 
-   <vaadin-vertical-layout style-name="signPanelTextField" size-full margin-top> 
-    <vaadin-vertical-layout size-full margin-left margin-right :expand> 
-     <vaadin-text-field style-name="signUpTextFields" width-full _id="nameTextField"></vaadin-text-field> 
-     <vaadin-text-field style-name="signUpTextFields" width-full height="37px" _id="surnameTextField"></vaadin-text-field> 
-    </vaadin-vertical-layout> 
-    <vaadin-vertical-layout size-full margin-left margin-right margin-bottom :expand> 
-     <vaadin-text-field style-name="signUpTextFields" width-full _id="emailTextFeild"></vaadin-text-field> 
-     <vaadin-label width-auto height-full plain-text :expand></vaadin-label> 
-     <vaadin-date-field style-name="signUpDateField" width-full height="37px" _id="dateField"></vaadin-date-field> 
+  <vaadin-horizontal-layout style-name="signUpMajorLayout" size-full> 
+   <vaadin-vertical-layout size-full margin-bottom :expand> 
+    <vaadin-horizontal-layout size-full :expand> 
+     <vaadin-vertical-layout style-name="signPanelTextField" size-full margin-top> 
+      <vaadin-vertical-layout size-full margin-left margin-right :expand> 
+       <vaadin-text-field caption="Name" style-name="signUpTextFields signUpTextFieldCaptions" width-full _id="nameTextField"></vaadin-text-field> 
+       <vaadin-text-field caption="Surname" style-name="signUpTextFields signUpTextFieldCaptions" width-full height="37px" _id="surnameTextField"></vaadin-text-field> 
+      </vaadin-vertical-layout> 
+      <vaadin-vertical-layout size-full margin-left margin-right margin-bottom :expand> 
+       <vaadin-text-field caption="E-mail" style-name="signUpTextFields signUpTextFieldCaptions" width-full _id="emailTextFeild"></vaadin-text-field> 
+       <vaadin-label width-auto height-full plain-text :expand></vaadin-label> 
+       <vaadin-date-field caption="Birth date" style-name="signUpDateField signUpTextFieldCaptions" width-full _id="birthDateField"></vaadin-date-field> 
+      </vaadin-vertical-layout> 
+     </vaadin-vertical-layout> 
+     <vaadin-vertical-layout size-full margin-top> 
+      <vaadin-vertical-layout size-full margin-left margin-right :expand> 
+       <vaadin-password-field caption="Password" style-name="signUpTextFields signUpTextFieldCaptions" width-full _id="passwordTextField"></vaadin-password-field> 
+       <vaadin-password-field caption="Confirm password" style-name="signUpTextFields signUpTextFieldCaptions" width-full _id="repeatPasswordTextField"></vaadin-password-field> 
+      </vaadin-vertical-layout> 
+      <vaadin-vertical-layout size-full margin-left margin-right margin-bottom :expand> 
+       <vaadin-text-area caption="Education" style-name="signUpTextArea signUpTextFieldCaptions" size-full _id="educationTextArea" :expand></vaadin-text-area> 
+      </vaadin-vertical-layout> 
+     </vaadin-vertical-layout> 
+    </vaadin-horizontal-layout> 
+    <vaadin-vertical-layout margin-left margin-right :middle :center> 
+     <vaadin-button style-name="signUpButtonOnSignUpPanel" width-full height="50px" plain-text _id="signUpButton">
+       Sign Up 
+     </vaadin-button> 
     </vaadin-vertical-layout> 
    </vaadin-vertical-layout> 
-   <vaadin-vertical-layout size-full margin-top> 
-    <vaadin-vertical-layout size-full margin-left margin-right :expand> 
-     <vaadin-password-field style-name="signUpTextFields" width-full _id="passwordTextField"></vaadin-password-field> 
-     <vaadin-password-field style-name="signUpTextFields" width-full _id="repeatPasswordTextField"></vaadin-password-field> 
-    </vaadin-vertical-layout> 
-    <vaadin-vertical-layout size-full margin-left margin-right margin-bottom :expand> 
-     <vaadin-text-area style-name="signUpTextArea" size-full _id="educationTextArea" :expand></vaadin-text-area> 
-    </vaadin-vertical-layout> 
-   </vaadin-vertical-layout> 
-  </vaadin-horizontal-split-panel>  
+  </vaadin-horizontal-layout>  
  </body>
 </html>

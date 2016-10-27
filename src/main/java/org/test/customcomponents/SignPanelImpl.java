@@ -3,7 +3,6 @@ package org.test.customcomponents;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
-import org.test.MyUI;
 import org.test.tamplets.MenuPage;
 import org.test.tamplets.SignPanel;
 import org.test.tamplets.SignUpPanel;
@@ -13,6 +12,31 @@ import org.test.tamplets.SignUpPanel;
  */
 public class SignPanelImpl extends SignPanel {
     public SignPanelImpl(VerticalLayout basicLayout) {
+        createListenerForSingInButton(basicLayout);
+        createListenerForSignUpButton();
+    }
+
+    private void createListenerForSignUpButton() {
+        Window signUpWindow = createSignUpWindow();
+
+        signUpButton.addClickListener(e -> {
+            UI.getCurrent().addWindow(signUpWindow);
+        });
+    }
+
+    private Window createSignUpWindow() {
+        Window signUpWindow = new Window("Sign Up");
+        SignUpPanel signUpPanel = new SignUpPanelImpl(signUpWindow);
+        signUpWindow.setContent(signUpPanel);
+        signUpWindow.addStyleName("singUpWindow");
+        signUpWindow.center();
+        signUpWindow.setModal(true);
+        signUpWindow.setWidth("60%");
+        signUpWindow.setHeight("80%");
+        return signUpWindow;
+    }
+
+    private void createListenerForSingInButton(VerticalLayout basicLayout) {
         MenuPage menuPage = new MenuPageImpl();
         signInButton.addClickListener(e -> {
             //TODO
@@ -25,16 +49,6 @@ public class SignPanelImpl extends SignPanel {
 //                });
 //            }
 //            getSession().close();
-        });
-
-        SignUpPanel signUpPanel = new SignUpPanelImpl();
-        signUpButton.addClickListener(e -> {
-            Window signUpWindow = new Window("Sign Up", signUpPanel);
-            signUpWindow.center();
-            signUpWindow.setModal(true);
-            signUpWindow.setWidth("50%");
-            signUpWindow.setHeight("50%");
-            UI.getCurrent().addWindow(signUpWindow);
         });
     }
 }
