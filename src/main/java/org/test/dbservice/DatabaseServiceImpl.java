@@ -10,6 +10,6 @@ class DatabaseServiceImpl implements DatabaseService {
     public boolean signUpUser(String name, String surname,
                               String email, Date birthDate,
                               String password, String education) {
-        return false;
+        return true;
     }
 }

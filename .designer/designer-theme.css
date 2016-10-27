@@ -12880,23 +12880,56 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: bold;
 }
 
-.mytheme .v-splitpanel-horizontal-signUpMajorLayout {
+.mytheme .v-horizontallayout-signUpMajorLayout {
 	background: whitesmoke;
+	border-top: 3px solid rgba(181, 181, 181, 0.72);
+}
+
+.mytheme .singUpWindow {
+	border: 3px solid rgba(181, 181, 181, 0.72);
+	font-size: x-large;
+	font-weight: bold;
+	color: #525252;
 }
 
 .mytheme .v-textfield-signUpTextFields {
-	background: transparent;
-	border: none;
-	border-bottom: 2px solid rgba(181, 181, 181, 0.72);
+	background: #fafeff;
+	border: 3px solid rgba(181, 181, 181, 0.72);
+	font-size: large;
+	font-weight: bold;
+	color: #525252;
+}
+
+.mytheme .v-caption-signUpTextFieldCaptions {
+	font-size: medium;
+	color: #b5b5b5;
 }
 
 .mytheme .v-textarea-signUpTextArea {
-	background: transparent;
-	border: 2px solid rgba(181, 181, 181, 0.71);
+	background: #fafeff;
+	border: 3px solid rgba(181, 181, 181, 0.72);
+	font-size: large;
+	font-weight: bold;
 }
 
 .mytheme .v-datefield-signUpDateField {
+	font-size: medium;
 	border: 2px solid rgba(181, 181, 181, 0.72);
+}
+
+.mytheme .v-button-signUpButtonOnSignUpPanel {
+	background: #fafeff;
+	border: 2px solid #525252;
+	text-align: center;
+	font-size: x-large;
+	color: #525252;
+	-webkit-transition-duration: 0.8s;
+	transition-duration: 0.8s;
+}
+
+.mytheme .v-button-signUpButtonOnSignUpPanel:hover {
+	background: #525252;
+	color: #fafeff;
 }
 
 .mytheme .v-verticallayout-menuVerticalLayout {
@@ -12904,7 +12937,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-verticallayout-avatarLayout {
-	background: white;
+	background: #fafeff;
 	border-radius: 80px;
 	border: 4px solid #01747f;
 }
