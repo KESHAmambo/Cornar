@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;mytheme&quot;}">
+  <meta charset="UTF-8" name="vaadin-version" content="7.7.0">
+ </head> 
+ <body> 
+  <vaadin-vertical-layout style-name="signPanel" spacing size-full margin> 
+   <vaadin-text-field caption="E-mail" style-name="signPanelTextField signPanelCaption" width-full></vaadin-text-field> 
+   <vaadin-password-field description="Password" caption="Password" style-name="signPanelTextField signPanelCaption" width-full></vaadin-password-field> 
+   <vaadin-label width-auto height-full plain-text :expand></vaadin-label> 
+   <vaadin-horizontal-layout spacing width-full> 
+    <vaadin-button style-name="friendly" width-full plain-text _id="signInButton" :expand>
+      Sign In 
+    </vaadin-button> 
+    <vaadin-button style-name="primary" width-full plain-text _id="signUpButton" :expand>
+      Sign Up 
+    </vaadin-button> 
+   </vaadin-horizontal-layout> 
+  </vaadin-vertical-layout>  
+ </body>
+</html>
