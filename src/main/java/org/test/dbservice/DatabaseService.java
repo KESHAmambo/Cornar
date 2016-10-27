@@ -1,5 +1,7 @@
 package org.test.dbservice;
 
+import org.test.dbservice.entity.UsersEntity;
+
 import java.util.Date;
 
 /**
@@ -9,5 +11,4 @@ public interface DatabaseService {
     public boolean signUpUser(String name, String surname,
                               String email, Date birthDate,
                               String password, String education);
-
 }

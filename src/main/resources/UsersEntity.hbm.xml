@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="org.test.dbservice.entity.UsersEntity" table="USERS" schema="JAVA_PROJECT">
+        <id name="userId">
+            <column name="USER_ID" sql-type="number(*)" precision="2147483646"/>
+        </id>
+        <property name="userName">
+            <column name="USER_NAME" sql-type="varchar2(40)" length="40"/>
+        </property>
+        <property name="password">
+            <column name="PASSWORD" sql-type="varchar2(30)" length="30"/>
+        </property>
+        <property name="firstName">
+            <column name="FIRST_NAME" sql-type="varchar2(20)" length="20" not-null="true"/>
+        </property>
+        <property name="lastName">
+            <column name="LAST_NAME" sql-type="varchar2(20)" length="20" not-null="true"/>
+        </property>
+        <property name="personDescription">
+            <column name="PERSON_DESCRIPTION" sql-type="varchar2(120)" length="120" not-null="true"/>
+        </property>
+        <property name="personRating">
+            <column name="PERSON_RATING" sql-type="number(*)" precision="2147483646" not-null="true"/>
+        </property>
+        <property name="birthDate">
+            <column name="BIRTH_DATE" sql-type="date" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
