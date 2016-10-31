@@ -1,9 +1,7 @@
 package org.test.dbservice.impl;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
+import org.hibernate.criterion.Restrictions;
 import org.test.dbservice.dao.UserDao;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.dbservice.utils.HibernateSessionFactory;
@@ -13,7 +11,7 @@ import org.test.dbservice.utils.HibernateSessionFactory;
  */
 public class UserDaoImpl implements UserDao {
 
-    private SessionFactory sessionFactory;
+    private SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();;
 
 
     private Session currentSession;
@@ -28,16 +26,15 @@ public class UserDaoImpl implements UserDao {
     }
 
     public UserDaoImpl() {
-        sessionFactory = HibernateSessionFactory.getSessionFactory();
     }
 
     public Session openCurrentSession(){
-        currentSession = sessionFactory.openSession();
+        currentSession = getSessionFactory().getCurrentSession();
         return currentSession;
     }
 
     public Session openCurrentSessionWithTransaction(){
-        currentSession = sessionFactory.getCurrentSession();
+        currentSession = openCurrentSession();
         currentTransaction = currentSession.beginTransaction();
         return currentSession;
     }
@@ -48,17 +45,24 @@ public class UserDaoImpl implements UserDao {
 
     public void shutdownCurrentSessionWithTransaction(){
         currentTransaction.commit();
-        currentSession.close();
+//        currentSession.close();
     }
 
 
 
     @Override
-    public void create(UsersEntity entity) {
+    public int create(UsersEntity entity) {
         Session session;
-        session = openCurrentSessionWithTransaction();
-        session.persist(entity);
-        shutdownCurrentSessionWithTransaction();
+        int count = 0;
+        try {
+            session = openCurrentSessionWithTransaction();
+            count = (Integer) session.save(entity);
+        }catch (HibernateException e){
+            System.out.printf("Exist");
+        }finally {
+            shutdownCurrentSessionWithTransaction();
+        }
+        return count;
     }
 
     @Override
@@ -74,13 +78,24 @@ public class UserDaoImpl implements UserDao {
         UsersEntity entityById = null;
         Session session;
         session = openCurrentSession();
-        entityById = session.get(UsersEntity.class,id);
+        entityById = (UsersEntity) session.get(UsersEntity.class,id);
         shutdownCurrentSession();
         return entityById;
     }
 
     @Override
     public void update(UsersEntity entity) {
+
+    }
+
+    public UsersEntity getByEmailAndPassword(String email, String password){
+        UsersEntity user = new UsersEntity();
+        Session session = openCurrentSessionWithTransaction();
+        user = (UsersEntity) session.createCriteria(UsersEntity.class)
+                .add(Restrictions.eq("email", email))
+                .add(Restrictions.eq("password", password)).uniqueResult();
+        shutdownCurrentSessionWithTransaction();
+        return user;
 
     }
 

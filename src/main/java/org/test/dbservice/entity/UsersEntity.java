@@ -4,98 +4,101 @@ import javax.persistence.*;
 import java.sql.Date;
 
 /**
- * Created by Taras on 27.10.2016.
+ * Created by Taras on 29.10.2016.
  */
 @Entity
-@Table(name = "USERS", schema = "JAVA_PROJECT", catalog = "")
+@Table(name = "\"users\"", schema = "project_cornar", catalog = "cornar")
 public class UsersEntity {
-    private long userId;
-    private String userName;
-    private String password;
-    private String firstName;
-    private String lastName;
-    private String personDescription;
-    private Long personRating;
-    private Date birthDate;
-
     @Id
-    @Column(name = "USER_ID", nullable = false, precision = 0)
-    public long getUserId() {
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int userId;
+    private String first_name;
+    private String last_name;
+    private String email;
+    private String person_description;
+    private Integer person_rating;
+    private String password;
+
+
+    private Date birth_date;
+
+    @Column(name = "\"userid\"", nullable = false)
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
     @Basic
-    @Column(name = "USER_NAME", nullable = false, length = 40)
-    public String getUserName() {
-        return userName;
+    @Column(name = "first_name", nullable = true, length = 50)
+    public String getFirstName() {
+        return first_name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setFirstName(String first_name) {
+        this.first_name = first_name;
     }
 
     @Basic
-    @Column(name = "PASSWORD", nullable = false, length = 30)
+    @Column(name = "last_name", nullable = true, length = 50)
+    public String getLastName() {
+        return last_name;
+    }
+
+    public void setLastName(String last_name) {
+        this.last_name = last_name;
+    }
+
+    @Basic
+    @Column(name = "EMAIL", nullable = true, length = 50)
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Basic
+    @Column(name = "birth_date", nullable = true)
+    public Date getBirthDate() {
+        return birth_date;
+    }
+
+    public void setBirthDate(Date birth_date) {
+        this.birth_date = birth_date;
+    }
+
+    @Basic
+    @Column(name = "person_description", nullable = true, length = -1)
+    public String getPersonDescription() {
+        return person_description;
+    }
+
+    public void setPersonDescription(String person_description) {
+        this.person_description = person_description;
+    }
+
+    @Basic
+    @Column(name = "person_rating", nullable = true)
+    public Integer getPersonRating() {
+        return person_rating;
+    }
+
+    public void setPersonRating(Integer person_rating) {
+        this.person_rating = person_rating;
+    }
+
+    @Basic
+    @Column(name = "PASSWORD", nullable = true, length = 100)
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @Basic
-    @Column(name = "FIRST_NAME", nullable = true, length = 20)
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    @Basic
-    @Column(name = "LAST_NAME", nullable = true, length = 20)
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    @Basic
-    @Column(name = "PERSON_DESCRIPTION", nullable = true, length = 120)
-    public String getPersonDescription() {
-        return personDescription;
-    }
-
-    public void setPersonDescription(String personDescription) {
-        this.personDescription = personDescription;
-    }
-
-    @Basic
-    @Column(name = "PERSON_RATING", nullable = true, precision = 0)
-    public Long getPersonRating() {
-        return personRating;
-    }
-
-    public void setPersonRating(Long personRating) {
-        this.personRating = personRating;
-    }
-
-    @Basic
-    @Column(name = "BIRTH_DATE", nullable = true)
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
     }
 
     @Override
@@ -106,28 +109,28 @@ public class UsersEntity {
         UsersEntity that = (UsersEntity) o;
 
         if (userId != that.userId) return false;
-        if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
-        if (password != null ? !password.equals(that.password) : that.password != null) return false;
-        if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
-        if (personDescription != null ? !personDescription.equals(that.personDescription) : that.personDescription != null)
+        if (first_name != null ? !first_name.equals(that.first_name) : that.first_name != null) return false;
+        if (last_name != null ? !last_name.equals(that.last_name) : that.last_name != null) return false;
+        if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        if (birth_date != null ? !birth_date.equals(that.birth_date) : that.birth_date != null) return false;
+        if (person_description != null ? !person_description.equals(that.person_description) : that.person_description != null)
             return false;
-        if (personRating != null ? !personRating.equals(that.personRating) : that.personRating != null) return false;
-        if (birthDate != null ? !birthDate.equals(that.birthDate) : that.birthDate != null) return false;
+        if (person_rating != null ? !person_rating.equals(that.person_rating) : that.person_rating != null) return false;
+        if (password != null ? !password.equals(that.password) : that.password != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (userId ^ (userId >>> 32));
-        result = 31 * result + (userName != null ? userName.hashCode() : 0);
+        int result = userId;
+        result = 31 * result + (first_name != null ? first_name.hashCode() : 0);
+        result = 31 * result + (last_name != null ? last_name.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (birth_date != null ? birth_date.hashCode() : 0);
+        result = 31 * result + (person_description != null ? person_description.hashCode() : 0);
+        result = 31 * result + (person_rating != null ? person_rating.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (personDescription != null ? personDescription.hashCode() : 0);
-        result = 31 * result + (personRating != null ? personRating.hashCode() : 0);
-        result = 31 * result + (birthDate != null ? birthDate.hashCode() : 0);
         return result;
     }
 }

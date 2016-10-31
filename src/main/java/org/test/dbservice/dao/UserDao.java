@@ -8,4 +8,5 @@ import org.test.dbservice.entity.UsersEntity;
 public interface UserDao extends DAO<UsersEntity> {
 //    long insertById();
     //TODO get by specific parameter
+    public UsersEntity getByEmailAndPassword(String email, String password);
 }

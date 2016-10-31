@@ -1,5 +1,6 @@
 package org.test.customcomponents;
 
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.Window;
 import org.test.dbservice.DatabaseService;
@@ -28,9 +29,10 @@ public class SignUpPanelImpl extends SignUpPanel {
             Date birthDate = birthDateField.getValue();
 
             DatabaseService dbService = DatabaseServiceFactory.getService();
-            boolean signedUp = dbService.signUpUser(name, surname, email, birthDate, password, education);
-
-            if (signedUp) {
+            int signedUp = dbService.signUpUser(name, surname, email, birthDate, password, education);
+            if (signedUp != 0) {
+                Notification notification = new Notification("You have signed up");
+                notification.show(UI.getCurrent().getClass().getSimpleName());
                 UI.getCurrent().removeWindow(signUpWindow);
             }
         });
