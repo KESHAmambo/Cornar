@@ -7,7 +7,7 @@ import java.sql.Date;
  * Created by Taras on 29.10.2016.
  */
 @Entity
-@Table(name = "\"users\"", schema = "project_cornar", catalog = "cornar")
+@Table(name = "users", schema = "project_cornar", catalog = "cornar")
 public class UsersEntity {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

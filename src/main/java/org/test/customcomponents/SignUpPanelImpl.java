@@ -32,7 +32,7 @@ public class SignUpPanelImpl extends SignUpPanel {
             int signedUp = dbService.signUpUser(name, surname, email, birthDate, password, education);
             if (signedUp != 0) {
                 Notification notification = new Notification("You have signed up");
-                notification.show(UI.getCurrent().getClass().getSimpleName());
+                notification.show("You have signed up");
                 UI.getCurrent().removeWindow(signUpWindow);
             }
         });
