@@ -16,7 +16,6 @@ import java.util.Date;
  */
 public class SignUpPanelImpl extends SignUpPanel {
     public SignUpPanelImpl(Window signUpWindow) {
-        //passwordTextField.addValidator(new PasswordValidator());
         passwordTextField.addValidator(new PasswordEqualsValidator());
         repeatPasswordTextField.setImmediate(true);
         repeatPasswordTextField.addValueChangeListener(e -> {
@@ -39,27 +38,24 @@ public class SignUpPanelImpl extends SignUpPanel {
             DatabaseService dbService = DatabaseServiceFactory.getService();
             int signedUp = dbService.signUpUser(name, surname, email, birthDate, password, education);
             if (signedUp != 0) {
-                Notification notification = new Notification("You have signed up");
-                notification.show("You have signed up");
+                Notification.show("You have signed up");
             }
         });
     }
 
-     class PasswordEqualsValidator
-            extends AbstractValidator<String> {
+     private class PasswordEqualsValidator extends AbstractValidator<String> {
 
-        public PasswordEqualsValidator() {
+        PasswordEqualsValidator() {
             super("The password  is not equals");
         }
 
         @Override
         protected boolean isValidValue(String value) {
-            String password = value;
-            if (value != null  && (value.length() < 8 ) || !value.matches(".*\\d.*")){
+            if (value == null || (value.length() < 8 ) || !value.matches(".*\\d.*")){
                 return false;
             }
             String newPassword = repeatPasswordTextField.getValue();
-            return newPassword.equals(password);
+            return newPassword.equals(value);
         }
 
         @Override
