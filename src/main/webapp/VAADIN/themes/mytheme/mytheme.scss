@@ -39,9 +39,9 @@ $v-border-radius: 0px;
 
   // MainPage ------------------------------------------------------------
 
-  .gradient-pattern {
+  /*.gradient-pattern {
     background: #00ace0 url("https://www.freshlife.com/images/teacherinclass.jpg") center;
-    /*width: 320px;
+    !*width: 320px;
     height: 320px;
     border: none;
     font: normal 100%/normal Arial, Helvetica, sans-serif;
@@ -57,7 +57,7 @@ $v-border-radius: 0px;
     -webkit-background-clip: border-box;
     background-clip: border-box;
     -webkit-background-size: 100% 1.2em;
-    background-size: 100% 1.2em;*/
+    background-size: 100% 1.2em;*!
   }
 
   .v-label-largeLabel {
@@ -112,26 +112,73 @@ $v-border-radius: 0px;
   .v-caption-supplementalLayoutCaption {
     font-size: 24px;
     font-weight: bold;
+  }*/
+
+  // MainPage ------------------------------------------------
+
+  .v-horizontallayout-mainPageLayout {
+    background: url("images/475348769.jpg")  no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   }
+
+  .v-csslayout-logoLayout {
+    background: url("images/logo.png");
+  }
+
+  .v-horizontallayout-titleLayout {
+    font-size: 6em;
+    color: #41afd6;
+  }
+
+  .v-verticallayout-descriptionLayout {
+    border-top: 3px #41afd6 solid;
+    border-right: 3px #41afd6 solid;
+    color: #ffffff;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding-top: 1em;
+    padding-right: 1em;
+  }
+
+  .v-verticallayout-leftDescLayout,
+  .v-verticallayout-rightDescLayout {
+    border-top: 3px #41afd6 solid;
+    border-right: 3px #41afd6 solid;
+    color: #ffffff;
+    font-size: 1.1em;
+    padding-top: 1em;
+    padding-right: 1em;
+  }
+
+  .v-caption-descCaption {
+    color: #ffffff;
+    font-size: 1.1em;
+    font-weight: bold;
+  }
+
 
   // SignPanel -----------------------------------------------------
 
   .signPanel {
+    color: #046e91;
     background-color: rgba(252, 252, 252, 0.51);
-    color: green;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
+    border-top: 3px #41afd6 solid;
+    border-right: 3px #41afd6 solid;
   }
 
   .v-textfield-signPanelTextField {
-    color: green;
+    color: #046e91;
     background-color: rgba(241, 241, 241, 0.65);
-    border: 3px solid #84ff83;
+    border-top: 3px #046e91 solid;
+    border-right: 3px #046e91 solid;
   }
 
   .v-caption-signPanelCaption {
-    font-size: 20px;
+    color: #046e91;
+    font-size: 1.1em;
     font-weight: bold;
   }
 
@@ -185,6 +232,7 @@ $v-border-radius: 0px;
   }
 
   .v-button-signUpButtonOnSignUpPanel:hover {
+    border: none;
     background: #525252;
     color: #fafeff;
   }

@@ -12803,80 +12803,65 @@ div.v-layout.v-horizontal.v-widget {
 	overflow: hidden;
 }
 
-.mytheme .gradient-pattern {
-	background: #00ace0 url("https://www.freshlife.com/images/teacherinclass.jpg") center;
+.mytheme .v-horizontallayout-mainPageLayout {
+	background: url("images/475348769.jpg") no-repeat center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 
-.mytheme .v-label-largeLabel {
-	font-size: 70px;
+.mytheme .v-csslayout-logoLayout {
+	background: url("images/logo.png");
+}
+
+.mytheme .v-horizontallayout-titleLayout {
+	font-size: 6em;
+	color: #41afd6;
+}
+
+.mytheme .v-verticallayout-descriptionLayout {
+	border-top: 3px #41afd6 solid;
+	border-right: 3px #41afd6 solid;
+	color: #ffffff;
+	font-size: 1.1em;
 	font-weight: bold;
-	color: rgba(126, 108, 102, 0.79);
+	padding-top: 1em;
+	padding-right: 1em;
 }
 
-.mytheme .titleLayout {
-	background-color: rgba(248, 252, 248, 0.61);
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
+.mytheme .v-verticallayout-leftDescLayout, .mytheme .v-verticallayout-rightDescLayout {
+	border-top: 3px #41afd6 solid;
+	border-right: 3px #41afd6 solid;
+	color: #ffffff;
+	font-size: 1.1em;
+	padding-top: 1em;
+	padding-right: 1em;
 }
 
-.mytheme .v-panel-descriptionPanel {
-	background: transparent;
-	border-style: hidden;
-}
-
-.mytheme .descriptionLayout {
-	background-color: rgba(255, 102, 110, 0.61);
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	font-size: 28px;
-	color: #f2f2f2;
-}
-
-.mytheme .v-label-descriptionLabel {
-	text-align: center;
-}
-
-.mytheme .supplementalLayoutLeft {
-	background-color: rgba(75, 204, 255, 0.51);
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	font-size: 20px;
-	color: #f2f2f2;
-}
-
-.mytheme .supplementalLayoutRight {
-	background-color: rgba(255, 216, 91, 0.51);
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	font-size: 20px;
-	color: #f2f2f2;
-}
-
-.mytheme .v-caption-supplementalLayoutCaption {
-	font-size: 24px;
+.mytheme .v-caption-descCaption {
+	color: #ffffff;
+	font-size: 1.1em;
 	font-weight: bold;
 }
 
 .mytheme .signPanel {
+	color: #046e91;
 	background-color: rgba(252, 252, 252, 0.51);
-	color: green;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
+	border-top: 3px #41afd6 solid;
+	border-right: 3px #41afd6 solid;
 }
 
 .mytheme .v-textfield-signPanelTextField {
-	color: green;
+	color: #046e91;
 	background-color: rgba(241, 241, 241, 0.65);
-	border: 3px solid #84ff83;
+	border-top: 3px #046e91 solid;
+	border-right: 3px #046e91 solid;
 }
 
 .mytheme .v-caption-signPanelCaption {
-	font-size: 20px;
+	color: #046e91;
+	font-size: 1.1em;
 	font-weight: bold;
 }
 
@@ -12928,6 +12913,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-button-signUpButtonOnSignUpPanel:hover {
+	border: none;
 	background: #525252;
 	color: #fafeff;
 }
