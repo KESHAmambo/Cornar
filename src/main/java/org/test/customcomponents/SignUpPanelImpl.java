@@ -44,9 +44,8 @@ public class SignUpPanelImpl extends SignUpPanel {
     }
 
      private class PasswordEqualsValidator extends AbstractValidator<String> {
-
         PasswordEqualsValidator() {
-            super("The password  is not equals");
+            super("Passwords do not equal");
         }
 
         @Override

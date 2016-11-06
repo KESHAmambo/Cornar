@@ -1,12 +1,8 @@
 package org.test.customcomponents;
 
-import com.vaadin.data.validator.AbstractValidator;
-import com.vaadin.server.VaadinService;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
-import org.test.dbservice.DatabaseService;
-import org.test.dbservice.DatabaseServiceFactory;
 import org.test.tamplets.MenuPage;
 import org.test.tamplets.SignPanel;
 import org.test.tamplets.SignUpPanel;
@@ -44,28 +40,22 @@ public class SignPanelImpl extends SignPanel {
         MenuPage menuPage = new MenuPageImpl();
 
         signInButton.addClickListener(e -> {
-            //TODO
-
             String emailOfUser = emailTextField.getValue();
             String password = this.passwordTextField.getValue();
-            if (!isValidUser(emailOfUser,password)) {
+            System.out.println(emailOfUser + " " + password);
+            if (!isUserValid(emailOfUser,password)) {
                 this.passwordTextField.focus();
                 return;
             }
             basicLayout.removeAllComponents();
             basicLayout.addComponent(menuPage);
-            //VaadinService.getCurrentRequest().getWrappedSession().setAttribute("user", emailOfUser);
-//            for(UI ui: VaadinSession.getCurrent().getUIs()) {
-//                ui.access(() -> {
-//                    ui.getPage().setLocation("/login/");
-//                });
-//            }
-//            getSession().close();
         });
     }
-    private boolean isValidUser(String email, String password){
-        DatabaseService dbService= DatabaseServiceFactory.getService();
-        return dbService.isUserExist(email, password);
+
+    private boolean isUserValid(String email, String password){
+        /*DatabaseService dbService= DatabaseServiceFactory.getService();
+        return dbService.isUserExist(email, password);*/
+        return true;
     }
 
 

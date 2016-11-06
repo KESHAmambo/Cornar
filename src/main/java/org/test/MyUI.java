@@ -4,10 +4,6 @@ import javax.servlet.annotation.WebServlet;
 
 import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.Push;
-<<<<<<< Updated upstream
-=======
-import com.vaadin.annotations.PreserveOnRefresh;
->>>>>>> Stashed changes
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
@@ -25,10 +21,7 @@ import org.test.customcomponents.MainPageImpl;
  */
 
 @Push
-<<<<<<< Updated upstream
-=======
 @PreserveOnRefresh
->>>>>>> Stashed changes
 @Theme("mytheme")
 public class MyUI extends UI {
 

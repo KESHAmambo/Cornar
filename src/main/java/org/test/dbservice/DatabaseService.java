@@ -13,5 +13,6 @@ public interface DatabaseService {
                           String password, String education);
 
     public UsersEntity getUser(String email, String password);
+
     public boolean isUserExist(String email, String password);
 }

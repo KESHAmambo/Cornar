@@ -29,8 +29,8 @@ public class MenuPageImpl extends MenuPage {
         String basePath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
         System.out.println(basePath);
 //        FileResource avatarResource = new FileResource(new File(basePath + "VAADIN/themes/images/test.png"));
-        FileResource avatarResource = new FileResource(new File(basePath + "/images/test.png"));
-        avatarImage.setSource(avatarResource);
+       /* FileResource avatarResource = new FileResource(new File(basePath + "/images/test.png"));
+        avatarImage.setSource(avatarResource);*/
 
 //        Image avatar = new Image("", avatarResource);
 
