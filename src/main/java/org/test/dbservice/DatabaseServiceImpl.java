@@ -42,7 +42,7 @@ class DatabaseServiceImpl implements DatabaseService {
         return null;
     }
 
-    private boolean isUserExist(String email, String password){
+    public boolean isUserExist(String email, String password){
         UserDao userDao = new UserDaoImpl();
         UsersEntity user = new UsersEntity();
         user = userDao.getByEmailAndPassword(email, password);

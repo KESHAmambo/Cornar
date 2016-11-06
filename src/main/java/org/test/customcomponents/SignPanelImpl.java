@@ -1,5 +1,6 @@
 package org.test.customcomponents;
 
+import com.vaadin.data.validator.AbstractValidator;
 import com.vaadin.server.VaadinService;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
@@ -64,9 +65,8 @@ public class SignPanelImpl extends SignPanel {
     }
     private boolean isValidUser(String email, String password){
         DatabaseService dbService= DatabaseServiceFactory.getService();
-        if(dbService.getUser(email, password) != null){
-            return true;
-        }
-        return false;
+        return dbService.isUserExist(email, password);
     }
+
+
 }
