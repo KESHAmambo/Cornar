@@ -1,5 +1,6 @@
 package org.test.customcomponents;
 
+import com.vaadin.data.validator.AbstractValidator;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.Window;
@@ -15,16 +16,23 @@ import java.util.Date;
  */
 public class SignUpPanelImpl extends SignUpPanel {
     public SignUpPanelImpl(Window signUpWindow) {
+        //passwordTextField.addValidator(new PasswordValidator());
+        passwordTextField.addValidator(new PasswordEqualsValidator());
+        repeatPasswordTextField.setImmediate(true);
+        repeatPasswordTextField.addValueChangeListener(e -> {
+            passwordTextField.markAsDirty();
+            passwordTextField.isValid();
+        });
         createListenerForSingUpButton(signUpWindow);
     }
 
     private void createListenerForSingUpButton(Window signUpWindow) {
-        //TODO check fields validity, notifications
         signUpButton.addClickListener(e -> {
             String name = nameTextField.getValue();
             String surname = nameTextField.getValue();
             String email = emailTextFeild.getValue();
             String password = passwordTextField.getValue();
+            String confirmPassword = repeatPasswordTextField.getValue();
             String education = educationTextArea.getValue();
             Date birthDate = birthDateField.getValue();
 
@@ -32,9 +40,32 @@ public class SignUpPanelImpl extends SignUpPanel {
             int signedUp = dbService.signUpUser(name, surname, email, birthDate, password, education);
             if (signedUp != 0) {
                 Notification notification = new Notification("You have signed up");
-                notification.show(UI.getCurrent().getClass().getSimpleName());
-                UI.getCurrent().removeWindow(signUpWindow);
+                notification.show("You have signed up");
             }
         });
     }
+
+     class PasswordEqualsValidator
+            extends AbstractValidator<String> {
+
+        public PasswordEqualsValidator() {
+            super("The password  is not equals");
+        }
+
+        @Override
+        protected boolean isValidValue(String value) {
+            String password = value;
+            if (value != null  && (value.length() < 8 ) || !value.matches(".*\\d.*")){
+                return false;
+            }
+            String newPassword = repeatPasswordTextField.getValue();
+            return newPassword.equals(password);
+        }
+
+        @Override
+        public Class<String> getType() {
+            return String.class;
+        }
+    }
+
 }

@@ -2,6 +2,7 @@ package org.test;
 
 import javax.servlet.annotation.WebServlet;
 
+import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.Push;
 <<<<<<< Updated upstream
 =======
@@ -40,8 +41,10 @@ public class MyUI extends UI {
 //        MenuPage menuPage = new  MenuPageImpl();
 //        basicLayout.addComponent(menuPage);
 //        mainPage.setWidth("100%");
-//        mainPage.setHeight("100%");
+//        mainPage.setHeight("100%")
         basicLayout.addComponent(mainPage);
+        getSession().setAttribute("user", "42");
+
 
         setContent(basicLayout);
     }

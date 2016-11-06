@@ -6,6 +6,9 @@ import org.test.dbservice.dao.UserDao;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.dbservice.utils.HibernateSessionFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Taras on 27.10.2016.
  */
@@ -98,6 +101,17 @@ public class UserDaoImpl implements UserDao {
         return user;
 
     }
+
+    public List<UsersEntity> getAllUsers() {
+        Session session = openCurrentSessionWithTransaction();
+        List<UsersEntity> listOfUsers = new ArrayList<>();
+        Query query = session.createQuery("select  * from project_cornar.users");
+        listOfUsers = (List<UsersEntity>)query.list();
+        shutdownCurrentSessionWithTransaction();
+        return listOfUsers;
+    }
+
+
 
     @Override
     public Integer deleteAll() {
