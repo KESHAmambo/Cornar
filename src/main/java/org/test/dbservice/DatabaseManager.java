@@ -10,49 +10,26 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DatabaseManager {
-    private static Logger loggerDataBase = Logger.getLogger(DatabaseManager.class.getName());
+    private static DatabaseService service = new DatabaseServiceImpl();
 
     private DatabaseManager() {
 
     }
 
-    /** TO FIX: must return a result-code depending on result of signUp-operation
-     * @see org.test.controllers.MainPageController
-     */
-    public static int signUpUser(String firstName, String lastName,
+    public static int signUpUser(String firstName, String surname,
                           String email, Date birthDate,
                           String password, String education) {
-        //TODO verification password
-        int successOfAddingUser = 0;
-        UserDao userDao = new UserDaoImpl();
-        if (doesUserExist(email,password) == true)
-            return successOfAddingUser;
-        UsersEntity user = new UsersEntity();
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setEmail(email);
-        user.setPassword(password);
-        user.setBirthDate(new java.sql.Date(birthDate.getTime()));
-        user.setPersonDescription(education);
-        successOfAddingUser  = userDao.create(user);
-        loggerDataBase.log(Level.INFO, "success in creating user");
-        return successOfAddingUser;
+        return service.signUpUser(
+                firstName, surname, email,
+                birthDate, password, education);
     }
 
     public static UsersEntity getUser(String email, String password) {
-        UserDao userDao = new UserDaoImpl();
-        UsersEntity user = userDao.getByEmailAndPassword(email,password);
-        if (user != null){
-            loggerDataBase.log(Level.INFO, "user:" + user.getEmail() + " exists");
-            return user;
-        }
-        return null;
+        return service.getUser(email, password);
     }
 
-    public static boolean doesUserExist(String email, String password){
-        UserDao userDao = new UserDaoImpl();
-        UsersEntity user = userDao.getByEmailAndPassword(email, password);
-        return user != null;
+    public static boolean doesUserExist(String email, String password) {
+        return service.doesUserExist(email, password);
     }
 
     public static void fulfillProfile(Profile profile, String userEmail) {
