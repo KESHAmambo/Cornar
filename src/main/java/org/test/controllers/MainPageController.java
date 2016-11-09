@@ -7,8 +7,7 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.Window;
 import org.test.customcomponents.MainPageImpl;
-import org.test.logic.PageName;
-import org.test.dbservice.DatabaseService;
+import org.test.dbservice.DatabaseManager;
 import org.test.logic.Profile;
 
 import java.util.Date;
@@ -30,7 +29,7 @@ public class MainPageController {
             String userEmail, String userPassword) {
         signInButton.addClickListener(e -> {
             //TODO: uncomment
-//            if(DatabaseService.doesUserExist(userEmail, userPassword)) {
+//            if(DatabaseManager.doesUserExist(userEmail, userPassword)) {
                 Profile.fulfillProfile(Profile.getCurrentProfile(), userEmail);
                 navigator.navigateTo(MENU_PAGE.toString());
 //            }
@@ -43,7 +42,7 @@ public class MainPageController {
             String userEmail, String userPassword,
             String userEducation, Date userBirthDate) {
         signUpButton.addClickListener(e -> {
-            int signUpResult = DatabaseService.signUpUser(
+            int signUpResult = DatabaseManager.signUpUser(
                     userName, userSurname, userEmail,
                     userBirthDate, userPassword, userEducation);
             showSignUpResult(signUpResult, signUpWindow);

@@ -1,6 +1,6 @@
 package org.test.logic;
 
-import org.test.dbservice.DatabaseService;
+import org.test.dbservice.DatabaseManager;
 
 import java.util.Date;
 
@@ -74,7 +74,7 @@ public class Profile {
     }
 
     public static void fulfillProfile(Profile profile, String userEmail) {
-        DatabaseService.fulfillProfile(profile, userEmail);
+        DatabaseManager.fulfillProfile(profile, userEmail);
     }
 
     public static void clearCurrentProfile() {

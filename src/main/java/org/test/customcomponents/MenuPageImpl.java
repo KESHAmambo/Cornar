@@ -26,7 +26,6 @@ import static org.test.logic.PageName.*;
 public class MenuPageImpl extends MenuPage implements View {
     private final MenuPageController controller;
 
-
     public MenuPageImpl() {
         controller = new MenuPageController(this);
 
@@ -38,6 +37,14 @@ public class MenuPageImpl extends MenuPage implements View {
 
     private void provideNavigationForMenuButtons() {
         Navigator navigator = new Navigator(UI.getCurrent(), mainPanel);
+
+        // mock for unexpected navigator's behaviour
+        navigator.addView("", new View() {
+            @Override
+            public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
+
+            }
+        });
 
         navigator.addView(MENU_PAGE + "/" + PROFILE_PAGE,
                 new ProfilePageImpl(Profile.getCurrentProfile()));

@@ -36,6 +36,7 @@ public class MyUI extends UI {
     protected void init(VaadinRequest vaadinRequest) {
         controller = new MyUIController(this);
         navigator = createNavigator();
+        navigator.navigateTo("");
 
         getPage().setTitle("Cornar");
     }

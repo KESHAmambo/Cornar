@@ -9,10 +9,10 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DatabaseService {
-    private static Logger loggerDataBase = Logger.getLogger(DatabaseService.class.getName());
+public class DatabaseManager {
+    private static Logger loggerDataBase = Logger.getLogger(DatabaseManager.class.getName());
 
-    private DatabaseService() {
+    private DatabaseManager() {
 
     }
 
