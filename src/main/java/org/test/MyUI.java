@@ -35,7 +35,13 @@ public class MyUI extends UI {
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         controller = new MyUIController(this);
-        navigator = new Navigator(this, this);
+        navigator = createNavigator();
+
+        getPage().setTitle("Cornar");
+    }
+
+    private Navigator createNavigator() {
+        Navigator navigator = new Navigator(this, this);
 
         MainPageImpl mainPage = new MainPageImpl();
         MenuPageImpl menuPage = new MenuPageImpl();
@@ -45,11 +51,6 @@ public class MyUI extends UI {
 
         mainPage.provideNavigationForSignIn(navigator);
         menuPage.provideNavigationForLogOut(navigator);
-
-        getPage().setTitle("Cornar");
-    }
-
-    public Navigator getNavigator() {
         return navigator;
     }
 

@@ -6,4 +6,8 @@ package org.test.logic;
 public enum PageName {
     MENU_PAGE,
     PROFILE_PAGE,
+    FRIENDS,
+    SEARCH,
+    CLASS,
+    TASKS,
 }
