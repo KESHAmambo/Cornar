@@ -1,12 +1,14 @@
 package org.test.logic;
 
+import org.test.dbservice.DatabaseService;
+
 import java.util.Date;
 
 /**
  * Created by Аркадий on 28.10.2016.
  */
 public class Profile {
-    private static Profile ourInstance = new Profile();
+    private static Profile currentProfile = new Profile();
 
     private String name;
     private String surname;
@@ -14,11 +16,12 @@ public class Profile {
     private String education;
     private Date birthDate;
 
-    public static Profile getInstance() {
-        return ourInstance;
+    public static Profile getCurrentProfile() {
+        return currentProfile;
     }
 
-    private Profile() {
+    public Profile() {
+
     }
 
     public String getName() {
@@ -59,5 +62,13 @@ public class Profile {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public static void fulfillProfile(Profile profile, String userEmail) {
+        DatabaseService.fulfillProfile(profile, userEmail);
+    }
+
+    public static void clearCurrentProfile() {
+        currentProfile = new Profile();
     }
 }

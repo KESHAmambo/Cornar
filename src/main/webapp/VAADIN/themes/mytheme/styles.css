@@ -12918,6 +12918,15 @@ div.v-layout.v-horizontal.v-widget {
 	color: #fafeff;
 }
 
+.mytheme .v-Notification-signUpNotification {
+	background: #5fd668;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	padding: 30px;
+	font-weight: bold;
+}
+
 .mytheme .v-verticallayout-menuVerticalLayout {
 	background: #20c7d7;
 	width: 20vw;

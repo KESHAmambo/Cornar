@@ -6,11 +6,16 @@ import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
+import org.test.controllers.MyUIController;
 import org.test.customcomponents.MainPageImpl;
+import org.test.customcomponents.MenuPageImpl;
+import org.test.logic.PageName;
+
+import static org.test.logic.PageName.*;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window 
@@ -24,22 +29,28 @@ import org.test.customcomponents.MainPageImpl;
 @PreserveOnRefresh
 @Theme("mytheme")
 public class MyUI extends UI {
+    private Navigator navigator;
+    private MyUIController controller;
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        VerticalLayout basicLayout = new VerticalLayout();
-        basicLayout.setSizeFull();
+        controller = new MyUIController(this);
+        navigator = new Navigator(this, this);
 
-        MainPageImpl mainPage = new MainPageImpl(basicLayout);
-//        MenuPage menuPage = new  MenuPageImpl();
-//        basicLayout.addComponent(menuPage);
-//        mainPage.setWidth("100%");
-//        mainPage.setHeight("100%")
-        basicLayout.addComponent(mainPage);
-        getSession().setAttribute("user", "42");
+        MainPageImpl mainPage = new MainPageImpl();
+        MenuPageImpl menuPage = new MenuPageImpl();
 
+        navigator.addView("", mainPage);
+        navigator.addView(MENU_PAGE.toString(), menuPage);
 
-        setContent(basicLayout);
+        mainPage.provideNavigationForSignIn(navigator);
+        menuPage.provideNavigationForLogOut(navigator);
+
+        getPage().setTitle("Cornar");
+    }
+
+    public Navigator getNavigator() {
+        return navigator;
     }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)

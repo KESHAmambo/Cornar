@@ -237,6 +237,15 @@ $v-border-radius: 0px;
     color: #fafeff;
   }
 
+  .v-Notification-signUpNotification {
+    background: #5fd668;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    padding: 30px;
+    font-weight: bold;
+  }
+
   // MenuPage ----------------------------------------------------
 
   .v-verticallayout-menuVerticalLayout {

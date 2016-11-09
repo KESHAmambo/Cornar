@@ -86,20 +86,13 @@ public class UserDaoImpl implements UserDao {
         return entityById;
     }
 
-    @Override
-    public void update(UsersEntity entity) {
-
-    }
-
-    public UsersEntity getByEmailAndPassword(String email, String password){
-        UsersEntity user = new UsersEntity();
+    public UsersEntity getByEmailAndPassword(String email, String password) {
         Session session = openCurrentSessionWithTransaction();
-        user = (UsersEntity) session.createCriteria(UsersEntity.class)
+        UsersEntity user = (UsersEntity) session.createCriteria(UsersEntity.class)
                 .add(Restrictions.eq("email", email))
                 .add(Restrictions.eq("password", password)).uniqueResult();
         shutdownCurrentSessionWithTransaction();
         return user;
-
     }
 
     public List<UsersEntity> getAllUsers() {
@@ -111,7 +104,10 @@ public class UserDaoImpl implements UserDao {
         return listOfUsers;
     }
 
+    @Override
+    public void update(UsersEntity entity) {
 
+    }
 
     @Override
     public Integer deleteAll() {
