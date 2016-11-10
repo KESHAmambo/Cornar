@@ -7,10 +7,7 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import org.test.controllers.MenuPageController;
-import org.test.customcomponents.menupage.ClassPageImpl;
-import org.test.customcomponents.menupage.FriendsPageImpl;
-import org.test.customcomponents.menupage.SearchPageImpl;
-import org.test.customcomponents.menupage.TasksPageImpl;
+import org.test.customcomponents.menupage.*;
 import org.test.tamplets.MenuPage;
 import org.vaadin.sliderpanel.SliderPanel;
 import org.vaadin.sliderpanel.SliderPanelBuilder;
@@ -31,14 +28,20 @@ public class MenuPageImpl extends MenuPage implements View {
         majorHorizontalLayout.addComponent(createChatSlidePanel());
         mainPanel.setContent(new ProfilePageImpl());
 
-        provideNavigationForMenuButtons();
-        provideNavigationForLogOut(navigator);
+        provideNavigation(navigator);
     }
 
-    private void provideNavigationForMenuButtons() {
+    private void provideNavigation(Navigator generalNavigator) {
+        provideNavigationForLogOut(generalNavigator);
+        Navigator menuButtonsNavigator = createNavigatorForMenuButtons();
+        createListenersForMenuButtons(menuButtonsNavigator);
+    }
+
+    private Navigator createNavigatorForMenuButtons() {
         Navigator menuButtonsNavigator = new Navigator(UI.getCurrent(), mainPanel);
 
         menuButtonsNavigator.addView("", new ProfilePageImpl());
+        menuButtonsNavigator.addView(MENU_PAGE.toString(), new ProfilePageImpl());
 
         menuButtonsNavigator.addView(MENU_PAGE + "/" + PROFILE_PAGE,
                 new ProfilePageImpl());
@@ -51,11 +54,20 @@ public class MenuPageImpl extends MenuPage implements View {
         menuButtonsNavigator.addView(MENU_PAGE + "/" + TASKS,
                 new TasksPageImpl());
 
-        controller.createListenerForProfileButton(profileButton, menuButtonsNavigator);
-        controller.createListenerForFriendsButton(friendsButton, menuButtonsNavigator);
-        controller.createListenerForSearchButton(searchButton, menuButtonsNavigator);
-        controller.createListenerForClassButton(classButton, menuButtonsNavigator);
-        controller.createListenerForTasksButton(tasksButton, menuButtonsNavigator);
+        return menuButtonsNavigator;
+    }
+
+    private void createListenersForMenuButtons(Navigator menuButtonsNavigator) {
+        controller.createListenerForMenuButton(
+                profileButton, menuButtonsNavigator, MENU_PAGE + "/" + PROFILE_PAGE);
+        controller.createListenerForMenuButton(
+                friendsButton, menuButtonsNavigator, MENU_PAGE + "/" + FRIENDS);
+        controller.createListenerForMenuButton(
+                searchButton, menuButtonsNavigator, MENU_PAGE + "/" + SEARCH);
+        controller.createListenerForMenuButton(
+                classButton, menuButtonsNavigator, MENU_PAGE + "/" + CLASS);
+        controller.createListenerForMenuButton(
+                tasksButton, menuButtonsNavigator, MENU_PAGE + "/" + TASKS);
     }
 
     private SliderPanel createChatSlidePanel() {
@@ -76,7 +88,7 @@ public class MenuPageImpl extends MenuPage implements View {
         return verticalLayout;
     }
 
-    public void provideNavigationForLogOut(Navigator navigator) {
+    private void provideNavigationForLogOut(Navigator navigator) {
         controller.createListenerForLogOutButton(logOutButton, navigator);
     }
 

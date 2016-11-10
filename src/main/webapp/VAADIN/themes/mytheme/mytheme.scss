@@ -37,87 +37,10 @@ $v-border-radius: 0px;
 @mixin mytheme {
   @include valo;
 
-  // MainPage ------------------------------------------------------------
-
-  /*.gradient-pattern {
-    background: #00ace0 url("https://www.freshlife.com/images/teacherinclass.jpg") center;
-    !*width: 320px;
-    height: 320px;
-    border: none;
-    font: normal 100%/normal Arial, Helvetica, sans-serif;
-    color: rgba(255,255,255,1);
-    -o-text-overflow: clip;
-    text-overflow: clip;
-    background: -webkit-linear-gradient(0deg, rgba(0,0,0,0) 79px, rgb(171,206,212) 79px, rgb(171,206,212) 81px, rgba(0,0,0,0) 81px), -webkit-linear-gradient(90deg, rgb(238,238,238) 0.1em, rgba(0,0,0,0) 0.1em), rgb(255, 255, 255);
-    background: -moz-linear-gradient(90deg, rgba(0,0,0,0) 79px, rgb(171,206,212) 79px, rgb(171,206,212) 81px, rgba(0,0,0,0) 81px), -moz-linear-gradient(0deg, rgb(238,238,238) 0.1em, rgba(0,0,0,0) 0.1em), rgb(255, 255, 255);
-    background: linear-gradient(90deg, rgba(0,0,0,0) 79px, rgb(171,206,212) 79px, rgb(171,206,212) 81px, rgba(0,0,0,0) 81px), linear-gradient(0deg, rgb(238,238,238) 0.1em, rgba(0,0,0,0) 0.1em), rgb(255, 255, 255);
-    background-position: auto auto;
-    -webkit-background-origin: padding-box;
-    background-origin: padding-box;
-    -webkit-background-clip: border-box;
-    background-clip: border-box;
-    -webkit-background-size: 100% 1.2em;
-    background-size: 100% 1.2em;*!
-  }
-
-  .v-label-largeLabel {
-    font-size: 70px;
-    font-weight: bold;
-    color: rgba(126, 108, 102, 0.79);
-  }
-
-  .titleLayout {
-    background-color: rgba(248, 252, 248, 0.61);
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-  }
-
-  .v-panel-descriptionPanel {
-    background: transparent;
-    border-style: hidden;
-  }
-
-  .descriptionLayout {
-    background-color: rgba(255, 102, 110, 0.61);
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    font-size: 28px;
-    color: #f2f2f2;
-  }
-
-  .v-label-descriptionLabel {
-    text-align: center;
-  }
-
-  .supplementalLayoutLeft {
-    background-color: rgba(75, 204, 255, 0.51);
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    font-size: 20px;
-    color: #f2f2f2;
-  }
-
-  .supplementalLayoutRight {
-    background-color: rgba(255, 216, 91, 0.51);
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    font-size: 20px;
-    color: #f2f2f2;
-  }
-
-  .v-caption-supplementalLayoutCaption {
-    font-size: 24px;
-    font-weight: bold;
-  }*/
-
   // MainPage ------------------------------------------------
 
   .v-horizontallayout-mainPageLayout {
-    background: url("images/475348769.jpg")  no-repeat center fixed;
+    background: url("images/main_background.jpg")  no-repeat center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -271,6 +194,12 @@ $v-border-radius: 0px;
   }
 
   .v-button-menuButton:focus {
+     background: #005159;
+     padding-left: 6vw;
+     font-size: 26px;
+   }
+
+  .v-button-menuButtonFocused {
     background: #005159;
     padding-left: 6vw;
     font-size: 26px;
@@ -317,6 +246,61 @@ $v-border-radius: 0px;
     background: #91e4ec;
   }
 
+  .v-button-profileButtonsFocused {
+    background: #91e4ec;
+  }
+
+  .v-verticallayout-profileInnerPage {
+    border-top: 3px #91e4ec solid;
+    border-right: 3px #91e4ec solid;
+  }
+
+  //-------------------- MaterialsPage ----------------------
+
+  .v-csslayout-docImage {
+    background-image: url("images/doc_face.png");
+    background-size: cover;
+  }
+
+  .v-horizontallayout-docLayout {
+    background: #b3cacc;
+    padding: 1em;
+  }
+
+  .v-horizontallayout-docNameLayout {
+    margin-top: 0.5em;
+  }
+
+  .v-horizontallayout-docDateLayout {
+    margin-bottom: 0.6em;
+  }
+
+  .v-label-docLabelBold {
+    color: #ffffff;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  .v-label-docLabelSlight {
+    color: #ffffff;
+    font-size: 1.5em;
+  }
+
+  .v-button-docButton {
+    font-size: 3em;
+    color: #ffffff;
+    border: none;
+    background: #B3CACC;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    border-radius: 40px;
+    -webkit-transition-duration: 0.6s;
+    transition-duration: 0.6s;
+  }
+
+  .v-button-docButton:hover {
+    background: #809395;
+  }
 
   //--------- ChatPanel -------------------------------------
   .chatPanelMajorLayout {

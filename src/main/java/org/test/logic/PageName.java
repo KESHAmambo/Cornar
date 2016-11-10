@@ -5,7 +5,13 @@ package org.test.logic;
  */
 public enum PageName {
     MENU_PAGE,
+    //---
     PROFILE_PAGE,
+    //------
+    MATERIALS,
+    INBOX,
+    SCHEDULE,
+    //------
     FRIENDS,
     SEARCH,
     CLASS,
