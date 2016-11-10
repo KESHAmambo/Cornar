@@ -15,16 +15,21 @@ import java.util.Locale;
  */
 public class ProfilePageImpl extends ProfilePage implements View {
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("d MMMM yyyy", Locale.ENGLISH);
-
     public ProfilePageImpl() {
         bindLabelsToProfileData();
     }
 
+    public ProfilePageImpl(Profile currentProfile) {
+        bindLabelsToProfileData();
+    }
+
     private void bindLabelsToProfileData() {
+        System.out.println(Profile.getCurrentProfile() + "binding");
         nameLabel.setPropertyDataSource(new Property() {
             @Override
             public Object getValue() {
                 Profile profile = Profile.getCurrentProfile();
+                System.out.println(profile);
                 String name = profile.getName();
                 String surname = profile.getSurname();
                 return name + " " + surname;

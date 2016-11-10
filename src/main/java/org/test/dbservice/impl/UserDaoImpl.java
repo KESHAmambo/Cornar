@@ -12,54 +12,56 @@ import java.util.List;
 /**
  * Created by Taras on 27.10.2016.
  */
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl extends AbstractServiceSession implements UserDao {
 
-    private SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();;
+    //TODO add session service;
 
-
-    private Session currentSession;
-    private Transaction currentTransaction;
-
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    public Session getCurrentSession() {
-        return currentSession;
-    }
-
-    public UserDaoImpl() {
-    }
-
-    public Session openCurrentSession(){
-        currentSession = getSessionFactory().getCurrentSession();
-        return currentSession;
-    }
-
-    public Session openCurrentSessionWithTransaction(){
-        currentSession = openCurrentSession();
-        currentTransaction = currentSession.beginTransaction();
-        return currentSession;
-    }
-
-    public void shutdownCurrentSession(){
-        currentSession.close();
-    }
-
-    public void shutdownCurrentSessionWithTransaction(){
-        currentTransaction.commit();
+//    private SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();;
+//
+//
+//    private Session currentSession;
+//    private Transaction currentTransaction;
+//
+//    public SessionFactory getSessionFactory() {
+//        return sessionFactory;
+//    }
+//
+//    public Session getCurrentSession() {
+//        return currentSession;
+//    }
+//
+//    public UserDaoImpl() {
+//    }
+//
+//    public Session openCurrentSession(){
+//        currentSession = getSessionFactory().getCurrentSession();
+//        return currentSession;
+//    }
+//
+//    public Session openCurrentSessionWithTransaction(){
+//        currentSession = openCurrentSession();
+//        currentTransaction = currentSession.beginTransaction();
+//        return currentSession;
+//    }
+//
+//    public void shutdownCurrentSession(){
 //        currentSession.close();
-    }
+//    }
+//
+//    public void shutdownCurrentSessionWithTransaction(){
+//        currentTransaction.commit();
+////        currentSession.close();
+//    }
 
 
 
     @Override
     public int create(UsersEntity entity) {
         Session session;
-        int count = 0;
+        int count = 1;
         try {
             session = openCurrentSessionWithTransaction();
-            count = (Integer) session.save(entity);
+            session.save(entity);
         }catch (HibernateException e){
             System.out.printf("Exist");
         }finally {
@@ -95,22 +97,35 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
+    public UsersEntity getUserByEmail(String email){
+        Session session = openCurrentSessionWithTransaction();
+        UsersEntity user = (UsersEntity) session.createCriteria(UsersEntity.class)
+                .add(Restrictions.eq("email", email)).uniqueResult();
+        shutdownCurrentSessionWithTransaction();
+        return user;
+    }
     public List<UsersEntity> getAllUsers() {
         Session session = openCurrentSessionWithTransaction();
         List<UsersEntity> listOfUsers = new ArrayList<>();
-        Query query = session.createQuery("select  * from project_cornar.users");
-        listOfUsers = (List<UsersEntity>)query.list();
+        //Query query = session.createQuery("select * from project_cornar.users");
+        //listOfUsers = (List<UsersEntity>)query.list();
         shutdownCurrentSessionWithTransaction();
         return listOfUsers;
     }
 
     @Override
     public void update(UsersEntity entity) {
-
+        //TODO test
+        Session session = openCurrentSessionWithTransaction();
+        session.update(entity);
+        shutdownCurrentSessionWithTransaction();
     }
 
     @Override
-    public Integer deleteAll() {
-        return null;
+    public void deleteAll() {
+        List<UsersEntity> allUsers = getAllUsers();
+        for (UsersEntity user : allUsers) {
+            delete(user);
+        }
     }
 }

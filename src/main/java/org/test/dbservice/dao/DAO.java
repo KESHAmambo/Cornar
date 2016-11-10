@@ -8,5 +8,5 @@ public interface DAO<T> {
     void delete(T entity);
     <T> T getById(Long id);
     void update(T entity);
-    Integer deleteAll();
+    void deleteAll();
 }

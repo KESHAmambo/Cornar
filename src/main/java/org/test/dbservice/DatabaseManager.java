@@ -1,6 +1,5 @@
 package org.test.dbservice;
 
-import org.test.Test.DummyDatabaseService;
 import org.test.dbservice.dao.UserDao;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.dbservice.impl.UserDaoImpl;
@@ -11,18 +10,32 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DatabaseManager {
-    private static DatabaseService service = new DummyDatabaseService();
+    private static DatabaseService service = new DatabaseServiceImpl();
 
     private DatabaseManager() {
 
     }
 
-    public static int signUpUser(String firstName, String surname,
+    /** TO FIX: must return a result-code depending on result of signUp-operation
+     * @see org.test.controllers.MainPageController
+     */
+    public static int signUpUser(String firstName, String lastName,
                           String email, Date birthDate,
                           String password, String education) {
-        return service.signUpUser(
-                firstName, surname, email,
-                birthDate, password, education);
+        //TODO hash password
+        int successOfAddingUser = 1;
+        UserDao userDao = new UserDaoImpl();
+        if (doesUserExist(email,password) == true)
+            return successOfAddingUser;
+        UsersEntity user = new UsersEntity();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setBirthDate(new java.sql.Date(birthDate.getTime()));
+        user.setPersonDescription(education);
+        successOfAddingUser  = userDao.create(user);
+        return successOfAddingUser;
     }
 
     public static UsersEntity getUser(String email, String password) {
@@ -35,5 +48,12 @@ public class DatabaseManager {
 
     public static void fulfillProfile(Profile profile, String userEmail) {
         service.fulfillProfile(profile, userEmail);
+        UsersEntity user = new UserDaoImpl().getUserByEmail(userEmail);
+        profile.setName(user.getFirstName());
+        profile.setSurname(user.getLastName());
+        profile.setEmail(userEmail);
+        profile.setEducation(user.getPersonDescription());
+        profile.setBirthDate(user.getBirthDate());
+        profile.setId(user.getUserId());
     }
 }
