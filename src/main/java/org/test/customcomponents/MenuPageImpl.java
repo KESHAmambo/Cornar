@@ -88,7 +88,7 @@ public class MenuPageImpl extends MenuPage implements View {
         return verticalLayout;
     }
 
-    private void provideNavigationForLogOut(Navigator navigator) {
+    public void provideNavigationForLogOut(Navigator navigator) {
         controller.createListenerForLogOutButton(logOutButton, navigator);
     }
 
