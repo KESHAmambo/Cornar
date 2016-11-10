@@ -80,4 +80,16 @@ public class Profile {
     public static void clearCurrentProfile() {
         currentProfile = new Profile();
     }
+
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", education='" + education + '\'' +
+                ", birthDate=" + birthDate +
+                '}';
+    }
 }

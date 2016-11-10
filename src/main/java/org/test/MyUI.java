@@ -44,14 +44,9 @@ public class MyUI extends UI {
     private Navigator createNavigator() {
         Navigator navigator = new Navigator(this, this);
 
-        MainPageImpl mainPage = new MainPageImpl();
-        MenuPageImpl menuPage = new MenuPageImpl();
+        navigator.addView("", new MainPageImpl(navigator));
+        navigator.addView(MENU_PAGE.toString(), new MenuPageImpl(navigator));
 
-        navigator.addView("", mainPage);
-        navigator.addView(MENU_PAGE.toString(), menuPage);
-
-        mainPage.provideNavigationForSignIn(navigator);
-        menuPage.provideNavigationForLogOut(navigator);
         return navigator;
     }
 

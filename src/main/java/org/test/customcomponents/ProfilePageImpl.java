@@ -1,5 +1,6 @@
 package org.test.customcomponents;
 
+import com.vaadin.data.Property;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import org.test.logic.Profile;
@@ -15,31 +16,128 @@ import java.util.Locale;
 public class ProfilePageImpl extends ProfilePage implements View {
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("d MMMM yyyy", Locale.ENGLISH);
 
-    public ProfilePageImpl(Profile profile) {
-        fulfillProfileLabels(profile);
+    public ProfilePageImpl() {
+        bindLabelsToProfileData();
     }
 
-    private void fulfillProfileLabels(Profile profile) {
-        String name = profile.getName();
-        String surname = profile.getSurname();
-        nameLabel.setValue(name + " " + surname);
+    private void bindLabelsToProfileData() {
+        nameLabel.setPropertyDataSource(new Property() {
+            @Override
+            public Object getValue() {
+                Profile profile = Profile.getCurrentProfile();
+                String name = profile.getName();
+                String surname = profile.getSurname();
+                return name + " " + surname;
+            }
 
-        Date birthDate = profile.getBirthDate();
-        if(birthDate == null) {
-            birthdayLabel.setValue("No information");
-        } else {
-            birthdayLabel.setValue(dateFormat.format(birthDate));
-        }
+            @Override
+            public void setValue(Object o) throws ReadOnlyException {
 
-        String email = profile.getEmail();
-        emailLabel.setValue(email);
+            }
 
-        String education = profile.getEducation();
-        if(education == null || education.equals("")) {
-            educationLabel.setValue("No information");
-        } else {
-            educationLabel.setValue(education);
-        }
+            @Override
+            public Class getType() {
+                return String.class;
+            }
+
+            @Override
+            public boolean isReadOnly() {
+                return false;
+            }
+
+            @Override
+            public void setReadOnly(boolean b) {
+
+            }
+        });
+        birthdayLabel.setPropertyDataSource(new Property() {
+            @Override
+            public Object getValue() {
+                Date birthDate = Profile.getCurrentProfile().getBirthDate();
+                if(birthDate == null) {
+                    return "No information";
+                } else {
+                    return dateFormat.format(birthDate);
+                }
+            }
+
+            @Override
+            public void setValue(Object o) throws ReadOnlyException {
+
+            }
+
+            @Override
+            public Class getType() {
+                return String.class;
+            }
+
+            @Override
+            public boolean isReadOnly() {
+                return false;
+            }
+
+            @Override
+            public void setReadOnly(boolean b) {
+
+            }
+        });
+        emailLabel.setPropertyDataSource(new Property() {
+            @Override
+            public Object getValue() {
+                return Profile.getCurrentProfile().getEmail();
+            }
+
+            @Override
+            public void setValue(Object o) throws ReadOnlyException {
+
+            }
+
+            @Override
+            public Class getType() {
+                return String.class;
+            }
+
+            @Override
+            public boolean isReadOnly() {
+                return false;
+            }
+
+            @Override
+            public void setReadOnly(boolean b) {
+
+            }
+        });
+        educationLabel.setPropertyDataSource(new Property() {
+            @Override
+            public Object getValue() {
+                String education = Profile.getCurrentProfile().getEducation();
+                if(education == null || education.equals("")) {
+                    return "No information";
+                } else {
+                    return education;
+                }
+            }
+
+            @Override
+            public void setValue(Object o) throws ReadOnlyException {
+
+            }
+
+            @Override
+            public Class getType() {
+                return String.class;
+            }
+
+            @Override
+            public boolean isReadOnly() {
+                return false;
+            }
+
+            @Override
+            public void setReadOnly(boolean b) {
+
+            }
+        });
     }
 
     @Override

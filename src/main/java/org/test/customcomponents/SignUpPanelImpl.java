@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * Created by Аркадий on 27.10.2016.
  */
-class SignUpPanelImpl extends SignUpPanel {
+public class SignUpPanelImpl extends SignUpPanel {
     SignUpPanelImpl(Window signUpWindow) {
         passwordTextField.addValidator(new PasswordEqualsValidator());
         repeatPasswordTextField.setImmediate(true);
@@ -20,31 +20,31 @@ class SignUpPanelImpl extends SignUpPanel {
         });
     }
 
-    Button getSignUpButton() {
+    public Button getSignUpButton() {
         return signUpButton;
     }
 
-    String readName() {
+    public String readName() {
         return nameTextField.getValue();
     }
 
-    String readSurname() {
+    public String readSurname() {
         return surnameTextField.getValue();
     }
 
-    String readEmail() {
+    public String readEmail() {
         return emailTextFeild.getValue();
     }
 
-    String readPassword() {
+    public String readPassword() {
         return passwordTextField.getValue();
     }
 
-    String readEducation() {
+    public String readEducation() {
         return educationTextArea.getValue();
     }
 
-    Date readBirthDate() {
+    public Date readBirthDate() {
         return birthDateField.getValue();
     }
 

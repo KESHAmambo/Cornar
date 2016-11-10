@@ -11,7 +11,6 @@ import org.test.customcomponents.menupage.ClassPageImpl;
 import org.test.customcomponents.menupage.FriendsPageImpl;
 import org.test.customcomponents.menupage.SearchPageImpl;
 import org.test.customcomponents.menupage.TasksPageImpl;
-import org.test.logic.Profile;
 import org.test.tamplets.MenuPage;
 import org.vaadin.sliderpanel.SliderPanel;
 import org.vaadin.sliderpanel.SliderPanelBuilder;
@@ -26,37 +25,37 @@ import static org.test.logic.PageName.*;
 public class MenuPageImpl extends MenuPage implements View {
     private final MenuPageController controller;
 
-    public MenuPageImpl() {
+    public MenuPageImpl(Navigator navigator) {
         controller = new MenuPageController(this);
 
         majorHorizontalLayout.addComponent(createChatSlidePanel());
-        mainPanel.setContent(new ProfilePageImpl(Profile.getCurrentProfile()));
+        mainPanel.setContent(new ProfilePageImpl());
 
         provideNavigationForMenuButtons();
+        provideNavigationForLogOut(navigator);
     }
 
     private void provideNavigationForMenuButtons() {
-        Navigator navigator = new Navigator(UI.getCurrent(), mainPanel);
+        Navigator menuButtonsNavigator = new Navigator(UI.getCurrent(), mainPanel);
 
-        // UNEXPECTED BEHAVIOUR: mock for unexpected navigator's behaviour
-        navigator.addView("", new ClassPageImpl());
+        menuButtonsNavigator.addView("", new ProfilePageImpl());
 
-        navigator.addView(MENU_PAGE + "/" + PROFILE_PAGE,
-                new ProfilePageImpl(Profile.getCurrentProfile()));
-        navigator.addView(MENU_PAGE + "/" + FRIENDS,
+        menuButtonsNavigator.addView(MENU_PAGE + "/" + PROFILE_PAGE,
+                new ProfilePageImpl());
+        menuButtonsNavigator.addView(MENU_PAGE + "/" + FRIENDS,
                 new FriendsPageImpl());
-        navigator.addView(MENU_PAGE + "/" + SEARCH,
+        menuButtonsNavigator.addView(MENU_PAGE + "/" + SEARCH,
                 new SearchPageImpl());
-        navigator.addView(MENU_PAGE + "/" + CLASS,
+        menuButtonsNavigator.addView(MENU_PAGE + "/" + CLASS,
                 new ClassPageImpl());
-        navigator.addView(MENU_PAGE + "/" + TASKS,
+        menuButtonsNavigator.addView(MENU_PAGE + "/" + TASKS,
                 new TasksPageImpl());
 
-        controller.createListenerForProfileButton(profileButton, navigator);
-        controller.createListenerForFriendsButton(friendsButton, navigator);
-        controller.createListenerForSearchButton(searchButton, navigator);
-        controller.createListenerForClassButton(classButton, navigator);
-        controller.createListenerForTasksButton(tasksButton, navigator);
+        controller.createListenerForProfileButton(profileButton, menuButtonsNavigator);
+        controller.createListenerForFriendsButton(friendsButton, menuButtonsNavigator);
+        controller.createListenerForSearchButton(searchButton, menuButtonsNavigator);
+        controller.createListenerForClassButton(classButton, menuButtonsNavigator);
+        controller.createListenerForTasksButton(tasksButton, menuButtonsNavigator);
     }
 
     private SliderPanel createChatSlidePanel() {

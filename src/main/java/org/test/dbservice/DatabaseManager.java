@@ -1,5 +1,6 @@
 package org.test.dbservice;
 
+import org.test.Test.DummyDatabaseService;
 import org.test.dbservice.dao.UserDao;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.dbservice.impl.UserDaoImpl;
@@ -10,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DatabaseManager {
-    private static DatabaseService service = new DatabaseServiceImpl();
+    private static DatabaseService service = new DummyDatabaseService();
 
     private DatabaseManager() {
 
@@ -33,6 +34,6 @@ public class DatabaseManager {
     }
 
     public static void fulfillProfile(Profile profile, String userEmail) {
-        //TODO
+        service.fulfillProfile(profile, userEmail);
     }
 }

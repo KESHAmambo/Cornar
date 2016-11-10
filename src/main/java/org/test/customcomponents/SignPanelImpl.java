@@ -8,7 +8,7 @@ import org.test.tamplets.SignPanel;
 /**
  * Created by Аркадий on 23.10.2016.
  */
-class SignPanelImpl extends SignPanel {
+public class SignPanelImpl extends SignPanel {
     private Window signUpWindow;
     private SignUpPanelImpl signUpPanel;
 
@@ -20,23 +20,23 @@ class SignPanelImpl extends SignPanel {
         createListenerFopeningSignUpWindowButton();
     }
 
-    Button getSignInButton() {
+    public Button getSignInButton() {
         return signInButton;
     }
 
-    SignUpPanelImpl getSignUpPanel() {
+    public SignUpPanelImpl getSignUpPanel() {
         return signUpPanel;
     }
 
-    Window getSignUpWindow() {
+    public Window getSignUpWindow() {
         return signUpWindow;
     }
 
-    String getUserEmail() {
+    public String getUserEmail() {
         return emailTextField.getValue();
     }
 
-    String getUserPassword() {
+    public String getUserPassword() {
         return passwordTextField.getValue();
     }
 

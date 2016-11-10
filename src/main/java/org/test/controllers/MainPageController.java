@@ -7,6 +7,8 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.Window;
 import org.test.customcomponents.MainPageImpl;
+import org.test.customcomponents.SignPanelImpl;
+import org.test.customcomponents.SignUpPanelImpl;
 import org.test.dbservice.DatabaseManager;
 import org.test.logic.Profile;
 
@@ -25,23 +27,35 @@ public class MainPageController {
     }
 
     public void createListenerForSingInButton(
-            Button signInButton, Navigator navigator,
-            String userEmail, String userPassword) {
+            Navigator navigator, SignPanelImpl signPanel) {
+        Button signInButton = signPanel.getSignInButton();
+
         signInButton.addClickListener(e -> {
-            //TODO: uncomment
-//            if(DatabaseManager.doesUserExist(userEmail, userPassword)) {
+            String userEmail = signPanel.getUserEmail();
+            String userPassword = signPanel.getUserPassword();
+
+            if(DatabaseManager.doesUserExist(userEmail, userPassword)) {
                 Profile.fulfillProfile(Profile.getCurrentProfile(), userEmail);
                 navigator.navigateTo(MENU_PAGE.toString());
-//            }
+            } else {
+                Notification.show("Invalid credentials!", Notification.Type.ERROR_MESSAGE);
+            }
         });
     }
 
-    public void createListenerForSingUpButton(
-            Button signUpButton, Window signUpWindow,
-            String userName, String userSurname,
-            String userEmail, String userPassword,
-            String userEducation, Date userBirthDate) {
+    public void createListenerForSingUpButton(SignPanelImpl signPanel) {
+        Window signUpWindow = signPanel.getSignUpWindow();
+        SignUpPanelImpl signUpPanel = signPanel.getSignUpPanel();
+        Button signUpButton = signUpPanel.getSignUpButton();
+
         signUpButton.addClickListener(e -> {
+            String userName = signUpPanel.readName();
+            String userSurname = signUpPanel.readSurname();
+            String userEmail = signUpPanel.readEmail();
+            String userPassword = signUpPanel.readPassword();
+            String userEducation = signUpPanel.readEducation();
+            Date userBirthDate = signUpPanel.readBirthDate();
+
             int signUpResult = DatabaseManager.signUpUser(
                     userName, userSurname, userEmail,
                     userBirthDate, userPassword, userEducation);
