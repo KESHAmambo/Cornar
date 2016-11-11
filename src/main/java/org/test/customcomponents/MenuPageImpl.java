@@ -41,17 +41,17 @@ public class MenuPageImpl extends MenuPage implements View {
         Navigator menuButtonsNavigator = new Navigator(UI.getCurrent(), mainPanel);
 
         menuButtonsNavigator.addView("", new ProfilePageImpl());
-        menuButtonsNavigator.addView(MENU_PAGE.toString(), new ProfilePageImpl());
+        menuButtonsNavigator.addView(MENU.toString(), new ProfilePageImpl());
 
-        menuButtonsNavigator.addView(MENU_PAGE + "/" + PROFILE_PAGE,
+        menuButtonsNavigator.addView(MENU + "/" + PROFILE,
                 new ProfilePageImpl());
-        menuButtonsNavigator.addView(MENU_PAGE + "/" + FRIENDS,
+        menuButtonsNavigator.addView(MENU + "/" + FRIENDS,
                 new FriendsPageImpl());
-        menuButtonsNavigator.addView(MENU_PAGE + "/" + SEARCH,
+        menuButtonsNavigator.addView(MENU + "/" + SEARCH,
                 new SearchPageImpl());
-        menuButtonsNavigator.addView(MENU_PAGE + "/" + CLASS,
+        menuButtonsNavigator.addView(MENU + "/" + CLASS,
                 new ClassPageImpl());
-        menuButtonsNavigator.addView(MENU_PAGE + "/" + TASKS,
+        menuButtonsNavigator.addView(MENU + "/" + TASKS,
                 new TasksPageImpl());
 
         return menuButtonsNavigator;
@@ -59,15 +59,15 @@ public class MenuPageImpl extends MenuPage implements View {
 
     private void createListenersForMenuButtons(Navigator menuButtonsNavigator) {
         controller.createListenerForMenuButton(
-                profileButton, menuButtonsNavigator, MENU_PAGE + "/" + PROFILE_PAGE);
+                profileButton, menuButtonsNavigator, MENU + "/" + PROFILE);
         controller.createListenerForMenuButton(
-                friendsButton, menuButtonsNavigator, MENU_PAGE + "/" + FRIENDS);
+                friendsButton, menuButtonsNavigator, MENU + "/" + FRIENDS);
         controller.createListenerForMenuButton(
-                searchButton, menuButtonsNavigator, MENU_PAGE + "/" + SEARCH);
+                searchButton, menuButtonsNavigator, MENU + "/" + SEARCH);
         controller.createListenerForMenuButton(
-                classButton, menuButtonsNavigator, MENU_PAGE + "/" + CLASS);
+                classButton, menuButtonsNavigator, MENU + "/" + CLASS);
         controller.createListenerForMenuButton(
-                tasksButton, menuButtonsNavigator, MENU_PAGE + "/" + TASKS);
+                tasksButton, menuButtonsNavigator, MENU + "/" + TASKS);
     }
 
     private SliderPanel createChatSlidePanel() {

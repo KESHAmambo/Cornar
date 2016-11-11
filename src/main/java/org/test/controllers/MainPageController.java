@@ -10,7 +10,6 @@ import org.test.customcomponents.MainPageImpl;
 import org.test.customcomponents.SignPanelImpl;
 import org.test.customcomponents.SignUpPanelImpl;
 import org.test.dbservice.DatabaseManager;
-import org.test.dbservice.DatabaseService;
 import org.test.logic.Profile;
 
 import java.util.Date;
@@ -36,7 +35,7 @@ public class MainPageController {
             String userPassword = signPanel.getUserPassword();
             if(DatabaseManager.doesUserExist(userEmail, userPassword)) {
                 Profile.fulfillProfile(Profile.getCurrentProfile(), userEmail);
-                navigator.navigateTo(MENU_PAGE.toString());
+                navigator.navigateTo(MENU.toString());
             }
         });
     }

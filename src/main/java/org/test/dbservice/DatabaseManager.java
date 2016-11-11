@@ -1,12 +1,14 @@
 package org.test.dbservice;
 
 import org.test.Test.DummyDatabaseService;
+import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
 import org.test.dbservice.dao.UserDao;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.dbservice.impl.UserDaoImpl;
 import org.test.logic.Profile;
 
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,5 +37,9 @@ public class DatabaseManager {
 
     public static void fulfillProfile(Profile profile, String userEmail) {
         service.fulfillProfile(profile, userEmail);
+    }
+
+    public static List<DocumentBoxImpl> pullDocuments() {
+        return service.pullDocuments();
     }
 }

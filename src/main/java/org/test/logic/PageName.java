@@ -4,16 +4,27 @@ package org.test.logic;
  * Created by abara on 08.11.2016.
  */
 public enum PageName {
-    MENU_PAGE,
+    MENU("menu"),
     //---
-    PROFILE_PAGE,
+    PROFILE("profile"),
     //------
-    MATERIALS,
-    INBOX,
-    SCHEDULE,
+    MATERIALS("materials"),
+    INBOX("inbox"),
+    SCHEDULE("schedule"),
     //------
-    FRIENDS,
-    SEARCH,
-    CLASS,
-    TASKS,
+    FRIENDS("friends"),
+    SEARCH("search"),
+    CLASS("class"),
+    TASKS("tasks"),;
+
+    private String path;
+
+    PageName(String path) {
+        this.path = path;
+    }
+
+    @Override
+    public String toString() {
+        return path;
+    }
 }

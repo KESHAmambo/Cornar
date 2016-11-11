@@ -1,11 +1,13 @@
 package org.test.dbservice;
 
+import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
 import org.test.dbservice.dao.UserDao;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.dbservice.impl.UserDaoImpl;
 import org.test.logic.Profile;
 
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -56,5 +58,10 @@ public class DatabaseServiceImpl implements DatabaseService {
     @Override
     public void fulfillProfile(Profile profile, String userEmail) {
         //TODO
+    }
+
+    @Override
+    public List<DocumentBoxImpl> pullDocuments() {
+        return null;//TODO
     }
 }

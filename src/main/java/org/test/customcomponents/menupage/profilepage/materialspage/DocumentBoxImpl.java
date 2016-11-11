@@ -11,9 +11,15 @@ import java.util.Locale;
  */
 public class DocumentBoxImpl extends DocumentBox {
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("d.MM.yyyy HH:mm", Locale.ENGLISH);
+    private Date creationDate;
 
     public DocumentBoxImpl(String docName, Date creationDate) {
         nameLabel.setValue(docName);
+        this.creationDate = creationDate;
         dateLabel.setValue(dateFormat.format(creationDate));
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
     }
 }

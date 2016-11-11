@@ -13001,7 +13001,11 @@ div.v-layout.v-horizontal.v-widget {
 	background: #91e4ec;
 }
 
-.mytheme .v-verticallayout-profileInnerPage {
+.mytheme .v-button-profileButtonsFocused {
+	background: #91e4ec;
+}
+
+.mytheme .v-verticallayout-profileInnerPagesLayouts {
 	border-top: 3px #91e4ec solid;
 	border-right: 3px #91e4ec solid;
 }
@@ -13031,15 +13035,15 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-label-docLabelSlight {
+	overflow: hidden;
+	text-overflow: ellipsis;
 	color: #ffffff;
 	font-size: 1.5em;
 }
 
 .mytheme .v-button-docButton {
-	font-size: 3em;
+	font-size: 2em;
 	color: #ffffff;
-	border: none;
-	background: #B3CACC;
 	-webkit-border-radius: 40px;
 	-moz-border-radius: 40px;
 	border-radius: 40px;
@@ -13048,7 +13052,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-button-docButton:hover {
-	background: #809395;
+	background: #01747f;
 }
 
 .mytheme .chatPanelMajorLayout {

@@ -12,7 +12,7 @@
      <vaadin-label style-name="docLabelBold" size-auto plain-text>
        Name: 
      </vaadin-label> 
-     <vaadin-label style-name="docLabelSlight" plain-text _id="nameLabel" :expand>
+     <vaadin-label style-name="docLabelSlight" height="40px" plain-text _id="nameLabel" :expand>
        Label 
      </vaadin-label> 
     </vaadin-horizontal-layout> 
@@ -25,7 +25,10 @@
      </vaadin-label> 
     </vaadin-horizontal-layout> 
    </vaadin-vertical-layout> 
-   <vaadin-button icon="fonticon://FontAwesome/f06e" style-name="docButton" width="80px" height="80px" plain-text :middle :center></vaadin-button> 
+   <vaadin-vertical-layout width="80px" height-full :middle :center> 
+    <vaadin-button icon="fonticon://FontAwesome/f06e" style-name="docButton borderless" width-full height="60px" plain-text _id="viewDocButton" :center></vaadin-button> 
+    <vaadin-button icon="fonticon://FontAwesome/f064" style-name="docButton borderless" width-full height="60px" plain-text _id="shareDocButton" :bottom :center></vaadin-button> 
+   </vaadin-vertical-layout> 
   </vaadin-horizontal-layout>  
  </body>
 </html>

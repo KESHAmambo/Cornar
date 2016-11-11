@@ -1,6 +1,8 @@
 package org.test.controllers.menupage;
 
 import com.vaadin.navigator.Navigator;
+import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.Button;
 import org.test.customcomponents.menupage.ProfilePageImpl;
 
@@ -23,6 +25,9 @@ public class ProfilePageController {
         menuButtons.add(button);
         button.addClickListener(e -> {
             navigator.navigateTo(navigationState);
+            View currentView = navigator.getCurrentView();
+            currentView.enter(new ViewChangeListener.ViewChangeEvent(
+                    navigator, currentView, currentView, navigationState, ""));
             focusCurrentButton(button);
         });
     }

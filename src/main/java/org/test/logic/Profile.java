@@ -1,14 +1,18 @@
 package org.test.logic;
 
+import com.vaadin.ui.Layout;
 import org.test.dbservice.DatabaseManager;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Аркадий on 28.10.2016.
  */
 public class Profile {
     private static Profile currentProfile = new Profile();
+    private static final List<Cleanable> cleanables = new ArrayList<>();
 
     private int id;
     private String name;
@@ -79,6 +83,11 @@ public class Profile {
 
     public static void clearCurrentProfile() {
         currentProfile = new Profile();
+        cleanables.forEach(Cleanable::cleanInformation);
+    }
+
+    public static void registerCleanable(Cleanable cleanable) {
+        cleanables.add(cleanable);
     }
 
     @Override

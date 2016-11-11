@@ -6,13 +6,11 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.UI;
 import org.test.controllers.menupage.ProfilePageController;
-import org.test.customcomponents.MenuPageImpl;
 import org.test.customcomponents.menupage.profilepage.InboxPageImpl;
 import org.test.customcomponents.menupage.profilepage.MaterialsPageImpl;
 import org.test.customcomponents.menupage.profilepage.SchedulePageImpl;
 import org.test.logic.Profile;
 import org.test.tamplets.menupage.ProfilePage;
-import org.test.tamplets.menupage.profilepage.MaterialsPage;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -45,25 +43,25 @@ public class ProfilePageImpl extends ProfilePage implements View {
                 UI.getCurrent(), layoutForInnerPages);
 
         menuButtonsNavigator.addView("", new InboxPageImpl());
-        menuButtonsNavigator.addView(MENU_PAGE.toString(), new InboxPageImpl());
-        menuButtonsNavigator.addView(MENU_PAGE + "/" + PROFILE_PAGE, new InboxPageImpl());
+        menuButtonsNavigator.addView(MENU.toString(), new InboxPageImpl());
+        menuButtonsNavigator.addView(MENU + "/" + PROFILE, new InboxPageImpl());
 
         menuButtonsNavigator.addView(
-                MENU_PAGE + "/" + PROFILE_PAGE + "/" + INBOX, new InboxPageImpl());
+                MENU + "/" + PROFILE + "/" + INBOX, new InboxPageImpl());
         menuButtonsNavigator.addView(
-                MENU_PAGE + "/" + PROFILE_PAGE + "/" + MATERIALS, new MaterialsPageImpl());
+                MENU + "/" + PROFILE + "/" + MATERIALS, new MaterialsPageImpl());
         menuButtonsNavigator.addView(
-                MENU_PAGE + "/" + PROFILE_PAGE + "/" + SCHEDULE, new SchedulePageImpl());
+                MENU + "/" + PROFILE + "/" + SCHEDULE, new SchedulePageImpl());
         return menuButtonsNavigator;
     }
 
     private void createListenersForMenuButtons(Navigator menuButtonsNavigator) {
         controller.createListenerForMenuButton(
-                inboxButton, menuButtonsNavigator, MENU_PAGE + "/" + PROFILE_PAGE + "/" + INBOX);
+                inboxButton, menuButtonsNavigator, MENU + "/" + PROFILE + "/" + INBOX);
         controller.createListenerForMenuButton(
-                scheduleButton, menuButtonsNavigator, MENU_PAGE + "/" + PROFILE_PAGE + "/" + SCHEDULE);
+                scheduleButton, menuButtonsNavigator, MENU + "/" + PROFILE + "/" + SCHEDULE);
         controller.createListenerForMenuButton(
-                materialsButton, menuButtonsNavigator, MENU_PAGE + "/" + PROFILE_PAGE + "/" + MATERIALS);
+                materialsButton, menuButtonsNavigator, MENU + "/" + PROFILE + "/" + MATERIALS);
     }
 
     private void bindLabelsToProfileData() {
