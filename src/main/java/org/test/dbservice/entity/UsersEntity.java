@@ -1,5 +1,6 @@
 package org.test.dbservice.entity;
 
+
 import javax.persistence.*;
 import java.sql.Date;
 

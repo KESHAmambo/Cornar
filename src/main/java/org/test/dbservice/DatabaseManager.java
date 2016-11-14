@@ -6,6 +6,7 @@ import org.test.dbservice.impl.UserDaoImpl;
 import org.test.logic.Profile;
 
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,20 +23,10 @@ public class DatabaseManager {
     public static int signUpUser(String firstName, String lastName,
                           String email, Date birthDate,
                           String password, String education) {
-        //TODO hash password
-        int successOfAddingUser = 1;
-        UserDao userDao = new UserDaoImpl();
-        if (doesUserExist(email,password) == true)
-            return successOfAddingUser;
-        UsersEntity user = new UsersEntity();
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setEmail(email);
-        user.setPassword(password);
-        user.setBirthDate(new java.sql.Date(birthDate.getTime()));
-        user.setPersonDescription(education);
-        successOfAddingUser  = userDao.create(user);
-        return successOfAddingUser;
+
+        return service.signUpUser(firstName, lastName,
+                            email, birthDate,
+                            password, education);
     }
 
     public static UsersEntity getUser(String email, String password) {
@@ -48,12 +39,9 @@ public class DatabaseManager {
 
     public static void fulfillProfile(Profile profile, String userEmail) {
         service.fulfillProfile(profile, userEmail);
-        UsersEntity user = new UserDaoImpl().getUserByEmail(userEmail);
-        profile.setName(user.getFirstName());
-        profile.setSurname(user.getLastName());
-        profile.setEmail(userEmail);
-        profile.setEducation(user.getPersonDescription());
-        profile.setBirthDate(user.getBirthDate());
-        profile.setId(user.getUserId());
+
+    }
+    public static List<Profile>  getAllUsersWithNameLike(String firstName) {
+        return service.getAllUsersWithNameLike(firstName);
     }
 }

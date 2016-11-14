@@ -4,6 +4,7 @@ import org.test.dbservice.entity.UsersEntity;
 import org.test.logic.Profile;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by abara on 10.11.2016.
@@ -18,4 +19,6 @@ public interface DatabaseService {
     boolean doesUserExist(String email, String password);
 
     void fulfillProfile(Profile profile, String userEmail);
+
+    List<Profile> getAllUsersWithNameLike(String firstName);
 }

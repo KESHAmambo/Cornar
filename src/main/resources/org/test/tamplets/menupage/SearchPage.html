@@ -5,10 +5,30 @@
   <meta charset="UTF-8" name="vaadin-version" content="7.7.0">
  </head> 
  <body> 
-  <vaadin-vertical-layout size-full> 
-   <vaadin-label size-auto plain-text>
-     Search 
-   </vaadin-label> 
-  </vaadin-vertical-layout>  
+  <vaadin-panel height="130%"> 
+   <vaadin-vertical-layout height="49.2%"> 
+    <vaadin-horizontal-layout spacing width="70%" height="111px" :center> 
+     <vaadin-text-field input-prompt="" width="170%" _id="searchName" :bottom :center></vaadin-text-field> 
+     <vaadin-button style-name="search" width="85%" plain-text _id="searchButton" :bottom :center>
+       Search 
+     </vaadin-button> 
+    </vaadin-horizontal-layout> 
+    <vaadin-grid visible="false" immediate size-full _id="searchTable" :center> 
+     <table> 
+      <colgroup> 
+       <col property-id="User Name" sortable> 
+       <col property-id="Email" sortable> 
+      </colgroup> 
+      <thead> 
+       <tr default> 
+        <th plain-text>User Name</th> 
+        <th plain-text>Email</th> 
+       </tr> 
+      </thead> 
+      <tbody></tbody> 
+     </table> 
+    </vaadin-grid> 
+   </vaadin-vertical-layout> 
+  </vaadin-panel>  
  </body>
 </html>

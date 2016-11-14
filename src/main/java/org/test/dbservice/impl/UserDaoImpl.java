@@ -4,7 +4,6 @@ import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
 import org.test.dbservice.dao.UserDao;
 import org.test.dbservice.entity.UsersEntity;
-import org.test.dbservice.utils.HibernateSessionFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,5 +126,17 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
         for (UsersEntity user : allUsers) {
             delete(user);
         }
+    }
+    @Override
+    public List<UsersEntity> searchUserByName(String firstName){
+        Session session = openCurrentSessionWithTransaction();
+        Query queryForSearch = session.createQuery("from UsersEntity as user where lower(user.first_name) like :searchFirstName");
+        queryForSearch.setString("searchFirstName", "%" + firstName + "%");
+        List<UsersEntity> allFindUsers = queryForSearch.list();
+        for (UsersEntity user: allFindUsers) {
+            System.out.println(user.getFirstName());
+        }
+        shutdownCurrentSessionWithTransaction();
+        return  allFindUsers;
     }
 }

@@ -13,7 +13,9 @@
     <property name="hibernate.current_session_context_class">thread</property>
 
     <mapping class="org.test.dbservice.entity.UsersEntity"/>
-    <!-- DB schema will be updated if needed -->
+      <mapping class="org.test.dbservice.entity.CoursesEntity"/>
+      <mapping class="org.test.dbservice.entity.LessonsEntity"/>
+      <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>
 </hibernate-configuration>
