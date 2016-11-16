@@ -12804,7 +12804,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-horizontallayout-mainPageLayout {
-	background: url("images/475348769.jpg") no-repeat center fixed;
+	background: url("images/main_background.jpg") no-repeat center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -12955,6 +12955,12 @@ div.v-layout.v-horizontal.v-widget {
 	font-size: 26px;
 }
 
+.mytheme .v-button-menuButtonFocused {
+	background: #005159;
+	padding-left: 6vw;
+	font-size: 26px;
+}
+
 .mytheme .v-button-menuButton:hover {
 	background: #01747f;
 }
@@ -12995,7 +13001,61 @@ div.v-layout.v-horizontal.v-widget {
 	background: #91e4ec;
 }
 
-.mytheme .chatPanelMajorLayout {
+.mytheme .v-button-profileButtonsFocused {
+	background: #91e4ec;
+}
+
+.mytheme .v-verticallayout-profileInnerPagesLayouts {
+	border-top: 3px #91e4ec solid;
+	border-right: 3px #91e4ec solid;
+}
+
+.mytheme .v-csslayout-docImage {
+	background-image: url("images/doc_face.png");
+	background-size: cover;
+}
+
+.mytheme .v-horizontallayout-docLayout {
+	background: #b3cacc;
+	padding: 1em;
+}
+
+.mytheme .v-horizontallayout-docNameLayout {
+	margin-top: 0.5em;
+}
+
+.mytheme .v-horizontallayout-docDateLayout {
+	margin-bottom: 0.6em;
+}
+
+.mytheme .v-label-docLabelBold {
+	color: #ffffff;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.mytheme .v-label-docLabelSlight {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: #ffffff;
+	font-size: 1.5em;
+}
+
+.mytheme .v-button-docButton {
+	font-size: 2em;
+	color: #ffffff;
+	-webkit-border-radius: 40px;
+	-moz-border-radius: 40px;
+	border-radius: 40px;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-docButton:hover {
+	background: #01747f;
+}
+
+.mytheme .sliderPanel {
 	background: #005159;
 	font-size: 20px;
 }
@@ -13048,4 +13108,49 @@ div.v-layout.v-horizontal.v-widget {
 	overflow: hidden;
 	color: #999;
 	font: 16px Lucida Sans, Trebuchet MS, Tahoma, sans-serif;
+}
+
+.mytheme .v-verticallayout-mainChatLayout {
+	padding-top: 20px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+}
+
+.mytheme .v-verticallayout-friendPanelMainLayout {
+	background: url("images/man_chat.jpg");
+}
+
+.mytheme .v-panel-friendsPanel {
+	background: transparent;
+	border: none;
+}
+
+.mytheme .v-horizontallayout-dialogNameLayout {
+	background: #01747f;
+}
+
+.mytheme .v-label-dialogNameLabel {
+	color: #fafeff;
+	font-size: 20px;
+	font-weight: bold;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.mytheme .v-panel-messagesPanel {
+	background: #91ccd1;
+}
+
+.mytheme .v-verticallayout-messagesLayout {
+	padding: 10px;
+}
+
+.mytheme .v-button-sendMessageButton {
+	background: #01747f;
+	color: #fafeff;
+	font-size: 2em;
+}
+
+.mytheme .v-textarea-messageTextArea {
+	background: #91ccd1;
 }

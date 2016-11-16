@@ -13,7 +13,6 @@ import com.vaadin.ui.UI;
 import org.test.controllers.MyUIController;
 import org.test.customcomponents.MainPageImpl;
 import org.test.customcomponents.MenuPageImpl;
-import org.test.logic.PageName;
 
 import static org.test.logic.PageName.*;
 
@@ -45,7 +44,7 @@ public class MyUI extends UI {
         Navigator navigator = new Navigator(this, this);
 
         navigator.addView("", new MainPageImpl(navigator));
-        navigator.addView(MENU_PAGE.toString(), new MenuPageImpl(navigator));
+//        navigator.addView(MENU.toString(), new MenuPageImpl(navigator));
 
         return navigator;
     }

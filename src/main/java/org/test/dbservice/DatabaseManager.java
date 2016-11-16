@@ -1,5 +1,7 @@
 package org.test.dbservice;
 
+import org.test.Test.DummyDatabaseService;
+import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
 import org.test.dbservice.dao.UserDao;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.dbservice.impl.UserDaoImpl;
@@ -17,16 +19,12 @@ public class DatabaseManager {
 
     }
 
-    /** TO FIX: must return a result-code depending on result of signUp-operation
-     * @see org.test.controllers.MainPageController
-     */
-    public static int signUpUser(String firstName, String lastName,
+    public static int signUpUser(String firstName, String surname,
                           String email, Date birthDate,
                           String password, String education) {
-
-        return service.signUpUser(firstName, lastName,
-                            email, birthDate,
-                            password, education);
+        return service.signUpUser(
+                firstName, surname, email,
+                birthDate, password, education);
     }
 
     public static UsersEntity getUser(String email, String password) {

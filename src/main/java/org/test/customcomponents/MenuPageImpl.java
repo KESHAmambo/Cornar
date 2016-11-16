@@ -7,6 +7,7 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import org.test.controllers.MenuPageController;
+import org.test.customcomponents.menupage.*;
 import org.test.customcomponents.menupage.ClassPageImpl;
 import org.test.customcomponents.menupage.FriendsPageImpl;
 import org.test.customcomponents.menupage.SearchPageImpl;
@@ -29,44 +30,57 @@ public class MenuPageImpl extends MenuPage implements View {
     public MenuPageImpl(Navigator navigator) {
         controller = new MenuPageController(this);
 
-        majorHorizontalLayout.addComponent(createChatSlidePanel());
-        mainPanel.setContent(new ProfilePageImpl(Profile.getCurrentProfile()));
+        majorHorizontalLayout.addComponent(createSlidePanelForChatPage());
+        mainPanel.setContent(new ProfilePageImpl());
 
-        provideNavigationForMenuButtons();
+        provideNavigation(navigator);
     }
 
+    private void provideNavigation(Navigator generalNavigator) {
+        provideNavigationForLogOut(generalNavigator);
+        Navigator menuButtonsNavigator = createNavigatorForMenuButtons();
+        createListenersForMenuButtons(menuButtonsNavigator);
+    }
 
+    private Navigator createNavigatorForMenuButtons() {
+        Navigator menuButtonsNavigator = new Navigator(UI.getCurrent(), mainPanel);
 
-    private void provideNavigationForMenuButtons() {
-        Navigator navigator = new Navigator(UI.getCurrent(), mainPanel);
+        menuButtonsNavigator.addView("", new ProfilePageImpl());
+        menuButtonsNavigator.addView(MENU.toString(), new ProfilePageImpl());
 
-        // UNEXPECTED BEHAVIOUR: mock for unexpected navigator's behaviour
-        navigator.addView("", new ClassPageImpl());
-
-        navigator.addView(MENU_PAGE + "/" + PROFILE_PAGE,
-                new ProfilePageImpl(Profile.getCurrentProfile()));
-        navigator.addView(MENU_PAGE + "/" + FRIENDS,
+        menuButtonsNavigator.addView(MENU + "/" + PROFILE,
+                new ProfilePageImpl());
+        menuButtonsNavigator.addView(MENU + "/" + FRIENDS,
                 new FriendsPageImpl());
-        navigator.addView(MENU_PAGE + "/" + SEARCH,
+        menuButtonsNavigator.addView(MENU + "/" + SEARCH,
                 new SearchPageImpl());
-        navigator.addView(MENU_PAGE + "/" + CLASS,
+        menuButtonsNavigator.addView(MENU + "/" + CLASS,
                 new ClassPageImpl());
-        navigator.addView(MENU_PAGE + "/" + TASKS,
+        menuButtonsNavigator.addView(MENU + "/" + TASKS,
                 new TasksPageImpl());
 
-        controller.createListenerForProfileButton(profileButton, navigator);
-        controller.createListenerForFriendsButton(friendsButton, navigator);
-        controller.createListenerForSearchButton(searchButton, navigator);
-        controller.createListenerForClassButton(classButton, navigator);
-        controller.createListenerForTasksButton(tasksButton, navigator);
+        return menuButtonsNavigator;
     }
 
-    private SliderPanel createChatSlidePanel() {
-        return new SliderPanelBuilder(createChatPanelContent())
+    private void createListenersForMenuButtons(Navigator menuButtonsNavigator) {
+        controller.createListenerForMenuButton(
+                profileButton, menuButtonsNavigator, MENU + "/" + PROFILE);
+        controller.createListenerForMenuButton(
+                friendsButton, menuButtonsNavigator, MENU + "/" + FRIENDS);
+        controller.createListenerForMenuButton(
+                searchButton, menuButtonsNavigator, MENU + "/" + SEARCH);
+        controller.createListenerForMenuButton(
+                classButton, menuButtonsNavigator, MENU + "/" + CLASS);
+        controller.createListenerForMenuButton(
+                tasksButton, menuButtonsNavigator, MENU + "/" + TASKS);
+    }
+
+    private SliderPanel createSlidePanelForChatPage() {
+        return new SliderPanelBuilder(new ChatPageImpl())
                     .expanded(false)
                     .caption("Dialogs")
                     .mode(SliderMode.RIGHT)
-                    .style("chatPanelMajorLayout")
+                    .style("sliderPanel")
                     .tabPosition(SliderTabPosition.MIDDLE)
                     .build();
     }

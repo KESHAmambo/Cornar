@@ -1,6 +1,9 @@
 package org.test.Test;
 
+import org.test.logic.Profile;
+
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by abara on 10.11.2016.
@@ -13,8 +16,12 @@ class DummyUser {
     private String password;
     private String education;
     private Date birthDate;
+    private List<Profile> friends;
 
-    public DummyUser(int id, String name, String surname, String email, String password, String education, Date birthDate) {
+    public DummyUser(
+            int id, String name, String surname,
+            String email, String password, String education,
+            Date birthDate, List<Profile> friends) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -22,6 +29,7 @@ class DummyUser {
         this.password = password;
         this.education = education;
         this.birthDate = birthDate;
+        this.friends = friends;
     }
 
     public DummyUser(String email, String password) {
@@ -83,6 +91,14 @@ class DummyUser {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public List<Profile> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<Profile> friends) {
+        this.friends = friends;
     }
 
     @Override
