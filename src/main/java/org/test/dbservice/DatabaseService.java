@@ -21,4 +21,6 @@ public interface DatabaseService {
     void fulfillProfile(Profile profile, String userEmail);
 
     List<Profile> getAllUsersWithNameLike(String firstName);
+
+    List<Profile> getAllUsersWithSurnameLike(String surnameForSearch);
 }

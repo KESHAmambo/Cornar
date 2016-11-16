@@ -44,4 +44,8 @@ public class DatabaseManager {
     public static List<Profile>  getAllUsersWithNameLike(String firstName) {
         return service.getAllUsersWithNameLike(firstName);
     }
+
+    public static List<Profile> getAllUsersWithSurnameLike(String surnameForSearch) {
+        return service.getAllUsersWithSurnameLike(surnameForSearch);
+    }
 }

@@ -79,14 +79,25 @@ public class DatabaseServiceImpl implements DatabaseService {
     @Override
     public List<Profile> getAllUsersWithNameLike(String firstName) {
         UserDao userDao = new UserDaoImpl();
-        List<Profile> usersProfileList = new ArrayList<>();
 
         List<UsersEntity> usersList = userDao.searchUserByName(firstName);
+        return  createListOfProfileFromUsers(usersList);
+    }
+
+    private List<Profile>  createListOfProfileFromUsers(List<UsersEntity> usersList){
+        List<Profile> usersProfileList = new ArrayList<>();
         for (UsersEntity user:
-              usersList) {
+                usersList) {
             usersProfileList.add(fillProfile(user));
 
         }
-        return  usersProfileList;
+        return usersProfileList;
     }
+    @Override
+    public List<Profile> getAllUsersWithSurnameLike(String surnameForSearch) {
+        UserDao userDao = new UserDaoImpl();
+        List<UsersEntity> usersList = userDao.searchUserBySurname(surnameForSearch);
+        return  createListOfProfileFromUsers(usersList);
+    }
+
 }

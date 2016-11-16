@@ -1,15 +1,19 @@
 package org.test.customcomponents.menupage;
 
+import com.vaadin.data.Property;
 import com.vaadin.event.SelectionEvent;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.Select;
 import org.test.dbservice.DatabaseManager;
 import org.test.logic.Profile;
 import org.test.tamplets.menupage.SearchPage;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -17,8 +21,9 @@ import java.util.List;
  */
 public class SearchPageImpl extends SearchPage implements View {
     List<Profile> profilesList;
-
+    String valueOfBox;
     public SearchPageImpl() {
+
         searchButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
@@ -28,14 +33,32 @@ public class SearchPageImpl extends SearchPage implements View {
         });
     }
     public List<Profile> getSearchResult(String searchField){
-        List<Profile> usersList = DatabaseManager.getAllUsersWithNameLike(searchField);
-        return usersList;
+        valueOfBox = (String) searchParametrBox.getValue();
+        switch (valueOfBox){
+            case "name":{
+                List<Profile> usersList = DatabaseManager.getAllUsersWithNameLike(searchField);
+                return usersList;
+            }
+            case "surname":{
+                List<Profile> usersList = DatabaseManager.getAllUsersWithSurnameLike(searchField);
+                return usersList;
+            }
+        }
+        return new ArrayList<>();
     }
 
     public void updateTableOfSearchResult(List<Profile> profiles){
         searchTable.getContainerDataSource().removeAllItems();
-        for (Profile user: profiles) {
-            searchTable.addRow(user.getName(), user.getEmail());
+        if (valueOfBox.equals("name"))
+            for (Profile user: profiles)
+                searchTable.addRow(user.getName(), user.getEmail());
+
+        if (valueOfBox.equals("surname")) {
+            Grid.Column nameColumn = searchTable.getColumn("User Name");
+            nameColumn.setHeaderCaption("Surname");
+            for (Profile user: profiles) {
+                searchTable.addRow(user.getSurname(), user.getEmail());
+            }
         }
         searchTable.setVisible(true);
         searchTable.setSelectionMode(Grid.SelectionMode.SINGLE);
@@ -45,7 +68,7 @@ public class SearchPageImpl extends SearchPage implements View {
             public void select(SelectionEvent event) {
                 Notification.show("Select row: "+searchTable.getSelectedRow());
             }
-        });
+        } );
     }
 
 
@@ -53,4 +76,5 @@ public class SearchPageImpl extends SearchPage implements View {
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
 
     }
+
 }
