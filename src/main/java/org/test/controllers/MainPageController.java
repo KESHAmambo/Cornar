@@ -7,6 +7,7 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.Window;
 import org.test.customcomponents.MainPageImpl;
+import org.test.customcomponents.MenuPageImpl;
 import org.test.customcomponents.SignPanelImpl;
 import org.test.customcomponents.SignUpPanelImpl;
 import org.test.dbservice.DatabaseManager;
@@ -33,8 +34,12 @@ public class MainPageController {
         signInButton.addClickListener(e -> {
             String userEmail = signPanel.getUserEmail();
             String userPassword = signPanel.getUserPassword();
+
             if(DatabaseManager.doesUserExist(userEmail, userPassword)) {
-                Profile.fulfillProfile(Profile.getCurrentProfile(), userEmail);
+                Profile.setCurrentProfile(userEmail);
+
+                navigator.removeView(MENU.toString());
+                navigator.addView(MENU.toString(), new MenuPageImpl(navigator));
                 navigator.navigateTo(MENU.toString());
             }
         });

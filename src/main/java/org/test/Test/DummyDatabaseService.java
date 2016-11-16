@@ -37,6 +37,7 @@ public class DummyDatabaseService implements DatabaseService {
             profile.setBirthDate(user.getBirthDate());
             profile.setEducation(user.getEducation());
             profile.setEmail(user.getEmail());
+            profile.setFriends(user.getFriends());
         }
     }
 

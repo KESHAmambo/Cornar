@@ -6,6 +6,7 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.UI;
 import org.test.controllers.menupage.ProfilePageController;
+import org.test.customcomponents.menupage.profilepage.CoursesPageImpl;
 import org.test.customcomponents.menupage.profilepage.InboxPageImpl;
 import org.test.customcomponents.menupage.profilepage.MaterialsPageImpl;
 import org.test.customcomponents.menupage.profilepage.SchedulePageImpl;
@@ -52,12 +53,16 @@ public class ProfilePageImpl extends ProfilePage implements View {
                 MENU + "/" + PROFILE + "/" + MATERIALS, new MaterialsPageImpl());
         menuButtonsNavigator.addView(
                 MENU + "/" + PROFILE + "/" + SCHEDULE, new SchedulePageImpl());
+        menuButtonsNavigator.addView(
+                MENU + "/" + PROFILE + "/" + COURSES, new CoursesPageImpl());
         return menuButtonsNavigator;
     }
 
     private void createListenersForMenuButtons(Navigator menuButtonsNavigator) {
         controller.createListenerForMenuButton(
                 inboxButton, menuButtonsNavigator, MENU + "/" + PROFILE + "/" + INBOX);
+        controller.createListenerForMenuButton(
+                coursesButton, menuButtonsNavigator, MENU + "/" + PROFILE + "/" + COURSES);
         controller.createListenerForMenuButton(
                 scheduleButton, menuButtonsNavigator, MENU + "/" + PROFILE + "/" + SCHEDULE);
         controller.createListenerForMenuButton(

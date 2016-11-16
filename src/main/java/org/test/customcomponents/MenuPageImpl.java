@@ -25,7 +25,7 @@ public class MenuPageImpl extends MenuPage implements View {
     public MenuPageImpl(Navigator navigator) {
         controller = new MenuPageController(this);
 
-        majorHorizontalLayout.addComponent(createChatSlidePanel());
+        majorHorizontalLayout.addComponent(createSlidePanelForChatPage());
         mainPanel.setContent(new ProfilePageImpl());
 
         provideNavigation(navigator);
@@ -70,12 +70,12 @@ public class MenuPageImpl extends MenuPage implements View {
                 tasksButton, menuButtonsNavigator, MENU + "/" + TASKS);
     }
 
-    private SliderPanel createChatSlidePanel() {
-        return new SliderPanelBuilder(createChatPanelContent())
+    private SliderPanel createSlidePanelForChatPage() {
+        return new SliderPanelBuilder(new ChatPageImpl())
                     .expanded(false)
                     .caption("Dialogs")
                     .mode(SliderMode.RIGHT)
-                    .style("chatPanelMajorLayout")
+                    .style("sliderPanel")
                     .tabPosition(SliderTabPosition.MIDDLE)
                     .build();
     }

@@ -13055,7 +13055,52 @@ div.v-layout.v-horizontal.v-widget {
 	background: #01747f;
 }
 
-.mytheme .chatPanelMajorLayout {
+.mytheme .sliderPanel {
 	background: #005159;
 	font-size: 20px;
+}
+
+.mytheme .v-verticallayout-mainChatLayout {
+	padding-top: 20px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+}
+
+.mytheme .v-verticallayout-friendPanelMainLayout {
+	background: url("images/man_chat.jpg");
+}
+
+.mytheme .v-panel-friendsPanel {
+	background: transparent;
+	border: none;
+}
+
+.mytheme .v-horizontallayout-dialogNameLayout {
+	background: #01747f;
+}
+
+.mytheme .v-label-dialogNameLabel {
+	color: #fafeff;
+	font-size: 20px;
+	font-weight: bold;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.mytheme .v-panel-messagesPanel {
+	background: #91ccd1;
+}
+
+.mytheme .v-verticallayout-messagesLayout {
+	padding: 10px;
+}
+
+.mytheme .v-button-sendMessageButton {
+	background: #01747f;
+	color: #fafeff;
+	font-size: 2em;
+}
+
+.mytheme .v-textarea-messageTextArea {
+	background: #91ccd1;
 }

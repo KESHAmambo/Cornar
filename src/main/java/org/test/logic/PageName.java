@@ -8,9 +8,10 @@ public enum PageName {
     //---
     PROFILE("profile"),
     //------
-    MATERIALS("materials"),
-    INBOX("inbox"),
-    SCHEDULE("schedule"),
+        MATERIALS("materials"),
+        INBOX("inbox"),
+        SCHEDULE("schedule"),
+        COURSES("courses"),
     //------
     FRIENDS("friends"),
     SEARCH("search"),

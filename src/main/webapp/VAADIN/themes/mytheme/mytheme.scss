@@ -303,9 +303,54 @@ $v-border-radius: 0px;
   }
 
   //--------- ChatPanel -------------------------------------
-  .chatPanelMajorLayout {
+  .sliderPanel {
     background: #005159;
     font-size: 20px;
+  }
+
+  .v-verticallayout-mainChatLayout {
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+  }
+
+  .v-verticallayout-friendPanelMainLayout {
+    background: url("images/man_chat.jpg");
+  }
+
+  .v-panel-friendsPanel {
+    background: transparent;
+    border: none;
+  }
+
+  .v-horizontallayout-dialogNameLayout {
+    background: #01747f;
+  }
+
+  .v-label-dialogNameLabel {
+    color: #fafeff;
+    font-size: 20px;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .v-panel-messagesPanel {
+    background: #91ccd1;
+  }
+
+  .v-verticallayout-messagesLayout {
+    padding: 10px;
+  }
+
+  .v-button-sendMessageButton {
+    background: #01747f;
+    color: #fafeff;
+    font-size: 2em;
+  }
+
+  .v-textarea-messageTextArea {
+    background: #91ccd1;
   }
 
   // Insert your own theme rules here

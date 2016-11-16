@@ -44,7 +44,7 @@ public class MyUI extends UI {
         Navigator navigator = new Navigator(this, this);
 
         navigator.addView("", new MainPageImpl(navigator));
-        navigator.addView(MENU.toString(), new MenuPageImpl(navigator));
+//        navigator.addView(MENU.toString(), new MenuPageImpl(navigator));
 
         return navigator;
     }
