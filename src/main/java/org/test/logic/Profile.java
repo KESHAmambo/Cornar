@@ -2,6 +2,8 @@ package org.test.logic;
 
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Layout;
+import com.vaadin.ui.UI;
+import org.test.MyUI;
 import org.test.dbservice.DatabaseManager;
 
 import java.util.ArrayList;
@@ -91,10 +93,15 @@ public class Profile {
         }
     }
 
-    public static void setCurrentProfile(String userEmail) {
-        Profile profile = new Profile();
-        DatabaseManager.fulfillProfile(profile, userEmail);
-        VaadinSession.getCurrent().setAttribute("profile", profile);
+    public static void signInProfile(String userEmail) {
+        Profile previousProfile = getCurrentProfile();
+
+        Profile newProfile = new Profile();
+        DatabaseManager.fulfillProfile(newProfile, userEmail);
+        VaadinSession.getCurrent().setAttribute("profile", newProfile);
+
+        MessageManager.detachMessageListener(previousProfile.getId());
+        MessageManager.registerListener(newProfile.getId(), (MyUI) UI.getCurrent());
     }
 
     //TODO: delete method

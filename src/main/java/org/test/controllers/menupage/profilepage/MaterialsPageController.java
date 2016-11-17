@@ -1,10 +1,8 @@
-package org.test.controllers.menupage.materilaspage;
+package org.test.controllers.menupage.profilepage;
 
 import org.test.customcomponents.menupage.profilepage.MaterialsPageImpl;
 import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
 import org.test.dbservice.DatabaseManager;
-import org.test.tamplets.menupage.profilepage.MaterialsPage;
-import org.test.tamplets.menupage.profilepage.materialspage.DocumentBox;
 
 import java.util.Date;
 import java.util.List;

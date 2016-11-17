@@ -14,7 +14,7 @@ public class SignPanelImpl extends SignPanel {
 
     SignPanelImpl() {
         signUpWindow = new Window("Sign Up");
-        signUpPanel = new SignUpPanelImpl(signUpWindow);
+        signUpPanel = new SignUpPanelImpl();
 
         customizeSignUpWindow();
         createListenerFopeningSignUpWindowButton();

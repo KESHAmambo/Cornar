@@ -22,9 +22,33 @@ public class DummyDatabase {
             friends.add(friendProfile);
         }
 
-        store.add(new DummyUser(11, "Taras", "Khakhulin", "taras@mail.ru", "taras", "Caucasus mountains", new Date(), friends));
-        store.add(new DummyUser(12, "Master", "Yoda", "", "", "Jedi temple", new Date(), friends));
-        store.add(new DummyUser(13, "Arkady", "Baranok", "arkady@mail.ru", "arkady", "MIPT", new Date(), friends));
+        List<Profile> tarasFriends = new ArrayList<>();
+        Profile arkady = new Profile();
+        arkady.setId(13);
+        arkady.setName("Arkady");
+        arkady.setSurname("Baranok");
+        arkady.setEmail("arkady@mail.ru");
+        arkady.setBirthDate(new Date());
+        arkady.setEducation("MIPT");
+        tarasFriends.add(arkady);
+
+        List<Profile> arkadyFriends = new ArrayList<>();
+        Profile taras = new Profile();
+        taras.setId(11);
+        taras.setName("Taras");
+        taras.setSurname("Khakhulin");
+        taras.setEmail("ataras@mail.ru");
+        taras.setBirthDate(new Date());
+        taras.setEducation("Caucasus mountains");
+        arkadyFriends.add(taras);
+
+        store.add(new DummyUser(
+                11, "Taras", "Khakhulin", "taras@mail.ru", "taras", "Caucasus mountains", new Date(), tarasFriends));
+        store.add(new DummyUser(
+                12, "Master", "Yoda", "", "", "Jedi temple", new Date(), friends));
+        store.add(new DummyUser(
+                13, "Arkady", "Baranok", "arkady@mail.ru", "arkady", "MIPT", new Date(), arkadyFriends));
+
     }
 
     static boolean doesUserExist(String email, String password) {

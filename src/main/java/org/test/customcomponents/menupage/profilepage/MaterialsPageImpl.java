@@ -2,7 +2,7 @@ package org.test.customcomponents.menupage.profilepage;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import org.test.controllers.menupage.materilaspage.MaterialsPageController;
+import org.test.controllers.menupage.profilepage.MaterialsPageController;
 import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
 import org.test.logic.Cleanable;
 import org.test.logic.Profile;

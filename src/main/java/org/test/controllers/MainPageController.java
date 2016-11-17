@@ -36,7 +36,7 @@ public class MainPageController {
             String userPassword = signPanel.getUserPassword();
 
             if(DatabaseManager.doesUserExist(userEmail, userPassword)) {
-                Profile.setCurrentProfile(userEmail);
+                Profile.signInProfile(userEmail);
 
                 navigator.removeView(MENU.toString());
                 navigator.addView(MENU.toString(), new MenuPageImpl(navigator));

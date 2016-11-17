@@ -23,16 +23,8 @@ public class MainPageImpl extends MainPage implements View {
         signPanel = new SignPanelImpl();
         underSignLayout.addComponent(signPanel);
 
-        createListenerForSignInButton(navigator);
-        createListenerForSignUpButton();
-    }
-
-    private void createListenerForSignUpButton() {
-        controller.createListenerForSingUpButton(signPanel);
-    }
-
-    private void createListenerForSignInButton(Navigator navigator) {
         controller.createListenerForSingInButton(navigator, signPanel);
+        controller.createListenerForSingUpButton(signPanel);
     }
 
     @Override

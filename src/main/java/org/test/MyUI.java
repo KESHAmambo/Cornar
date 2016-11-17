@@ -12,9 +12,10 @@ import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.UI;
 import org.test.controllers.MyUIController;
 import org.test.customcomponents.MainPageImpl;
-import org.test.customcomponents.MenuPageImpl;
-
-import static org.test.logic.PageName.*;
+import org.test.customcomponents.menupage.ChatPageImpl;
+import org.test.logic.ChatMessage;
+import org.test.logic.MessageManager;
+import org.test.logic.Profile;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window 
@@ -27,9 +28,14 @@ import static org.test.logic.PageName.*;
 @Push
 @PreserveOnRefresh
 @Theme("mytheme")
-public class MyUI extends UI {
+public class MyUI extends UI implements MessageManager.MessageListener {
     private Navigator navigator;
     private MyUIController controller;
+    private ChatPageImpl chatPage;
+
+    public void setChatPage(ChatPageImpl chatPage) {
+        this.chatPage = chatPage;
+    }
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
@@ -40,6 +46,12 @@ public class MyUI extends UI {
         getPage().setTitle("Cornar");
     }
 
+    @Override
+    public void detach() {
+        MessageManager.detachMessageListener(Profile.getCurrentProfile().getId());
+        super.detach();
+    }
+
     private Navigator createNavigator() {
         Navigator navigator = new Navigator(this, this);
 
@@ -47,6 +59,13 @@ public class MyUI extends UI {
 //        navigator.addView(MENU.toString(), new MenuPageImpl(navigator));
 
         return navigator;
+    }
+
+    @Override
+    public void receiveChatMessage(ChatMessage message) {
+        access(() -> {
+            chatPage.receiveMessage(message);
+        });
     }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
