@@ -356,29 +356,15 @@ $v-border-radius: 0px;
   //------------------------- DialogPanel -------------------------
 
   .v-verticallayout-receivedChatMessageLayout {
-    background: #e5669a;
+    background: #9ee5a7;
     border-radius: 10px;
     padding: 10px;
   }
 
   .v-verticallayout-sentChatMessageLayout {
-    background: #84d3e5;
+    background: #9dadd9;
     border-radius: 10px;
     padding: 10px;
-  }
-
-  .v-label-receivedMessageLabel {
-    background: #e5cf6d;
-    border-radius: 15px;
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-
-  .v-label-sentMessageLabel {
-    background: #95d076;
-    border-radius: 15px;
-    padding-right: 10px;
-    padding-left: 10px;
   }
 
   // Insert your own theme rules here

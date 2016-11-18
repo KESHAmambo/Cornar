@@ -18,11 +18,11 @@ import java.util.Map;
 public class ChatPageImpl extends ChatPage {
     private Map<Integer, DialogPanelImpl> dialogs = new HashMap<>();
 
-    public ChatPageImpl() {
+    public ChatPageImpl(MyUI myUI) {
         Profile profile = Profile.getCurrentProfile();
         createFriendPanels(profile.getFriends());
 
-        ((MyUI) UI.getCurrent()).setChatPage(this);
+        myUI.setChatPage(this);
     }
 
     private void createFriendPanels(List<Profile> friends) {
@@ -48,5 +48,10 @@ public class ChatPageImpl extends ChatPage {
     public void receiveMessage(ChatMessage message) {
         DialogPanelImpl dialogPanel = dialogs.get(message.getSenderId());
         dialogPanel.addReceivedMessage(message.getMessageText());
+    }
+
+    public void showSentChatMessage(ChatMessage message) {
+        DialogPanelImpl dialogPanel = dialogs.get(message.getReceiverId());
+        dialogPanel.addSentMessage(message.getMessageText());
     }
 }

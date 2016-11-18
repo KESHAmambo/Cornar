@@ -9,13 +9,16 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.UI;
 import org.test.controllers.MyUIController;
 import org.test.customcomponents.MainPageImpl;
+import org.test.customcomponents.MenuPageImpl;
 import org.test.customcomponents.menupage.ChatPageImpl;
 import org.test.logic.ChatMessage;
 import org.test.logic.MessageManager;
-import org.test.logic.Profile;
+
+import static org.test.logic.PageName.MENU;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window 
@@ -33,6 +36,11 @@ public class MyUI extends UI implements MessageManager.MessageListener {
     private MyUIController controller;
     private ChatPageImpl chatPage;
 
+    @Override
+    public Navigator getNavigator() {
+        return navigator;
+    }
+
     public void setChatPage(ChatPageImpl chatPage) {
         this.chatPage = chatPage;
     }
@@ -41,24 +49,30 @@ public class MyUI extends UI implements MessageManager.MessageListener {
     protected void init(VaadinRequest vaadinRequest) {
         controller = new MyUIController(this);
         navigator = createNavigator();
-        navigator.navigateTo("");
+
+        navigateToView();
 
         getPage().setTitle("Cornar");
     }
 
-    @Override
-    public void detach() {
-        MessageManager.detachMessageListener(Profile.getCurrentProfile().getId());
-        super.detach();
-    }
-
     private Navigator createNavigator() {
         Navigator navigator = new Navigator(this, this);
-
-        navigator.addView("", new MainPageImpl(navigator));
-//        navigator.addView(MENU.toString(), new MenuPageImpl(navigator));
-
+        navigator.addView("", new MainPageImpl());
         return navigator;
+    }
+
+    private void navigateToView() {
+        if(!wasSessionAlreadyOpened()) {
+            navigator.navigateTo("");
+        } else {
+            navigator.addView(MENU.toString(), new MenuPageImpl(this, navigator));
+            navigator.navigateTo(MENU.toString());
+        }
+    }
+
+    private boolean wasSessionAlreadyOpened() {
+        Object profile = VaadinSession.getCurrent().getAttribute("profile");
+        return profile != null;
     }
 
     @Override
@@ -66,6 +80,11 @@ public class MyUI extends UI implements MessageManager.MessageListener {
         access(() -> {
             chatPage.receiveMessage(message);
         });
+    }
+
+    @Override
+    public void showSentChatMessage(ChatMessage message) {
+        chatPage.showSentChatMessage(message);
     }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)

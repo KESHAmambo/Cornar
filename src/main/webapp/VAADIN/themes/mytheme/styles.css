@@ -13106,27 +13106,13 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-verticallayout-receivedChatMessageLayout {
-	background: #e5669a;
+	background: #9ee5a7;
 	border-radius: 10px;
 	padding: 10px;
 }
 
 .mytheme .v-verticallayout-sentChatMessageLayout {
-	background: #84d3e5;
+	background: #9dadd9;
 	border-radius: 10px;
 	padding: 10px;
-}
-
-.mytheme .v-label-receivedMessageLabel {
-	background: #e5cf6d;
-	border-radius: 15px;
-	padding-right: 10px;
-	padding-left: 10px;
-}
-
-.mytheme .v-label-sentMessageLabel {
-	background: #95d076;
-	border-radius: 15px;
-	padding-right: 10px;
-	padding-left: 10px;
 }

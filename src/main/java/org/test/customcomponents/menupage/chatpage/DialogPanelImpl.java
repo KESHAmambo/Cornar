@@ -27,30 +27,14 @@ public class DialogPanelImpl extends DialogPanel {
     }
 
     public void addSentMessage(String messageText) {
-        Label label = new Label(
-                "<h3>You:</h3><p>" + messageText + "</p>",
-                ContentMode.HTML);
-        label.setHeight("-1px");
-        label.setWidth("100%");
-        label.setStyleName("sentMessageLabel");
-        messagesLayout.addComponent(label);
-
-        /*ChatMessagePanelImpl chatMessagePanel = new ChatMessagePanelImpl(
+        ChatMessagePanelImpl chatMessagePanel = new ChatMessagePanelImpl(
                 SENT, "You", messageText, new Date());
-        messagesLayout.addComponent(chatMessagePanel);*/
+        messagesLayout.addComponent(chatMessagePanel);
     }
 
     public void addReceivedMessage(String messageText) {
-        /*ChatMessagePanelImpl chatMessagePanel = new ChatMessagePanelImpl(
+        ChatMessagePanelImpl chatMessagePanel = new ChatMessagePanelImpl(
                 RECEIVED, friendName, messageText, new Date());
-        messagesLayout.addComponent(chatMessagePanel);*/
-
-        Label label = new Label(
-                "<h3>" + friendName + ":</h3><p>" + messageText + "</p>",
-                ContentMode.HTML);
-        label.setHeight("-1px");
-        label.setWidth("100%");
-        label.setStyleName("receivedMessageLabel");
-        messagesLayout.addComponent(label);
+        messagesLayout.addComponent(chatMessagePanel);
     }
 }
