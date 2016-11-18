@@ -13,7 +13,7 @@ import org.test.customcomponents.MenuPageImpl;
 import org.test.customcomponents.SignPanelImpl;
 import org.test.customcomponents.SignUpPanelImpl;
 import org.test.dbservice.DatabaseManager;
-import org.test.logic.MessageManager;
+import org.test.msgservice.MessageManager;
 import org.test.logic.Profile;
 
 import java.util.Collection;

@@ -15,8 +15,8 @@ import org.test.controllers.MyUIController;
 import org.test.customcomponents.MainPageImpl;
 import org.test.customcomponents.MenuPageImpl;
 import org.test.customcomponents.menupage.ChatPageImpl;
-import org.test.logic.ChatMessage;
-import org.test.logic.MessageManager;
+import org.test.msgservice.ChatMessage;
+import org.test.msgservice.MessageManager;
 
 import static org.test.logic.PageName.MENU;
 

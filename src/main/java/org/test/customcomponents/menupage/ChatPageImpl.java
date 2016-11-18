@@ -1,10 +1,9 @@
 package org.test.customcomponents.menupage;
 
-import com.vaadin.ui.UI;
 import org.test.MyUI;
 import org.test.customcomponents.menupage.chatpage.DialogPanelImpl;
 import org.test.customcomponents.menupage.chatpage.FriendPanelImpl;
-import org.test.logic.ChatMessage;
+import org.test.msgservice.ChatMessage;
 import org.test.logic.Profile;
 import org.test.tamplets.menupage.ChatPage;
 

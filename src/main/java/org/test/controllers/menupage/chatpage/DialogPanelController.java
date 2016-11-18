@@ -9,8 +9,8 @@ import com.vaadin.ui.TextArea;
 import com.vaadin.ui.UI;
 import org.test.MyUI;
 import org.test.customcomponents.menupage.chatpage.DialogPanelImpl;
-import org.test.logic.ChatMessage;
-import org.test.logic.MessageManager;
+import org.test.msgservice.ChatMessage;
+import org.test.msgservice.MessageManager;
 import org.test.logic.Profile;
 
 import java.util.Collection;
@@ -37,7 +37,6 @@ public class DialogPanelController {
                         Profile.getCurrentProfile().getId(),
                         friendProfile.getId(),
                         messageText);
-//                tryToSendMessage(messageTextArea, messageText, message);
                 sendMessage(messageTextArea, message);
             }
         });
@@ -66,21 +65,6 @@ public class DialogPanelController {
         Collection<UI> uis = session.getUIs();
         for (UI ui : uis) {
             ((MyUI) ui).showSentChatMessage(message);
-        }
-    }
-
-    public void tryToSendMessage(
-            TextArea messageTextArea, String messageText, ChatMessage message) {
-        try {
-            MessageManager.sendChatMessage(message);
-            dialogPanel.addSentMessage(message.getMessageText());
-            messageTextArea.setValue("");
-        } catch (NullPointerException | SessionExpiredException e) {
-            Notification notification = new Notification(
-                    friendProfile.getName() + " is offline",
-                    Notification.Type.WARNING_MESSAGE);
-            notification.setPosition(Position.BOTTOM_RIGHT);
-            notification.show(Page.getCurrent());
         }
     }
 }

@@ -4,8 +4,6 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import org.test.controllers.menupage.profilepage.MaterialsPageController;
 import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
-import org.test.logic.Cleanable;
-import org.test.logic.Profile;
 import org.test.tamplets.menupage.profilepage.MaterialsPage;
 
 import java.util.List;
@@ -13,13 +11,11 @@ import java.util.List;
 /**
  * Created by abara on 10.11.2016.
  */
-public class MaterialsPageImpl extends MaterialsPage implements View, Cleanable {
+public class MaterialsPageImpl extends MaterialsPage implements View{
     private final MaterialsPageController controller;
 
     public MaterialsPageImpl() {
         controller = new MaterialsPageController(this);
-
-        Profile.registerCleanable(this);
     }
 
     @Override
@@ -27,10 +23,5 @@ public class MaterialsPageImpl extends MaterialsPage implements View, Cleanable 
         mainLayout.removeAllComponents();
         List<DocumentBoxImpl> documentBoxes = controller.pullDocumentBoxes();
         documentBoxes.forEach(mainLayout::addComponent);
-    }
-
-    @Override
-    public void cleanInformation() {
-        mainLayout.removeAllComponents();
     }
 }

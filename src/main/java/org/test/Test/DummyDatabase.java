@@ -1,5 +1,7 @@
 package org.test.Test;
 
+import org.test.logic.Course;
+import org.test.logic.Lesson;
 import org.test.logic.Profile;
 
 import java.util.*;
@@ -9,6 +11,9 @@ import java.util.*;
  */
 public class DummyDatabase {
     private static Set<DummyUser> store = new HashSet<DummyUser>();
+
+    private static Profile arkadyProfile;
+    private static Profile tarasProfile;
 
     static {
         List<Profile> friends = new ArrayList<>();
@@ -23,24 +28,24 @@ public class DummyDatabase {
         }
 
         List<Profile> tarasFriends = new ArrayList<>();
-        Profile arkady = new Profile();
-        arkady.setId(13);
-        arkady.setName("Arkady");
-        arkady.setSurname("Baranok");
-        arkady.setEmail("arkady@mail.ru");
-        arkady.setBirthDate(new Date());
-        arkady.setEducation("MIPT");
-        tarasFriends.add(arkady);
+        arkadyProfile = new Profile();
+        arkadyProfile.setId(13);
+        arkadyProfile.setName("Arkady");
+        arkadyProfile.setSurname("Baranok");
+        arkadyProfile.setEmail("arkady@mail.ru");
+        arkadyProfile.setBirthDate(new Date());
+        arkadyProfile.setEducation("MIPT");
+        tarasFriends.add(arkadyProfile);
 
         List<Profile> arkadyFriends = new ArrayList<>();
-        Profile taras = new Profile();
-        taras.setId(11);
-        taras.setName("Taras");
-        taras.setSurname("Khakhulin");
-        taras.setEmail("ataras@mail.ru");
-        taras.setBirthDate(new Date());
-        taras.setEducation("Caucasus mountains");
-        arkadyFriends.add(taras);
+        tarasProfile = new Profile();
+        tarasProfile.setId(11);
+        tarasProfile.setName("Taras");
+        tarasProfile.setSurname("Khakhulin");
+        tarasProfile.setEmail("ataras@mail.ru");
+        tarasProfile.setBirthDate(new Date());
+        tarasProfile.setEducation("Caucasus mountains");
+        arkadyFriends.add(tarasProfile);
 
         store.add(new DummyUser(
                 11, "Taras", "Khakhulin", "taras@mail.ru", "taras", "Caucasus mountains", new Date(), tarasFriends));
@@ -63,5 +68,37 @@ public class DummyDatabase {
             }
         }
         return null;
+    }
+
+    static Collection<Course> pullCourses() {
+        Collection<Course> courses = new ArrayList<>();
+        courses.add(
+                new Course(tarasProfile, new ArrayList<>(), "Basic Mathematics",
+                        "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math "));
+        courses.add(
+                new Course(tarasProfile, new ArrayList<>(), "Advanced Philosophy",
+                        "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math "));
+        courses.add(
+                new Course(arkadyProfile, new ArrayList<>(), "Web-design technologies",
+                        "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math "));
+        return courses;
     }
 }

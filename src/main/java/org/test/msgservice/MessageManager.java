@@ -1,4 +1,4 @@
-package org.test.logic;
+package org.test.msgservice;
 
 import com.vaadin.server.SessionExpiredException;
 import com.vaadin.server.VaadinSession;

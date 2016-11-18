@@ -1,4 +1,4 @@
-package org.test.logic;
+package org.test.msgservice;
 
 /**
  * Created by abara on 17.11.2016.

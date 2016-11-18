@@ -11,7 +11,6 @@ import java.util.List;
  * Created by Аркадий on 28.10.2016.
  */
 public class Profile {
-    private static final List<Cleanable> cleanables = new ArrayList<>();
 
     private int id;
     private String name;
@@ -96,13 +95,19 @@ public class Profile {
         return profile;
     }
 
-    //TODO: delete method
-    public static void clearCurrentProfile() {
-        cleanables.forEach(Cleanable::cleanInformation);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Profile profile = (Profile) o;
+
+        return id == profile.id;
     }
 
-    public static void registerCleanable(Cleanable cleanable) {
-        cleanables.add(cleanable);
+    @Override
+    public int hashCode() {
+        return id;
     }
 
     @Override

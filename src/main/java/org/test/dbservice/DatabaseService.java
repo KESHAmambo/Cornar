@@ -2,8 +2,10 @@ package org.test.dbservice;
 
 import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
 import org.test.dbservice.entity.UsersEntity;
+import org.test.logic.Course;
 import org.test.logic.Profile;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -22,4 +24,6 @@ public interface DatabaseService {
     void fulfillProfile(Profile profile, String userEmail);
 
     List<DocumentBoxImpl> pullDocuments();
+
+    Collection<Course> pullCourses();
 }

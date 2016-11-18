@@ -4,8 +4,10 @@ import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxI
 import org.test.dbservice.dao.UserDao;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.dbservice.impl.UserDaoImpl;
+import org.test.logic.Course;
 import org.test.logic.Profile;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -63,5 +65,11 @@ public class DatabaseServiceImpl implements DatabaseService {
     @Override
     public List<DocumentBoxImpl> pullDocuments() {
         return null;//TODO
+    }
+
+
+    @Override
+    public Collection<Course> pullCourses() {
+        return null; //TODO
     }
 }

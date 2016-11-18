@@ -13010,8 +13010,83 @@ div.v-layout.v-horizontal.v-widget {
 	border-right: 3px #91e4ec solid;
 }
 
+.mytheme .v-button-addCourseButton {
+	background: #82bf8b;
+	font-size: 20px;
+	color: #fafeff;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-addCourseButton:hover {
+	background: #9ee5a7;
+}
+
+.mytheme .v-verticallayout-tutorCourseBoxMainLayout {
+	padding: 1em;
+	background: #9ee5a7;
+	font-size: 1.6em;
+	color: #fafeff;
+}
+
+.mytheme .v-verticallayout-courseTutorIconLayout {
+	background: url(images/professor.png);
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.mytheme .v-label-courseNameLabel {
+	font-size: 1.8em;
+}
+
+.mytheme .v-button-tutorCourseBoxButton {
+	background: #68b872;
+	color: #ffffff;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-tutorCourseBoxButton:hover {
+	background: #8dd096;
+}
+
+.mytheme .v-textarea-descriptionTextArea {
+	font-weight: 100;
+}
+
+.mytheme .v-verticallayout-studentCourseBoxMainLayout {
+	padding: 1em;
+	background: #91ccd2;
+	font-size: 1.6em;
+	color: #fafeff;
+}
+
+.mytheme .v-verticallayout-courseStudentIconLayout {
+	background: url(images/student.png);
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.mytheme .v-button-studentCourseBoxButton {
+	background: #569095;
+	color: #ffffff;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-studentCourseBoxButton:hover {
+	background: #71b4b9;
+}
+
 .mytheme .v-csslayout-docImage {
-	background-image: url("images/doc_face.png");
+	background-image: url(images/doc_face.png);
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
 	background-size: cover;
 }
 
@@ -13042,7 +13117,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-button-docButton {
-	font-size: 2em;
+	font-size: 1.5em;
 	color: #ffffff;
 	-webkit-border-radius: 40px;
 	-moz-border-radius: 40px;
@@ -13052,7 +13127,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-button-docButton:hover {
-	background: #01747f;
+	background: #89a0a2;
 }
 
 .mytheme .sliderPanel {
