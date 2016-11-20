@@ -14,6 +14,7 @@ import org.test.customcomponents.menupage.SearchPageImpl;
 import org.test.customcomponents.menupage.TasksPageImpl;
 import org.test.logic.Profile;
 import org.test.tamplets.MenuPage;
+import org.test.tamplets.menupage.ProfilePage;
 import org.vaadin.sliderpanel.SliderPanel;
 import org.vaadin.sliderpanel.SliderPanelBuilder;
 import org.vaadin.sliderpanel.client.SliderMode;

@@ -5,8 +5,8 @@
   <meta charset="UTF-8" name="vaadin-version" content="7.7.0">
  </head> 
  <body> 
-  <vaadin-panel height="130%"> 
-   <vaadin-vertical-layout height="49.2%"> 
+  <vaadin-panel size-full> 
+   <vaadin-vertical-layout size-full> 
     <vaadin-horizontal-layout width-full margin> 
      <vaadin-text-field input-prompt="Search..." style-name="searchTextArea" width-full _id="searchName" :bottom :center :expand></vaadin-text-field> 
      <vaadin-combo-box input-prompt="" _id="searchParametrBox"> 
@@ -14,11 +14,11 @@
       <option>surname</option> 
       <option>course</option> 
      </vaadin-combo-box> 
-     <vaadin-button icon="fonticon://FontAwesome/f002" style-name="borderless searchButton searchIcon" width="100px" plain-text _id="searchButton" :middle :expand>
+     <vaadin-button icon="fonticon://FontAwesome/f002" style-name="borderless searchButton searchIcon" plain-text _id="searchButton" :middle>
        Search 
      </vaadin-button> 
     </vaadin-horizontal-layout> 
-    <vaadin-grid visible="false" immediate size-full _id="searchTable" :center> 
+    <vaadin-grid immediate size-full _id="searchTable" :bottom :center :expand> 
      <table> 
       <colgroup> 
        <col property-id="User Name" sortable> 

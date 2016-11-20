@@ -1,5 +1,6 @@
 package org.test.dbservice;
 
+import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.logic.Profile;
 
@@ -23,4 +24,6 @@ public interface DatabaseService {
     List<Profile> getAllUsersWithNameLike(String firstName);
 
     List<Profile> getAllUsersWithSurnameLike(String surnameForSearch);
+    
+    public List<DocumentBoxImpl> pullDocuments();
 }

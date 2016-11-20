@@ -13,47 +13,6 @@ import java.util.List;
  */
 public class UserDaoImpl extends AbstractServiceSession implements UserDao {
 
-    //TODO add session service;
-
-//    private SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();;
-//
-//
-//    private Session currentSession;
-//    private Transaction currentTransaction;
-//
-//    public SessionFactory getSessionFactory() {
-//        return sessionFactory;
-//    }
-//
-//    public Session getCurrentSession() {
-//        return currentSession;
-//    }
-//
-//    public UserDaoImpl() {
-//    }
-//
-//    public Session openCurrentSession(){
-//        currentSession = getSessionFactory().getCurrentSession();
-//        return currentSession;
-//    }
-//
-//    public Session openCurrentSessionWithTransaction(){
-//        currentSession = openCurrentSession();
-//        currentTransaction = currentSession.beginTransaction();
-//        return currentSession;
-//    }
-//
-//    public void shutdownCurrentSession(){
-//        currentSession.close();
-//    }
-//
-//    public void shutdownCurrentSessionWithTransaction(){
-//        currentTransaction.commit();
-////        currentSession.close();
-//    }
-
-
-
     @Override
     public int create(UsersEntity entity) {
         Session session;

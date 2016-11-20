@@ -5,13 +5,13 @@
   <meta charset="UTF-8" name="vaadin-version" content="7.7.0">
  </head> 
  <body> 
-  <vaadin-vertical-layout> 
-   <vaadin-vertical-layout style-name="profileInnerPagesLayouts" spacing margin-right margin-top _id="mainLayout"> 
-    <vaadin-button plain-text _id="addingButton">
-      Button 
-    </vaadin-button> 
-   </vaadin-vertical-layout> 
-   <vaadin-vertical-layout style-name="profileInnerPagesLayouts" spacing _id="forDocsLayout" :center></vaadin-vertical-layout> 
+  <vaadin-vertical-layout style-name="uploadMainLayout" size-full> 
+   <vaadin-label style-name="uploadLabel" height="48px" plain-text :middle :center>
+     Upload to Materials 
+   </vaadin-label> 
+   <vaadin-horizontal-layout style-name="uploadBackground" spacing size-full _id="uloadLayout" :middle :center :expand> 
+    <vaadin-upload style-name="uploadButton" _id="uploadButton" :bottom :center></vaadin-upload> 
+   </vaadin-horizontal-layout> 
   </vaadin-vertical-layout>  
  </body>
 </html>

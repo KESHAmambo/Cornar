@@ -6,6 +6,7 @@ import org.test.dbservice.DatabaseManager;
 import org.test.tamplets.menupage.profilepage.MaterialsPage;
 import org.test.tamplets.menupage.profilepage.materialspage.DocumentBox;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

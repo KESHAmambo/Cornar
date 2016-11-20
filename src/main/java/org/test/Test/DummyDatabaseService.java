@@ -42,6 +42,15 @@ public class DummyDatabaseService implements DatabaseService {
     }
 
     @Override
+    public List<Profile> getAllUsersWithNameLike(String firstName) {
+        return null;
+    }
+
+    @Override
+    public List<Profile> getAllUsersWithSurnameLike(String surnameForSearch) {
+        return null;
+    }
+
     public List<DocumentBoxImpl> pullDocuments() {
         List<DocumentBoxImpl> documents = new ArrayList<>();
         Calendar calendar = new GregorianCalendar();

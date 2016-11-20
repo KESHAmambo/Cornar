@@ -402,5 +402,27 @@ $v-border-radius: 0px;
     background: #91ccd1;
   }
 
+  //-----------Upload Box-------------------
+
+  .v-label-uploadLabel {
+    font-size: 1.2em;
+    padding: 5px;
+    text-align: center;
+    font-family: Calibri;
+    border-bottom: 2px solid #91ccd1;
+  }
+  .v-horizontallayout-uploadBackground {
+    background: #E0EEFF;
+    opacity: 0.9;
+  }
+  .v-verticallayout-uploadMainLayout {
+    border-radius: 25px;
+  }
+  .v-upload-uploadButton .v-button {
+    padding: 0 14px;
+    font-size: 20px;
+    background: #4ed3ff;
+    border-radius: 14px;
+  }
   // Insert your own theme rules here
 }

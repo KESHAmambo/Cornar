@@ -13,12 +13,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DatabaseManager {
-    private static DatabaseService service = new DatabaseServiceImpl();
+    private static DatabaseService service = new DummyDatabaseService();
 
     private DatabaseManager() {
 
     }
-
     public static int signUpUser(String firstName, String surname,
                           String email, Date birthDate,
                           String password, String education) {
@@ -45,5 +44,8 @@ public class DatabaseManager {
 
     public static List<Profile> getAllUsersWithSurnameLike(String surnameForSearch) {
         return service.getAllUsersWithSurnameLike(surnameForSearch);
+    }
+    public static List<DocumentBoxImpl> pullDocuments(){
+        return service.pullDocuments();
     }
 }

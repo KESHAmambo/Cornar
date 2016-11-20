@@ -29,12 +29,7 @@ public class ProfilePageImpl extends ProfilePage implements View {
 
     public ProfilePageImpl() {
         controller = new ProfilePageController(this);
-
         provideNavigation();
-        bindLabelsToProfileData();
-    }
-
-    public ProfilePageImpl(Profile currentProfile) {
         bindLabelsToProfileData();
     }
 
@@ -46,7 +41,6 @@ public class ProfilePageImpl extends ProfilePage implements View {
     private Navigator createNavigatorForMenuButtons() {
         Navigator menuButtonsNavigator = new Navigator(
                 UI.getCurrent(), layoutForInnerPages);
-
         menuButtonsNavigator.addView("", new InboxPageImpl());
         menuButtonsNavigator.addView(MENU.toString(), new InboxPageImpl());
         menuButtonsNavigator.addView(MENU + "/" + PROFILE, new InboxPageImpl());

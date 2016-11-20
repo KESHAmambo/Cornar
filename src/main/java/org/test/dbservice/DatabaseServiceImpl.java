@@ -1,5 +1,6 @@
 package org.test.dbservice;
 
+import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
 import org.test.dbservice.dao.UserDao;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.dbservice.impl.UserDaoImpl;
@@ -98,6 +99,12 @@ public class DatabaseServiceImpl implements DatabaseService {
         UserDao userDao = new UserDaoImpl();
         List<UsersEntity> usersList = userDao.searchUserBySurname(surnameForSearch);
         return  createListOfProfileFromUsers(usersList);
+    }
+
+    @Override
+    public List<DocumentBoxImpl> pullDocuments() {
+        
+        return null;
     }
 
 }

@@ -2,10 +2,15 @@ package org.test.customcomponents.menupage.profilepage;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.ui.*;
 import org.test.controllers.menupage.materilaspage.MaterialsPageController;
+import org.test.customcomponents.menupage.ProfilePageImpl;
 import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
+import org.test.customcomponents.menupage.profilepage.materialspage.FileReceiver;
+import org.test.customcomponents.menupage.profilepage.materialspage.UploadBoxImpl;
 import org.test.logic.Cleanable;
 import org.test.logic.Profile;
+import org.test.tamplets.menupage.ProfilePage;
 import org.test.tamplets.menupage.profilepage.MaterialsPage;
 
 import java.util.List;
@@ -15,22 +20,31 @@ import java.util.List;
  */
 public class MaterialsPageImpl extends MaterialsPage implements View, Cleanable {
     private final MaterialsPageController controller;
-
+    Window windowToUpload;
     public MaterialsPageImpl() {
         controller = new MaterialsPageController(this);
-
         Profile.registerCleanable(this);
+        createWindowToUpload();
     }
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
-        mainLayout.removeAllComponents();
+        addingButton.addClickListener(event -> UI.getCurrent().addWindow(windowToUpload));
+        forDocsLayout.removeAllComponents();
         List<DocumentBoxImpl> documentBoxes = controller.pullDocumentBoxes();
-        documentBoxes.forEach(mainLayout::addComponent);
+        documentBoxes.forEach(forDocsLayout::addComponent);
+    }
+
+    public void createWindowToUpload(){
+        windowToUpload = new Window();
+        windowToUpload.setContent(new UploadBoxImpl());
+        windowToUpload.setWidth("200px");
+        windowToUpload.setHeight("350px");
     }
 
     @Override
     public void cleanInformation() {
         mainLayout.removeAllComponents();
     }
+
 }
