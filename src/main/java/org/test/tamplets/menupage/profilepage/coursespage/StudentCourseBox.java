@@ -20,6 +20,7 @@ import com.vaadin.ui.Button;
 @SuppressWarnings("serial")
 public class StudentCourseBox extends VerticalLayout {
     protected Label courseNameLabel;
+    protected Button inviteFriendButton;
     protected Button seeLessonsButton;
     protected Label tutorNameLabel;
     protected Label descriptionLabel;

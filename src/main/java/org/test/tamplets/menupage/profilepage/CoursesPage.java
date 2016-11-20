@@ -20,6 +20,7 @@ import com.vaadin.ui.Button;
 public class CoursesPage extends VerticalLayout {
     protected VerticalLayout mainLayout;
     protected Button addCourseButton;
+    protected VerticalLayout forBoxesLayout;
 
     public CoursesPage() {
         Design.read(this);

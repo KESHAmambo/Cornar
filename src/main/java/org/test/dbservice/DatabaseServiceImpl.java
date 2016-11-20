@@ -5,6 +5,7 @@ import org.test.dbservice.dao.UserDao;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.dbservice.impl.UserDaoImpl;
 import org.test.logic.Course;
+import org.test.logic.Lesson;
 import org.test.logic.Profile;
 
 import java.util.Collection;
@@ -71,5 +72,15 @@ public class DatabaseServiceImpl implements DatabaseService {
     @Override
     public Collection<Course> pullCourses() {
         return null; //TODO
+    }
+
+    @Override
+    public void addNewCourse(Course course) {
+        //TODO
+    }
+
+    @Override
+    public void addNewLesson(Lesson lesson) {
+        //TODO
     }
 }

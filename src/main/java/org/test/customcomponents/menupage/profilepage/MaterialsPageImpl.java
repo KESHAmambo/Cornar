@@ -20,8 +20,8 @@ public class MaterialsPageImpl extends MaterialsPage implements View{
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
-        mainLayout.removeAllComponents();
+        forDocsLayout.removeAllComponents();
         List<DocumentBoxImpl> documentBoxes = controller.pullDocumentBoxes();
-        documentBoxes.forEach(mainLayout::addComponent);
+        documentBoxes.forEach(forDocsLayout::addComponent);
     }
 }

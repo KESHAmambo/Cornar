@@ -305,6 +305,14 @@ $v-border-radius: 0px;
     font-weight: 100;
   }
 
+  .v-Notification-addedCourseNotification {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    padding: 30px;
+    font-weight: bold;
+  }
+
   //----------------------------------- StudentCourseBox ----
 
   .v-verticallayout-studentCourseBoxMainLayout {
@@ -439,13 +447,19 @@ $v-border-radius: 0px;
 
   .v-verticallayout-receivedChatMessageLayout {
     background: #9ee5a7;
-    border-radius: 10px;
+    -webkit-border-radius: 5px 20px 20px 20px;
+    -moz-border-radius: 5px 20px 20px 20px;
+    border-radius: 5px 20px 20px 20px;
+    box-shadow: 3px 3px 3px grey;
     padding: 10px;
   }
 
   .v-verticallayout-sentChatMessageLayout {
     background: #9dadd9;
-    border-radius: 10px;
+    -webkit-border-radius: 20px 5px 20px 20px;
+    -moz-border-radius: 20px 5px 20px 20px;
+    border-radius: 20px 5px 20px 20px;
+    box-shadow: 3px 3px 3px grey;
     padding: 10px;
   }
 

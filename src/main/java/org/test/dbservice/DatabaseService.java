@@ -3,6 +3,7 @@ package org.test.dbservice;
 import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.logic.Course;
+import org.test.logic.Lesson;
 import org.test.logic.Profile;
 
 import java.util.Collection;
@@ -26,4 +27,8 @@ public interface DatabaseService {
     List<DocumentBoxImpl> pullDocuments();
 
     Collection<Course> pullCourses();
+
+    void addNewCourse(Course course);
+
+    void addNewLesson(Lesson lesson);
 }

@@ -1,7 +1,6 @@
 package org.test.Test;
 
 import org.test.logic.Course;
-import org.test.logic.Lesson;
 import org.test.logic.Profile;
 
 import java.util.*;
@@ -11,6 +10,7 @@ import java.util.*;
  */
 public class DummyDatabase {
     private static Set<DummyUser> store = new HashSet<DummyUser>();
+    private static List<Course> courses = new ArrayList<>();
 
     private static Profile arkadyProfile;
     private static Profile tarasProfile;
@@ -54,6 +54,33 @@ public class DummyDatabase {
         store.add(new DummyUser(
                 13, "Arkady", "Baranok", "arkady@mail.ru", "arkady", "MIPT", new Date(), arkadyFriends));
 
+        courses.add(
+                new Course(1, tarasProfile, new ArrayList<>(), "Basic Mathematics",
+                        "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math "));
+        courses.add(
+                new Course(2, tarasProfile, new ArrayList<>(), "Advanced Philosophy",
+                        "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math "));
+        courses.add(
+                new Course(3, arkadyProfile, new ArrayList<>(), "Web-design technologies",
+                        "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math " +
+                                "something about math something about math something about math "));
     }
 
     static boolean doesUserExist(String email, String password) {
@@ -71,34 +98,10 @@ public class DummyDatabase {
     }
 
     static Collection<Course> pullCourses() {
-        Collection<Course> courses = new ArrayList<>();
-        courses.add(
-                new Course(tarasProfile, new ArrayList<>(), "Basic Mathematics",
-                        "something about math something about math something about math " +
-                                "something about math something about math something about math " +
-                                "something about math something about math something about math " +
-                                "something about math something about math something about math " +
-                                "something about math something about math something about math " +
-                                "something about math something about math something about math " +
-                                "something about math something about math something about math "));
-        courses.add(
-                new Course(tarasProfile, new ArrayList<>(), "Advanced Philosophy",
-                        "something about math something about math something about math " +
-                                "something about math something about math something about math " +
-                                "something about math something about math something about math " +
-                                "something about math something about math something about math " +
-                                "something about math something about math something about math " +
-                                "something about math something about math something about math " +
-                                "something about math something about math something about math "));
-        courses.add(
-                new Course(arkadyProfile, new ArrayList<>(), "Web-design technologies",
-                        "something about math something about math something about math " +
-                                "something about math something about math something about math " +
-                                "something about math something about math something about math " +
-                                "something about math something about math something about math " +
-                                "something about math something about math something about math " +
-                                "something about math something about math something about math " +
-                                "something about math something about math something about math "));
         return courses;
+    }
+
+    static void addNewCourse(Course course) {
+        courses.add(course);
     }
 }

@@ -18,6 +18,7 @@ import com.vaadin.ui.VerticalLayout;
 @SuppressWarnings("serial")
 public class MaterialsPage extends VerticalLayout {
     protected VerticalLayout mainLayout;
+    protected VerticalLayout forDocsLayout;
 
     public MaterialsPage() {
         Design.read(this);

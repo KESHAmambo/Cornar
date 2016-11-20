@@ -17,7 +17,7 @@ public class SignPanelImpl extends SignPanel {
         signUpPanel = new SignUpPanelImpl();
 
         customizeSignUpWindow();
-        createListenerFopeningSignUpWindowButton();
+        createListenerForOpenSignUpWindowButton();
     }
 
     public Button getSignInButton() {
@@ -40,7 +40,7 @@ public class SignPanelImpl extends SignPanel {
         return passwordTextField.getValue();
     }
 
-    private void createListenerFopeningSignUpWindowButton() {
+    private void createListenerForOpenSignUpWindowButton() {
         openingSignUpWindowButton.addClickListener(e -> {
             UI.getCurrent().addWindow(signUpWindow);
         });
@@ -48,7 +48,6 @@ public class SignPanelImpl extends SignPanel {
 
     private Window customizeSignUpWindow() {
         signUpWindow.setContent(signUpPanel);
-        signUpWindow.addStyleName("singUpWindow");
         signUpWindow.center();
         signUpWindow.setModal(true);
         signUpWindow.setWidth("60%");
