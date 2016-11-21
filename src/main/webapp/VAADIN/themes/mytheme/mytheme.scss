@@ -313,7 +313,7 @@ $v-border-radius: 0px;
     font-weight: bold;
   }
 
-  //----------------------------------- StudentCourseBox ----
+  //----------------------------------- StudentCourseBox ------------------------------
 
   .v-verticallayout-studentCourseBoxMainLayout {
     padding: 1em;
@@ -392,6 +392,14 @@ $v-border-radius: 0px;
     background: #89a0a2;
   }
 
+  .v-button-addFileButton{
+    background: #74bfba;
+    font-size: 20px;
+    color: #fafeff;
+    height: 50px;
+    -webkit-transition-duration: 0.6s;
+    transition-duration: 0.6s;
+  }
   //--------- ChatPanel -------------------------------------
   .sliderPanel {
     background: #005159;
@@ -506,13 +514,17 @@ $v-border-radius: 0px;
     opacity: 0.9;
   }
   .v-verticallayout-uploadMainLayout {
-    border-radius: 25px;
   }
   .v-upload-uploadButton .v-button {
-    padding: 0 14px;
+    padding: 0 15px;
     font-size: 20px;
-    background: #4ed3ff;
-    border-radius: 14px;
+    background: #23aeff;
+    margin-bottom: 2%;
+  }
+  .v-progressbar-uploadingBar {
+    color: #1e6b15;
+    margin-right: 5px;
+    margin-top: 5px;
   }
   //------------------------- DialogPanel -------------------------
 

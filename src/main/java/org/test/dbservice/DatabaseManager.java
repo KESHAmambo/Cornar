@@ -9,6 +9,8 @@ import org.test.logic.Course;
 import org.test.logic.Lesson;
 import org.test.logic.Profile;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -17,7 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DatabaseManager {
-    private static DatabaseService service = new DummyDatabaseService();
+    private static DatabaseService service = new DatabaseServiceImpl();
 
     private DatabaseManager() {
 
@@ -65,5 +67,9 @@ public class DatabaseManager {
     public static void addNewLesson(Course course, String lessonName, double cost, Date date) {
         service.addNewLesson(
                 new Lesson(lessonName, course, cost, date));
+    }
+
+    public static void saveFile(String filename) {
+        service.saveFile(filename);
     }
 }

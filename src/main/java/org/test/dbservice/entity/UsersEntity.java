@@ -19,8 +19,6 @@ public class UsersEntity {
     private String person_description;
     private Integer person_rating;
     private String password;
-
-
     private Date birth_date;
 
     @Column(name = "\"userid\"", nullable = false)

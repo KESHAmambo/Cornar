@@ -7,13 +7,14 @@ import java.util.Arrays;
  * Created by Taras on 20.11.2016.
  */
 @Entity
-@Table(name = "Files", schema = "project_cornar", catalog = "cornar")
+@Table(name = "files", schema = "project_cornar", catalog = "cornar")
 public class FilesEntity {
-    private int fileid;
-    private String fileName;
-    private byte[] fileData;
-
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int fileid;
+    private String file_name;
+    private byte[] file_data;
+
     @Column(name = "fileid", nullable = false)
     public int getFileid() {
         return fileid;
@@ -26,21 +27,21 @@ public class FilesEntity {
     @Basic
     @Column(name = "file_name", nullable = true, length = -1)
     public String getFileName() {
-        return fileName;
+        return file_name;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    public void setFileName(String file_name) {
+        this.file_name = file_name;
     }
 
     @Basic
     @Column(name = "file_data", nullable = true)
     public byte[] getFileData() {
-        return fileData;
+        return file_data;
     }
 
     public void setFileData(byte[] fileData) {
-        this.fileData = fileData;
+        this.file_data = fileData;
     }
 
     @Override
@@ -51,8 +52,8 @@ public class FilesEntity {
         FilesEntity that = (FilesEntity) o;
 
         if (fileid != that.fileid) return false;
-        if (fileName != null ? !fileName.equals(that.fileName) : that.fileName != null) return false;
-        if (!Arrays.equals(fileData, that.fileData)) return false;
+        if (file_name != null ? !file_name.equals(that.file_name) : that.file_name != null) return false;
+        if (!Arrays.equals(file_data, that.file_data)) return false;
 
         return true;
     }
@@ -60,8 +61,8 @@ public class FilesEntity {
     @Override
     public int hashCode() {
         int result = fileid;
-        result = 31 * result + (fileName != null ? fileName.hashCode() : 0);
-        result = 31 * result + Arrays.hashCode(fileData);
+        result = 31 * result + (file_name != null ? file_name.hashCode() : 0);
+        result = 31 * result + Arrays.hashCode(file_data);
         return result;
     }
 }

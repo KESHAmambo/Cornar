@@ -13138,6 +13138,15 @@ div.v-layout.v-horizontal.v-widget {
 	background: #89a0a2;
 }
 
+.mytheme .v-button-addFileButton {
+	background: #74bfba;
+	font-size: 20px;
+	color: #fafeff;
+	height: 50px;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
 .mytheme .sliderPanel {
 	background: #005159;
 	font-size: 20px;
@@ -13251,15 +13260,17 @@ div.v-layout.v-horizontal.v-widget {
 	opacity: 0.9;
 }
 
-.mytheme .v-verticallayout-uploadMainLayout {
-	border-radius: 25px;
+.mytheme .v-upload-uploadButton .v-button {
+	padding: 0 15px;
+	font-size: 20px;
+	background: #23aeff;
+	margin-bottom: 2%;
 }
 
-.mytheme .v-upload-uploadButton .v-button {
-	padding: 0 14px;
-	font-size: 20px;
-	background: #4ed3ff;
-	border-radius: 14px;
+.mytheme .v-progressbar-uploadingBar {
+	color: #1e6b15;
+	margin-right: 5px;
+	margin-top: 5px;
 }
 
 .mytheme .v-verticallayout-receivedChatMessageLayout {

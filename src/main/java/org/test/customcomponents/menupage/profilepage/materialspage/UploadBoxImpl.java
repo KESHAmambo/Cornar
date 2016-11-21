@@ -11,9 +11,11 @@ public class UploadBoxImpl extends UploadBox {
 
     public UploadBoxImpl() {
         FileReceiver receiver = new FileReceiver();
+        receiver.setProgress(progressBar);
         uploadButton.setReceiver(receiver);
         uploadButton.addSucceededListener(receiver);
         uploadButton.addFailedListener(receiver);
+        uploadButton.addProgressListener(receiver);
         createListenersForUploads();
     }
 

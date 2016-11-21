@@ -1,17 +1,18 @@
 package org.test.dbservice;
 
 import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
+import org.test.dbservice.dao.FilesDao;
 import org.test.dbservice.dao.UserDao;
 import org.test.dbservice.entity.UsersEntity;
+import org.test.dbservice.impl.FilesDaoImpl;
 import org.test.dbservice.impl.UserDaoImpl;
 import org.test.logic.Course;
 import org.test.logic.Lesson;
 import org.test.logic.Profile;
 
-import java.util.Collection;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.io.*;
+import java.lang.reflect.Array;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,7 +21,9 @@ import java.util.logging.Logger;
  */
 public class DatabaseServiceImpl implements DatabaseService {
 
-    /** TO FIX: must return a result-code depending on result of signUp-operation
+    /**
+     * TO FIX: must return a result-code depending on result of signUp-operation
+     *
      * @see org.test.controllers.MainPageController
      */
     @Override
@@ -28,7 +31,7 @@ public class DatabaseServiceImpl implements DatabaseService {
         //TODO hashing password
         int successOfAddingUser = 0;
         UserDao userDao = new UserDaoImpl();
-        if (doesUserExist(email,password) == true)
+        if (doesUserExist(email, password) == true)
             return successOfAddingUser;
         UsersEntity user = new UsersEntity();
         user.setFirstName(firstName);
@@ -37,14 +40,14 @@ public class DatabaseServiceImpl implements DatabaseService {
         user.setPassword(password);
         user.setBirthDate(new java.sql.Date(birthDate.getTime()));
         user.setPersonDescription(education);
-        successOfAddingUser  = userDao.create(user);
+        successOfAddingUser = userDao.create(user);
         return successOfAddingUser;
     }
 
     @Override
     public UsersEntity getUser(String email, String password) {
         UserDao userDao = new UserDaoImpl();
-        UsersEntity user = userDao.getByEmailAndPassword(email,password);
+        UsersEntity user = userDao.getByEmailAndPassword(email, password);
         if (user != null) {
             return user;
         } else {
@@ -71,7 +74,7 @@ public class DatabaseServiceImpl implements DatabaseService {
 
     }
 
-    private Profile fillProfile(UsersEntity user){
+    private Profile fillProfile(UsersEntity user) {
         Profile profile = new Profile();
         profile.setName(user.getFirstName());
         profile.setSurname(user.getLastName());
@@ -87,23 +90,24 @@ public class DatabaseServiceImpl implements DatabaseService {
         UserDao userDao = new UserDaoImpl();
 
         List<UsersEntity> usersList = userDao.searchUserByName(firstName);
-        return  createListOfProfileFromUsers(usersList);
+        return createListOfProfileFromUsers(usersList);
     }
 
-    private List<Profile>  createListOfProfileFromUsers(List<UsersEntity> usersList){
+    private List<Profile> createListOfProfileFromUsers(List<UsersEntity> usersList) {
         List<Profile> usersProfileList = new ArrayList<>();
-        for (UsersEntity user:
+        for (UsersEntity user :
                 usersList) {
             usersProfileList.add(fillProfile(user));
 
         }
         return usersProfileList;
     }
+
     @Override
     public List<Profile> getAllUsersWithSurnameLike(String surnameForSearch) {
         UserDao userDao = new UserDaoImpl();
         List<UsersEntity> usersList = userDao.searchUserBySurname(surnameForSearch);
-        return  createListOfProfileFromUsers(usersList);
+        return createListOfProfileFromUsers(usersList);
     }
 
     @Override
@@ -126,5 +130,27 @@ public class DatabaseServiceImpl implements DatabaseService {
     @Override
     public void addNewLesson(Lesson lesson) {
         //TODO
+    }
+
+    public void saveFile(String filename) {
+        FilesDao filesDao = new FilesDaoImpl();
+        File fileToUpload = new File(filename);
+        byte[] dataForSaving = new byte[(int)fileToUpload.length()];
+        try {
+            FileInputStream fileInputStream = new FileInputStream(fileToUpload);
+            fileInputStream.read(dataForSaving);
+            fileInputStream.close();
+        }catch (FileNotFoundException e){
+            Logger.getLogger(DatabaseService.class.getName()).log(Level.SEVERE, null, e);
+        }catch (IOException e) {
+            Logger.getLogger(DatabaseService.class.getName()).log(Level.SEVERE, null, e.getStackTrace());
+        }
+        if (dataForSaving != null) {
+            filesDao.saveFile(filename, dataForSaving);
+        }
+        else
+            Logger.getLogger(DatabaseService.class.getName()).log(Level.SEVERE, null, "Your data is cracked");
+
+
     }
 }

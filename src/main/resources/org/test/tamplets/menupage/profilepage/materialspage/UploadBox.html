@@ -9,7 +9,10 @@
    <vaadin-label style-name="uploadLabel" height="48px" plain-text :middle :center>
      Upload to Materials 
    </vaadin-label> 
-   <vaadin-horizontal-layout style-name="uploadBackground" spacing size-full _id="uloadLayout" :middle :center :expand> 
+   <vaadin-horizontal-layout style-name="uploadBackground" size-full :expand> 
+    <vaadin-progress-bar style-name="point, uploadingBar" width="50%" _id="progressBar" :bottom :center></vaadin-progress-bar> 
+   </vaadin-horizontal-layout> 
+   <vaadin-horizontal-layout style-name="uploadBackground" spacing width-full _id="uloadLayout" :middle :center> 
     <vaadin-upload style-name="uploadButton" _id="uploadButton" :bottom :center></vaadin-upload> 
    </vaadin-horizontal-layout> 
   </vaadin-vertical-layout>  

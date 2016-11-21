@@ -4,12 +4,10 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import org.test.controllers.menupage.profilepage.MaterialsPageController;
 import com.vaadin.ui.*;
-import org.test.controllers.menupage.materilaspage.MaterialsPageController;
 import org.test.customcomponents.menupage.ProfilePageImpl;
 import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
 import org.test.customcomponents.menupage.profilepage.materialspage.FileReceiver;
 import org.test.customcomponents.menupage.profilepage.materialspage.UploadBoxImpl;
-import org.test.logic.Cleanable;
 import org.test.logic.Profile;
 import org.test.tamplets.menupage.ProfilePage;
 import org.test.tamplets.menupage.profilepage.MaterialsPage;
@@ -19,33 +17,36 @@ import java.util.List;
 /**
  * Created by abara on 10.11.2016.
  */
-public class MaterialsPageImpl extends MaterialsPage implements View, Cleanable {
+public class MaterialsPageImpl extends MaterialsPage implements View {
     private final MaterialsPageController controller;
-    Window windowToUpload;
+    private final UploadBoxImpl uploadBox;
+    private final Window windowToUpload;
+
     public MaterialsPageImpl() {
         controller = new MaterialsPageController(this);
-        Profile.registerCleanable(this);
-        createWindowToUpload();
+        uploadBox = new UploadBoxImpl();
+        windowToUpload = new Window();
+        customizeWindowToUpload();
+        createListenerToAddNewFilesButton();
     }
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
-        addingButton.addClickListener(event -> UI.getCurrent().addWindow(windowToUpload));
         forDocsLayout.removeAllComponents();
         List<DocumentBoxImpl> documentBoxes = controller.pullDocumentBoxes();
         documentBoxes.forEach(forDocsLayout::addComponent);
     }
 
-    public void createWindowToUpload(){
-        windowToUpload = new Window();
-        windowToUpload.setContent(new UploadBoxImpl());
-        windowToUpload.setWidth("200px");
-        windowToUpload.setHeight("350px");
+    public void customizeWindowToUpload(){
+        windowToUpload.setContent(uploadBox);
+        windowToUpload.center();
+        windowToUpload.setModal(true);
+        windowToUpload.setWidth("30%");
+        windowToUpload.setHeight("60%");
     }
 
-    @Override
-    public void cleanInformation() {
-        mainLayout.removeAllComponents();
+    private void createListenerToAddNewFilesButton(){
+        addingButton.addClickListener(event -> UI.getCurrent().addWindow(windowToUpload));
     }
 
 }

@@ -2,18 +2,27 @@ package org.test.customcomponents.menupage.profilepage.materialspage;
 
 
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.ProgressBar;
 import com.vaadin.ui.Upload;
+import org.test.dbservice.DatabaseManager;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
+import java.io.*;
 
 /**
  * Created by Taras on 20.11.2016.
  */
-public class FileReceiver implements Upload.Receiver, Upload.SucceededListener, Upload.FailedListener {
+public class FileReceiver implements Upload.Receiver, Upload.ProgressListener,
+                    Upload.SucceededListener, Upload.FailedListener {
     public File fileToUpload;
+    ProgressBar progress;
+
+    public ProgressBar getProgress() {
+        return progress;
+    }
+    public void setProgress(ProgressBar progress) {
+        this.progress = progress;
+    }
+
     @Override
     public OutputStream receiveUpload(String filename, String mimeType) {
         FileOutputStream fileOutputStream = null;
@@ -22,7 +31,7 @@ public class FileReceiver implements Upload.Receiver, Upload.SucceededListener, 
             fileToUpload = new File(filename);
             fileOutputStream = new FileOutputStream(fileToUpload);
         } catch (FileNotFoundException e) {
-            Notification.show("file dosen't exist");
+            Notification.show("file doesn't exist");
             return null;
         }
         return fileOutputStream;
@@ -31,6 +40,9 @@ public class FileReceiver implements Upload.Receiver, Upload.SucceededListener, 
     @Override
     public void uploadSucceeded(Upload.SucceededEvent event) {
         Notification.show("succeed");
+        String fileNameToUpload = fileToUpload.getName();
+        DatabaseManager.saveFile(fileNameToUpload);
+        progress.setVisible(false);
     }
 
     @Override
@@ -39,4 +51,15 @@ public class FileReceiver implements Upload.Receiver, Upload.SucceededListener, 
                 Notification.Type.ERROR_MESSAGE);
     }
 
+    @Override
+    public void updateProgress(long readBytes, long contentLength) {
+        progress.setVisible(true);
+        if (contentLength == -1)
+            progress.setIndeterminate(true);
+        else {
+            progress.setIndeterminate(false);
+            progress.setValue(((float)readBytes) /
+                    ((float)contentLength));
+        }
+    }
 }
