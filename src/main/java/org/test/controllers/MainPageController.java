@@ -2,18 +2,22 @@ package org.test.controllers;
 
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.Page;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.Window;
+import org.test.MyUI;
 import org.test.customcomponents.MainPageImpl;
 import org.test.customcomponents.MenuPageImpl;
 import org.test.customcomponents.SignPanelImpl;
 import org.test.customcomponents.SignUpPanelImpl;
 import org.test.dbservice.DatabaseManager;
+import org.test.msgservice.MessageManager;
 import org.test.dbservice.DatabaseService;
 import org.test.logic.Profile;
 
+import java.util.Collection;
 import java.util.Date;
 
 import static org.test.logic.PageName.*;
@@ -29,7 +33,7 @@ public class MainPageController {
     }
 
     public void createListenerForSingInButton(
-            Navigator navigator, SignPanelImpl signPanel) {
+            SignPanelImpl signPanel) {
         Button signInButton = signPanel.getSignInButton();
 
         signInButton.addClickListener(e -> {
@@ -37,13 +41,34 @@ public class MainPageController {
             String userPassword = signPanel.getUserPassword();
 
             if(DatabaseManager.doesUserExist(userEmail, userPassword)) {
-                Profile.setCurrentProfile(userEmail);
-
-                navigator.removeView(MENU.toString());
-                navigator.addView(MENU.toString(), new MenuPageImpl(navigator));
-                navigator.navigateTo(MENU.toString());
+                signOutPreviousProfile();
+                signInNewProfile(userEmail);
+                navigateToMenuPageInAllUIs(VaadinSession.getCurrent().getUIs());
             }
         });
+    }
+
+    private void signOutPreviousProfile() {
+        Profile previousProfile = (Profile) VaadinSession.getCurrent().getAttribute("profile");
+        if(previousProfile != null) {
+            MessageManager.unregisterPreviousUserSession(previousProfile.getId());
+        }
+    }
+
+    private void signInNewProfile(String userEmail) {
+        Profile profile = Profile.fulfillProfile(userEmail);
+        VaadinSession session = VaadinSession.getCurrent();
+        session.setAttribute("profile", profile);
+        MessageManager.registerSession(profile.getId(), session);
+    }
+
+    private void navigateToMenuPageInAllUIs(Collection<UI> uis) {
+        for(UI ui: uis) {
+            Navigator navigator = ui.getNavigator();
+            navigator.removeView(MENU.toString());
+            navigator.addView(MENU.toString(), new MenuPageImpl((MyUI) ui, navigator));
+            navigator.navigateTo(MENU.toString());
+        }
     }
 
     public void createListenerForSingUpButton(SignPanelImpl signPanel) {

@@ -1,8 +1,11 @@
 package org.test.Test;
 
 import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
+import org.test.dbservice.DatabaseManager;
 import org.test.dbservice.DatabaseService;
 import org.test.dbservice.entity.UsersEntity;
+import org.test.logic.Course;
+import org.test.logic.Lesson;
 import org.test.logic.Profile;
 import org.test.tamplets.menupage.profilepage.materialspage.DocumentBox;
 
@@ -72,5 +75,20 @@ public class DummyDatabaseService implements DatabaseService {
                 "Homework for 20.10.2016",
                 new Date(calendar.getTimeInMillis())));
         return documents;
+    }
+
+    @Override
+    public Collection<Course> pullCourses() {
+        return DummyDatabase.pullCourses();
+    }
+
+    @Override
+    public void addNewCourse(Course course) {
+        DummyDatabase.addNewCourse(course);
+    }
+
+    @Override
+    public void addNewLesson(Lesson lesson) {
+        //TODO
     }
 }

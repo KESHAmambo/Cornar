@@ -4,11 +4,16 @@ import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxI
 import org.test.dbservice.dao.UserDao;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.dbservice.impl.UserDaoImpl;
+import org.test.logic.Course;
+import org.test.logic.Lesson;
 import org.test.logic.Profile;
 
+import java.util.Collection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by abara on 10.11.2016.
@@ -103,8 +108,23 @@ public class DatabaseServiceImpl implements DatabaseService {
 
     @Override
     public List<DocumentBoxImpl> pullDocuments() {
-        
+
         return null;
     }
 
+
+    @Override
+    public Collection<Course> pullCourses() {
+        return null; //TODO
+    }
+
+    @Override
+    public void addNewCourse(Course course) {
+        //TODO
+    }
+
+    @Override
+    public void addNewLesson(Lesson lesson) {
+        //TODO
+    }
 }

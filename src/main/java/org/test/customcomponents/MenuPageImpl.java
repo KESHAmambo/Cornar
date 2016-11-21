@@ -6,6 +6,7 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import org.test.MyUI;
 import org.test.controllers.MenuPageController;
 import org.test.customcomponents.menupage.*;
 import org.test.customcomponents.menupage.ClassPageImpl;
@@ -27,24 +28,27 @@ import static org.test.logic.PageName.*;
  */
 public class MenuPageImpl extends MenuPage implements View {
     private final MenuPageController controller;
+    private final MyUI myUI;
 
-    public MenuPageImpl(Navigator navigator) {
+    public MenuPageImpl(MyUI myUI, Navigator generalNavigator) {
         controller = new MenuPageController(this);
+        this.myUI = myUI;
 
         majorHorizontalLayout.addComponent(createSlidePanelForChatPage());
         mainPanel.setContent(new ProfilePageImpl());
 
-        provideNavigation(navigator);
+        provideNavigation(generalNavigator);
     }
 
     private void provideNavigation(Navigator generalNavigator) {
-        provideNavigationForLogOut(generalNavigator);
+        controller.createListenerForLogOutButton(logOutButton, generalNavigator);
+
         Navigator menuButtonsNavigator = createNavigatorForMenuButtons();
         createListenersForMenuButtons(menuButtonsNavigator);
     }
 
     private Navigator createNavigatorForMenuButtons() {
-        Navigator menuButtonsNavigator = new Navigator(UI.getCurrent(), mainPanel);
+        Navigator menuButtonsNavigator = new Navigator(myUI, mainPanel);
 
         menuButtonsNavigator.addView("", new ProfilePageImpl());
         menuButtonsNavigator.addView(MENU.toString(), new ProfilePageImpl());
@@ -77,25 +81,13 @@ public class MenuPageImpl extends MenuPage implements View {
     }
 
     private SliderPanel createSlidePanelForChatPage() {
-        return new SliderPanelBuilder(new ChatPageImpl())
+        return new SliderPanelBuilder(new ChatPageImpl(myUI))
                     .expanded(false)
                     .caption("Dialogs")
                     .mode(SliderMode.RIGHT)
                     .style("sliderPanel")
                     .tabPosition(SliderTabPosition.MIDDLE)
                     .build();
-    }
-
-    private Component createChatPanelContent() {
-        VerticalLayout verticalLayout = new VerticalLayout();
-        verticalLayout.setHeightUndefined();
-        verticalLayout.setWidth("400");
-        verticalLayout.setHeight("100%");
-        return verticalLayout;
-    }
-
-    public void provideNavigationForLogOut(Navigator navigator) {
-        controller.createListenerForLogOutButton(logOutButton, navigator);
     }
 
     @Override

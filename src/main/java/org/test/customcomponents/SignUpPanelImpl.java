@@ -11,7 +11,7 @@ import java.util.Date;
  * Created by Аркадий on 27.10.2016.
  */
 public class SignUpPanelImpl extends SignUpPanel {
-    SignUpPanelImpl(Window signUpWindow) {
+    SignUpPanelImpl() {
         passwordTextField.addValidator(new PasswordEqualsValidator());
         repeatPasswordTextField.setImmediate(true);
         repeatPasswordTextField.addValueChangeListener(e -> {

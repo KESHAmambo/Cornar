@@ -2,6 +2,7 @@ package org.test.customcomponents.menupage.profilepage;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import org.test.controllers.menupage.profilepage.MaterialsPageController;
 import com.vaadin.ui.*;
 import org.test.controllers.menupage.materilaspage.MaterialsPageController;
 import org.test.customcomponents.menupage.ProfilePageImpl;

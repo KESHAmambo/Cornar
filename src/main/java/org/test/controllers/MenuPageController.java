@@ -21,7 +21,6 @@ public class MenuPageController {
 
     public void createListenerForLogOutButton(Button logOutButton, Navigator navigator) {
         logOutButton.addClickListener(e -> {
-            Profile.clearCurrentProfile();
             navigator.navigateTo("");
         });
     }

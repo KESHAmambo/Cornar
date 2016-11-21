@@ -28,4 +28,20 @@ public class DialogPanel extends VerticalLayout {
     public DialogPanel() {
         Design.read(this);
     }
+
+    public Label getFriendNameLabel() {
+        return friendNameLabel;
+    }
+
+    public VerticalLayout getMessagesLayout() {
+        return messagesLayout;
+    }
+
+    public TextArea getMessageTextArea() {
+        return messageTextArea;
+    }
+
+    public Button getSendMessageButton() {
+        return sendMessageButton;
+    }
 }

@@ -1,7 +1,6 @@
 package org.test.logic;
 
 import com.vaadin.server.VaadinSession;
-import com.vaadin.ui.Layout;
 import org.test.dbservice.DatabaseManager;
 
 import java.util.ArrayList;
@@ -12,7 +11,6 @@ import java.util.List;
  * Created by Аркадий on 28.10.2016.
  */
 public class Profile {
-    private static final List<Cleanable> cleanables = new ArrayList<>();
 
     private int id;
     private String name;
@@ -91,19 +89,25 @@ public class Profile {
         }
     }
 
-    public static void setCurrentProfile(String userEmail) {
+    public static Profile fulfillProfile(String userEmail) {
         Profile profile = new Profile();
         DatabaseManager.fulfillProfile(profile, userEmail);
-        VaadinSession.getCurrent().setAttribute("profile", profile);
+        return profile;
     }
 
-    //TODO: delete method
-    public static void clearCurrentProfile() {
-        cleanables.forEach(Cleanable::cleanInformation);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Profile profile = (Profile) o;
+
+        return id == profile.id;
     }
 
-    public static void registerCleanable(Cleanable cleanable) {
-        cleanables.add(cleanable);
+    @Override
+    public int hashCode() {
+        return id;
     }
 
     @Override

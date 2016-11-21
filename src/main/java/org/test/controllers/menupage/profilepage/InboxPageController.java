@@ -1,4 +1,4 @@
-package org.test.controllers.menupage.materilaspage;
+package org.test.controllers.menupage.profilepage;
 
 import org.test.customcomponents.menupage.profilepage.InboxPageImpl;
 

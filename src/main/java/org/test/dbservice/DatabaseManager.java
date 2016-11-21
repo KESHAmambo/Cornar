@@ -5,8 +5,12 @@ import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxI
 import org.test.dbservice.dao.UserDao;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.dbservice.impl.UserDaoImpl;
+import org.test.logic.Course;
+import org.test.logic.Lesson;
 import org.test.logic.Profile;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -47,5 +51,19 @@ public class DatabaseManager {
     }
     public static List<DocumentBoxImpl> pullDocuments(){
         return service.pullDocuments();
+    }
+
+    public static Collection<Course> pullCourses() {
+        return service.pullCourses();
+    }
+
+    public static void addNewCourse(String courseName, String description) {
+        service.addNewCourse(
+                new Course(Profile.getCurrentProfile(), courseName, description));
+    }
+
+    public static void addNewLesson(Course course, String lessonName, double cost, Date date) {
+        service.addNewLesson(
+                new Lesson(lessonName, course, cost, date));
     }
 }

@@ -1,12 +1,19 @@
 <!doctype html>
 <html>
- <head>
+ <head>   
   <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;mytheme&quot;}">
   <meta charset="UTF-8" name="vaadin-version" content="7.7.0">
+  <meta charset="UTF-8" name="package-mapping" content="org_test_customcomponents_menupage_profilepage_coursespage:org.test.customcomponents.menupage.profilepage.coursespage">
+  <meta charset="UTF-8" name="package-mapping" content="org_test_tamplets_menupage_profilepage_coursespage:org.test.tamplets.menupage.profilepage.coursespage">
  </head> 
  <body> 
   <vaadin-vertical-layout size-full> 
-   <vaadin-vertical-layout style-name="profileInnerPagesLayouts" margin-right margin-top _id="mainLayout"></vaadin-vertical-layout> 
+   <vaadin-vertical-layout style-name="profileInnerPagesLayouts" spacing margin-right margin-top _id="mainLayout"> 
+    <vaadin-button icon="fonticon://FontAwesome/f067" style-name="borderless addCourseButton" width-full height="50px" plain-text _id="addCourseButton">
+      Add New Course 
+    </vaadin-button> 
+    <vaadin-vertical-layout spacing _id="forBoxesLayout"></vaadin-vertical-layout> 
+   </vaadin-vertical-layout> 
   </vaadin-vertical-layout>  
  </body>
 </html>

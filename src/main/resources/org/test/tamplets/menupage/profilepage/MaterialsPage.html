@@ -6,12 +6,15 @@
  </head> 
  <body> 
   <vaadin-vertical-layout> 
-   <vaadin-vertical-layout style-name="profileInnerPagesLayouts" spacing margin-right margin-top _id="mainLayout"> 
+   <vaadin-vertical-layout style-name="profileInnerPagesLayouts" spacing margin-right margin-top _id="mainLayout">
     <vaadin-button plain-text _id="addingButton">
-      Button 
-    </vaadin-button> 
-   </vaadin-vertical-layout> 
-   <vaadin-vertical-layout style-name="profileInnerPagesLayouts" spacing _id="forDocsLayout" :center></vaadin-vertical-layout> 
-  </vaadin-vertical-layout>  
+      Button
+    </vaadin-button>
+   </vaadin-vertical-layout>
+   <vaadin-vertical-layout style-name="profileInnerPagesLayouts" spacing _id="forDocsLayout" :center></vaadin-vertical-layout>
+   <vaadin-vertical-layout style-name="profileInnerPagesLayouts" spacing margin-right margin-top _id="mainLayout">
+    <vaadin-vertical-layout spacing _id="forDocsLayout"></vaadin-vertical-layout>
+   </vaadin-vertical-layout>
+  </vaadin-vertical-layout>
  </body>
 </html>
