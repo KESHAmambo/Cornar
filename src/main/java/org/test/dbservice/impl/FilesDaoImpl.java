@@ -1,11 +1,15 @@
 package org.test.dbservice.impl;
 
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.test.dbservice.dao.FilesDao;
 import org.test.dbservice.entity.FilesEntity;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Taras on 20.11.2016.
@@ -57,5 +61,16 @@ public class FilesDaoImpl extends AbstractServiceSession implements FilesDao {
                 .add(Restrictions.eq("file_name", filename)).uniqueResult();
         shutdownCurrentSessionWithTransaction();
         return file.getFileData();
+    }
+
+    @Override
+    public List<FilesEntity> getAllFiles() {
+        Session session = openCurrentSessionWithTransaction();
+        List<FilesEntity> allFiles = new ArrayList<>();
+        Criteria crtForAll = session.createCriteria(FilesEntity.class);
+        crtForAll.setMaxResults(10);
+        allFiles = crtForAll.list();
+        shutdownCurrentSessionWithTransaction();
+        return allFiles;
     }
 }

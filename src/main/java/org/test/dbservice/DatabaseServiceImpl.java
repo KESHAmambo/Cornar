@@ -3,6 +3,7 @@ package org.test.dbservice;
 import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
 import org.test.dbservice.dao.FilesDao;
 import org.test.dbservice.dao.UserDao;
+import org.test.dbservice.entity.FilesEntity;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.dbservice.impl.FilesDaoImpl;
 import org.test.dbservice.impl.UserDaoImpl;
@@ -12,9 +13,13 @@ import org.test.logic.Profile;
 
 import java.io.*;
 import java.lang.reflect.Array;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static java.util.Calendar.DATE;
 
 /**
  * Created by abara on 10.11.2016.
@@ -112,10 +117,18 @@ public class DatabaseServiceImpl implements DatabaseService {
 
     @Override
     public List<DocumentBoxImpl> pullDocuments() {
-
-        return null;
+        List<DocumentBoxImpl> documents = new ArrayList<>();
+        final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Calendar calendar = new GregorianCalendar();
+        FilesDao fileDao = new FilesDaoImpl();
+        List<FilesEntity> files = fileDao.getAllFiles();
+        Calendar cal = Calendar.getInstance();
+        for (FilesEntity file : files){
+            DocumentBoxImpl document = new DocumentBoxImpl(file.getFileName(), new Date(dateFormat.format(cal.getTime())));
+            documents.add(document);
+        }
+        return documents;
     }
-
 
     @Override
     public Collection<Course> pullCourses() {

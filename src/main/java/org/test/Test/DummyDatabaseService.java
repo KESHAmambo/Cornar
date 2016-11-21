@@ -91,4 +91,9 @@ public class DummyDatabaseService implements DatabaseService {
     public void addNewLesson(Lesson lesson) {
         //TODO
     }
+
+    @Override
+    public void saveFile(String filename) {
+
+    }
 }

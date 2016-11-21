@@ -13267,8 +13267,7 @@ div.v-layout.v-horizontal.v-widget {
 	margin-bottom: 2%;
 }
 
-.mytheme .v-progressbar-uploadinBar {
-	background: #23aeff;
+.mytheme .v-progressbar-uploadingBar {
 	color: #1e6b15;
 	margin-right: 5px;
 	margin-top: 5px;
