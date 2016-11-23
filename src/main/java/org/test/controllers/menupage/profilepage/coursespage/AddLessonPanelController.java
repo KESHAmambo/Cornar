@@ -43,15 +43,19 @@ public class AddLessonPanelController {
             } else if(date.compareTo(new Date()) < 0) {
                 Notification.show("Please, set valid date.", Notification.Type.WARNING_MESSAGE);
             } else {
-                double cost = Double.parseDouble(costStr);
-                DatabaseManager.addNewLesson(course, lessonName, cost, date);
-                lessonNameTextField.setValue("");
-                costTextField.setValue("");
-                UI.getCurrent().removeWindow(addLessonWindow);
+                DatabaseManager.addNewLesson(course, lessonName, Double.parseDouble(costStr), date);
+                cleanPanelElements(lessonNameTextField, costTextField);
                 UIHelper.showSuccessNotification(
-                        "New lesson was successfully added!", "addedCourseNotification");
+                        "New lesson was successfully added!",
+                        "addedCourseNotification");
             }
         });
+    }
+
+    private void cleanPanelElements(TextField lessonNameTextField, TextField costTextField) {
+        lessonNameTextField.setValue("");
+        costTextField.setValue("");
+        UI.getCurrent().removeWindow(addLessonWindow);
     }
 
     private boolean isCostValid(String costStr) {

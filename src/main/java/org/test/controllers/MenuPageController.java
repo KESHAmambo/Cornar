@@ -19,8 +19,8 @@ public class MenuPageController {
         this.menuPage = menuPage;
     }
 
-    public void createListenerForLogOutButton(Button logOutButton, Navigator navigator) {
-        logOutButton.addClickListener(e -> {
+    public void createListenerForLogOutButton(Navigator navigator) {
+        menuPage.getLogOutButton().addClickListener(e -> {
             navigator.navigateTo("");
         });
     }

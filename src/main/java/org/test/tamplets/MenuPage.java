@@ -31,4 +31,8 @@ public class MenuPage extends HorizontalLayout {
     public MenuPage() {
         Design.read(this);
     }
+
+    public Button getLogOutButton() {
+        return logOutButton;
+    }
 }

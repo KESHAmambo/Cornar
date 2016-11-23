@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;mytheme&quot;}">
+  <meta charset="UTF-8" name="vaadin-version" content="7.7.0">
+ </head> 
+ <body> 
+  <vaadin-css-layout width-full> 
+   <vaadin-vertical-layout style-name="tutorLessonLayout" height="130px" _id="mainLayout"> 
+    <vaadin-horizontal-layout spacing width-full> 
+     <vaadin-vertical-layout style-name="lessonIconLayout" width="64px" height="64px" :middle></vaadin-vertical-layout> 
+     <vaadin-vertical-layout spacing margin-left margin-right :expand> 
+      <vaadin-label size-auto plain-text _id="lessonNameLabel">
+        Lesson name 
+      </vaadin-label> 
+      <vaadin-label size-auto plain-text _id="dateLabel" :bottom>
+        20.06.2016 20:30 
+      </vaadin-label> 
+     </vaadin-vertical-layout> 
+     <vaadin-horizontal-layout spacing :bottom :right> 
+      <vaadin-label size-auto plain-text _id="costLabel" :middle :center>
+        0.00$ 
+      </vaadin-label> 
+      <vaadin-button style-name="borderless payButton" width="120px" height="50px" plain-text _id="payButton">
+        Assigns 
+      </vaadin-button> 
+     </vaadin-horizontal-layout> 
+    </vaadin-horizontal-layout> 
+   </vaadin-vertical-layout> 
+  </vaadin-css-layout>  
+ </body>
+</html>

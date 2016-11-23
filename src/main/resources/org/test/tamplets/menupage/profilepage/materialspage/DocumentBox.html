@@ -5,22 +5,22 @@
   <meta charset="UTF-8" name="vaadin-version" content="7.7.0">
  </head> 
  <body> 
-  <vaadin-horizontal-layout style-name="docLayout" spacing width-full> 
-   <vaadin-css-layout style-name="docImage" width="100px" height="100px"></vaadin-css-layout> 
-   <vaadin-vertical-layout spacing size-full :expand> 
+  <vaadin-horizontal-layout style-name="docLayout" spacing width-full height="130px"> 
+   <vaadin-css-layout style-name="docImage" width="70px" height="70px" :middle :center></vaadin-css-layout> 
+   <vaadin-vertical-layout spacing :expand> 
     <vaadin-horizontal-layout style-name="docNameLayout" spacing width-full> 
      <vaadin-label style-name="docLabelBold" size-auto plain-text>
        Name: 
      </vaadin-label> 
-     <vaadin-label style-name="docLabelSlight" height="40px" plain-text _id="nameLabel" :expand>
+     <vaadin-label style-name="docLabelSlight" plain-text _id="nameLabel" :expand>
        Label 
      </vaadin-label> 
     </vaadin-horizontal-layout> 
     <vaadin-horizontal-layout style-name="docDateLayout" spacing width-full :bottom> 
-     <vaadin-label style-name="docLabelBold" size-auto plain-text>
+     <vaadin-label style-name="docLabelBold" size-auto plain-text :bottom>
        Date: 
      </vaadin-label> 
-     <vaadin-label style-name="docLabelSlight" plain-text _id="dateLabel" :expand>
+     <vaadin-label style-name="docLabelSlight" plain-text _id="dateLabel" :bottom :expand>
        Label 
      </vaadin-label> 
     </vaadin-horizontal-layout> 

@@ -1,13 +1,12 @@
 package org.test.Test;
 
 import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
-import org.test.dbservice.DatabaseManager;
 import org.test.dbservice.DatabaseService;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.logic.Course;
+import org.test.logic.InboxMessage;
 import org.test.logic.Lesson;
 import org.test.logic.Profile;
-import org.test.tamplets.menupage.profilepage.materialspage.DocumentBox;
 
 import java.util.*;
 
@@ -80,6 +79,22 @@ public class DummyDatabaseService implements DatabaseService {
 
     @Override
     public void addNewLesson(Lesson lesson) {
+        DummyDatabase.addNewLesson(lesson);
         //TODO
+    }
+
+    @Override
+    public List<InboxMessage> pullInboxMessages(int id) {
+        return DummyDatabase.pullInboxMessages(id);
+    }
+
+    @Override
+    public Profile getProfile(String email) {
+        return DummyDatabase.getProfile(email);
+    }
+
+    @Override
+    public void storeInboxMessage(InboxMessage message) {
+        DummyDatabase.storeInboxMessage(message);
     }
 }

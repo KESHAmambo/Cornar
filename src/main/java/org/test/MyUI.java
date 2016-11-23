@@ -15,6 +15,8 @@ import org.test.controllers.MyUIController;
 import org.test.customcomponents.MainPageImpl;
 import org.test.customcomponents.MenuPageImpl;
 import org.test.customcomponents.menupage.ChatPageImpl;
+import org.test.customcomponents.menupage.profilepage.InboxPageImpl;
+import org.test.logic.InboxMessage;
 import org.test.msgservice.ChatMessage;
 import org.test.msgservice.MessageManager;
 
@@ -35,6 +37,7 @@ public class MyUI extends UI implements MessageManager.MessageListener {
     private Navigator navigator;
     private MyUIController controller;
     private ChatPageImpl chatPage;
+    private InboxPageImpl inboxPage;
 
     @Override
     public Navigator getNavigator() {
@@ -43,6 +46,10 @@ public class MyUI extends UI implements MessageManager.MessageListener {
 
     public void setChatPage(ChatPageImpl chatPage) {
         this.chatPage = chatPage;
+    }
+
+    public void setInboxPage(InboxPageImpl inboxPage) {
+        this.inboxPage = inboxPage;
     }
 
     @Override
@@ -84,7 +91,19 @@ public class MyUI extends UI implements MessageManager.MessageListener {
 
     @Override
     public void showSentChatMessage(ChatMessage message) {
-        chatPage.showSentChatMessage(message);
+        chatPage.showSentMessage(message);
+    }
+
+    @Override
+    public void receiveInboxMessage(InboxMessage message) {
+        access(() -> {
+            inboxPage.addMessageBox(message);
+        });
+    }
+
+    @Override
+    public void showSentInboxMessage(InboxMessage message) {
+        inboxPage.addMessageBox(message);
     }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)

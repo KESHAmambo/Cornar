@@ -3,9 +3,6 @@ package org.test.customcomponents;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.ui.Component;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
 import org.test.MyUI;
 import org.test.controllers.MenuPageController;
 import org.test.customcomponents.menupage.*;
@@ -23,32 +20,29 @@ import static org.test.logic.PageName.*;
 public class MenuPageImpl extends MenuPage implements View {
     private final MenuPageController controller;
     private final MyUI myUI;
+    private final Navigator menuButtonsNavigator;
 
     public MenuPageImpl(MyUI myUI, Navigator generalNavigator) {
         controller = new MenuPageController(this);
         this.myUI = myUI;
 
         majorHorizontalLayout.addComponent(createSlidePanelForChatPage());
-        mainPanel.setContent(new ProfilePageImpl());
 
-        provideNavigation(generalNavigator);
-    }
+        menuButtonsNavigator = createNavigatorForMenuButtons();
+        createListenersForMenuButtons();
+        controller.createListenerForLogOutButton(generalNavigator);
 
-    private void provideNavigation(Navigator generalNavigator) {
-        controller.createListenerForLogOutButton(logOutButton, generalNavigator);
-
-        Navigator menuButtonsNavigator = createNavigatorForMenuButtons();
-        createListenersForMenuButtons(menuButtonsNavigator);
+        menuButtonsNavigator.navigateTo(MENU + "/" + PROFILE);
     }
 
     private Navigator createNavigatorForMenuButtons() {
         Navigator menuButtonsNavigator = new Navigator(myUI, mainPanel);
 
-        menuButtonsNavigator.addView("", new ProfilePageImpl());
-        menuButtonsNavigator.addView(MENU.toString(), new ProfilePageImpl());
+        menuButtonsNavigator.addView("", (View) viewChangeEvent -> {});
+        menuButtonsNavigator.addView(MENU.toString(), (View) viewChangeEvent -> {});
 
         menuButtonsNavigator.addView(MENU + "/" + PROFILE,
-                new ProfilePageImpl());
+                new ProfilePageImpl(myUI));
         menuButtonsNavigator.addView(MENU + "/" + FRIENDS,
                 new FriendsPageImpl());
         menuButtonsNavigator.addView(MENU + "/" + SEARCH,
@@ -61,7 +55,7 @@ public class MenuPageImpl extends MenuPage implements View {
         return menuButtonsNavigator;
     }
 
-    private void createListenersForMenuButtons(Navigator menuButtonsNavigator) {
+    private void createListenersForMenuButtons() {
         controller.createListenerForMenuButton(
                 profileButton, menuButtonsNavigator, MENU + "/" + PROFILE);
         controller.createListenerForMenuButton(

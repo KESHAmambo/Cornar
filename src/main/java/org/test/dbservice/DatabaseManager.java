@@ -6,6 +6,7 @@ import org.test.dbservice.dao.UserDao;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.dbservice.impl.UserDaoImpl;
 import org.test.logic.Course;
+import org.test.logic.InboxMessage;
 import org.test.logic.Lesson;
 import org.test.logic.Profile;
 
@@ -29,10 +30,6 @@ public class DatabaseManager {
         return service.signUpUser(
                 firstName, surname, email,
                 birthDate, password, education);
-    }
-
-    public static UsersEntity getUser(String email, String password) {
-        return service.getUser(email, password);
     }
 
     public static boolean doesUserExist(String email, String password) {
@@ -59,5 +56,17 @@ public class DatabaseManager {
     public static void addNewLesson(Course course, String lessonName, double cost, Date date) {
         service.addNewLesson(
                 new Lesson(lessonName, course, cost, date));
+    }
+
+    public static List<InboxMessage> pullInboxMessages(int id) {
+        return service.pullInboxMessages(id);
+    }
+
+    public static Profile getProfile(String email) {
+        return service.getProfile(email);
+    }
+
+    public static void storeInboxMessage(InboxMessage message) {
+        service.storeInboxMessage(message);
     }
 }

@@ -3,6 +3,7 @@ package org.test.dbservice;
 import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.logic.Course;
+import org.test.logic.InboxMessage;
 import org.test.logic.Lesson;
 import org.test.logic.Profile;
 
@@ -31,4 +32,10 @@ public interface DatabaseService {
     void addNewCourse(Course course);
 
     void addNewLesson(Lesson lesson);
+
+    List<InboxMessage> pullInboxMessages(int id);
+
+    Profile getProfile(String email);
+
+    void storeInboxMessage(InboxMessage message);
 }

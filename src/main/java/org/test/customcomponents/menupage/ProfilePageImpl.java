@@ -5,6 +5,7 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.UI;
+import org.test.MyUI;
 import org.test.controllers.menupage.ProfilePageController;
 import org.test.customcomponents.menupage.profilepage.CoursesPageImpl;
 import org.test.customcomponents.menupage.profilepage.InboxPageImpl;
@@ -26,9 +27,11 @@ public class ProfilePageImpl extends ProfilePage implements View {
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("d MMMM yyyy", Locale.ENGLISH);
 
     private final ProfilePageController controller;
+    private final MyUI myUI;
 
-    public ProfilePageImpl() {
+    public ProfilePageImpl(MyUI myUI) {
         controller = new ProfilePageController(this);
+        this.myUI = myUI;
 
         provideNavigation();
         bindLabelsToProfileData();
@@ -43,12 +46,12 @@ public class ProfilePageImpl extends ProfilePage implements View {
         Navigator menuButtonsNavigator = new Navigator(
                 UI.getCurrent(), layoutForInnerPages);
 
-        menuButtonsNavigator.addView("", new InboxPageImpl());
-        menuButtonsNavigator.addView(MENU.toString(), new InboxPageImpl());
-        menuButtonsNavigator.addView(MENU + "/" + PROFILE, new InboxPageImpl());
+        menuButtonsNavigator.addView("", (View) viewChangeEvent -> {});
+        menuButtonsNavigator.addView(MENU.toString(), (View) viewChangeEvent -> {});
+        menuButtonsNavigator.addView(MENU + "/" + PROFILE, (View) viewChangeEvent -> {});
 
         menuButtonsNavigator.addView(
-                MENU + "/" + PROFILE + "/" + INBOX, new InboxPageImpl());
+                MENU + "/" + PROFILE + "/" + INBOX, new InboxPageImpl(myUI));
         menuButtonsNavigator.addView(
                 MENU + "/" + PROFILE + "/" + MATERIALS, new MaterialsPageImpl());
         menuButtonsNavigator.addView(

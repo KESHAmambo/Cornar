@@ -5,14 +5,13 @@ import org.test.dbservice.dao.UserDao;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.dbservice.impl.UserDaoImpl;
 import org.test.logic.Course;
+import org.test.logic.InboxMessage;
 import org.test.logic.Lesson;
 import org.test.logic.Profile;
 
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created by abara on 10.11.2016.
@@ -81,6 +80,23 @@ public class DatabaseServiceImpl implements DatabaseService {
 
     @Override
     public void addNewLesson(Lesson lesson) {
+        //TODO
+    }
+
+    @Override
+    public List<InboxMessage> pullInboxMessages(int id) {
+        //TODO
+        return null;
+    }
+
+    @Override
+    public Profile getProfile(String email) {
+        //TODO
+        return null;
+    }
+
+    @Override
+    public void storeInboxMessage(InboxMessage message) {
         //TODO
     }
 }
