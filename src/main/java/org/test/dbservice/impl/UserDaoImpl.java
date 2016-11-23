@@ -3,6 +3,7 @@ package org.test.dbservice.impl;
 import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
 import org.test.dbservice.dao.UserDao;
+import org.test.dbservice.entity.FilesEntity;
 import org.test.dbservice.entity.UsersEntity;
 
 import java.util.ArrayList;
@@ -17,14 +18,9 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
     public int create(UsersEntity entity) {
         Session session;
         int count = 1;
-        try {
-            session = openCurrentSessionWithTransaction();
-            session.save(entity);
-        }catch (HibernateException e){
-            System.out.printf("Exist");
-        }finally {
-            shutdownCurrentSessionWithTransaction();
-        }
+        session = openCurrentSessionWithTransaction();
+        session.save(entity);
+        shutdownCurrentSession();
         return count;
     }
 
@@ -33,7 +29,7 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
         Session session;
         session = openCurrentSessionWithTransaction();
         session.delete(entity);
-        shutdownCurrentSessionWithTransaction();
+        shutdownCurrentSession();
     }
 
     @Override
@@ -51,7 +47,7 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
         UsersEntity user = (UsersEntity) session.createCriteria(UsersEntity.class)
                 .add(Restrictions.eq("email", email))
                 .add(Restrictions.eq("password", password)).uniqueResult();
-        shutdownCurrentSessionWithTransaction();
+        shutdownCurrentSession();
         return user;
     }
 
@@ -59,24 +55,24 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
         Session session = openCurrentSessionWithTransaction();
         UsersEntity user = (UsersEntity) session.createCriteria(UsersEntity.class)
                 .add(Restrictions.eq("email", email)).uniqueResult();
-        shutdownCurrentSessionWithTransaction();
+        shutdownCurrentSession();
         return user;
     }
+
     public List<UsersEntity> getAllUsers() {
         Session session = openCurrentSessionWithTransaction();
         List<UsersEntity> listOfUsers = new ArrayList<>();
-        //Query query = session.createQuery("select * from project_cornar.users");
-        //listOfUsers = (List<UsersEntity>)query.list();
-        shutdownCurrentSessionWithTransaction();
+        Criteria crtForAll = session.createCriteria(UsersEntity.class);
+        listOfUsers = crtForAll.list();
+        shutdownCurrentSession();
         return listOfUsers;
     }
 
     @Override
     public void update(UsersEntity entity) {
-        //TODO test
         Session session = openCurrentSessionWithTransaction();
         session.update(entity);
-        shutdownCurrentSessionWithTransaction();
+        shutdownCurrentSession();
     }
 
     @Override

@@ -20,7 +20,7 @@ public class FilesDaoImpl extends AbstractServiceSession implements FilesDao {
         Session session = openCurrentSessionWithTransaction();
         System.out.println(entity.getFileData());
         int count  = (int) session.save(entity);
-        shutdownCurrentSessionWithTransaction();
+    shutdownCurrentSession();
         return count;
     }
 
@@ -32,8 +32,12 @@ public class FilesDaoImpl extends AbstractServiceSession implements FilesDao {
     }
 
     @Override
-    public <T> T getById(Long id) {
-        return null;
+    public FilesEntity getById(Long id) {
+        FilesEntity file;
+        Session session = openCurrentSessionWithTransaction();
+        file = (FilesEntity) session.get(FilesEntity.class, id);
+    shutdownCurrentSession();
+        return file;
     }
 
     @Override
@@ -59,7 +63,7 @@ public class FilesDaoImpl extends AbstractServiceSession implements FilesDao {
         Session session = openCurrentSessionWithTransaction();
         FilesEntity file = (FilesEntity) session.createCriteria(FilesEntity.class)
                 .add(Restrictions.eq("file_name", filename)).uniqueResult();
-        shutdownCurrentSessionWithTransaction();
+    shutdownCurrentSession();
         return file.getFileData();
     }
 
@@ -70,7 +74,7 @@ public class FilesDaoImpl extends AbstractServiceSession implements FilesDao {
         Criteria crtForAll = session.createCriteria(FilesEntity.class);
         crtForAll.setMaxResults(10);
         allFiles = crtForAll.list();
-        shutdownCurrentSessionWithTransaction();
+    shutdownCurrentSession();
         return allFiles;
     }
 }

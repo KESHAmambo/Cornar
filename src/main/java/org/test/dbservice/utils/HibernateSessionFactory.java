@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.internal.SessionFactoryImpl;
 import org.hibernate.service.ServiceRegistry;
 import org.test.dbservice.entity.UsersEntity;
 
@@ -12,7 +13,11 @@ import org.test.dbservice.entity.UsersEntity;
  * Created by Taras on 27.10.2016.
  */
 public class HibernateSessionFactory {
-    private static SessionFactory sessionFactory;
+    private  SessionFactory sessionFactory ;
+    public HibernateSessionFactory(){
+        sessionFactory =  new Configuration().configure()
+                .buildSessionFactory();
+    }
 //
 //    private static SessionFactory buildSessionFactory() {
 //        Configuration configuration = new Configuration().configure();
@@ -54,18 +59,8 @@ public class HibernateSessionFactory {
 
 
 
-    static {
-        try {
-            sessionFactory =  new Configuration().configure()
-                    .buildSessionFactory();
-            System.out.printf("Success");
 
-        } catch (Exception e) {
-            System.err.println("Initial SessionFactory creation failed." + e);
-            throw new ExceptionInInitializerError(e);
-        }
-    }
-    public static SessionFactory getSessionFactory() {
+    public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 }

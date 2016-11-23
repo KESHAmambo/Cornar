@@ -18,10 +18,9 @@ public class CoursesDaoImpl extends AbstractServiceSession implements CoursesDao
     @Override
     public int create(CoursesEntity entity) {
         Session session;
-        int count = 1;
         session = openCurrentSessionWithTransaction();
-        session.save(entity);
-        shutdownCurrentSessionWithTransaction();
+        int count = (int) session.save(entity);
+        shutdownCurrentSession();
         return count;
     }
 
@@ -30,7 +29,7 @@ public class CoursesDaoImpl extends AbstractServiceSession implements CoursesDao
         Session session;
         session = openCurrentSessionWithTransaction();
         session.delete(entity);
-        shutdownCurrentSessionWithTransaction();
+        shutdownCurrentSession();
     }
 
     @Override
@@ -49,7 +48,7 @@ public class CoursesDaoImpl extends AbstractServiceSession implements CoursesDao
         Session session = openCurrentSessionWithTransaction();
         CoursesEntity user = (CoursesEntity) session.createCriteria(CoursesEntity.class)
                 .add(Restrictions.eq("email", email)).uniqueResult();
-        shutdownCurrentSessionWithTransaction();
+        shutdownCurrentSession();
         return user;
     }
 
@@ -57,7 +56,7 @@ public class CoursesDaoImpl extends AbstractServiceSession implements CoursesDao
     public void update(CoursesEntity entity) {
         Session session = openCurrentSessionWithTransaction();
         session.update(entity);
-        shutdownCurrentSessionWithTransaction();
+        shutdownCurrentSession();
     }
 
     @Override

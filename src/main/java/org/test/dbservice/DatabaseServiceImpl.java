@@ -12,25 +12,17 @@ import org.test.logic.Lesson;
 import org.test.logic.Profile;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static java.util.Calendar.DATE;
-
 /**
  * Created by abara on 10.11.2016.
  */
 public class DatabaseServiceImpl implements DatabaseService {
-
-    /**
-     * TO FIX: must return a result-code depending on result of signUp-operation
-     *
-     * @see org.test.controllers.MainPageController
-     */
+    Logger loggerDB = Logger.getLogger(DatabaseService.class.getName());
     @Override
     public int signUpUser(String firstName, String surname, String email, Date birthDate, String password, String education) {
         //TODO hashing password
@@ -62,25 +54,17 @@ public class DatabaseServiceImpl implements DatabaseService {
 
     @Override
     public boolean doesUserExist(String email, String password) {
-        UserDaoImpl userDao = new UserDaoImpl();
-        UsersEntity user = userDao.getByEmailAndPassword(email, password);
+        UsersEntity user = getUser(email, password);
         return user != null;
     }
 
     @Override
     public void fulfillProfile(Profile profile, String userEmail) {
         UsersEntity user = new UserDaoImpl().getUserByEmail(userEmail);
-        profile.setName(user.getFirstName());
-        profile.setSurname(user.getLastName());
-        profile.setEmail(userEmail);
-        profile.setEducation(user.getPersonDescription());
-        profile.setBirthDate(user.getBirthDate());
-        profile.setId(user.getUserId());
-
+        profile = fillProfile(profile, user);
     }
 
-    private Profile fillProfile(UsersEntity user) {
-        Profile profile = new Profile();
+    private Profile fillProfile(Profile profile, UsersEntity user) {
         profile.setName(user.getFirstName());
         profile.setSurname(user.getLastName());
         profile.setEmail(user.getEmail());
@@ -93,7 +77,6 @@ public class DatabaseServiceImpl implements DatabaseService {
     @Override
     public List<Profile> getAllUsersWithNameLike(String firstName) {
         UserDao userDao = new UserDaoImpl();
-
         List<UsersEntity> usersList = userDao.searchUserByName(firstName);
         return createListOfProfileFromUsers(usersList);
     }
@@ -102,8 +85,8 @@ public class DatabaseServiceImpl implements DatabaseService {
         List<Profile> usersProfileList = new ArrayList<>();
         for (UsersEntity user :
                 usersList) {
-            usersProfileList.add(fillProfile(user));
-
+            Profile profileOfUser = new Profile();
+            usersProfileList.add(fillProfile(profileOfUser, user));
         }
         return usersProfileList;
     }
@@ -117,6 +100,7 @@ public class DatabaseServiceImpl implements DatabaseService {
 
     @Override
     public List<DocumentBoxImpl> pullDocuments() {
+        //TODO add date to db.
         List<DocumentBoxImpl> documents = new ArrayList<>();
         final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Calendar calendar = new GregorianCalendar();
@@ -154,16 +138,14 @@ public class DatabaseServiceImpl implements DatabaseService {
             fileInputStream.read(dataForSaving);
             fileInputStream.close();
         }catch (FileNotFoundException e){
-            Logger.getLogger(DatabaseService.class.getName()).log(Level.SEVERE, null, e);
+            loggerDB.log(Level.SEVERE, null, e);
         }catch (IOException e) {
-            Logger.getLogger(DatabaseService.class.getName()).log(Level.SEVERE, null, e.getStackTrace());
+            loggerDB.log(Level.SEVERE, null, e.getStackTrace());
         }
         if (dataForSaving != null) {
             filesDao.saveFile(filename, dataForSaving);
         }
         else
-            Logger.getLogger(DatabaseService.class.getName()).log(Level.SEVERE, null, "Your data is cracked");
-
-
+           loggerDB.log(Level.SEVERE, null, "Your data is cracked");
     }
 }
