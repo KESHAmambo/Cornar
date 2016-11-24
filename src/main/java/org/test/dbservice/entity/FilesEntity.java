@@ -2,6 +2,8 @@ package org.test.dbservice.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Arrays;
 
 /**
@@ -15,7 +17,7 @@ public class FilesEntity {
     private int fileid;
     private String file_name;
     private byte[] file_data;
-    private Date creation_date;
+    private Timestamp creation_date;
 
     @Column(name = "fileid", nullable = false)
     public int getFileid() {
@@ -48,12 +50,11 @@ public class FilesEntity {
 
     @Basic
     @Column(name="creation_date", nullable = true)
-    public Date getCreation_date() {return creation_date;}
+    public Timestamp getCreation_date() {return creation_date;}
 
-    public void setCreation_date(Date creation_date) {
+    public void setCreation_date(Timestamp creation_date) {
         this.creation_date = creation_date;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -76,4 +77,5 @@ public class FilesEntity {
         result = 31 * result + Arrays.hashCode(file_data);
         return result;
     }
+
 }

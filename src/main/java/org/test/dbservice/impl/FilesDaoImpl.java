@@ -49,7 +49,7 @@ public class FilesDaoImpl extends AbstractServiceSession implements FilesDao {
     public void deleteAll() {
 
     }
-
+    //TODO: add owner to file
     @Override
     public void saveFile(String filename, byte[] fileToSave) {
         FilesEntity file = new FilesEntity();
@@ -58,7 +58,8 @@ public class FilesDaoImpl extends AbstractServiceSession implements FilesDao {
         Calendar cal = Calendar.getInstance();
         final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date currentDate = new Date(dateFormat.format(cal.getTime()));
-        file.setCreation_date(new java.sql.Date(currentDate.getTime()));
+        System.out.println((currentDate.getTime()));
+        file.setCreation_date(new java.sql.Timestamp(currentDate.getTime()));
         create(file);
     }
 
