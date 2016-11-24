@@ -90,13 +90,16 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
             delete(user);
         }
     }
+
     @Override
     public List<UsersEntity> searchUserByName(String firstName){
         Session session = openCurrentSessionWithTransaction();
-        Query queryForSearch = session.createQuery("from UsersEntity as user where lower(user.first_name) like :searchFirstName");
+        Query queryForSearch = session.createQuery("from UsersEntity as user where user.first_name like :searchFirstName");
         queryForSearch.setString("searchFirstName", "%" + firstName + "%");
         List<UsersEntity> allFindUsers = queryForSearch.list();
-        shutdownCurrentSession();
+        System.out.println(allFindUsers);
+        shutdownAbsolutleyCurrentSession();
+
         return  allFindUsers;
     }
 
