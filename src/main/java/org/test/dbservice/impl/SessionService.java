@@ -9,7 +9,7 @@ import org.test.dbservice.utils.HibernateSessionFactory;
  * Created by Taras on 09.11.2016.
  */
 abstract class AbstractServiceSession  {
-    private SessionFactory sessionFactory = new HibernateSessionFactory().getSessionFactory();
+    private SessionFactory sessionFactory =  HibernateSessionFactory.getSessionFactory();
 
     private Session currentSession;
     private Transaction currentTransaction;
@@ -23,7 +23,7 @@ abstract class AbstractServiceSession  {
     }
 
     public Session openCurrentSession(){
-        currentSession = getSessionFactory().getCurrentSession();
+        currentSession = getSessionFactory().openSession();
         return currentSession;
     }
 
@@ -40,6 +40,10 @@ abstract class AbstractServiceSession  {
 
     public void shutdownCurrentSession() {
         currentTransaction.commit();
+    }
+    public void shutdownAbsolutleyCurrentSession() {
+        currentTransaction.commit();
+        getCurrentSession().close();
     }
 
 }

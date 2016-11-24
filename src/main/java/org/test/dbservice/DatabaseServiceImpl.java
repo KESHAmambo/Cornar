@@ -45,7 +45,8 @@ public class DatabaseServiceImpl implements DatabaseService {
     public UsersEntity getUser(String email, String password) {
         UserDao userDao = new UserDaoImpl();
         UsersEntity user = userDao.getByEmailAndPassword(email, password);
-        if (user != null) {
+        loggerDB.log(Level.INFO, user.getEmail());
+        if (user.getUserId() != 0) {
             return user;
         } else {
             return null;
@@ -102,13 +103,11 @@ public class DatabaseServiceImpl implements DatabaseService {
     public List<DocumentBoxImpl> pullDocuments() {
         //TODO add date to db.
         List<DocumentBoxImpl> documents = new ArrayList<>();
-        final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Calendar calendar = new GregorianCalendar();
         FilesDao fileDao = new FilesDaoImpl();
         List<FilesEntity> files = fileDao.getAllFiles();
-        Calendar cal = Calendar.getInstance();
         for (FilesEntity file : files){
-            DocumentBoxImpl document = new DocumentBoxImpl(file.getFileName(), new Date(dateFormat.format(cal.getTime())));
+            DocumentBoxImpl document = new DocumentBoxImpl(file.getFileName(),
+                                        new Date(file.getCreation_date().getTime()));
             documents.add(document);
         }
         return documents;

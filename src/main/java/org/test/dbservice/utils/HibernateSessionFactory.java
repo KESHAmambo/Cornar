@@ -13,11 +13,11 @@ import org.test.dbservice.entity.UsersEntity;
  * Created by Taras on 27.10.2016.
  */
 public class HibernateSessionFactory {
-    private  SessionFactory sessionFactory ;
-    public HibernateSessionFactory(){
-        sessionFactory =  new Configuration().configure()
-                .buildSessionFactory();
-    }
+//    private  SessionFactory sessionFactory ;
+//    public HibernateSessionFactory(){
+//        sessionFactory =  new Configuration().configure()
+//                .buildSessionFactory();
+//    }
 //
 //    private static SessionFactory buildSessionFactory() {
 //        Configuration configuration = new Configuration().configure();
@@ -58,9 +58,25 @@ public class HibernateSessionFactory {
 //}
 
 
+    private static final SessionFactory sessionFactory = buildSessionFactory();
 
+    private static SessionFactory buildSessionFactory() {
+        try {
+            // Create the SessionFactory from hibernate.cfg.xml
+            return new AnnotationConfiguration()
+                    .configure()
+                    .buildSessionFactory();
+        } catch (Throwable ex) {
+            System.err.println("Initial SessionFactory creation failed." + ex);
+            throw new ExceptionInInitializerError(ex);
+        }
+    }
 
-    public SessionFactory getSessionFactory() {
+    public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
+
+//    public SessionFactory getSessionFactory() {
+//        return sessionFactory;
+//    }
 }

@@ -7,9 +7,9 @@ import org.hibernate.criterion.Restrictions;
 import org.test.dbservice.dao.FilesDao;
 import org.test.dbservice.entity.FilesEntity;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by Taras on 20.11.2016.
@@ -20,7 +20,7 @@ public class FilesDaoImpl extends AbstractServiceSession implements FilesDao {
         Session session = openCurrentSessionWithTransaction();
         System.out.println(entity.getFileData());
         int count  = (int) session.save(entity);
-    shutdownCurrentSession();
+        shutdownCurrentSession();
         return count;
     }
 
@@ -36,7 +36,7 @@ public class FilesDaoImpl extends AbstractServiceSession implements FilesDao {
         FilesEntity file;
         Session session = openCurrentSessionWithTransaction();
         file = (FilesEntity) session.get(FilesEntity.class, id);
-    shutdownCurrentSession();
+        shutdownCurrentSession();
         return file;
     }
 
@@ -55,6 +55,10 @@ public class FilesDaoImpl extends AbstractServiceSession implements FilesDao {
         FilesEntity file = new FilesEntity();
         file.setFileName(filename);
         file.setFileData(fileToSave);
+        Calendar cal = Calendar.getInstance();
+        final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date currentDate = new Date(dateFormat.format(cal.getTime()));
+        file.setCreation_date(new java.sql.Date(currentDate.getTime()));
         create(file);
     }
 
@@ -63,7 +67,7 @@ public class FilesDaoImpl extends AbstractServiceSession implements FilesDao {
         Session session = openCurrentSessionWithTransaction();
         FilesEntity file = (FilesEntity) session.createCriteria(FilesEntity.class)
                 .add(Restrictions.eq("file_name", filename)).uniqueResult();
-    shutdownCurrentSession();
+        shutdownCurrentSession();
         return file.getFileData();
     }
 
@@ -74,7 +78,7 @@ public class FilesDaoImpl extends AbstractServiceSession implements FilesDao {
         Criteria crtForAll = session.createCriteria(FilesEntity.class);
         crtForAll.setMaxResults(10);
         allFiles = crtForAll.list();
-        shutdownCurrentSession();
+        shutdownAbsolutleyCurrentSession();
         return allFiles;
     }
 }

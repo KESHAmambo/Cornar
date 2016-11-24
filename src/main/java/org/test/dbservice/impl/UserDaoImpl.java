@@ -2,6 +2,7 @@ package org.test.dbservice.impl;
 
 import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
+import org.test.controllers.MainPageController;
 import org.test.dbservice.dao.UserDao;
 import org.test.dbservice.entity.FilesEntity;
 import org.test.dbservice.entity.UsersEntity;
@@ -48,12 +49,14 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
 
     public UsersEntity getByEmailAndPassword(String email, String password) {
         UsersEntity user = getUserByEmail(email);
+        Logger.getLogger(UsersEntity.class.getName()).log(Level.INFO,user.getEmail(), user.getPassword());
         char[] charPassword = password.toCharArray();
         if (user !=null) {
             if (PasswordUtils.isExpectedPassword(charPassword, user.getPassword().getBytes()))
                 return user;
         }
-        return null;
+        user.setUserId(-1);
+        return user;
     }
 
     public UsersEntity getUserByEmail(String email){
