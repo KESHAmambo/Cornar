@@ -5,9 +5,13 @@ import org.hibernate.criterion.Restrictions;
 import org.test.dbservice.dao.UserDao;
 import org.test.dbservice.entity.FilesEntity;
 import org.test.dbservice.entity.UsersEntity;
+import org.test.dbservice.utils.PasswordUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by Taras on 27.10.2016.
@@ -17,7 +21,7 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
     @Override
     public int create(UsersEntity entity) {
         Session session;
-        int count = 1;
+        int count = 0;
         session = openCurrentSessionWithTransaction();
         session.save(entity);
         shutdownCurrentSession();
@@ -43,12 +47,13 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
     }
 
     public UsersEntity getByEmailAndPassword(String email, String password) {
-        Session session = openCurrentSessionWithTransaction();
-        UsersEntity user = (UsersEntity) session.createCriteria(UsersEntity.class)
-                .add(Restrictions.eq("email", email))
-                .add(Restrictions.eq("password", password)).uniqueResult();
-        shutdownCurrentSession();
-        return user;
+        UsersEntity user = getUserByEmail(email);
+        char[] charPassword = password.toCharArray();
+        if (user !=null) {
+            if (PasswordUtils.isExpectedPassword(charPassword, user.getPassword().getBytes()))
+                return user;
+        }
+        return null;
     }
 
     public UsersEntity getUserByEmail(String email){

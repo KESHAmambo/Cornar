@@ -1,5 +1,7 @@
 package org.test.dbservice;
 
+import com.vaadin.ui.Notification;
+import org.test.controllers.MainPageController;
 import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
 import org.test.dbservice.dao.FilesDao;
 import org.test.dbservice.dao.UserDao;
@@ -7,6 +9,7 @@ import org.test.dbservice.entity.FilesEntity;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.dbservice.impl.FilesDaoImpl;
 import org.test.dbservice.impl.UserDaoImpl;
+import org.test.dbservice.utils.PasswordUtils;
 import org.test.logic.Course;
 import org.test.logic.Lesson;
 import org.test.logic.Profile;
@@ -18,27 +21,24 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * Created by abara on 10.11.2016.
- */
 public class DatabaseServiceImpl implements DatabaseService {
     Logger loggerDB = Logger.getLogger(DatabaseService.class.getName());
     @Override
     public int signUpUser(String firstName, String surname, String email, Date birthDate, String password, String education) {
-        //TODO hashing password
-        int successOfAddingUser = 0;
+        int unsuccessOfAddingUser = 1;
         UserDao userDao = new UserDaoImpl();
         if (doesUserExist(email, password) == true)
-            return successOfAddingUser;
+            return unsuccessOfAddingUser;
         UsersEntity user = new UsersEntity();
         user.setFirstName(firstName);
         user.setLastName(surname);
         user.setEmail(email);
         user.setPassword(password);
-        user.setBirthDate(new java.sql.Date(birthDate.getTime()));
+        if (birthDate != null)
+            user.setBirthDate(new java.sql.Date(birthDate.getTime()));
         user.setPersonDescription(education);
-        successOfAddingUser = userDao.create(user);
-        return successOfAddingUser;
+        unsuccessOfAddingUser = userDao.create(user);
+        return unsuccessOfAddingUser;
     }
 
     @Override

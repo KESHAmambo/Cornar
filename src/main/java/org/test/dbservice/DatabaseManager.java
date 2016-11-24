@@ -1,10 +1,12 @@
 package org.test.dbservice;
 
+import com.vaadin.ui.Notification;
 import org.test.Test.DummyDatabaseService;
 import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
 import org.test.dbservice.dao.UserDao;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.dbservice.impl.UserDaoImpl;
+import org.test.dbservice.utils.PasswordUtils;
 import org.test.logic.Course;
 import org.test.logic.Lesson;
 import org.test.logic.Profile;

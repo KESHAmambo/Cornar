@@ -13,12 +13,15 @@ import org.test.customcomponents.MenuPageImpl;
 import org.test.customcomponents.SignPanelImpl;
 import org.test.customcomponents.SignUpPanelImpl;
 import org.test.dbservice.DatabaseManager;
+import org.test.dbservice.utils.PasswordUtils;
 import org.test.msgservice.MessageManager;
 import org.test.dbservice.DatabaseService;
 import org.test.logic.Profile;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static org.test.logic.PageName.*;
 
@@ -39,11 +42,12 @@ public class MainPageController {
         signInButton.addClickListener(e -> {
             String userEmail = signPanel.getUserEmail();
             String userPassword = signPanel.getUserPassword();
-
             if(DatabaseManager.doesUserExist(userEmail, userPassword)) {
+                Logger.getLogger(MainPageController.class.getName()).log(Level.INFO,"user exist");
                 signOutPreviousProfile();
                 signInNewProfile(userEmail);
                 navigateToMenuPageInAllUIs(VaadinSession.getCurrent().getUIs());
+                Logger.getLogger(MainPageController.class.getName()).log(Level.INFO,"user has signed in system");
             }
         });
     }

@@ -3,6 +3,7 @@ package org.test.customcomponents;
 import com.vaadin.data.validator.AbstractValidator;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Window;
+import org.test.dbservice.utils.PasswordUtils;
 import org.test.tamplets.SignUpPanel;
 
 import java.util.Date;
@@ -37,7 +38,8 @@ public class SignUpPanelImpl extends SignUpPanel {
     }
 
     public String readPassword() {
-        return passwordTextField.getValue();
+        char[] password = passwordTextField.getValue().toCharArray();
+        return new String(PasswordUtils.hash(password));
     }
 
     public String readEducation() {
