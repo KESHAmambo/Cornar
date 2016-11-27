@@ -38,4 +38,6 @@ public interface DatabaseService {
     Profile getProfile(String email);
 
     void storeInboxMessage(InboxMessage message);
+
+    List<Lesson> pullAllUserLessons(Profile currentProfile);
 }

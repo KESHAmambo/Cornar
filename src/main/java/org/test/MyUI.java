@@ -20,6 +20,8 @@ import org.test.logic.InboxMessage;
 import org.test.msgservice.ChatMessage;
 import org.test.msgservice.MessageManager;
 
+import java.util.Locale;
+
 import static org.test.logic.PageName.MENU;
 
 /**
@@ -54,6 +56,8 @@ public class MyUI extends UI implements MessageManager.MessageListener {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
+        Locale.setDefault(Locale.ENGLISH);
+        
         controller = new MyUIController(this);
         navigator = createNavigator();
 

@@ -21,7 +21,8 @@ import com.vaadin.ui.CssLayout;
 @SuppressWarnings("serial")
 public class AddLessonPanel extends CssLayout {
     protected TextField lessonNameTextField;
-    protected DateField dateField;
+    protected DateField startDateField;
+    protected DateField endDateField;
     protected TextField costTextField;
     protected Button addLessonButton;
 
@@ -33,8 +34,12 @@ public class AddLessonPanel extends CssLayout {
         return lessonNameTextField;
     }
 
-    public DateField getDateField() {
-        return dateField;
+    public DateField getStartDateField() {
+        return startDateField;
+    }
+
+    public DateField getEndDateField() {
+        return endDateField;
     }
 
     public TextField getCostTextField() {

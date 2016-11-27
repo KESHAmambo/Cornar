@@ -97,4 +97,9 @@ public class DummyDatabaseService implements DatabaseService {
     public void storeInboxMessage(InboxMessage message) {
         DummyDatabase.storeInboxMessage(message);
     }
+
+    @Override
+    public List<Lesson> pullAllUserLessons(Profile currentProfile) {
+        return DummyDatabase.pullAllLessons(currentProfile);
+    }
 }

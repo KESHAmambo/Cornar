@@ -13,7 +13,8 @@ import java.util.Locale;
  * Created by abara on 21.11.2016.
  */
 public class StudentLessonBoxImpl extends StudentLessonBox {
-    private static SimpleDateFormat dateFormat = new SimpleDateFormat("d.MM.yyyy HH:mm", Locale.ENGLISH);
+    private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
+    private static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.ENGLISH);
 
     private final Lesson lesson;
 
@@ -25,8 +26,11 @@ public class StudentLessonBoxImpl extends StudentLessonBox {
     }
 
     private void fulfillLabels() {
-        lessonNameLabel.setValue(lesson.getLessonName());
-        dateLabel.setValue(dateFormat.format(lesson.getDate()));
+        lessonNameLabel.setValue(lesson.getName());
+        dateLabel.setValue(dateFormat.format(
+                lesson.getStartDate()));
+        timeLabel.setValue(timeFormat.format(
+                lesson.getStartDate()) + " - " + timeFormat.format(lesson.getEndDate()));
         costLabel.setValue(String.format("%.2f$", lesson.getCost()));
         customizePayButton();
     }

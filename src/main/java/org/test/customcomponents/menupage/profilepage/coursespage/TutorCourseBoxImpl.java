@@ -47,7 +47,7 @@ public class TutorCourseBoxImpl extends TutorCourseBox implements CourseBox {
     }
 
     private void fulfillLabels() {
-        courseNameLabel.setValue(course.getCourseName());
+        courseNameLabel.setValue(course.getName());
         Profile tutorProfile = course.getTutorProfile();
         tutorNameLabel.setValue(tutorProfile.getName() + " " + tutorProfile.getSurname());
         descriptionLabel.setValue(course.getDescription());
@@ -94,8 +94,8 @@ public class TutorCourseBoxImpl extends TutorCourseBox implements CourseBox {
     private List<Lesson> sortLessons() {
         List<Lesson> lessons = course.getLessons();
         lessons.sort((Lesson l1, Lesson l2) -> {
-            Date lessonDate1 = l1.getDate();
-            Date lessonDate2 = l2.getDate();
+            Date lessonDate1 = l1.getStartDate();
+            Date lessonDate2 = l2.getStartDate();
             return lessonDate1.compareTo(lessonDate2);
         });
         return lessons;

@@ -23,6 +23,7 @@ public class TutorLessonBox extends CssLayout {
     protected VerticalLayout mainLayout;
     protected Label lessonNameLabel;
     protected Label dateLabel;
+    protected Label timeLabel;
     protected Label costLabel;
     protected Button payButton;
 

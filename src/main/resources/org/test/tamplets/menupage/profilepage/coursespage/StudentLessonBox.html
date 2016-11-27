@@ -6,16 +6,21 @@
  </head> 
  <body> 
   <vaadin-css-layout width-full> 
-   <vaadin-vertical-layout style-name="studentLessonLayout" height="130px" _id="mainLayout"> 
+   <vaadin-vertical-layout style-name="studentLessonLayout" _id="mainLayout"> 
     <vaadin-horizontal-layout spacing width-full> 
      <vaadin-vertical-layout style-name="lessonIconLayout" width="64px" height="64px" :middle></vaadin-vertical-layout> 
      <vaadin-vertical-layout spacing margin-left margin-right :expand> 
       <vaadin-label size-auto plain-text _id="lessonNameLabel">
         Lesson name 
       </vaadin-label> 
-      <vaadin-label size-auto plain-text _id="dateLabel" :bottom>
-        20.06.2016 20:30 
-      </vaadin-label> 
+      <vaadin-horizontal-layout spacing :bottom> 
+       <vaadin-label size-auto plain-text _id="dateLabel">
+         20.06.2016 20:30 
+       </vaadin-label> 
+       <vaadin-label size-auto plain-text _id="timeLabel">
+         13:30 - 15:00 
+       </vaadin-label> 
+      </vaadin-horizontal-layout> 
      </vaadin-vertical-layout> 
      <vaadin-horizontal-layout spacing :bottom :right> 
       <vaadin-label size-auto plain-text _id="costLabel" :middle :center>

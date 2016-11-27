@@ -99,4 +99,10 @@ public class DatabaseServiceImpl implements DatabaseService {
     public void storeInboxMessage(InboxMessage message) {
         //TODO
     }
+
+    @Override
+    public List<Lesson> pullAllUserLessons(Profile currentProfile) {
+        //TODO
+        return null;
+    }
 }

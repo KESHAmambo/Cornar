@@ -2,20 +2,14 @@ package org.test.dbservice;
 
 import org.test.Test.DummyDatabaseService;
 import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
-import org.test.dbservice.dao.UserDao;
-import org.test.dbservice.entity.UsersEntity;
-import org.test.dbservice.impl.UserDaoImpl;
 import org.test.logic.Course;
 import org.test.logic.InboxMessage;
 import org.test.logic.Lesson;
 import org.test.logic.Profile;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DatabaseManager {
     private static DatabaseService service = new DummyDatabaseService();
@@ -53,9 +47,9 @@ public class DatabaseManager {
                 new Course(Profile.getCurrentProfile(), courseName, description));
     }
 
-    public static void addNewLesson(Course course, String lessonName, double cost, Date date) {
+    public static void addNewLesson(Course course, String lessonName, double cost, Date startDate, Date endDate) {
         service.addNewLesson(
-                new Lesson(lessonName, course, cost, date));
+                new Lesson(lessonName, course, cost, startDate, endDate));
     }
 
     public static List<InboxMessage> pullInboxMessages(int id) {
@@ -68,5 +62,10 @@ public class DatabaseManager {
 
     public static void storeInboxMessage(InboxMessage message) {
         service.storeInboxMessage(message);
+    }
+
+
+    public static List<Lesson> pullAllUserLessons() {
+        return service.pullAllUserLessons(Profile.getCurrentProfile());
     }
 }

@@ -69,11 +69,20 @@ public class DummyDatabase {
                         "something about math something about math something about math " +
                         "something about math something about math something about math ");
         Calendar calendar = new GregorianCalendar();
-        calendar.set(2016, 4, 5);
-        Lesson lesson1 = new Lesson("First lesson", course1, 4.5, new Date(calendar.getTimeInMillis()));
+        Calendar calendar1 = new GregorianCalendar();
+        calendar.set(2016, 11, 5, 13, 30);
+        calendar1.set(2016, 11, 5, 15, 0);
+        Lesson lesson1 = new Lesson(
+                "First lesson", course1, 4.5,
+                new Date(calendar.getTimeInMillis()),
+                new Date(calendar1.getTimeInMillis()));
         lessons.add(lesson1);
-        calendar.set(2016, 4, 10);
-        Lesson lesson2 = new Lesson("Second lesson", course1, 5.5, new Date(calendar.getTimeInMillis()));
+        calendar.set(2016, 11, 10, 18, 0);
+        calendar1.set(2016, 11, 10, 20, 0);
+        Lesson lesson2 = new Lesson(
+                "Second lesson", course1, 6.7,
+                new Date(calendar.getTimeInMillis()),
+                new Date(calendar1.getTimeInMillis()));
         lesson2.getAssignedStudents().add(arkadyProfile);
         lessons.add(lesson2);
         course1.setLessons(lessons);
@@ -165,5 +174,21 @@ public class DummyDatabase {
 
     static void storeInboxMessage(InboxMessage message) {
         inboxMessages.add(message);
+    }
+
+    static List<Lesson> pullAllLessons(Profile profile) {
+        List<Lesson> lessons = new ArrayList<>();
+        for(Course course: courses) {
+            if(course.getTutorProfile().equals(profile)) {
+                lessons.addAll(course.getLessons());
+            } else {
+                for (Lesson lesson : course.getLessons()) {
+                    if (lesson.getAssignedStudents().contains(profile)) {
+                        lessons.add(lesson);
+                    }
+                }
+            }
+        }
+        return lessons;
     }
 }

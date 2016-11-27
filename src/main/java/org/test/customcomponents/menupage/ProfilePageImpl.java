@@ -40,6 +40,7 @@ public class ProfilePageImpl extends ProfilePage implements View {
     private void provideNavigation() {
         Navigator menuButtonsNavigator = createNavigatorForMenuButtons();
         createListenersForMenuButtons(menuButtonsNavigator);
+        menuButtonsNavigator.navigateTo(MENU + "/" + PROFILE + "/" + INBOX);
     }
 
     private Navigator createNavigatorForMenuButtons() {

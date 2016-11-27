@@ -13031,7 +13031,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-verticallayout-studentLessonLayout {
-	padding: 0.7em 1em 1em;
+	padding: 1em;
 	background: #569095;
 	color: #fafeff;
 }
@@ -13139,8 +13139,6 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-panel-studentCourseDescriptionPanel {
-	scrollbar-face-color: white;
-	scrollbar-base-color: black;
 	-webkit-box-shadow: inset 0 0 7px 7px #91ccd2;
 	-moz-box-shadow: inset 0 0 7px 7px #91ccd2;
 	box-shadow: inset 0 0 7px 7px #91ccd2;
@@ -13356,4 +13354,14 @@ div.v-layout.v-horizontal.v-widget {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+}
+
+.mytheme .v-calendar .v-calendar-event-tutorLesson {
+	background: #68b872;
+	color: #ffffff;
+}
+
+.mytheme .v-calendar .v-calendar-event-studentLesson {
+	background: #569095;
+	color: #ffffff;
 }
