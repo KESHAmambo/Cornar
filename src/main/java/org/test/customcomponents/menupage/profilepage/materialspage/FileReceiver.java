@@ -3,8 +3,10 @@ package org.test.customcomponents.menupage.profilepage.materialspage;
 
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.ProgressBar;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.Upload;
 import org.test.dbservice.DatabaseManager;
+import org.test.logic.Profile;
 
 import java.io.*;
 
@@ -31,7 +33,7 @@ public class FileReceiver implements Upload.Receiver, Upload.ProgressListener,
             fileToUpload = new File(filename);
             fileOutputStream = new FileOutputStream(fileToUpload);
         } catch (FileNotFoundException e) {
-            Notification.show("file doesn't exist");
+            Notification.show("File doesn't exist");
             return null;
         }
         return fileOutputStream;
@@ -39,9 +41,10 @@ public class FileReceiver implements Upload.Receiver, Upload.ProgressListener,
 
     @Override
     public void uploadSucceeded(Upload.SucceededEvent event) {
-        Notification.show("succeed");
+        Notification.show("Uploaded");
         String fileNameToUpload = fileToUpload.getName();
-        DatabaseManager.saveFile(fileNameToUpload);
+        int ownerId = Profile.getCurrentProfile().getId();
+        DatabaseManager.saveFile(fileNameToUpload, ownerId);
         progress.setVisible(false);
     }
 

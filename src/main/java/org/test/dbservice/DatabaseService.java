@@ -6,8 +6,6 @@ import org.test.logic.Course;
 import org.test.logic.Lesson;
 import org.test.logic.Profile;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -30,7 +28,7 @@ public interface DatabaseService {
 
     List<Profile> getAllUsersWithSurnameLike(String surnameForSearch);
 
-    List<DocumentBoxImpl> pullDocuments();
+    List<DocumentBoxImpl> pullDocuments(int ownerId);
 
     Collection<Course> pullCourses();
 
@@ -38,5 +36,5 @@ public interface DatabaseService {
 
     void addNewLesson(Lesson lesson);
 
-    void saveFile(String filename);
+    void saveFile(String filename, int ownerId);
 }

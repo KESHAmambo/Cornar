@@ -53,8 +53,8 @@ public class DatabaseManager {
     public static List<Profile> getAllUsersWithSurnameLike(String surnameForSearch) {
         return service.getAllUsersWithSurnameLike(surnameForSearch);
     }
-    public static List<DocumentBoxImpl> pullDocuments(){
-        return service.pullDocuments();
+    public static List<DocumentBoxImpl> pullDocumentsBy(int ownerId){
+        return service.pullDocuments(ownerId);
     }
 
     public static Collection<Course> pullCourses() {
@@ -71,7 +71,7 @@ public class DatabaseManager {
                 new Lesson(lessonName, course, cost, date));
     }
 
-    public static void saveFile(String filename) {
-        service.saveFile(filename);
+    public static void saveFile(String filename, int ownerId) {
+        service.saveFile(filename, ownerId);
     }
 }

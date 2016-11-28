@@ -51,10 +51,11 @@ public class FilesDaoImpl extends AbstractServiceSession implements FilesDao {
     }
     //TODO: add owner to file
     @Override
-    public void saveFile(String filename, byte[] fileToSave) {
+    public void saveFile(String filename, byte[] fileToSave, int ownerId) {
         FilesEntity file = new FilesEntity();
         file.setFileName(filename);
         file.setFileData(fileToSave);
+        file.setOwnerId(ownerId);
         Calendar cal = Calendar.getInstance();
         final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date currentDate = new Date(dateFormat.format(cal.getTime()));
@@ -73,10 +74,21 @@ public class FilesDaoImpl extends AbstractServiceSession implements FilesDao {
     }
 
     @Override
-    public List<FilesEntity> getAllFiles() {
+    public byte[] getFileByNameToOwner(String filename, int ownerId) {
+        Session session = openCurrentSessionWithTransaction();
+        FilesEntity file = (FilesEntity) session.createCriteria(FilesEntity.class)
+                .add(Restrictions.eq("file_name", filename))
+                .add(Restrictions.eq("owner_id", ownerId)).uniqueResult();
+        shutdownCurrentSession();
+        return file.getFileData();
+    }
+
+    @Override
+    public List<FilesEntity> getAllFiles(int ownerId) {
         Session session = openCurrentSessionWithTransaction();
         List<FilesEntity> allFiles = new ArrayList<>();
-        Criteria crtForAll = session.createCriteria(FilesEntity.class);
+        Criteria crtForAll = session.createCriteria(FilesEntity.class)
+                .add(Restrictions.eq("owner_id", ownerId));
         crtForAll.setMaxResults(10);
         allFiles = crtForAll.list();
         shutdownAbsolutleyCurrentSession();

@@ -1,13 +1,11 @@
 package org.test.Test;
 
 import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
-import org.test.dbservice.DatabaseManager;
 import org.test.dbservice.DatabaseService;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.logic.Course;
 import org.test.logic.Lesson;
 import org.test.logic.Profile;
-import org.test.tamplets.menupage.profilepage.materialspage.DocumentBox;
 
 import java.util.*;
 
@@ -54,7 +52,7 @@ public class DummyDatabaseService implements DatabaseService {
         return null;
     }
 
-    public List<DocumentBoxImpl> pullDocuments() {
+    public List<DocumentBoxImpl> pullDocuments(int ownerId) {
         List<DocumentBoxImpl> documents = new ArrayList<>();
         Calendar calendar = new GregorianCalendar();
         calendar.set(2014, 4, 5);
@@ -93,7 +91,9 @@ public class DummyDatabaseService implements DatabaseService {
     }
 
     @Override
-    public void saveFile(String filename) {
+    public void saveFile(String filename, int ownerId) {
 
     }
+
+
 }

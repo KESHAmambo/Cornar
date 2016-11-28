@@ -27,7 +27,7 @@ public class MaterialsPageImpl extends MaterialsPage implements View {
         uploadBox = new UploadBoxImpl();
         windowToUpload = new Window();
         customizeWindowToUpload();
-        createListenerToAddNewFilesButton();
+        controller.createListenerToAddNewFilesButton(addingButton,windowToUpload);
     }
 
     @Override
@@ -45,8 +45,6 @@ public class MaterialsPageImpl extends MaterialsPage implements View {
         windowToUpload.setHeight("60%");
     }
 
-    private void createListenerToAddNewFilesButton(){
-        addingButton.addClickListener(event -> UI.getCurrent().addWindow(windowToUpload));
-    }
+
 
 }

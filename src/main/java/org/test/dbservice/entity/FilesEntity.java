@@ -17,6 +17,7 @@ public class FilesEntity {
     private int fileid;
     private String file_name;
     private byte[] file_data;
+    private int owner_id;
     private Timestamp creation_date;
 
     @Column(name = "fileid", nullable = false)
@@ -55,6 +56,17 @@ public class FilesEntity {
     public void setCreation_date(Timestamp creation_date) {
         this.creation_date = creation_date;
     }
+
+    @Basic
+    @Column(name="owner_id")
+    public int getOwnerId() {
+        return owner_id;
+    }
+
+    public void setOwnerId(int owner_id) {
+        this.owner_id = owner_id;
+    }
+
 
     @Override
     public boolean equals(Object o) {

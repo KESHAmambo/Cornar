@@ -100,11 +100,10 @@ public class DatabaseServiceImpl implements DatabaseService {
     }
 
     @Override
-    public List<DocumentBoxImpl> pullDocuments() {
-        //TODO add date to db.
+    public List<DocumentBoxImpl> pullDocuments(int ownerId) {
         List<DocumentBoxImpl> documents = new ArrayList<>();
         FilesDao fileDao = new FilesDaoImpl();
-        List<FilesEntity> files = fileDao.getAllFiles();
+        List<FilesEntity> files = fileDao.getAllFiles(ownerId);
         for (FilesEntity file : files){
             DocumentBoxImpl document = new DocumentBoxImpl(file.getFileName(),
                                         new Date(file.getCreation_date().getTime()));
@@ -128,7 +127,7 @@ public class DatabaseServiceImpl implements DatabaseService {
         //TODO
     }
 
-    public void saveFile(String filename) {
+    public void saveFile(String filename, int ownerId) {
         FilesDao filesDao = new FilesDaoImpl();
         File fileToUpload = new File(filename);
         byte[] dataForSaving = new byte[(int)fileToUpload.length()];
@@ -142,7 +141,7 @@ public class DatabaseServiceImpl implements DatabaseService {
             loggerDB.log(Level.SEVERE, null, e.getStackTrace());
         }
         if (dataForSaving != null) {
-            filesDao.saveFile(filename, dataForSaving);
+            filesDao.saveFile(filename, dataForSaving, ownerId);
         }
         else
            loggerDB.log(Level.SEVERE, null, "Your data is cracked");
