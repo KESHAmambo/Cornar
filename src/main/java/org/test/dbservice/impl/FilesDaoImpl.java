@@ -1,7 +1,6 @@
 package org.test.dbservice.impl;
 
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.test.dbservice.dao.FilesDao;
@@ -32,7 +31,7 @@ public class FilesDaoImpl extends AbstractServiceSession implements FilesDao {
     }
 
     @Override
-    public FilesEntity getById(Long id) {
+    public FilesEntity getById(int id) {
         FilesEntity file;
         Session session = openCurrentSessionWithTransaction();
         file = (FilesEntity) session.get(FilesEntity.class, id);
@@ -91,7 +90,7 @@ public class FilesDaoImpl extends AbstractServiceSession implements FilesDao {
                 .add(Restrictions.eq("owner_id", ownerId));
         crtForAll.setMaxResults(10);
         allFiles = crtForAll.list();
-        shutdownAbsolutleyCurrentSession();
+        shutdownAbsoluteleyCurrentSession();
         return allFiles;
     }
 }

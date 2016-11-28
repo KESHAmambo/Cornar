@@ -3,10 +3,13 @@ package org.test.dbservice;
 import com.vaadin.ui.Notification;
 import org.test.controllers.MainPageController;
 import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
+import org.test.dbservice.dao.CoursesDao;
 import org.test.dbservice.dao.FilesDao;
 import org.test.dbservice.dao.UserDao;
+import org.test.dbservice.entity.CoursesEntity;
 import org.test.dbservice.entity.FilesEntity;
 import org.test.dbservice.entity.UsersEntity;
+import org.test.dbservice.impl.CoursesDaoImpl;
 import org.test.dbservice.impl.FilesDaoImpl;
 import org.test.dbservice.impl.UserDaoImpl;
 import org.test.dbservice.utils.PasswordUtils;
@@ -114,18 +117,32 @@ public class DatabaseServiceImpl implements DatabaseService {
 
     @Override
     public Collection<Course> pullCourses() {
-        return null; //TODO
+        List<Course> courses = new ArrayList<>();
+        CoursesDao coursesDao = new CoursesDaoImpl();
+        List<CoursesEntity> entitiesList = coursesDao.getAllCourses(Profile.getCurrentProfile().getId());
+        for (CoursesEntity entity: entitiesList){
+            Profile tutorProfile = new Profile();
+            tutorProfile = fillProfile(tutorProfile, entity.getUser());
+            Course course = new Course(tutorProfile, entity.getCourseName(),entity.getCourseDescription());
+            courses.add(course);
+        }
+        return courses;
     }
 
     @Override
     public void addNewCourse(Course course) {
-        //TODO
+        CoursesDao courseDao = new CoursesDaoImpl();
+        if (course.getCourseName() == null){
+            loggerDB.log(Level.SEVERE, null, "Name of course  does not select");
+        }
+        courseDao.saveCourse(course.getCourseName(),course.getDescription(),course.getTutorProfile().getId());
     }
 
     @Override
     public void addNewLesson(Lesson lesson) {
         //TODO
     }
+
 
     public void saveFile(String filename, int ownerId) {
         FilesDao filesDao = new FilesDaoImpl();

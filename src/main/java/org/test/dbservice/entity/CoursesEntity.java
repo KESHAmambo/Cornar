@@ -11,6 +11,8 @@ public class CoursesEntity {
     private int courseId;
     private String courseName;
     private String courseDescription;
+    private UsersEntity user;
+
 
     @Id
     @Column(name = "course_id", nullable = false)
@@ -40,6 +42,15 @@ public class CoursesEntity {
 
     public void setCourseDescription(String courseDescription) {
         this.courseDescription = courseDescription;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    public UsersEntity getUser(){
+        return user;
+    }
+    public void setUser(UsersEntity user) {
+        this.user = user;
     }
 
     @Override

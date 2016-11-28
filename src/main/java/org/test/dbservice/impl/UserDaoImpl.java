@@ -2,14 +2,11 @@ package org.test.dbservice.impl;
 
 import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
-import org.test.controllers.MainPageController;
 import org.test.dbservice.dao.UserDao;
-import org.test.dbservice.entity.FilesEntity;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.dbservice.utils.PasswordUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,7 +35,7 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
     }
 
     @Override
-    public UsersEntity getById(Long id) {
+    public UsersEntity getById(int id) {
         UsersEntity entityById = null;
         Session session;
         session = openCurrentSession();
@@ -98,7 +95,7 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
         queryForSearch.setString("searchFirstName", "%" + firstName + "%");
         List<UsersEntity> allFindUsers = queryForSearch.list();
         System.out.println(allFindUsers);
-        shutdownAbsolutleyCurrentSession();
+        shutdownAbsoluteleyCurrentSession();
 
         return  allFindUsers;
     }

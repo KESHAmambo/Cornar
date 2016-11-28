@@ -48,7 +48,6 @@ public class CoursesPageImpl extends CoursesPage implements View {
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
         forBoxesLayout.removeAllComponents();
         Collection<CourseBox> courseBoxes = controller.getCourseBoxes();
-        System.out.println(courseBoxes.size());
         for(CourseBox courseBox: courseBoxes) {
             forBoxesLayout.addComponent(courseBox);
         }

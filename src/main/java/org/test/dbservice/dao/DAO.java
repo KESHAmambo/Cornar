@@ -6,7 +6,7 @@ package org.test.dbservice.dao;
 public interface DAO<T> {
     int create(T entity);
     void delete(T entity);
-    <T> T getById(Long id);
+    <T> T getById(int id);
     void update(T entity);
     void deleteAll();
 }
