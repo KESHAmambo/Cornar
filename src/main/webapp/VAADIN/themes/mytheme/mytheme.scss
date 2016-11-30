@@ -105,6 +105,28 @@ $v-border-radius: 0px;
     font-weight: bold;
   }
 
+  .v-button-signInButton {
+    background: #82bf8b;
+    color: #fafeff;
+    -webkit-transition-duration: 0.6s;
+    transition-duration: 0.6s;
+  }
+
+  .v-button-signInButton:hover {
+    background: #9ee5a7;
+  }
+
+  .v-button-signUpButton {
+    background: #569095;
+    color: #fafeff;
+    -webkit-transition-duration: 0.6s;
+    transition-duration: 0.6s;
+  }
+
+  .v-button-signUpButton:hover {
+    background: #71b4b9;
+  }
+
   //--------- SignUpPanel ----------------------------------------
 
   .v-horizontallayout-signUpMajorLayout {
@@ -304,14 +326,14 @@ $v-border-radius: 0px;
     color: #fafeff;
   }
 
-  .v-button-payButton {
+  .v-button-assignsButton {
     background: #57a061;
     color: #fafeff;
     -webkit-transition-duration: 0.6s;
     transition-duration: 0.6s;
   }
 
-  .v-button-payButton:hover {
+  .v-button-assignsButton:hover {
     background: #5eaa68;
   }
 

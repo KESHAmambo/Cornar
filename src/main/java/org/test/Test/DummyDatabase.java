@@ -208,6 +208,6 @@ public class DummyDatabase {
     }
 
     static void assignProfileToLesson(Lesson lesson, Profile profile) {
-        lesson.getAssignedStudents().add(profile);
+//        lesson.getAssignedStudents().add(profile);
     }
 }

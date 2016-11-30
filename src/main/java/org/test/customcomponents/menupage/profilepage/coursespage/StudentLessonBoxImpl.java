@@ -7,8 +7,8 @@ import org.test.paymentservice.PaymentService;
 import org.test.tamplets.menupage.profilepage.coursespage.StudentLessonBox;
 
 import java.text.SimpleDateFormat;
-import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 /**
  * Created by abara on 21.11.2016.
@@ -48,7 +48,7 @@ public class StudentLessonBoxImpl extends StudentLessonBox {
 
     private boolean checkAssignment() {
         Profile profile = Profile.getCurrentProfile();
-        List<Profile> assignedStudents = lesson.getAssignedStudents();
+        Set<Profile> assignedStudents = lesson.getAssignedStudents();
         return assignedStudents.contains(profile);
     }
 
