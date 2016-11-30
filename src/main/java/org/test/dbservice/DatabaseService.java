@@ -44,7 +44,7 @@ public interface DatabaseService {
     void storeInboxMessage(InboxMessage message);
 
     List<Lesson> pullAllUserLessons(Profile currentProfile);
-}
+
 
     void saveFile(String filename, int ownerId);
 }

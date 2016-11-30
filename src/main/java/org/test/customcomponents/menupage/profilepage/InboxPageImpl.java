@@ -8,7 +8,6 @@ import org.test.MyUI;
 import org.test.controllers.menupage.profilepage.InboxPageController;
 import org.test.customcomponents.menupage.profilepage.inboxpage.InboxComposePanelImpl;
 import org.test.customcomponents.menupage.profilepage.inboxpage.InboxMessageBoxImpl;
-import org.test.customcomponents.menupage.profilepage.inboxpage.InboxReadPanelImpl;
 import org.test.dbservice.DatabaseManager;
 import org.test.logic.InboxMessage;
 import org.test.logic.Profile;
@@ -27,7 +26,7 @@ public class InboxPageImpl extends InboxPage implements View {
         controller = new InboxPageController(this);
         messages = DatabaseManager.pullInboxMessages(Profile.getCurrentProfile().getId());
 
-        fulfillMessagesLayout();
+//        fulfillMessagesLayout();
         createListenerForComposeButton();
 
         myUI.setInboxPage(this);

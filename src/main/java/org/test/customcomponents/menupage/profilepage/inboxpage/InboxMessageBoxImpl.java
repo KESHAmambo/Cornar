@@ -5,7 +5,6 @@ import com.vaadin.ui.Window;
 import org.test.logic.InboxMessage;
 import org.test.logic.Profile;
 import org.test.tamplets.menupage.profilepage.inboxpage.InboxMessageBox;
-import org.test.tamplets.menupage.profilepage.inboxpage.InboxReadPanel;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -62,7 +61,7 @@ public class InboxMessageBoxImpl extends InboxMessageBox {
 
     private Window createReadWindow() {
         Window window = new Window();
-        window.setContent(new InboxReadPanelImpl(message));
+        window.setContent(new InboxMessageBoxImpl(message));
         window.center();
         window.setModal(true);
         window.setWidth("50%");

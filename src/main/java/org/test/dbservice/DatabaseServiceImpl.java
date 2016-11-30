@@ -79,6 +79,7 @@ public class DatabaseServiceImpl implements DatabaseService {
         profile.setEducation(user.getPersonDescription());
         profile.setBirthDate(user.getBirthDate());
         profile.setId(user.getUserId());
+        loggerDB.log(Level.SEVERE, profile.toString());
         return profile;
     }
 
@@ -136,10 +137,10 @@ public class DatabaseServiceImpl implements DatabaseService {
     @Override
     public void addNewCourse(Course course) {
         CoursesDao courseDao = new CoursesDaoImpl();
-        if (course.getCourseName() == null){
+        if (course.getName() == null){
             loggerDB.log(Level.SEVERE, null, "Name of course  does not select");
         }
-        courseDao.saveCourse(course.getCourseName(),course.getDescription(),course.getTutorProfile().getId());
+        courseDao.saveCourse(course.getName(),course.getDescription(),course.getTutorProfile().getId());
     }
 
     @Override
@@ -169,7 +170,6 @@ public class DatabaseServiceImpl implements DatabaseService {
         //TODO
         return null;
     }
-}
 
 
     public void saveFile(String filename, int ownerId) {

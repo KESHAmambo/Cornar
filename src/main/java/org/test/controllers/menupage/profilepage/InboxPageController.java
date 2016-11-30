@@ -18,8 +18,8 @@ public class InboxPageController {
 
     public void sortMessages(List<InboxMessage> messages) {
         messages.sort((InboxMessage m1, InboxMessage m2) -> {
-            Date date1 = m1.getDate();
-            Date date2 = m2.getDate();
+            Date date1 = new Date();
+            Date date2 = new Date();
             return date2.compareTo(date1);
         });
     }
