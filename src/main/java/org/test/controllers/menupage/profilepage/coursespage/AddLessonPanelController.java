@@ -27,31 +27,39 @@ public class AddLessonPanelController {
         Button addLessonButton = addLessonPanel.getAddLessonButton();
         TextField lessonNameTextField = addLessonPanel.getLessonNameTextField();
         TextField costTextField = addLessonPanel.getCostTextField();
-        DateField dateField = addLessonPanel.getDateField();
+        DateField startDateField = addLessonPanel.getStartDateField();
+        DateField endDateField = addLessonPanel.getEndDateField();
 
         addLessonButton.addClickListener(event -> {
             String lessonName = lessonNameTextField.getValue();
             String costStr = costTextField.getValue();
-            Date date = dateField.getValue();
+            Date startDate = startDateField.getValue();
+            Date endDate = endDateField.getValue();
 
             if("".equals(lessonName)) {
                 Notification.show("Please, enter lesson name.", Notification.Type.WARNING_MESSAGE);
             } else if(!isCostValid(costStr)) {
                 Notification.show("Cost format must be '0.00'.", Notification.Type.WARNING_MESSAGE);
-            } else if (date == null) {
+            } else if (startDate == null || endDate == null) {
                 Notification.show("Please, set lesson date and time.", Notification.Type.WARNING_MESSAGE);
-            } else if(date.compareTo(new Date()) < 0) {
+            } else if(startDate.compareTo(new Date()) < 0
+                    || endDate.compareTo(new Date()) < 0
+                    || endDate.compareTo(startDate) < 0) {
                 Notification.show("Please, set valid date.", Notification.Type.WARNING_MESSAGE);
             } else {
-                double cost = Double.parseDouble(costStr);
-                DatabaseManager.addNewLesson(course, lessonName, cost, date);
-                lessonNameTextField.setValue("");
-                costTextField.setValue("");
-                UI.getCurrent().removeWindow(addLessonWindow);
+                DatabaseManager.addNewLesson(course, lessonName, Double.parseDouble(costStr), startDate, endDate);
+                cleanPanelElements(lessonNameTextField, costTextField);
                 UIHelper.showSuccessNotification(
-                        "New lesson was successfully added!", "addedCourseNotification");
+                        "New lesson was successfully added!",
+                        "addedCourseNotification");
             }
         });
+    }
+
+    private void cleanPanelElements(TextField lessonNameTextField, TextField costTextField) {
+        lessonNameTextField.setValue("");
+        costTextField.setValue("");
+        UI.getCurrent().removeWindow(addLessonWindow);
     }
 
     private boolean isCostValid(String costStr) {

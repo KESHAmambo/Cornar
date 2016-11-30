@@ -48,6 +48,8 @@ public class MainPageController {
                 signInNewProfile(userEmail);
                 navigateToMenuPageInAllUIs(VaadinSession.getCurrent().getUIs());
                 Logger.getLogger(MainPageController.class.getName()).log(Level.INFO,"user has signed in system");
+            } else {
+                showNoSuchUserNotification();
             }
         });
     }
@@ -55,7 +57,7 @@ public class MainPageController {
     private void signOutPreviousProfile() {
         Profile previousProfile = (Profile) VaadinSession.getCurrent().getAttribute("profile");
         if(previousProfile != null) {
-            MessageManager.unregisterPreviousUserSession(previousProfile.getId());
+            MessageManager.unregisterSession(previousProfile.getId());
         }
     }
 
@@ -73,6 +75,13 @@ public class MainPageController {
             navigator.addView(MENU.toString(), new MenuPageImpl((MyUI) ui, navigator));
             navigator.navigateTo(MENU.toString());
         }
+    }
+
+    private void showNoSuchUserNotification() {
+        Notification notification = new Notification(
+                "Wrong credentials", Notification.Type.WARNING_MESSAGE);
+        notification.setDelayMsec(3000);
+        notification.show(Page.getCurrent());
     }
 
     public void createListenerForSingUpButton(SignPanelImpl signPanel) {

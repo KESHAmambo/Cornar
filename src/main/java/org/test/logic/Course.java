@@ -10,20 +10,20 @@ public class Course {
     private int id;
     private Profile tutorProfile;
     private List<Lesson> lessons;
-    private String courseName;
+    private String name;
     private String description;
 
-    public Course(int id, Profile tutorProfile, List<Lesson> lessons, String courseName, String description) {
+    public Course(int id, Profile tutorProfile, List<Lesson> lessons, String name, String description) {
         this.id = id;
         this.tutorProfile = tutorProfile;
         this.lessons = lessons;
-        this.courseName = courseName;
+        this.name = name;
         this.description = description;
     }
 
-    public Course(Profile tutorProfile, String courseName, String description) {
+    public Course(Profile tutorProfile, String name, String description) {
         this.tutorProfile = tutorProfile;
-        this.courseName = courseName;
+        this.name = name;
         this.description = description;
         lessons = new ArrayList<>();
     }
@@ -52,12 +52,12 @@ public class Course {
         this.lessons = lessons;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public String getName() {
+        return name;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {

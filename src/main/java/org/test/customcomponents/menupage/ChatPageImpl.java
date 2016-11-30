@@ -18,8 +18,7 @@ public class ChatPageImpl extends ChatPage {
     private Map<Integer, DialogPanelImpl> dialogs = new HashMap<>();
 
     public ChatPageImpl(MyUI myUI) {
-        Profile profile = Profile.getCurrentProfile();
-        createFriendPanels(profile.getFriends());
+        createFriendPanels(Profile.getCurrentProfile().getFriends());
 
         myUI.setChatPage(this);
     }
@@ -49,7 +48,7 @@ public class ChatPageImpl extends ChatPage {
         dialogPanel.addReceivedMessage(message.getMessageText());
     }
 
-    public void showSentChatMessage(ChatMessage message) {
+    public void showSentMessage(ChatMessage message) {
         DialogPanelImpl dialogPanel = dialogs.get(message.getReceiverId());
         dialogPanel.addSentMessage(message.getMessageText());
     }

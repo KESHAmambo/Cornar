@@ -13022,6 +13022,48 @@ div.v-layout.v-horizontal.v-widget {
 	background: #9ee5a7;
 }
 
+.mytheme .v-verticallayout-lessonIconLayout {
+	background: url(images/lesson.png);
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.mytheme .v-verticallayout-studentLessonLayout {
+	padding: 1em;
+	background: #569095;
+	color: #fafeff;
+}
+
+.mytheme .v-button-lessonPayButton {
+	background: #44767b;
+	color: #fafeff;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-lessonPayButton:hover {
+	background: #4e8287;
+}
+
+.mytheme .v-verticallayout-tutorLessonLayout {
+	padding: 1em;
+	background: #68b872;
+	color: #fafeff;
+}
+
+.mytheme .v-button-payButton {
+	background: #57a061;
+	color: #fafeff;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-payButton:hover {
+	background: #5eaa68;
+}
+
 .mytheme .v-verticallayout-tutorCourseBoxMainLayout {
 	padding: 1em;
 	background: #9ee5a7;
@@ -13064,6 +13106,12 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: bold;
 }
 
+.mytheme .v-panel-tutorCourseDescriptionPanel {
+	-webkit-box-shadow: inset 0 0 7px 7px #9ee5a7;
+	-moz-box-shadow: inset 0 0 7px 7px #9ee5a7;
+	box-shadow: inset 0 0 7px 7px #9ee5a7;
+}
+
 .mytheme .v-verticallayout-studentCourseBoxMainLayout {
 	padding: 1em;
 	background: #91ccd2;
@@ -13090,8 +13138,14 @@ div.v-layout.v-horizontal.v-widget {
 	background: #71b4b9;
 }
 
+.mytheme .v-panel-studentCourseDescriptionPanel {
+	-webkit-box-shadow: inset 0 0 7px 7px #91ccd2;
+	-moz-box-shadow: inset 0 0 7px 7px #91ccd2;
+	box-shadow: inset 0 0 7px 7px #91ccd2;
+}
+
 .mytheme .v-csslayout-docImage {
-	background-image: url(images/doc_face.png);
+	background-image: url(images/document.png);
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -13119,7 +13173,6 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .v-label-docLabelSlight {
 	overflow: hidden;
-	text-overflow: ellipsis;
 	color: #ffffff;
 	font-size: 1.5em;
 }
@@ -13278,6 +13331,8 @@ div.v-layout.v-horizontal.v-widget {
 	-webkit-border-radius: 5px 20px 20px 20px;
 	-moz-border-radius: 5px 20px 20px 20px;
 	border-radius: 5px 20px 20px 20px;
+	-webkit-box-shadow: 3px 3px 3px grey;
+	-moz-box-shadow: 3px 3px 3px grey;
 	box-shadow: 3px 3px 3px grey;
 	padding: 10px;
 }
@@ -13287,6 +13342,111 @@ div.v-layout.v-horizontal.v-widget {
 	-webkit-border-radius: 20px 5px 20px 20px;
 	-moz-border-radius: 20px 5px 20px 20px;
 	border-radius: 20px 5px 20px 20px;
+	-webkit-box-shadow: 3px 3px 3px grey;
+	-moz-box-shadow: 3px 3px 3px grey;
 	box-shadow: 3px 3px 3px grey;
 	padding: 10px;
+}
+
+.mytheme .v-button-inboxButton {
+	background: #569095;
+	color: #fafeff;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-inboxButton:hover {
+	background: #71b4b9;
+}
+
+.mytheme .v-verticallayout-sentInboxMessageBoxLayout {
+	padding: 1em;
+	background: #9ee5a7;
+	color: #fafeff;
+	font-size: 1.6em;
+}
+
+.mytheme .v-verticallayout-receivedInboxMessageBoxLayout {
+	padding: 1em;
+	background: #91CCD2;
+	color: #fafeff;
+	font-size: 1.6em;
+}
+
+.mytheme .v-verticallayout-iconInboxMessageLayout {
+	background: url(images/mail.png);
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.mytheme .v-label-inboxMessageThemeLabel {
+	font-size: 1.3em;
+}
+
+.mytheme .v-button-sentInboxMessageReadButton {
+	background: #68b872;
+	color: #ffffff;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-sentInboxMessageReadButton:hover {
+	background: #8dd096;
+}
+
+.mytheme .v-button-receivedInboxMessageReadButton {
+	background: #569095;
+	color: #ffffff;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-receivedInboxMessageReadButton:hover {
+	background: #71b4b9;
+}
+
+.mytheme .v-verticallayout-inboxMessageIconLayout {
+	background: url(images/flying_mail.png);
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.mytheme .v-richtextarea-inboxComposeRichTextArea {
+	border: 3px solid rgba(181, 181, 181, 0.72);
+}
+
+.mytheme .v-label-inboxSlightReadLabel {
+	font-size: 1.2em;
+	color: #b5b5b5;
+}
+
+.mytheme .v-button-inboxReadIconButton {
+	color: #b5b5b5;
+}
+
+.mytheme .v-label-inboxReadThemeLabel {
+	color: #b5b5b5;
+	font-size: 1.6em;
+}
+
+.mytheme .v-verticallayout-inboxReadIconLayout {
+	background: url(images/flying_mail_gray.png);
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.mytheme .v-calendar .v-calendar-event-tutorLesson {
+	background: #68b872;
+	color: #ffffff;
+}
+
+.mytheme .v-calendar .v-calendar-event-studentLesson {
+	background: #569095;
+	color: #ffffff;
 }

@@ -6,7 +6,22 @@
  </head> 
  <body> 
   <vaadin-vertical-layout size-full> 
-   <vaadin-vertical-layout style-name="profileInnerPagesLayouts" margin-right margin-top _id="mainLayout"></vaadin-vertical-layout> 
+   <vaadin-vertical-layout style-name="profileInnerPagesLayouts" spacing margin-right margin-top _id="mainLayout"> 
+    <vaadin-horizontal-layout spacing width-full> 
+     <vaadin-horizontal-layout width-full :expand> 
+      <vaadin-text-field input-prompt="Clue expression..." width-full :expand></vaadin-text-field> 
+      <vaadin-button icon="fonticon://FontAwesome/f002" style-name="borderless inboxButton" plain-text>
+        Search 
+      </vaadin-button> 
+     </vaadin-horizontal-layout> 
+     <vaadin-button icon="fonticon://FontAwesome/f044" style-name="borderless inboxButton" plain-text _id="composeButton">
+       Compose 
+     </vaadin-button> 
+    </vaadin-horizontal-layout> 
+    <vaadin-panel style-name="borderless"> 
+     <vaadin-vertical-layout spacing _id="messagesLayout"></vaadin-vertical-layout> 
+    </vaadin-panel> 
+   </vaadin-vertical-layout> 
   </vaadin-vertical-layout>  
  </body>
 </html>

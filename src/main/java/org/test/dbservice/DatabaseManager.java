@@ -8,6 +8,7 @@ import org.test.dbservice.entity.UsersEntity;
 import org.test.dbservice.impl.UserDaoImpl;
 import org.test.dbservice.utils.PasswordUtils;
 import org.test.logic.Course;
+import org.test.logic.InboxMessage;
 import org.test.logic.Lesson;
 import org.test.logic.Profile;
 
@@ -26,6 +27,7 @@ public class DatabaseManager {
     private DatabaseManager() {
 
     }
+
     public static int signUpUser(String firstName, String surname,
                           String email, Date birthDate,
                           String password, String education) {
@@ -66,9 +68,26 @@ public class DatabaseManager {
                 new Course(Profile.getCurrentProfile(), courseName, description));
     }
 
-    public static void addNewLesson(Course course, String lessonName, double cost, Date date) {
+    public static void addNewLesson(Course course, String lessonName, double cost, Date startDate, Date endDate) {
         service.addNewLesson(
-                new Lesson(lessonName, course, cost, date));
+                new Lesson(lessonName, course, cost, startDate, endDate));
+    }
+
+    public static List<InboxMessage> pullInboxMessages(int id) {
+        return service.pullInboxMessages(id);
+    }
+
+    public static Profile getProfile(String email) {
+        return service.getProfile(email);
+    }
+
+    public static void storeInboxMessage(InboxMessage message) {
+        service.storeInboxMessage(message);
+    }
+
+
+    public static List<Lesson> pullAllUserLessons() {
+        return service.pullAllUserLessons(Profile.getCurrentProfile());
     }
 
     public static void saveFile(String filename, int ownerId) {

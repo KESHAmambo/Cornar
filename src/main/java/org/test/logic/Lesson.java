@@ -9,26 +9,29 @@ import java.util.List;
  */
 public class Lesson {
     private int id;
-    private String lessonName;
+    private String name;
     private Course course;
     private double cost;
-    private Date date;
+    private Date startDate;
+    private Date endDate;
     private List<Profile> assignedStudents;
 
-    public Lesson(int id, String lessonName, Course course, double cost, Date date, List<Profile> assignedStudents) {
+    public Lesson(int id, String name, Course course, double cost, Date startDate, Date endDate, List<Profile> assignedStudents) {
         this.id = id;
-        this.lessonName = lessonName;
+        this.name = name;
         this.course = course;
         this.cost = cost;
-        this.date = date;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.assignedStudents = assignedStudents;
     }
 
-    public Lesson(String lessonName, Course course, double cost, Date date) {
-        this.lessonName = lessonName;
+    public Lesson(String name, Course course, double cost, Date startDate, Date endDate) {
+        this.name = name;
         this.course = course;
         this.cost = cost;
-        this.date = date;
+        this.startDate = startDate;
+        this.endDate = endDate;
         assignedStudents = new ArrayList<>();
     }
 
@@ -40,12 +43,12 @@ public class Lesson {
         this.id = id;
     }
 
-    public String getLessonName() {
-        return lessonName;
+    public String getName() {
+        return name;
     }
 
-    public void setLessonName(String lessonName) {
-        this.lessonName = lessonName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Course getCourse() {
@@ -64,12 +67,20 @@ public class Lesson {
         this.cost = cost;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public List<Profile> getAssignedStudents() {

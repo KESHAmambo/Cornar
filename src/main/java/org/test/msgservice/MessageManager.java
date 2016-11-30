@@ -1,9 +1,9 @@
 package org.test.msgservice;
 
-import com.vaadin.server.SessionExpiredException;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.UI;
-import org.test.MyUI;
+import org.test.dbservice.DatabaseManager;
+import org.test.logic.InboxMessage;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -18,34 +18,79 @@ public class MessageManager {
         sessions.put(userId, session);
     }
 
-    public static void sendChatMessage(ChatMessage message)
-            throws NullPointerException, SessionExpiredException {
-        VaadinSession session = sessions.get(message.getReceiverId());
-        checkIfSessionAccessible(session, message.getReceiverId());
-        for(UI ui: session.getUIs()) {
-            ((MyUI) ui).receiveChatMessage(message);
-        }
-    }
-
-    private static void checkIfSessionAccessible(VaadinSession session, Integer receiverId)
-            throws SessionExpiredException {
-        if(session == null) {
-            throw new NullPointerException("No session with such receiverId is in the sessions list.");
-        }
-        else if(session.getState() != VaadinSession.State.OPEN) {
-            sessions.remove(receiverId);
-            throw new SessionExpiredException();
-        }
-    }
-
-    public static void unregisterPreviousUserSession(int id) {
+    public static void unregisterSession(int id) {
         sessions.remove(id);
+    }
+
+    public static void sendChatMessage(ChatMessage message)
+            throws NoSuchSessionException {
+        boolean isAccessible = isReceiverSessionAccessible(message);
+        if(isAccessible) {
+            sendChatMessageToAllReceiverUIs(message);
+            showSentChatMessageInAllSenderUIs(message);
+        } else {
+            throw new NoSuchSessionException();
+        }
+    }
+
+    private static boolean isReceiverSessionAccessible(ChatMessage message) {
+        int receiverId = message.getReceiverId();
+        VaadinSession receiverSession = sessions.get(receiverId);
+        if(receiverSession == null) {
+            return false;
+        } else if(receiverSession.getState() != VaadinSession.State.OPEN) {
+            sessions.remove(receiverId);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private static void sendChatMessageToAllReceiverUIs(ChatMessage message) {
+        int receiverId = message.getReceiverId();
+        for(UI ui: sessions.get(receiverId).getUIs()) {
+            ((MessageListener) ui).receiveChatMessage(message);
+        }
+    }
+
+    private static void showSentChatMessageInAllSenderUIs(ChatMessage message) {
+        for (UI ui : VaadinSession.getCurrent().getUIs()) {
+            ((MessageListener) ui).showSentChatMessage(message);
+        }
+    }
+
+    public static void sendInboxMessage(InboxMessage message) {
+        DatabaseManager.storeInboxMessage(message);
+        showSentInboxMessageInAllSenderUIs(message);
+        sendInboxMessageToAllReceiverUIs(message);
+    }
+
+    private static void showSentInboxMessageInAllSenderUIs(InboxMessage message) {
+        for(UI ui: VaadinSession.getCurrent().getUIs()) {
+            ((MessageListener) ui).showSentInboxMessage(message);
+        }
+    }
+
+    private static void sendInboxMessageToAllReceiverUIs(InboxMessage message) {
+        int receiverId = message.getReceiverProfile().getId();
+        VaadinSession receiverSession = sessions.get(receiverId);
+        if(receiverSession != null) {
+            for (UI ui: receiverSession.getUIs()) {
+                ((MessageListener) ui).receiveInboxMessage(message);
+            }
+        }
     }
 
 
     public interface MessageListener {
         void receiveChatMessage(ChatMessage message);
-
         void showSentChatMessage(ChatMessage message);
+
+        void receiveInboxMessage(InboxMessage message);
+        void showSentInboxMessage(InboxMessage message);
+    }
+
+    public static class NoSuchSessionException extends Exception {
+
     }
 }

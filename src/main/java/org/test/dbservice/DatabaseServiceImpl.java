@@ -14,6 +14,7 @@ import org.test.dbservice.impl.FilesDaoImpl;
 import org.test.dbservice.impl.UserDaoImpl;
 import org.test.dbservice.utils.PasswordUtils;
 import org.test.logic.Course;
+import org.test.logic.InboxMessage;
 import org.test.logic.Lesson;
 import org.test.logic.Profile;
 
@@ -23,6 +24,9 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 public class DatabaseServiceImpl implements DatabaseService {
     Logger loggerDB = Logger.getLogger(DatabaseService.class.getName());
@@ -142,6 +146,30 @@ public class DatabaseServiceImpl implements DatabaseService {
     public void addNewLesson(Lesson lesson) {
         //TODO
     }
+
+    @Override
+    public List<InboxMessage> pullInboxMessages(int id) {
+        //TODO
+        return null;
+    }
+
+    @Override
+    public Profile getProfile(String email) {
+        //TODO
+        return null;
+    }
+
+    @Override
+    public void storeInboxMessage(InboxMessage message) {
+        //TODO
+    }
+
+    @Override
+    public List<Lesson> pullAllUserLessons(Profile currentProfile) {
+        //TODO
+        return null;
+    }
+}
 
 
     public void saveFile(String filename, int ownerId) {

@@ -45,9 +45,8 @@ public class DialogPanelController {
     private void sendMessage(TextArea messageTextArea, ChatMessage message) {
         try {
             MessageManager.sendChatMessage(message);
-            showSentChatMessageInAllUIs(message);
             messageTextArea.setValue("");
-        } catch (NullPointerException | SessionExpiredException e) {
+        } catch (MessageManager.NoSuchSessionException e) {
             showCanNotSendNotification();
         }
     }
@@ -60,11 +59,4 @@ public class DialogPanelController {
         notification.show(Page.getCurrent());
     }
 
-    private void showSentChatMessageInAllUIs(ChatMessage message) {
-        VaadinSession session = VaadinSession.getCurrent();
-        Collection<UI> uis = session.getUIs();
-        for (UI ui : uis) {
-            ((MyUI) ui).showSentChatMessage(message);
-        }
-    }
 }
