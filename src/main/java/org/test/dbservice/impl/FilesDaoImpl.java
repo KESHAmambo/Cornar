@@ -58,7 +58,6 @@ public class FilesDaoImpl extends AbstractServiceSession implements FilesDao {
         Calendar cal = Calendar.getInstance();
         final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date currentDate = new Date(dateFormat.format(cal.getTime()));
-        System.out.println((currentDate.getTime()));
         file.setCreation_date(new java.sql.Timestamp(currentDate.getTime()));
         create(file);
     }

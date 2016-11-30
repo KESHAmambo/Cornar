@@ -17,6 +17,4 @@ public class UploadBoxImpl extends UploadBox {
         controller.setReceiverToUpload(uploadButton, receiver);
         controller.createListenersForUploads(uploadButton);
     }
-
-
 }

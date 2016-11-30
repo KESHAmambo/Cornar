@@ -46,7 +46,8 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
 
     public UsersEntity getByEmailAndPassword(String email, String password) {
         UsersEntity user = getUserByEmail(email);
-        Logger.getLogger(UsersEntity.class.getName()).log(Level.INFO,user.getEmail(), user.getPassword());
+        System.out.println(user.getPassword().getBytes());
+        Logger.getLogger(UsersEntity.class.getName()).log(Level.INFO, null, user.getPassword());
         char[] charPassword = password.toCharArray();
         if (user !=null) {
             if (PasswordUtils.isExpectedPassword(charPassword, user.getPassword().getBytes()))

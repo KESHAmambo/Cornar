@@ -16,7 +16,7 @@ public class PasswordUtils {
     private static final Random RANDOM = new SecureRandom();
     private static final int KEY_LENGTH = 512;
     private static final int NUM_OF_ITERATIONS = 500;
-    private static final byte[] SALT = getNewSalt();
+    private static final byte[] SALT = "asada".getBytes();
 
     public PasswordUtils() {
     }

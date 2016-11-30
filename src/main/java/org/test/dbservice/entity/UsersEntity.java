@@ -7,6 +7,7 @@ import java.sql.Date;
 /**
  * Created by Taras on 29.10.2016.
  */
+//TODO checking password
 @Entity
 @Table(name = "users", schema = "project_cornar", catalog = "cornar")
 public class UsersEntity {
