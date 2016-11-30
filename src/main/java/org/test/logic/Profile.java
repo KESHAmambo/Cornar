@@ -3,6 +3,7 @@ package org.test.logic;
 import com.vaadin.server.VaadinSession;
 import org.test.dbservice.DatabaseManager;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,6 +19,7 @@ public class Profile {
     private String email;
     private String education;
     private Date birthDate;
+    private File image;
     private List<Profile> friends = new ArrayList<>();
 
     public Profile() {
@@ -70,6 +72,14 @@ public class Profile {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public File getImage() {
+        return image;
+    }
+
+    public void setImage(File image) {
+        this.image = image;
     }
 
     public List<Profile> getFriends() {

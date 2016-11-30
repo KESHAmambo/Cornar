@@ -62,7 +62,7 @@ public class StudentCourseBoxImpl extends StudentCourseBox implements CourseBox 
     }
 
     private List<Lesson> sortLessons() {
-        List<Lesson> lessons = course.getLessons();
+        List<Lesson> lessons = new ArrayList<>(course.getLessons());
         lessons.sort((Lesson l1, Lesson l2) -> {
             Date lessonDate1 = l1.getStartDate();
             Date lessonDate2 = l2.getStartDate();

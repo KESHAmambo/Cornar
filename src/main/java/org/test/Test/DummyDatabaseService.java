@@ -73,19 +73,19 @@ public class DummyDatabaseService implements DatabaseService {
     }
 
     @Override
-    public void addNewCourse(Course course) {
-        DummyDatabase.addNewCourse(course);
+    public Course addNewCourse(Course course) {
+        return DummyDatabase.addNewCourse(course);
     }
 
     @Override
-    public void addNewLesson(Lesson lesson) {
-        DummyDatabase.addNewLesson(lesson);
+    public Lesson addNewLesson(Lesson lesson) {
+        return DummyDatabase.addNewLesson(lesson);
         //TODO
     }
 
     @Override
-    public List<InboxMessage> pullInboxMessages(int id) {
-        return DummyDatabase.pullInboxMessages(id);
+    public List<InboxMessage> pullInboxMessages(Profile profile) {
+        return DummyDatabase.pullInboxMessages(profile);
     }
 
     @Override
@@ -101,5 +101,10 @@ public class DummyDatabaseService implements DatabaseService {
     @Override
     public List<Lesson> pullAllUserLessons(Profile currentProfile) {
         return DummyDatabase.pullAllLessons(currentProfile);
+    }
+
+    @Override
+    public void assignProfileToLesson(Lesson lesson, Profile profile) {
+        DummyDatabase.assignProfileToLesson(lesson, profile);
     }
 }

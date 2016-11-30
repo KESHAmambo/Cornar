@@ -29,15 +29,17 @@ public interface DatabaseService {
 
     Collection<Course> pullCourses();
 
-    void addNewCourse(Course course);
+    Course addNewCourse(Course course);
 
-    void addNewLesson(Lesson lesson);
+    Lesson addNewLesson(Lesson lesson);
 
-    List<InboxMessage> pullInboxMessages(int id);
+    List<InboxMessage> pullInboxMessages(Profile profile);
 
     Profile getProfile(String email);
 
     void storeInboxMessage(InboxMessage message);
 
     List<Lesson> pullAllUserLessons(Profile currentProfile);
+
+    void assignProfileToLesson(Lesson lesson, Profile profile);
 }

@@ -25,4 +25,12 @@ public class InboxPage extends VerticalLayout {
     public InboxPage() {
         Design.read(this);
     }
+
+    public VerticalLayout getMessagesLayout() {
+        return messagesLayout;
+    }
+
+    public Button getComposeButton() {
+        return composeButton;
+    }
 }

@@ -13365,3 +13365,35 @@ div.v-layout.v-horizontal.v-widget {
 	background: #569095;
 	color: #ffffff;
 }
+
+.mytheme .v-horizontallayout-profileBoxMainLayout {
+	border-top: 3px #91e4ec solid;
+	border-right: 3px #91e4ec solid;
+	padding: 1em;
+}
+
+.mytheme .v-image-profileBoxImage {
+	background: url("images/man_friend.jpg");
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.mytheme .v-label-profileBoxLabel {
+	color: #01747f;
+	font-size: 1.2em;
+}
+
+.mytheme .v-button-profileBoxWriteMessageButton {
+	border-radius: 40px;
+	color: #91ccd2;
+	font-size: 2em;
+	-webkit-transition-duration: 0.8s;
+	transition-duration: 0.8s;
+}
+
+.mytheme .v-button-profileBoxWriteMessageButton:hover {
+	background: #91ccd2;
+	color: #fafeff;
+}

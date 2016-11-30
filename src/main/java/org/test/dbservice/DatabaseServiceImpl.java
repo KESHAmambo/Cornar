@@ -74,17 +74,19 @@ public class DatabaseServiceImpl implements DatabaseService {
     }
 
     @Override
-    public void addNewCourse(Course course) {
+    public Course addNewCourse(Course course) {
+        return null;
         //TODO
     }
 
     @Override
-    public void addNewLesson(Lesson lesson) {
+    public Lesson addNewLesson(Lesson lesson) {
         //TODO
+        return null;
     }
 
     @Override
-    public List<InboxMessage> pullInboxMessages(int id) {
+    public List<InboxMessage> pullInboxMessages(Profile profile) {
         //TODO
         return null;
     }
@@ -104,5 +106,10 @@ public class DatabaseServiceImpl implements DatabaseService {
     public List<Lesson> pullAllUserLessons(Profile currentProfile) {
         //TODO
         return null;
+    }
+
+    @Override
+    public void assignProfileToLesson(Lesson lesson, Profile profile) {
+        //TODO
     }
 }

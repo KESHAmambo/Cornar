@@ -2,6 +2,8 @@ package org.test.utils;
 
 import com.vaadin.server.Page;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.Window;
+import org.test.customcomponents.menupage.profilepage.inboxpage.InboxComposePanelImpl;
 
 /**
  * Created by abara on 20.11.2016.

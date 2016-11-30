@@ -42,18 +42,18 @@ public class DatabaseManager {
         return service.pullCourses();
     }
 
-    public static void addNewCourse(String courseName, String description) {
-        service.addNewCourse(
+    public static Course addNewCourse(String courseName, String description) {
+        return service.addNewCourse(
                 new Course(Profile.getCurrentProfile(), courseName, description));
     }
 
-    public static void addNewLesson(Course course, String lessonName, double cost, Date startDate, Date endDate) {
-        service.addNewLesson(
+    public static Lesson addNewLesson(Course course, String lessonName, double cost, Date startDate, Date endDate) {
+        return service.addNewLesson(
                 new Lesson(lessonName, course, cost, startDate, endDate));
     }
 
-    public static List<InboxMessage> pullInboxMessages(int id) {
-        return service.pullInboxMessages(id);
+    public static List<InboxMessage> pullInboxMessages(Profile profile) {
+        return service.pullInboxMessages(profile);
     }
 
     public static Profile getProfile(String email) {
@@ -65,7 +65,11 @@ public class DatabaseManager {
     }
 
 
-    public static List<Lesson> pullAllUserLessons() {
-        return service.pullAllUserLessons(Profile.getCurrentProfile());
+    public static List<Lesson> pullAllUserLessons(Profile profile) {
+        return service.pullAllUserLessons(profile);
+    }
+
+    public static void assignProfileToLesson(Lesson lesson, Profile profile) {
+        service.assignProfileToLesson(lesson, profile);
     }
 }

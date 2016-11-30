@@ -25,17 +25,17 @@ public class InboxComposePanelController {
     public void createListenerForSendMessageButton(Window window) {
         inboxComposePanel.getSendMessageButton().addClickListener(e -> {
             String receiverEmail = inboxComposePanel.getReceiverEmailTextField().getValue();
-            Profile receiveProfile = DatabaseManager.getProfile(receiverEmail);
-            if(receiveProfile == null) {
+            Profile receiverProfile = DatabaseManager.getProfile(receiverEmail);
+            if(receiverProfile == null) {
                 Notification.show(
                         "There is no user with such email.",
                         Notification.Type.ERROR_MESSAGE);
-            } else if (receiveProfile.equals(Profile.getCurrentProfile())) {
+            } else if (receiverProfile.equals(Profile.getCurrentProfile())) {
                 Notification.show(
                         "There is no use in messaging with yourself...",
                         Notification.Type.WARNING_MESSAGE);
             } else {
-                InboxMessage message = formMessage(receiveProfile);
+                InboxMessage message = formMessage(receiverProfile);
                 MessageManager.sendInboxMessage(message);
                 UI.getCurrent().removeWindow(window);
                 UIHelper.showSuccessNotification(
@@ -51,5 +51,9 @@ public class InboxComposePanelController {
         return new InboxMessage(
                 Profile.getCurrentProfile(), receiveProfile,
                 new Date(), theme, text, false);
+    }
+
+    public void fulfillReceiverEmailField(String email) {
+        inboxComposePanel.getReceiverEmailTextField().setValue(email);
     }
 }

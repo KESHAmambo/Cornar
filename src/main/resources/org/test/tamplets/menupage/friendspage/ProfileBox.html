@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;mytheme&quot;}">
+  <meta charset="UTF-8" name="vaadin-version" content="7.7.0">
+ </head> 
+ <body> 
+  <vaadin-vertical-layout> 
+   <vaadin-horizontal-layout style-name="profileBoxMainLayout" spacing width-full> 
+    <vaadin-image style-name="profileBoxImage" width="180px" height="180px" _id="image"></vaadin-image> 
+    <vaadin-vertical-layout size-full :expand> 
+     <vaadin-horizontal-layout width-full> 
+      <vaadin-label style-name="nameLabel" height="50px" plain-text _id="nameLabel" :expand>
+        Profile Name 
+      </vaadin-label> 
+      <vaadin-button icon="fonticon://FontAwesome/f044" style-name="borderless profileBoxWriteMessageButton" width="60px" height="50px" plain-text _id="writeMessageButton"></vaadin-button> 
+     </vaadin-horizontal-layout> 
+     <vaadin-horizontal-layout spacing :bottom> 
+      <vaadin-label style-name="profileBoxLabel" width="150px" plain-text>
+        Birthday: 
+      </vaadin-label> 
+      <vaadin-label style-name="profileBoxLabel" size-auto plain-text _id="birthdayLabel">
+        00.00.0000 
+      </vaadin-label> 
+     </vaadin-horizontal-layout> 
+     <vaadin-horizontal-layout spacing :bottom> 
+      <vaadin-label style-name="profileBoxLabel" width="150px" plain-text>
+        E-mail: 
+      </vaadin-label> 
+      <vaadin-label style-name="profileBoxLabel" size-auto plain-text _id="emailLabel">
+        name@mail.com 
+      </vaadin-label> 
+     </vaadin-horizontal-layout> 
+     <vaadin-horizontal-layout spacing size-full :expand> 
+      <vaadin-label style-name="profileBoxLabel" width="150px" plain-text>
+        Education: 
+      </vaadin-label> 
+      <vaadin-panel style-name="borderless" size-full :expand> 
+       <vaadin-label style-name="profileBoxLabel" plain-text _id="educationLabel">
+         some information about education 
+       </vaadin-label> 
+      </vaadin-panel> 
+     </vaadin-horizontal-layout> 
+    </vaadin-vertical-layout> 
+   </vaadin-horizontal-layout> 
+  </vaadin-vertical-layout>  
+ </body>
+</html>

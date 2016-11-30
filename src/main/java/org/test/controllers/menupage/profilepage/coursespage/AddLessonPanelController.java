@@ -4,6 +4,7 @@ import com.vaadin.ui.*;
 import org.test.customcomponents.menupage.profilepage.coursespage.AddLessonPanelImpl;
 import org.test.dbservice.DatabaseManager;
 import org.test.logic.Course;
+import org.test.logic.Lesson;
 import org.test.utils.UIHelper;
 
 import java.util.Date;
@@ -47,7 +48,9 @@ public class AddLessonPanelController {
                     || endDate.compareTo(startDate) < 0) {
                 Notification.show("Please, set valid date.", Notification.Type.WARNING_MESSAGE);
             } else {
-                DatabaseManager.addNewLesson(course, lessonName, Double.parseDouble(costStr), startDate, endDate);
+                Lesson newLesson = DatabaseManager.addNewLesson(
+                        course, lessonName, Double.parseDouble(costStr), startDate, endDate);
+                course.getLessons().add(newLesson);
                 cleanPanelElements(lessonNameTextField, costTextField);
                 UIHelper.showSuccessNotification(
                         "New lesson was successfully added!",
