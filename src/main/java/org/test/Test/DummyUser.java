@@ -2,6 +2,7 @@ package org.test.Test;
 
 import org.test.logic.Profile;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
@@ -16,12 +17,13 @@ class DummyUser {
     private String password;
     private String education;
     private Date birthDate;
+    private File image;
     private List<Profile> friends;
 
     public DummyUser(
             int id, String name, String surname,
             String email, String password, String education,
-            Date birthDate, List<Profile> friends) {
+            Date birthDate, File image, List<Profile> friends) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -29,6 +31,7 @@ class DummyUser {
         this.password = password;
         this.education = education;
         this.birthDate = birthDate;
+        this.image = image;
         this.friends = friends;
     }
 
@@ -91,6 +94,14 @@ class DummyUser {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public File getImage() {
+        return image;
+    }
+
+    public void setImage(File image) {
+        this.image = image;
     }
 
     public List<Profile> getFriends() {

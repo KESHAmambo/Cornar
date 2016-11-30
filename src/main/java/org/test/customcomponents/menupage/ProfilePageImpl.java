@@ -4,6 +4,7 @@ import com.vaadin.data.Property;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.FileResource;
 import com.vaadin.ui.UI;
 import org.test.MyUI;
 import org.test.controllers.menupage.ProfilePageController;
@@ -14,6 +15,7 @@ import org.test.customcomponents.menupage.profilepage.SchedulePageImpl;
 import org.test.logic.Profile;
 import org.test.tamplets.menupage.ProfilePage;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -34,6 +36,7 @@ public class ProfilePageImpl extends ProfilePage implements View {
         this.myUI = myUI;
 
         provideNavigation();
+        fulfillProfileImage(Profile.getCurrentProfile());
         bindLabelsToProfileData();
     }
 
@@ -71,6 +74,14 @@ public class ProfilePageImpl extends ProfilePage implements View {
                 scheduleButton, menuButtonsNavigator, MENU + "/" + PROFILE + "/" + SCHEDULE);
         controller.createListenerForMenuButton(
                 materialsButton, menuButtonsNavigator, MENU + "/" + PROFILE + "/" + MATERIALS);
+    }
+
+    private void fulfillProfileImage(Profile profile) {
+        File image = profile.getImageResource();
+        if(image != null) {
+            FileResource resource = new FileResource(profile.getImageResource());
+            profileImage.setSource(resource);
+        }
     }
 
     private void bindLabelsToProfileData() {

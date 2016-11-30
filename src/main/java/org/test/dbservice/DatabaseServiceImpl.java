@@ -58,8 +58,9 @@ public class DatabaseServiceImpl implements DatabaseService {
     }
 
     @Override
-    public void fulfillProfile(Profile profile, String userEmail) {
+    public Profile fulfillProfile(String userEmail) {
         //TODO
+        return null;
     }
 
     @Override

@@ -30,8 +30,8 @@ public class DatabaseManager {
         return service.doesUserExist(email, password);
     }
 
-    public static void fulfillProfile(Profile profile, String userEmail) {
-        service.fulfillProfile(profile, userEmail);
+    public static Profile fulfillProfile(String userEmail) {
+        return service.fulfillProfile(userEmail);
     }
 
     public static List<DocumentBoxImpl> pullDocuments() {

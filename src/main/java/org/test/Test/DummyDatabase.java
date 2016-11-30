@@ -5,16 +5,19 @@ import org.test.logic.InboxMessage;
 import org.test.logic.Lesson;
 import org.test.logic.Profile;
 
+import java.io.File;
 import java.util.*;
 
 /**
  * Created by abara on 10.11.2016.
  */
 public class DummyDatabase {
-    private static Set<DummyUser> store = new HashSet<DummyUser>();
+    private static Set<DummyUser> loginStore = new HashSet<DummyUser>();
+    private static Set<Profile> profiles = new HashSet<>();
     private static List<Course> courses = new ArrayList<>();
     private static List<InboxMessage> inboxMessages = new ArrayList<>();
 
+    private static Profile yodaProfile;
     private static Profile arkadyProfile;
     private static Profile tarasProfile;
 
@@ -30,33 +33,59 @@ public class DummyDatabase {
             friends.add(friendProfile);
         }
 
+        String tarasImagePath = "C:\\Users\\abara\\Desktop\\Projects\\Cornar\\src\\main\\webapp\\VAADIN\\themes\\mytheme\\images\\tarasImage.jpg";
+        String arkadyImagePath = "C:\\Users\\abara\\Desktop\\Projects\\Cornar\\src\\main\\webapp\\VAADIN\\themes\\mytheme\\images\\arkadyImage.jpg";
+        String yodaImagePath = "C:\\Users\\abara\\Desktop\\Projects\\Cornar\\src\\main\\webapp\\VAADIN\\themes\\mytheme\\images\\yodaImage.jpg";
+
         List<Profile> tarasFriends = new ArrayList<>();
+        List<Profile> yodaFriends = new ArrayList<>();
+        List<Profile> arkadyFriends = new ArrayList<>();
+
         arkadyProfile = new Profile();
-        arkadyProfile.setId(13);
+        arkadyProfile.setId(11);
         arkadyProfile.setName("Arkady");
         arkadyProfile.setSurname("Baranok");
         arkadyProfile.setEmail("arkady@mail.ru");
         arkadyProfile.setBirthDate(new Date());
         arkadyProfile.setEducation("MIPT");
-        tarasFriends.add(arkadyProfile);
+        arkadyProfile.setImageResource(new File(arkadyImagePath));
+        arkadyProfile.setFriends(arkadyFriends);
 
-        List<Profile> arkadyFriends = new ArrayList<>();
+        yodaProfile = new Profile();
+        yodaProfile.setId(12);
+        yodaProfile.setName("Master");
+        yodaProfile.setSurname("Yoda");
+        yodaProfile.setEmail("");
+        yodaProfile.setBirthDate(new Date());
+        yodaProfile.setEducation("Caucasus mountains");
+        yodaProfile.setImageResource(new File(yodaImagePath));
+        yodaProfile.setFriends(yodaFriends);
+
         tarasProfile = new Profile();
-        tarasProfile.setId(11);
+        tarasProfile.setId(13);
         tarasProfile.setName("Taras");
         tarasProfile.setSurname("Khakhulin");
         tarasProfile.setEmail("taras@mail.ru");
         tarasProfile.setBirthDate(new Date());
         tarasProfile.setEducation("Caucasus mountains");
+        tarasProfile.setImageResource(new File(tarasImagePath));
+        tarasProfile.setFriends(tarasFriends);
+
         arkadyFriends.add(tarasProfile);
+        arkadyFriends.add(yodaProfile);
+        tarasFriends.add(arkadyProfile);
+        tarasFriends.add(yodaProfile);
+        yodaFriends.add(arkadyProfile);
+        yodaFriends.add(tarasProfile);
+        yodaFriends.addAll(friends);
 
-        store.add(new DummyUser(
-                11, "Taras", "Khakhulin", "taras@mail.ru", "taras", "Caucasus mountains", new Date(), tarasFriends));
-        store.add(new DummyUser(
-                12, "Master", "Yoda", "", "", "Jedi temple", new Date(), friends));
-        store.add(new DummyUser(
-                13, "Arkady", "Baranok", "arkady@mail.ru", "arkady", "MIPT", new Date(), arkadyFriends));
+        profiles.add(arkadyProfile);
+        profiles.add(tarasProfile);
+        profiles.add(yodaProfile);
 
+        loginStore.add(new DummyUser("arkady@mail.ru", "arkady"));
+        loginStore.add(new DummyUser("taras@mail.ru", "taras"));
+        loginStore.add(new DummyUser("", ""));  //Master Yoda
 
 
         Set<Lesson> lessons = new HashSet<>();
@@ -138,12 +167,12 @@ public class DummyDatabase {
     }
 
     static boolean doesUserExist(String email, String password) {
-        DummyUser tempUser = new DummyUser(email, password);
-        return store.contains(tempUser);
+        DummyUser user = new DummyUser(email, password);
+        return loginStore.contains(user);
     }
 
     static DummyUser getUserByEmail(String email) {
-        for(DummyUser user: store) {
+        for(DummyUser user: loginStore) {
             if(user.getEmail().equals(email)) {
                 return user;
             }
@@ -178,13 +207,19 @@ public class DummyDatabase {
     }
 
     static Profile getProfile(String email) {
-        if (email.equals(arkadyProfile.getEmail())) {
+        for(Profile profile: profiles) {
+            if(profile.getEmail().equals(email)) {
+                return profile;
+            }
+        }
+        return null;
+        /*if (email.equals(arkadyProfile.getEmail())) {
             return arkadyProfile;
         } else if(email.equals((tarasProfile.getEmail()))) {
             return tarasProfile;
         } else {
             return null;
-        }
+        }*/
     }
 
     static void storeInboxMessage(InboxMessage message) {

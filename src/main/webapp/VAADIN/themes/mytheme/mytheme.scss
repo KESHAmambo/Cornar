@@ -198,10 +198,19 @@ $v-border-radius: 0px;
     width: 20vw;
   }
 
-  .v-verticallayout-avatarLayout {
+  .v-verticallayout-menuAvatarLayout {
     background: #fafeff;
     border-radius: 80px;
     border: 4px solid #01747f;
+  }
+
+  .v-image-menuAvatarImage {
+    background: url("images/man_friend.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    border-radius: 50%;
   }
 
   .v-button-menuButton {
@@ -237,10 +246,12 @@ $v-border-radius: 0px;
 
   //--------- ProfilePage -----------------------------------
 
-  .v-verticallayout-photoLayout {
-    background: #5e948b;
-    width: 20vw;
-    height: 40vh;
+  .v-image-profileImage {
+    background: url("images/man_friend.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   }
 
   .v-label-nameLabel {
@@ -484,13 +495,8 @@ $v-border-radius: 0px;
     padding-bottom: 20px;
   }
 
-  .v-verticallayout-friendPanelMainLayout {
+  .v-verticallayout-dialogFriendPanelMainLayout {
     background: url("images/man_chat.jpg");
-  }
-
-  .v-panel-friendsPanel {
-    background: transparent;
-    border: none;
   }
 
   .v-horizontallayout-dialogNameLayout {

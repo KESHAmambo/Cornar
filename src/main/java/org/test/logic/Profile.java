@@ -19,7 +19,7 @@ public class Profile {
     private String email;
     private String education;
     private Date birthDate;
-    private File image;
+    private File imageResource;
     private List<Profile> friends = new ArrayList<>();
 
     public Profile() {
@@ -74,12 +74,12 @@ public class Profile {
         this.birthDate = birthDate;
     }
 
-    public File getImage() {
-        return image;
+    public File getImageResource() {
+        return imageResource;
     }
 
-    public void setImage(File image) {
-        this.image = image;
+    public void setImageResource(File imageResource) {
+        this.imageResource = imageResource;
     }
 
     public List<Profile> getFriends() {
@@ -100,9 +100,7 @@ public class Profile {
     }
 
     public static Profile fulfillProfile(String userEmail) {
-        Profile profile = new Profile();
-        DatabaseManager.fulfillProfile(profile, userEmail);
-        return profile;
+        return DatabaseManager.fulfillProfile(userEmail);
     }
 
     @Override
