@@ -713,5 +713,41 @@ $v-border-radius: 0px;
     color: #ffffff;
   }
 
+  //--------- FriendsPage ----------------------------------------
+
+  //----------------------- ProfileBox ---------------------------
+
+  .v-horizontallayout-profileBoxMainLayout {
+    border-top: 3px #91e4ec solid;
+    border-right: 3px #91e4ec solid;
+    padding: 1em;
+  }
+
+  .v-image-profileBoxImage {
+    background: url("images/man_friend.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  .v-label-profileBoxLabel {
+    color: #01747f;
+    font-size: 1.2em;
+  }
+
+  .v-button-profileBoxWriteMessageButton {
+    border-radius: 40px;
+    color: #91ccd2;
+    font-size: 2em;
+    -webkit-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+  }
+
+  .v-button-profileBoxWriteMessageButton:hover {
+    background: #91ccd2;
+    color: #fafeff;
+  }
+
   // Insert your own theme rules here
 }

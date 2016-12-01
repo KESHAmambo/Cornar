@@ -135,21 +135,24 @@ public class DatabaseServiceImpl implements DatabaseService {
     }
 
     @Override
-    public void addNewCourse(Course course) {
+
+    public Course addNewCourse(Course course) {
         CoursesDao courseDao = new CoursesDaoImpl();
         if (course.getName() == null){
             loggerDB.log(Level.SEVERE, null, "Name of course  does not select");
         }
         courseDao.saveCourse(course.getName(),course.getDescription(),course.getTutorProfile().getId());
+        return course;
     }
 
     @Override
-    public void addNewLesson(Lesson lesson) {
+    public Lesson addNewLesson(Lesson lesson) {
         //TODO
+        return null;
     }
 
     @Override
-    public List<InboxMessage> pullInboxMessages(int id) {
+    public List<InboxMessage> pullInboxMessages(Profile profile) {
         //TODO
         return null;
     }
@@ -170,6 +173,12 @@ public class DatabaseServiceImpl implements DatabaseService {
         //TODO
         return null;
     }
+
+    @Override
+    public void assignProfileToLesson(Lesson lesson, Profile profile) {
+        //TODO
+    }
+}
 
 
     public void saveFile(String filename, int ownerId) {

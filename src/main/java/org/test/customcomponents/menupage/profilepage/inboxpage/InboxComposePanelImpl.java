@@ -15,4 +15,8 @@ public class InboxComposePanelImpl extends InboxComposePanel {
 
         controller.createListenerForSendMessageButton(window);
     }
+
+    public void fulfillReceiverEmailField(String email) {
+        controller.fulfillReceiverEmailField(email);
+    }
 }

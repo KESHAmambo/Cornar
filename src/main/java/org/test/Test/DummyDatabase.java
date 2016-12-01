@@ -59,8 +59,8 @@ public class DummyDatabase {
 
 
 
-        List<Lesson> lessons = new ArrayList<>();
-        Course course1 = new Course(1, tarasProfile, new ArrayList<>(), "Basic Mathematics",
+        Set<Lesson> lessons = new HashSet<>();
+        Course course1 = new Course(1, tarasProfile, new HashSet<>(), "Basic Mathematics",
                 "something about math something about math something about math " +
                         "something about math something about math something about math " +
                         "something about math something about math something about math " +
@@ -72,10 +72,10 @@ public class DummyDatabase {
         Calendar calendar1 = new GregorianCalendar();
         calendar.set(2016, 11, 5, 13, 30);
         calendar1.set(2016, 11, 5, 15, 0);
-        Lesson lesson1 = new Lesson(
-                "First lesson", course1, 4.5,
+        Lesson lesson1 = new Lesson("First lesson", course1, 4.5,
                 new Date(calendar.getTimeInMillis()),
                 new Date(calendar1.getTimeInMillis()));
+        lesson1.setId(getNextLessonId());
         lessons.add(lesson1);
         calendar.set(2016, 11, 10, 18, 0);
         calendar1.set(2016, 11, 10, 20, 0);
@@ -83,6 +83,7 @@ public class DummyDatabase {
                 "Second lesson", course1, 6.7,
                 new Date(calendar.getTimeInMillis()),
                 new Date(calendar1.getTimeInMillis()));
+        lesson2.setId(getNextLessonId());
         lesson2.getAssignedStudents().add(arkadyProfile);
         lessons.add(lesson2);
         course1.setLessons(lessons);
@@ -90,7 +91,7 @@ public class DummyDatabase {
 
 
         courses.add(
-                new Course(2, tarasProfile, new ArrayList<>(), "Advanced Philosophy",
+                new Course(2, tarasProfile, new HashSet<>(), "Advanced Philosophy",
                         "something about math something about math something about math " +
                                 "something about math something about math something about math " +
                                 "something about math something about math something about math " +
@@ -99,7 +100,7 @@ public class DummyDatabase {
                                 "something about math something about math something about math " +
                                 "something about math something about math something about math "));
         courses.add(
-                new Course(3, arkadyProfile, new ArrayList<>(), "Web-design technologies",
+                new Course(3, arkadyProfile, new HashSet<>(), "Web-design technologies",
                         "something about math something about math something about math " +
                                 "something about math something about math something about math " +
                                 "something about math something about math something about math " +
@@ -125,6 +126,17 @@ public class DummyDatabase {
         inboxMessages.add(message2);
     }
 
+    private static int nextLessonId = 0;
+    private static int nextCourseId = 0;
+
+    private static int getNextLessonId() {
+        return nextLessonId++;
+    }
+
+    private static int getNextCourseId() {
+        return nextCourseId++;
+    }
+
     static boolean doesUserExist(String email, String password) {
         DummyUser tempUser = new DummyUser(email, password);
         return store.contains(tempUser);
@@ -143,19 +155,22 @@ public class DummyDatabase {
         return courses;
     }
 
-    static void addNewCourse(Course course) {
+    static Course addNewCourse(Course course) {
+        course.setId(getNextCourseId());
         courses.add(course);
+        return course;
     }
 
-    static void addNewLesson(Lesson lesson) {
-        Course course = lesson.getCourse();
-        course.getLessons().add(lesson);
+    static Lesson addNewLesson(Lesson lesson) {
+        lesson.setId(getNextLessonId());
+        return lesson;
     }
 
-    static List<InboxMessage> pullInboxMessages(int id) {
+    static List<InboxMessage> pullInboxMessages(Profile profile) {
         List<InboxMessage> messages = new ArrayList<>();
         for (InboxMessage message: inboxMessages) {
-            if(id == message.getSenderProfile().getId() || id == message.getReceiverProfile().getId()) {
+            if(profile.equals(message.getSenderProfile())
+                    || profile.equals(message.getReceiverProfile())) {
                 messages.add(message);
             }
         }
@@ -190,5 +205,9 @@ public class DummyDatabase {
             }
         }
         return lessons;
+    }
+
+    static void assignProfileToLesson(Lesson lesson, Profile profile) {
+        lesson.getAssignedStudents().add(profile);
     }
 }

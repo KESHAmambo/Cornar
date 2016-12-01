@@ -22,4 +22,8 @@ public class SchedulePage extends VerticalLayout {
     public SchedulePage() {
         Design.read(this);
     }
+
+    public VerticalLayout getMainLayout() {
+        return mainLayout;
+    }
 }

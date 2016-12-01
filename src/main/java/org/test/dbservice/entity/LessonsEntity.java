@@ -4,16 +4,16 @@ import javax.persistence.*;
 import java.sql.Date;
 
 /**
- * Created by Taras on 14.11.2016.
+ * Created by Taras on 30.11.2016.
  */
 @Entity
 @Table(name = "lessons", schema = "project_cornar", catalog = "cornar")
 public class LessonsEntity {
     private int lessonId;
-    private Date dateLesson;
+    private Date startDate;
     private String lessonName;
     private Long price;
-    private CoursesEntity coursesByCourseId;
+    private Date finalDate;
 
     @Id
     @Column(name = "lesson_id", nullable = false)
@@ -26,13 +26,13 @@ public class LessonsEntity {
     }
 
     @Basic
-    @Column(name = "date_lesson", nullable = true)
-    public Date getDateLesson() {
-        return dateLesson;
+    @Column(name = "start_date", nullable = true)
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setDateLesson(Date dateLesson) {
-        this.dateLesson = dateLesson;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
     @Basic
@@ -55,6 +55,16 @@ public class LessonsEntity {
         this.price = price;
     }
 
+    @Basic
+    @Column(name = "final_date", nullable = true)
+    public Date getFinalDate() {
+        return finalDate;
+    }
+
+    public void setFinalDate(Date finalDate) {
+        this.finalDate = finalDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -63,9 +73,10 @@ public class LessonsEntity {
         LessonsEntity that = (LessonsEntity) o;
 
         if (lessonId != that.lessonId) return false;
-        if (dateLesson != null ? !dateLesson.equals(that.dateLesson) : that.dateLesson != null) return false;
+        if (startDate != null ? !startDate.equals(that.startDate) : that.startDate != null) return false;
         if (lessonName != null ? !lessonName.equals(that.lessonName) : that.lessonName != null) return false;
         if (price != null ? !price.equals(that.price) : that.price != null) return false;
+        if (finalDate != null ? !finalDate.equals(that.finalDate) : that.finalDate != null) return false;
 
         return true;
     }
@@ -73,19 +84,10 @@ public class LessonsEntity {
     @Override
     public int hashCode() {
         int result = lessonId;
-        result = 31 * result + (dateLesson != null ? dateLesson.hashCode() : 0);
+        result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
         result = 31 * result + (lessonName != null ? lessonName.hashCode() : 0);
         result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + (finalDate != null ? finalDate.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "course_id", referencedColumnName = "course_id")
-    public CoursesEntity getCoursesByCourseId() {
-        return coursesByCourseId;
-    }
-
-    public void setCoursesByCourseId(CoursesEntity coursesByCourseId) {
-        this.coursesByCourseId = coursesByCourseId;
     }
 }

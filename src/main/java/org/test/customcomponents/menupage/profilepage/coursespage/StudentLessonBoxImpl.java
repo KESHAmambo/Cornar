@@ -3,6 +3,7 @@ package org.test.customcomponents.menupage.profilepage.coursespage;
 import com.vaadin.server.FontAwesome;
 import org.test.logic.Lesson;
 import org.test.logic.Profile;
+import org.test.paymentservice.PaymentService;
 import org.test.tamplets.menupage.profilepage.coursespage.StudentLessonBox;
 
 import java.text.SimpleDateFormat;
@@ -52,6 +53,14 @@ public class StudentLessonBoxImpl extends StudentLessonBox {
     }
 
     private void createListenerForPayButton() {
-        //TODO
+        payButton.addClickListener(e -> {
+            boolean wasPaymentAccepted = PaymentService.payForLesson(
+                    Profile.getCurrentProfile(), lesson);
+            if(wasPaymentAccepted) {
+                payButton.setCaption("");
+                payButton.setIcon(FontAwesome.CHECK);
+                payButton.setReadOnly(true);
+            }
+        });
     }
 }

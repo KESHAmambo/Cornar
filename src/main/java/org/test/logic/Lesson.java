@@ -90,4 +90,20 @@ public class Lesson {
     public void setAssignedStudents(List<Profile> assignedStudents) {
         this.assignedStudents = assignedStudents;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Lesson lesson = (Lesson) o;
+
+        return id == lesson.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
 }
