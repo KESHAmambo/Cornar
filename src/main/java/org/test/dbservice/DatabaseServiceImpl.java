@@ -1,17 +1,12 @@
 package org.test.dbservice;
 
+import com.vaadin.data.util.filter.Compare;
 import com.vaadin.ui.Notification;
 import org.test.controllers.MainPageController;
 import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
-import org.test.dbservice.dao.CoursesDao;
-import org.test.dbservice.dao.FilesDao;
-import org.test.dbservice.dao.UserDao;
-import org.test.dbservice.entity.CoursesEntity;
-import org.test.dbservice.entity.FilesEntity;
-import org.test.dbservice.entity.UsersEntity;
-import org.test.dbservice.impl.CoursesDaoImpl;
-import org.test.dbservice.impl.FilesDaoImpl;
-import org.test.dbservice.impl.UserDaoImpl;
+import org.test.dbservice.dao.*;
+import org.test.dbservice.entity.*;
+import org.test.dbservice.impl.*;
 import org.test.dbservice.utils.PasswordUtils;
 import org.test.logic.Course;
 import org.test.logic.InboxMessage;
@@ -53,7 +48,7 @@ public class DatabaseServiceImpl implements DatabaseService {
         UserDao userDao = new UserDaoImpl();
         UsersEntity user = userDao.getByEmailAndPassword(email, password);
         loggerDB.log(Level.INFO, user.getEmail());
-        if (user.getUserId() != 0) {
+        if (user.getUserId() != -1) {
             return user;
         } else {
             return null;
@@ -71,6 +66,7 @@ public class DatabaseServiceImpl implements DatabaseService {
         UsersEntity user = new UserDaoImpl().getUserByEmail(userEmail);
         profile = fillProfile(profile, user);
     }
+
 
     private Profile fillProfile(Profile profile, UsersEntity user) {
         profile.setName(user.getFirstName());
@@ -122,13 +118,23 @@ public class DatabaseServiceImpl implements DatabaseService {
 
     @Override
     public Collection<Course> pullCourses() {
-        List<Course> courses = new ArrayList<>();
+        Set<Course> courses = new HashSet<>();
         CoursesDao coursesDao = new CoursesDaoImpl();
         List<CoursesEntity> entitiesList = coursesDao.getAllCourses(Profile.getCurrentProfile().getId());
         for (CoursesEntity entity: entitiesList){
             Profile tutorProfile = new Profile();
-            tutorProfile = fillProfile(tutorProfile, entity.getUser());
+            UsersEntity user = entity.getUser();
+            tutorProfile.setId(user.getUserId());
+            tutorProfile.setName(user.getFirstName());
+            tutorProfile.setSurname(user.getLastName());
+            tutorProfile.setEmail(user.getEmail());
             Course course = new Course(tutorProfile, entity.getCourseName(),entity.getCourseDescription());
+            course.setId(entity.getCourseId());
+            List<Lesson> lessons = pullAllCourseLessons(course);
+            if (lessons != null) {
+                Set<Lesson> setLessons = new HashSet<>(lessons);
+                course.setLessons(setLessons);
+            }
             courses.add(course);
         }
         return courses;
@@ -147,8 +153,10 @@ public class DatabaseServiceImpl implements DatabaseService {
 
     @Override
     public Lesson addNewLesson(Lesson lesson) {
-        //TODO
-        return null;
+        LessonsDao dao = new LessonsDaoImpl();
+        dao.saveLesson(lesson.getCourse(), lesson.getName(), lesson.getStartDate(), lesson.getEndDate(), lesson.getCost());
+        System.out.println(lesson);
+        return lesson;
     }
 
     @Override
@@ -159,8 +167,9 @@ public class DatabaseServiceImpl implements DatabaseService {
 
     @Override
     public Profile getProfile(String email) {
-        //TODO
-        return null;
+        Profile profile = new Profile();
+        fulfillProfile(profile, email);
+        return profile;
     }
 
     @Override
@@ -168,18 +177,71 @@ public class DatabaseServiceImpl implements DatabaseService {
         //TODO
     }
 
+    public List<Lesson> pullAllCourseLessons(Course course){
+        List<Lesson> lessons = new ArrayList<>();
+        CoursesDaoImpl CoursesDao = new CoursesDaoImpl();
+        Set<LessonsEntity> lessonsEntities = CoursesDao.getAllLessonByCourse(course);
+        for (LessonsEntity lessonEntity: lessonsEntities){
+            Lesson lesson = new Lesson();
+            lesson.setCourse(course);
+            lesson.setId(lessonEntity.getLessonId());
+            lesson.setName(lessonEntity.getLessonName());
+            lesson.setStartDate(new Date(lessonEntity.getStartDate().getTime()));
+            lesson.setEndDate(new Date(lessonEntity.getFinalDate().getTime()));
+            lesson.setCost(lessonEntity.getPrice());
+            TransactionDao dbTransaction = new TransactionDaoImpl();// not efficient method
+            List<TransactionEntity> transactions = dbTransaction.getAllTransactionsToLesson(lesson.getId());
+            List<Profile> assignedProfiles = new ArrayList<>();
+            for (TransactionEntity transaction : transactions ){
+//                UserDao userDao = new UserDaoImpl();
+//                UsersEntity user = userDao.getById(transaction.getUserId());
+//                Profile student = fillProfile(new Profile(), user);
+                Profile student = new Profile();
+                student.setId(transaction.getUserId());
+                assignedProfiles.add(student);
+            }
+            lesson.setAssignedStudents(assignedProfiles);
+            lessons.add(lesson);
+        }
+        return lessons;
+    }
     @Override
     public List<Lesson> pullAllUserLessons(Profile currentProfile) {
-        //TODO
-        return null;
+        List<Lesson> lessons = getAllLessonBy(currentProfile.getId());
+        Set<Course> courses = (Set<Course>) pullCourses();
+        for (Course course: courses) {
+            if (course.getTutorProfile().equals(currentProfile)){
+
+            }
+
+        }
+        for (Lesson lesson:lessons){
+            for (Course course: courses) {
+                if (lesson.getCourse().equals(course))
+                    course.setLessons((Set<Lesson>) lessons);
+            }
+        }
+        return lessons;
+    }
+
+    //TODO transaction creation
+    public List<Lesson> getAllLessonBy(int userId){
+        List<Lesson> lessons = new ArrayList<>();
+        TransactionDao dbTransaction = new TransactionDaoImpl();
+        List<TransactionEntity> transactions = dbTransaction.getAllTransactionsToUser(userId);
+        LessonsDao lessonsDao = new LessonsDaoImpl();
+        for (TransactionEntity transaction: transactions) {
+            lessons.add(lessonsDao.fillLessonInfoById(transaction.getLessonsId()));
+        }
+        loggerDB.log(Level.INFO,lessons.toString());
+        return lessons;
     }
 
     @Override
     public void assignProfileToLesson(Lesson lesson, Profile profile) {
-        //TODO
+        TransactionDao dbTransaction = new TransactionDaoImpl();
+        dbTransaction.saveTransaction(lesson.getCourse().getId(), lesson.getId(), profile.getId());
     }
-}
-
 
     public void saveFile(String filename, int ownerId) {
         FilesDao filesDao = new FilesDaoImpl();

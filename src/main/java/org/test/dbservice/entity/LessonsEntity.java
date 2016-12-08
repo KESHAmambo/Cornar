@@ -1,7 +1,9 @@
 package org.test.dbservice.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Taras on 30.11.2016.
@@ -9,13 +11,16 @@ import java.sql.Date;
 @Entity
 @Table(name = "lessons", schema = "project_cornar", catalog = "cornar")
 public class LessonsEntity {
+
     private int lessonId;
-    private Date startDate;
+    private Timestamp startDate;
     private String lessonName;
     private Long price;
-    private Date finalDate;
+    private Timestamp finalDate;
+    private CoursesEntity course;
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "lesson_id", nullable = false)
     public int getLessonId() {
         return lessonId;
@@ -27,11 +32,11 @@ public class LessonsEntity {
 
     @Basic
     @Column(name = "start_date", nullable = true)
-    public Date getStartDate() {
+    public Timestamp getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(Timestamp startDate) {
         this.startDate = startDate;
     }
 
@@ -55,15 +60,27 @@ public class LessonsEntity {
         this.price = price;
     }
 
+
     @Basic
     @Column(name = "final_date", nullable = true)
-    public Date getFinalDate() {
+    public Timestamp getFinalDate() {
         return finalDate;
     }
 
-    public void setFinalDate(Date finalDate) {
+    public void setFinalDate(Timestamp finalDate) {
         this.finalDate = finalDate;
     }
+
+    @JoinColumn(name = "course_id",insertable=false, updatable=false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    public CoursesEntity getCourse() {
+        return course;
+    }
+
+    public void setCourse(CoursesEntity course) {
+        this.course = course;
+    }
+
 
     @Override
     public boolean equals(Object o) {

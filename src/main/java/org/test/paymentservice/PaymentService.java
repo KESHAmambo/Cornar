@@ -13,6 +13,7 @@ public class PaymentService {
 
     }
 
+    // TODO change name of func
     public static boolean payForLesson(Profile profile, Lesson lesson) {
         //TODO
         boolean wasPaymentAccepted = invokePaymentAPI(lesson.getCost());
@@ -23,7 +24,7 @@ public class PaymentService {
         return wasPaymentAccepted;
     }
 
-    private static boolean invokePaymentAPI(double cost) {
+    private static boolean invokePaymentAPI(Long cost) {
         //TODO
         return true;
     }

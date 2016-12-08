@@ -1,6 +1,8 @@
 package org.test.dbservice.entity;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Taras on 14.11.2016.
@@ -8,13 +10,23 @@ import javax.persistence.*;
 @Entity
 @Table(name = "courses", schema = "project_cornar", catalog = "cornar")
 public class CoursesEntity {
+
     private int courseId;
     private String courseName;
     private String courseDescription;
     private UsersEntity user;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL )
+    @JoinColumn(name = "user_id")
+    public UsersEntity getUser(){
+        return user;
+    }
+    public void setUser(UsersEntity user) {
+        this.user = user;
+    }
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "course_id", nullable = false)
     public int getCourseId() {
         return courseId;
@@ -44,14 +56,6 @@ public class CoursesEntity {
         this.courseDescription = courseDescription;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    public UsersEntity getUser(){
-        return user;
-    }
-    public void setUser(UsersEntity user) {
-        this.user = user;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -74,5 +78,24 @@ public class CoursesEntity {
         result = 31 * result + (courseName != null ? courseName.hashCode() : 0);
         result = 31 * result + (courseDescription != null ? courseDescription.hashCode() : 0);
         return result;
+    }
+
+    @JoinColumn(name = "course_id")
+    private Set<LessonsEntity> lessons;
+
+    @OneToMany(mappedBy = "course",cascade = CascadeType.ALL, orphanRemoval = true)
+    public Set<LessonsEntity> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(Set<LessonsEntity> getLesson) {
+        this.lessons = getLesson;
+    }
+    public void addToLessons(LessonsEntity lesson){
+        lesson.setCourse(this);
+        getLessons().add(lesson);
+    }
+    public void removeLesson(LessonsEntity lesson){
+        getLessons().remove(lesson);
     }
 }

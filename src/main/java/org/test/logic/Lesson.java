@@ -11,12 +11,15 @@ public class Lesson {
     private int id;
     private String name;
     private Course course;
-    private double cost;
+    private Long cost;
     private Date startDate;
     private Date endDate;
     private List<Profile> assignedStudents;
 
-    public Lesson(int id, String name, Course course, double cost, Date startDate, Date endDate, List<Profile> assignedStudents) {
+    public Lesson(){
+        assignedStudents = new ArrayList<>();
+    }
+    public Lesson(int id, String name, Course course, Long cost, Date startDate, Date endDate, List<Profile> assignedStudents) {
         this.id = id;
         this.name = name;
         this.course = course;
@@ -26,7 +29,7 @@ public class Lesson {
         this.assignedStudents = assignedStudents;
     }
 
-    public Lesson(String name, Course course, double cost, Date startDate, Date endDate) {
+    public Lesson(String name, Course course, Long cost, Date startDate, Date endDate) {
         this.name = name;
         this.course = course;
         this.cost = cost;
@@ -59,11 +62,11 @@ public class Lesson {
         this.course = course;
     }
 
-    public double getCost() {
+    public Long getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(Long cost) {
         this.cost = cost;
     }
 

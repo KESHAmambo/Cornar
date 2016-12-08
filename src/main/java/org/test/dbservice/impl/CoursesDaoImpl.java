@@ -1,19 +1,23 @@
 package org.test.dbservice.impl;
 
 import org.hibernate.*;
-import org.hibernate.criterion.Restrictions;
 import org.test.dbservice.dao.CoursesDao;
 import org.test.dbservice.entity.CoursesEntity;
+import org.test.dbservice.entity.LessonsEntity;
 import org.test.dbservice.entity.UsersEntity;
+import org.test.logic.Course;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by Taras on 27.10.2016.
  */
 public class CoursesDaoImpl extends AbstractServiceSession implements CoursesDao {
-
+    static Logger loggerCourse = Logger.getLogger(CoursesDaoImpl.class.getName());
     @Override
     public int create(CoursesEntity entity) {
         Session session;
@@ -43,13 +47,7 @@ public class CoursesDaoImpl extends AbstractServiceSession implements CoursesDao
 
 
 
-    public CoursesEntity getUserByEmail(String email){
-        Session session = openCurrentSessionWithTransaction();
-        CoursesEntity user = (CoursesEntity) session.createCriteria(CoursesEntity.class)
-                .add(Restrictions.eq("email", email)).uniqueResult();
-        shutdownCurrentSession();
-        return user;
-    }
+
 
     @Override
     public void update(CoursesEntity entity) {
@@ -65,13 +63,35 @@ public class CoursesDaoImpl extends AbstractServiceSession implements CoursesDao
 //            delete(user);
 //        }
     }
+    public Set<LessonsEntity> getAllLessonByCourse(Course course){
+        Session session = openCurrentSessionWithTransaction();
+        CoursesEntity coursesEntity = new CoursesEntity();
+        loggerCourse.log(Level.INFO,"CourseId" + String.valueOf(course.getId()));
+        coursesEntity.setCourseId(course.getId());
+        coursesEntity.setCourseName(course.getName());
+        coursesEntity.setCourseDescription(course.getDescription());
+        Query query = session.createQuery("from CoursesEntity as c where c.courseId=:Course");
+        query.setParameter("Course", course.getId());
+        CoursesEntity courses= (CoursesEntity) query.uniqueResult();
+        for (LessonsEntity entity : courses.getLessons())
+            System.err.println(entity.getLessonId());
+        Set<LessonsEntity> lessonsEntities = courses.getLessons();
+        shutdownCurrentSession();
+        return lessonsEntities;
+    }
 
     public void saveCourse(String nameOfCourse, String courseDescription, int userId){
+        UsersEntity userTutor = new UsersEntity();
+        Session session = openCurrentSessionWithTransaction();
+        Query query = session.createQuery("from UsersEntity as u where u.userId=:ID");
+        query.setInteger("ID", userId);
+        userTutor = (UsersEntity) query.uniqueResult();
+        shutdownCurrentSession();
         CoursesEntity course = new CoursesEntity();
         course.setCourseName(nameOfCourse);
         course.setCourseDescription(courseDescription);
-        UsersEntity userTutor = new UsersEntity();
-        userTutor.setUserId(userId);
+        if (userTutor == null)
+            System.out.println("user is NULL");
         course.setUser(userTutor);
         create(course);
     }
@@ -81,12 +101,12 @@ public class CoursesDaoImpl extends AbstractServiceSession implements CoursesDao
     public List<CoursesEntity> getAllCourses(int id) {
         Session session = openCurrentSessionWithTransaction();
         List<CoursesEntity> courses = new ArrayList<>();
-        UsersEntity user = new UsersEntity();
-        user.setUserId(id);
         Criteria crtForAll = session.createCriteria(CoursesEntity.class);
         crtForAll.setMaxResults(10);
         courses = crtForAll.list();
         shutdownCurrentSession();
         return courses;
     }
+
+
 }

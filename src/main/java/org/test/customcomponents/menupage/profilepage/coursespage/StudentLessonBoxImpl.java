@@ -32,12 +32,13 @@ public class StudentLessonBoxImpl extends StudentLessonBox {
                 lesson.getStartDate()));
         timeLabel.setValue(timeFormat.format(
                 lesson.getStartDate()) + " - " + timeFormat.format(lesson.getEndDate()));
-        costLabel.setValue(String.format("%.2f$", lesson.getCost()));
+        costLabel.setValue(lesson.getCost().toString());
         customizePayButton();
     }
 
     private void customizePayButton() {
         boolean alreadyAssigned = checkAssignment();
+        System.out.println(checkAssignment() + "checking for paying");
         if(alreadyAssigned) {
             payButton.setIcon(FontAwesome.CHECK);
             payButton.setReadOnly(true);

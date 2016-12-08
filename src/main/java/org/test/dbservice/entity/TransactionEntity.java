@@ -8,12 +8,13 @@ import javax.persistence.*;
 @Entity
 @Table(name = "transaction", schema = "project_cornar", catalog = "cornar")
 public class TransactionEntity {
+
     private int number;
     private Integer lessonsId;
     private Integer userId;
     private Integer courseId;
-
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "Number", nullable = false)
     public int getNumber() {
         return number;

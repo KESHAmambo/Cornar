@@ -8,6 +8,8 @@ import org.test.logic.Lesson;
 import org.test.utils.UIHelper;
 
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by abara on 20.11.2016.
@@ -49,8 +51,9 @@ public class AddLessonPanelController {
                 Notification.show("Please, set valid date.", Notification.Type.WARNING_MESSAGE);
             } else {
                 Lesson newLesson = DatabaseManager.addNewLesson(
-                        course, lessonName, Double.parseDouble(costStr), startDate, endDate);
+                        course, lessonName, Long.parseLong(costStr), startDate, endDate);
                 course.getLessons().add(newLesson);
+                Logger.getLogger(Course.class.getName()).log(Level.INFO, "added lesson" + course.getLessons());
                 cleanPanelElements(lessonNameTextField, costTextField);
                 UIHelper.showSuccessNotification(
                         "New lesson was successfully added!",
@@ -67,7 +70,7 @@ public class AddLessonPanelController {
 
     private boolean isCostValid(String costStr) {
         try {
-            Double.parseDouble(costStr);
+            Long.parseLong(costStr);
             return true;
         } catch (NumberFormatException ignore) {}
         return false;

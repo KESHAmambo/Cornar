@@ -39,6 +39,7 @@ abstract class AbstractServiceSession  {
     }
 
     public void shutdownCurrentSession() {
+
         currentTransaction.commit();
     }
     public void shutdownAbsoluteleyCurrentSession() {

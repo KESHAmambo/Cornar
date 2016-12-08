@@ -32,7 +32,7 @@ public class AddCoursePanelController {
             if("".equals(courseName) || "".equals(description)) {
                 Notification.show("Fields must not be empty!", Notification.Type.WARNING_MESSAGE);
             } else {
-                DatabaseManager.addNewCourse(courseName, description);
+                Course course = DatabaseManager.addNewCourse(courseName, description);
                 courseNameTextField.setValue("");
                 descriptionTextArea.setValue("");
                 UI.getCurrent().removeWindow(addCourseWindow);

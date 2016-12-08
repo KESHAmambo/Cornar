@@ -28,7 +28,7 @@ public class TutorLessonBoxImpl extends TutorLessonBox {
                 lesson.getStartDate()));
         timeLabel.setValue(timeFormat.format(
                 lesson.getStartDate()) + " - " + timeFormat.format(lesson.getEndDate()));
-        costLabel.setValue(String.format("%.2f$", lesson.getCost()));
+        costLabel.setValue(lesson.getCost().toString());
     }
 
     private void createListenerForAssignsButton() {

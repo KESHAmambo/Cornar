@@ -68,7 +68,7 @@ public class DatabaseManager {
                 new Course(Profile.getCurrentProfile(), courseName, description));
     }
 
-    public static Lesson addNewLesson(Course course, String lessonName, double cost, Date startDate, Date endDate) {
+    public static Lesson addNewLesson(Course course, String lessonName, Long cost, Date startDate, Date endDate) {
         return service.addNewLesson(
                 new Lesson(lessonName, course, cost, startDate, endDate));
     }

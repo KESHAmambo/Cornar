@@ -72,7 +72,7 @@ public class DummyDatabase {
         Calendar calendar1 = new GregorianCalendar();
         calendar.set(2016, 11, 5, 13, 30);
         calendar1.set(2016, 11, 5, 15, 0);
-        Lesson lesson1 = new Lesson("First lesson", course1, 4.5,
+        Lesson lesson1 = new Lesson("First lesson", course1, (long) 4.5,
                 new Date(calendar.getTimeInMillis()),
                 new Date(calendar1.getTimeInMillis()));
         lesson1.setId(getNextLessonId());
@@ -80,7 +80,7 @@ public class DummyDatabase {
         calendar.set(2016, 11, 10, 18, 0);
         calendar1.set(2016, 11, 10, 20, 0);
         Lesson lesson2 = new Lesson(
-                "Second lesson", course1, 6.7,
+                "Second lesson", course1, (long) 6.7,
                 new Date(calendar.getTimeInMillis()),
                 new Date(calendar1.getTimeInMillis()));
         lesson2.setId(getNextLessonId());
