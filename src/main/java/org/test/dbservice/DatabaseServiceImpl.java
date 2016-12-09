@@ -67,6 +67,28 @@ public class DatabaseServiceImpl implements DatabaseService {
         profile = fillProfile(profile, user);
     }
 
+    private List<Profile> getAllFriendOfUser(int user_id){
+        FriendsDao friendsDao = new FriendsDaoImp();
+        List<Profile> friends = new ArrayList<>();
+        loggerDB.log(Level.INFO, "find friend of "+ user_id);
+        List<FriendsEntity> friendsEntities = friendsDao.getAllFriendBy(user_id);
+        loggerDB.log(Level.INFO, String.valueOf(friendsEntities.size()));
+        for (FriendsEntity friendFromDB: friendsEntities){
+            Profile friend = new Profile();
+            UserDao userDao = new UserDaoImpl();
+            UsersEntity newFriend = userDao.getByIdForFriends(friendFromDB.getFriendId());
+            loggerDB.log(Level.INFO, "friend name " + newFriend.getEmail());
+            friend.setName(newFriend.getFirstName());
+            friend.setSurname(newFriend.getLastName());
+            friend.setEmail(newFriend.getEmail());
+            friend.setBirthDate(newFriend.getBirthDate());
+            friend.setId(newFriend.getUserId());
+            friend.setEducation(newFriend.getPersonDescription());
+            friends.add(friend);
+            //TODO setting image from another table
+        }
+        return friends;
+    }
 
     private Profile fillProfile(Profile profile, UsersEntity user) {
         profile.setName(user.getFirstName());
@@ -75,6 +97,7 @@ public class DatabaseServiceImpl implements DatabaseService {
         profile.setEducation(user.getPersonDescription());
         profile.setBirthDate(user.getBirthDate());
         profile.setId(user.getUserId());
+        profile.setFriends(getAllFriendOfUser(user.getUserId()));
         loggerDB.log(Level.SEVERE, profile.toString());
         return profile;
     }

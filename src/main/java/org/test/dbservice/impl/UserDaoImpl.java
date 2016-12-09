@@ -44,6 +44,15 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
         return entityById;
     }
 
+    @Override
+    public UsersEntity getByIdForFriends(int id) {
+        UsersEntity entityById = null;
+        Session session;
+        session = openCurrentSession();
+        entityById = (UsersEntity) session.get(UsersEntity.class,id);
+        return entityById;
+    }
+
     public UsersEntity getByEmailAndPassword(String email, String password) {
         UsersEntity user = getUserByEmail(email);
         if (user!=null)

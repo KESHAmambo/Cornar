@@ -11,13 +11,13 @@
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="connection.username">java_cornar</property>
     <property name="connection.password">sample</property>
-
-    <mapping class="org.test.dbservice.entity.UsersEntity"/>
+      <mapping class="org.test.dbservice.entity.UsersEntity"/>
     <mapping class="org.test.dbservice.entity.CoursesEntity"/>
     <mapping class="org.test.dbservice.entity.LessonsEntity"/>
     <mapping class="org.test.dbservice.entity.FilesEntity"/>
     <mapping class="org.test.dbservice.entity.TransactionEntity"/>
-    <!-- DB schema will be updated if needed -->
+      <mapping class="org.test.dbservice.entity.FriendsEntity"/>
+      <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>
 </hibernate-configuration>
