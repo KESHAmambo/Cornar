@@ -13458,7 +13458,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-image-profileBoxImage {
-	background: url("images/man_chat.jpg");
+	background: url("images/man_friend.jpg");
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -13472,13 +13472,13 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .v-button-profileBoxWriteMessageButton {
 	border-radius: 40px;
-	color: #01747f;
+	color: #91ccd2;
 	font-size: 2em;
 	-webkit-transition-duration: 0.8s;
 	transition-duration: 0.8s;
 }
 
 .mytheme .v-button-profileBoxWriteMessageButton:hover {
-	background: #01747f;
+	background: #91ccd2;
 	color: #fafeff;
 }

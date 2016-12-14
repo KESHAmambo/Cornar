@@ -124,5 +124,10 @@ public class DummyDatabaseService implements DatabaseService {
 
     }
 
+    @Override
+    public void addToFriends(int userId, String friendEmail) {
+
+    }
+
 
 }

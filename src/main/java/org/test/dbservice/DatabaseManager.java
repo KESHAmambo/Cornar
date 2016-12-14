@@ -97,4 +97,11 @@ public class DatabaseManager {
     public static void saveFile(String filename, int ownerId) {
         service.saveFile(filename, ownerId);
     }
+
+    public static void addToFriends(int userId, String friendEmail) {
+        service.addToFriends(userId, friendEmail);
+    }
+    public static List<Profile> getAllFriendOfUser(int user_id){
+        return service.getAllFriendOfUser(user_id);
+    }
 }

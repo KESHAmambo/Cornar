@@ -14,11 +14,11 @@ public class FriendsPageImpl extends FriendsPage implements View {
     public FriendsPageImpl() {
         controller = new FriendsPageController(this);
 
-        controller.fulfillPage();
     }
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
-
+        mainLayout.removeAllComponents();
+        controller.fulfillPage();
     }
 }

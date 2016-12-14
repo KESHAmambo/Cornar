@@ -55,4 +55,19 @@ public class FriendsDaoImp extends AbstractServiceSession implements FriendsDao 
         shutdownCurrentSession();
         return friends;
     }
+    public void addNewFriends(int userId, int friendId){
+        Session session = openCurrentSessionWithTransaction();
+        FriendsEntity firstFriendLink = new FriendsEntity();
+        firstFriendLink.setUserId(userId);
+        firstFriendLink.setFriendId(friendId);
+        FriendsEntity secondFriendLink = new FriendsEntity();
+        secondFriendLink.setUserId(friendId);
+        secondFriendLink.setFriendId(userId);
+        session.save(firstFriendLink);
+        getCurrentTransaction().commit();
+        session = openTransaction(session);
+        session.save(secondFriendLink);
+        getCurrentTransaction().commit();
+        session.close();
+    }
 }

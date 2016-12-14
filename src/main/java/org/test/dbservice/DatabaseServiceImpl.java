@@ -67,7 +67,8 @@ public class DatabaseServiceImpl implements DatabaseService {
         profile = fillProfile(profile, user);
     }
 
-    private List<Profile> getAllFriendOfUser(int user_id){
+    @Override
+    public List<Profile> getAllFriendOfUser(int user_id){
         FriendsDao friendsDao = new FriendsDaoImp();
         List<Profile> friends = new ArrayList<>();
         loggerDB.log(Level.INFO, "find friend of "+ user_id);
@@ -284,5 +285,13 @@ public class DatabaseServiceImpl implements DatabaseService {
         }
         else
            loggerDB.log(Level.SEVERE, null, "Your data is cracked");
+    }
+
+    public void addToFriends(int userId, String friendEmail){
+        UserDao userDao = new UserDaoImpl();
+        int friendId = userDao.getIdByEmail(friendEmail);
+        FriendsDao friendsDao = new FriendsDaoImp();
+        friendsDao.addNewFriends(userId, friendId);
+        loggerDB.log(Level.INFO, null, "Friends " + friendId + " " + userId + "has been added");
     }
 }

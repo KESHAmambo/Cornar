@@ -14,6 +14,10 @@ abstract class AbstractServiceSession  {
     private Session currentSession;
     private Transaction currentTransaction;
 
+    public Transaction getCurrentTransaction() {
+        return currentTransaction;
+    }
+
     public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
@@ -41,6 +45,7 @@ abstract class AbstractServiceSession  {
     public void shutdownCurrentSession() {
         currentTransaction.commit();
     }
+
     public void shutdownAbsoluteleyCurrentSession() {
         currentTransaction.commit();
         currentSession.close();

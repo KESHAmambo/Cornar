@@ -749,5 +749,53 @@ $v-border-radius: 0px;
     color: #fafeff;
   }
 
+  //--------- Adding Friends In Search page----------------------------------------
+
+  .v-grid-cell > .v-nativebutton {
+    width: 100%;
+    height: 100%;
+    color: blue;
+    background: lightblue;
+  }
+
+  .search-results {
+      .v-grid-tablewrapper,
+      .v-grid-cell,
+      .v-grid-scroller {
+        border: none;
+      }
+      .v-grid-row {
+        overflow: hidden;
+      }
+
+      .v-grid-cell {
+        position: relative;
+      }
+
+      .v-nativebutton {
+        background: #fff;
+        color: black;
+        width: 100%;
+        height: 100%;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        line-height: 1em;
+        width: 1.5em;
+        font-weight: bold;
+        font-size: 15px;
+      }
+    }
+
+  .add_friend{
+    background: lightblue;
+    .v-button{
+      margin-left: 30%;
+      margin-right: 30%;
+      background: #569095;
+    }
+  }
+  .adding_button{
+    margin-left: 20%;
+  }
+
   // Insert your own theme rules here
 }

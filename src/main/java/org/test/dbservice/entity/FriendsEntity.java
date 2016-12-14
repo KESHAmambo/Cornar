@@ -8,11 +8,12 @@ import javax.persistence.*;
 @Entity
 @Table(name = "friends", schema = "project_cornar", catalog = "cornar")
 public class FriendsEntity {
+
     private int num;
     private int user_id;
     private int friend_id;
-
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "num", nullable = false)
     public int getNum() {
         return num;

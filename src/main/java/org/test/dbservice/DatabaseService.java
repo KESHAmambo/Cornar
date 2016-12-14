@@ -49,4 +49,8 @@ public interface DatabaseService {
 
 
     void saveFile(String filename, int ownerId);
+
+    void addToFriends(int userId, String friendEmail);
+
+    List<Profile> getAllFriendOfUser(int user_id);
 }

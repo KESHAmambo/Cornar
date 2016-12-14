@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface FriendsDao extends DAO<FriendsEntity> {
     List<FriendsEntity> getAllFriendBy(int user_id);
+
+    void addNewFriends(int userId, int friendId);
 }

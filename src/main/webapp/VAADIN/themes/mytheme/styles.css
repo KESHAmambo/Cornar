@@ -13482,3 +13482,48 @@ div.v-layout.v-horizontal.v-widget {
 	background: #91ccd2;
 	color: #fafeff;
 }
+
+.mytheme .v-grid-cell > .v-nativebutton {
+	width: 100%;
+	height: 100%;
+	color: blue;
+	background: lightblue;
+}
+
+.mytheme .search-results .v-grid-tablewrapper, .mytheme .search-results .v-grid-cell, .mytheme .search-results .v-grid-scroller {
+	border: none;
+}
+
+.mytheme .search-results .v-grid-row {
+	overflow: hidden;
+}
+
+.mytheme .search-results .v-grid-cell {
+	position: relative;
+}
+
+.mytheme .search-results .v-nativebutton {
+	background: #fff;
+	color: black;
+	width: 100%;
+	height: 100%;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	line-height: 1em;
+	width: 1.5em;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.mytheme .add_friend {
+	background: lightblue;
+}
+
+.mytheme .add_friend .v-button {
+	margin-left: 30%;
+	margin-right: 30%;
+	background: #569095;
+}
+
+.mytheme .adding_button {
+	margin-left: 20%;
+}
