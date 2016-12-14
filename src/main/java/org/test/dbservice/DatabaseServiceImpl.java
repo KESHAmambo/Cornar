@@ -91,6 +91,12 @@ public class DatabaseServiceImpl implements DatabaseService {
         return friends;
     }
 
+    @Override
+    public byte[] getFileByName(String docName, int ownerId) {
+        FilesDao filesDao = new FilesDaoImpl();
+        return filesDao.getFileByNameToOwner(docName,ownerId);
+    }
+
     private Profile fillProfile(Profile profile, UsersEntity user) {
         profile.setName(user.getFirstName());
         profile.setSurname(user.getLastName());

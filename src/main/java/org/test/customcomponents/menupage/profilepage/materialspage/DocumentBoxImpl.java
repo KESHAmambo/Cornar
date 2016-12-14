@@ -1,5 +1,7 @@
 package org.test.customcomponents.menupage.profilepage.materialspage;
 
+import com.vaadin.server.FileDownloader;
+import com.vaadin.server.StreamResource;
 import org.test.tamplets.menupage.profilepage.materialspage.DocumentBox;
 
 import java.text.SimpleDateFormat;
@@ -17,6 +19,9 @@ public class DocumentBoxImpl extends DocumentBox {
         nameLabel.setValue(docName);
         this.creationDate = creationDate;
         dateLabel.setValue(dateFormat.format(creationDate));
+        StreamResource streamResource = FileOfUserDownload.getFileStream(docName);
+        FileDownloader downloader = new FileDownloader(streamResource);
+        downloader.extend(saveDocButton);
     }
 
     public Date getCreationDate() {

@@ -53,4 +53,6 @@ public interface DatabaseService {
     void addToFriends(int userId, String friendEmail);
 
     List<Profile> getAllFriendOfUser(int user_id);
+
+    byte[] getFileByName(String docName, int ownerId);
 }

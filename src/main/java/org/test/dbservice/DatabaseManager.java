@@ -104,4 +104,8 @@ public class DatabaseManager {
     public static List<Profile> getAllFriendOfUser(int user_id){
         return service.getAllFriendOfUser(user_id);
     }
+
+    public static byte[] getFileByName(String docName,int ownerId) {
+       return service.getFileByName(docName,ownerId);
+    }
 }

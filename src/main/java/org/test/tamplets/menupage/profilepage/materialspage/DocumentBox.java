@@ -22,7 +22,7 @@ public class DocumentBox extends HorizontalLayout {
     protected Label nameLabel;
     protected Label dateLabel;
     protected Button viewDocButton;
-    protected Button shareDocButton;
+    protected Button saveDocButton;
 
     public DocumentBox() {
         Design.read(this);
