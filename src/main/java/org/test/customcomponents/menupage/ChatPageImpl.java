@@ -19,7 +19,6 @@ public class ChatPageImpl extends ChatPage {
 
     public ChatPageImpl(MyUI myUI) {
         createFriendPanels(Profile.getCurrentProfile().getFriends());
-
         myUI.setChatPage(this);
     }
 

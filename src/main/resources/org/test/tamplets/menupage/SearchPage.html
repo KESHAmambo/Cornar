@@ -12,13 +12,12 @@
      <vaadin-combo-box input-prompt="" _id="searchParametrBox"> 
       <option>name</option> 
       <option>surname</option> 
-      <option>course</option> 
      </vaadin-combo-box> 
      <vaadin-button icon="fonticon://FontAwesome/f002" style-name="borderless searchButton searchIcon" plain-text _id="searchButton" :middle>
        Search 
      </vaadin-button> 
     </vaadin-horizontal-layout> 
-    <vaadin-grid immediate size-full _id="searchTable" :bottom :center :expand> 
+    <vaadin-grid visible="false" immediate size-full _id="searchTable" :bottom :center :expand> 
      <table> 
       <colgroup> 
        <col property-id="User Name" sortable> 

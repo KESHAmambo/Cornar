@@ -788,13 +788,17 @@ $v-border-radius: 0px;
   .add_friend{
     background: lightblue;
     .v-button{
-      margin-left: 30%;
-      margin-right: 30%;
       background: #569095;
+    }
+    .v-label-stylename {
+      font-size: 24px;
+      line-height: normal;
     }
   }
   .adding_button{
-    margin-left: 20%;
+    .v-button {
+      font-size: 124px;
+    }
   }
 
   // Insert your own theme rules here

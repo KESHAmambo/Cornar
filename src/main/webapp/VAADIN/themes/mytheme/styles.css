@@ -13519,11 +13519,14 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .add_friend .v-button {
-	margin-left: 30%;
-	margin-right: 30%;
 	background: #569095;
 }
 
-.mytheme .adding_button {
-	margin-left: 20%;
+.mytheme .add_friend .v-label-stylename {
+	font-size: 24px;
+	line-height: normal;
+}
+
+.mytheme .adding_button .v-button {
+	font-size: 124px;
 }

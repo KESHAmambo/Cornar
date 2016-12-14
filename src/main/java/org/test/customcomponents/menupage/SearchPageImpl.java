@@ -8,6 +8,7 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
 import com.vaadin.ui.renderers.ButtonRenderer;
 import org.hibernate.SQLQuery;
+import org.test.customcomponents.menupage.searchpage.addToFriendBoxImpl;
 import org.test.dbservice.DatabaseManager;
 import org.test.logic.Profile;
 import org.test.tamplets.menupage.SearchPage;
@@ -22,6 +23,7 @@ import java.util.List;
 public class SearchPageImpl extends SearchPage implements View {
     List<Profile> profilesList;
     String valueOfBox;
+    private final addToFriendBoxImpl addToFriend;
     public SearchPageImpl() {
         searchTable.setStyleName("search-results",true);
         searchButton.addClickListener(new Button.ClickListener() {
@@ -31,6 +33,7 @@ public class SearchPageImpl extends SearchPage implements View {
                 updateTableOfSearchResult(profilesList);
             }
         });
+        addToFriend = new addToFriendBoxImpl();
     }
     public List<Profile> getSearchResult(String searchField){
         valueOfBox = (String) searchParametrBox.getValue();
@@ -61,7 +64,7 @@ public class SearchPageImpl extends SearchPage implements View {
 //                searchTable.addRow(user.getSurname(), user.getEmail());
 //            }
 //        }
-        searchTable.setVisible(true); // visible all time todo false in default
+        searchTable.setVisible(true); // visible all time
         searchTable.setSelectionMode(Grid.SelectionMode.SINGLE);
         searchTable.addSelectionListener(new SelectionEvent.SelectionListener() {
 
@@ -75,26 +78,29 @@ public class SearchPageImpl extends SearchPage implements View {
 
     //TODO add style
     public Window customizewindowToAdd(Window windowToAdd){
-        VerticalLayout content = new VerticalLayout();
-        content.setWidth("100%");
-        content.setHeight("100%");
-        content.addComponentAsFirst(new Label("Do you want to add this person?"));
-        HorizontalLayout buttonsLayout = new HorizontalLayout();
-        HorizontalLayout layoutAdd = new HorizontalLayout();
-        HorizontalLayout layoutDecline = new HorizontalLayout();
-        Button addButton = new Button("Add to friend");
-        Button decline = new Button("Decline");
-        createListenersToAddButton(addButton, windowToAdd);
-        createListenersToDeclineButton(decline, windowToAdd);
-        //content.setSpacing(true);
-        layoutAdd.addComponent(addButton);
-        layoutDecline.addComponent(decline);
-        buttonsLayout.addComponent(layoutAdd);
-        buttonsLayout.addComponent(layoutDecline);
-        buttonsLayout.addStyleName("adding_button");
-        content.addComponent(buttonsLayout);
-        content.addStyleName("add_friend");
-        windowToAdd.setContent(content);
+//        addToFriend
+//        VerticalLayout content = new VerticalLayout();
+//        content.setWidth("100%");
+//        content.setHeight("100%");
+//        content.addComponentAsFirst(new Label("Do you want to add this person?"));
+//        HorizontalLayout buttonsLayout = new HorizontalLayout();
+//        HorizontalLayout layoutAdd = new HorizontalLayout();
+//        HorizontalLayout layoutDecline = new HorizontalLayout();
+//        Button addButton = new Button("Add to friend");
+//        Button decline = new Button("Decline");
+//        createListenersToAddButton(addButton, windowToAdd);
+//        createListenersToDeclineButton(decline, windowToAdd);
+//        //content.setSpacing(true);
+//        layoutAdd.addComponent(addButton);
+//        layoutDecline.addComponent(decline);
+//        buttonsLayout.addComponent(layoutAdd);
+//        buttonsLayout.addComponent(layoutDecline);
+//        buttonsLayout.addStyleName("adding_button");
+//        content.addComponent(buttonsLayout);
+//        content.addStyleName("add_friend");
+        createListenersToAddButton(addToFriend.getAddButton(), windowToAdd);
+        createListenersToDeclineButton(addToFriend.getDeclineButton(), windowToAdd);
+        windowToAdd.setContent(addToFriend);
         windowToAdd.setClosable(false);
         //windowToAdd.setDraggable(false);
         windowToAdd.setResizable(false);

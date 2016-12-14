@@ -98,7 +98,7 @@ public class DatabaseServiceImpl implements DatabaseService {
         profile.setEducation(user.getPersonDescription());
         profile.setBirthDate(user.getBirthDate());
         profile.setId(user.getUserId());
-        profile.setFriends(getAllFriendOfUser(user.getUserId()));
+        profile.setFriends(     getAllFriendOfUser(user.getUserId()));
         loggerDB.log(Level.SEVERE, profile.toString());
         return profile;
     }
