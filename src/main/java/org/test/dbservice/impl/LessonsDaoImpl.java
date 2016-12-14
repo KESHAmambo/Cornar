@@ -48,10 +48,16 @@ public class LessonsDaoImpl extends AbstractServiceSession implements LessonsDao
 
     //TODO  simplify this
     public Lesson fillLessonInfoById(int id){
+        System.out.println("lesson id " + id);
         LessonsEntity lessonsEntity;
         Session session;
         session = openCurrentSession();
         lessonsEntity = (LessonsEntity) session.get(LessonsEntity.class, id);
+        System.out.println(lessonsEntity.getLessonId() + " " + lessonsEntity.getLessonName());
+        Lesson dummyLesson = new Lesson();
+        dummyLesson.setId(-1);
+        if (lessonsEntity == null)
+            return dummyLesson;
         CoursesEntity coursesEntity = lessonsEntity.getCourse();
         UsersEntity user = coursesEntity.getUser();
         Profile tutorProfile = new Profile();
@@ -69,6 +75,7 @@ public class LessonsDaoImpl extends AbstractServiceSession implements LessonsDao
         lesson.setCourse(course);
         return lesson;
     }
+
     @Override
     public void update(LessonsEntity entity) {
 

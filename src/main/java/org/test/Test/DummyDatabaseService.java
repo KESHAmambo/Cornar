@@ -129,5 +129,15 @@ public class DummyDatabaseService implements DatabaseService {
 
     }
 
+    @Override
+    public List<Profile> getAllFriendOfUser(int user_id) {
+        return null;
+    }
+
+    @Override
+    public byte[] getFileByName(String docName, int ownerId) {
+        return new byte[0];
+    }
+
 
 }
