@@ -5,10 +5,16 @@
   <meta charset="UTF-8" name="vaadin-version" content="7.7.0">
  </head> 
  <body> 
-  <vaadin-vertical-layout size-full> 
-   <vaadin-label size-auto plain-text _id="tempLabel">
-     Class 
-   </vaadin-label> 
+  <vaadin-vertical-layout size-full margin> 
+   <vaadin-vertical-layout spacing size-full _id="mainLayout"> 
+    <vaadin-vertical-layout :middle :center> 
+     <vaadin-label style-name="classNoLessonLabel" size-auto plain-text _id="noLessonLabel" :middle :center>
+       Relax! Your next lesson is on 
+     </vaadin-label> 
+     <vaadin-label style-name="classNoLessonLabel" size-auto plain-text _id="nextLessonTimeLabel" :middle :center></vaadin-label> 
+     <vaadin-vertical-layout style-name="classNoLessonImageLayout" width="200px" height="200px" :middle :center></vaadin-vertical-layout> 
+    </vaadin-vertical-layout> 
+   </vaadin-vertical-layout> 
   </vaadin-vertical-layout>  
  </body>
 </html>

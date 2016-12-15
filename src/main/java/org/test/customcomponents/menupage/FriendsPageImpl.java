@@ -26,7 +26,7 @@ public class FriendsPageImpl extends FriendsPage implements View {
 
     }
 
-    public void addNewFriendBox(Profile profile) {
+    public void addFriendBox(Profile profile) {
         controller.addFriendBox(profile);
     }
 }

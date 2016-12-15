@@ -86,7 +86,7 @@ public class MenuPageImpl extends MenuPage implements View {
         menuButtonsNavigator.addView(MENU + "/" + SEARCH,
                 new SearchPageImpl());
         menuButtonsNavigator.addView(MENU + "/" + CLASS,
-                new ClassPageImpl());
+                new ClassPageImpl(myUI));
         menuButtonsNavigator.addView(MENU + "/" + TASKS,
                 new TasksPageImpl());
 

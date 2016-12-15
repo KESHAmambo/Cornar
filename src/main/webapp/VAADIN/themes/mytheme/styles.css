@@ -13585,3 +13585,35 @@ div.v-layout.v-horizontal.v-widget {
 	background: #91ccd2;
 	color: #fafeff;
 }
+
+.mytheme .v-label-classNoLessonLabel {
+	font-size: 2.5em;
+	color: #91DC5A;
+}
+
+.mytheme .v-verticallayout-classNoLessonImageLayout {
+	background: url("images/relax.png");
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.mytheme .v-verticallayout-studentClassPageLayout {
+	border: 3px solid rgba(181, 181, 181, 0.72);
+}
+
+.mytheme .v-verticallayout-classBoardMessageLayout {
+	background: #edf2f9;
+	-webkit-border-radius: 20px 5px 20px 20px;
+	-moz-border-radius: 20px 20px 20px 20px;
+	border-radius: 20px 20px 20px 20px;
+	-webkit-box-shadow: 3px 3px 3px grey;
+	-moz-box-shadow: 3px 3px 3px grey;
+	box-shadow: 3px 3px 3px grey;
+	padding: 15px;
+}
+
+.mytheme .v-label-classBoardMessageLabel {
+	font-size: 1.4em;
+}

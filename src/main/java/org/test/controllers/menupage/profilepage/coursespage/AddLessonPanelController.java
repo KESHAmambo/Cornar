@@ -52,7 +52,6 @@ public class AddLessonPanelController {
             } else {
                 Lesson newLesson = DatabaseManager.addNewLesson(
                         course, lessonName, Long.parseLong(costStr), startDate, endDate);
-                course.getLessons().add(newLesson);
                 Logger.getLogger(Course.class.getName()).log(Level.INFO, "added lesson" + course.getLessons());
                 cleanPanelElements(lessonNameTextField, costTextField);
                 UIHelper.showSuccessNotification(
