@@ -44,9 +44,10 @@ public class DatabaseManager {
         return service.doesUserExist(email, password);
     }
 
-    public static void fulfillProfile(Profile profile, String userEmail) {
-        service.fulfillProfile(profile,userEmail);
+    public static boolean doesUserExist(String email) {
+        return service.doesUserExist(email);
     }
+
     public static List<Profile>  getAllUsersWithNameLike(String firstName) {
         return service.getAllUsersWithNameLike(firstName);
     }
@@ -93,10 +94,6 @@ public class DatabaseManager {
         service.assignProfileToLesson(lesson, profile);
     }
 
-    public static void saveFile(String filename, int ownerId) {
-        service.saveFile(filename, ownerId);
-    }
-
     public static void addToFriends(int userId, String friendEmail) {
         service.addToFriends(userId, friendEmail);
     }
@@ -104,7 +101,14 @@ public class DatabaseManager {
         return service.getAllFriendOfUser(user_id);
     }
 
-    public static byte[] getFileByName(String docName,int ownerId) {
+    public static void saveFile(String filename, int ownerId) {
+        service.saveFile(filename, ownerId);
+    }
+    public static void saveImage(int userId, File image){
+        service.saveUserImage(userId, image);
+    }
+
+    public static byte[] getFileDataByName(String docName,int ownerId) {
        return service.getFileByName(docName,ownerId);
     }
 

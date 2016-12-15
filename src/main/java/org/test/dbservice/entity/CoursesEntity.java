@@ -16,7 +16,7 @@ public class CoursesEntity {
     private String courseDescription;
     private UsersEntity user;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL )
+    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL )
     @JoinColumn(name = "user_id")
     public UsersEntity getUser(){
         return user;

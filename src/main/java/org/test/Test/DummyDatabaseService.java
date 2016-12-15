@@ -10,6 +10,7 @@ import org.test.logic.Lesson;
 import org.test.logic.Profile;
 import org.test.tamplets.menupage.profilepage.materialspage.DocumentBox;
 
+import java.io.File;
 import java.util.*;
 
 /**
@@ -143,6 +144,16 @@ public class DummyDatabaseService implements DatabaseService {
     @Override
     public byte[] getFileByName(String docName, int ownerId) {
         return new byte[0];
+    }
+
+    @Override
+    public Profile fullFillProfile(String userEmail) {
+        return null;
+    }
+
+    @Override
+    public void saveUserImage(int userId, File image) {
+
     }
 
 

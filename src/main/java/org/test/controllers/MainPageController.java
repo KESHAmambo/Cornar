@@ -42,11 +42,10 @@ public class MainPageController {
         signInButton.addClickListener(e -> {
             String userEmail = signPanel.getUserEmail();
             String userPassword = signPanel.getUserPassword();
+            signOutPreviousProfile();
             if(DatabaseManager.doesUserExist(userEmail, userPassword)) {
                 Logger.getLogger(MainPageController.class.getName()).log(Level.INFO,"user exist");
-                signOutPreviousProfile();
                 signInNewProfile(userEmail);
-                System.out.println(Profile.getCurrentProfile());
                 navigateToMenuPageInAllUIs(VaadinSession.getCurrent().getUIs());
                 Logger.getLogger(MainPageController.class.getName()).log(Level.INFO,"user has signed in system");
             } else {
@@ -97,7 +96,8 @@ public class MainPageController {
             String userPassword = signUpPanel.readPassword();
             String userEducation = signUpPanel.readEducation();
             Date userBirthDate = signUpPanel.readBirthDate();
-
+            if (userEmail == null || userPassword == null)
+                return;
             int signUpResult = DatabaseManager.signUpUser(
                     userName, userSurname, userEmail,
                     userBirthDate, userPassword, userEducation);

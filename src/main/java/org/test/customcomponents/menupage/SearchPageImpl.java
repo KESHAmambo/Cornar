@@ -1,20 +1,16 @@
 package org.test.customcomponents.menupage;
 
 import com.vaadin.data.Container;
-import com.vaadin.data.Property;
 import com.vaadin.event.SelectionEvent;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
-import com.vaadin.ui.renderers.ButtonRenderer;
-import org.hibernate.SQLQuery;
 import org.test.customcomponents.menupage.searchpage.addToFriendBoxImpl;
 import org.test.dbservice.DatabaseManager;
 import org.test.logic.Profile;
 import org.test.tamplets.menupage.SearchPage;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -23,7 +19,7 @@ import java.util.List;
 public class SearchPageImpl extends SearchPage implements View {
     List<Profile> profilesList;
     String valueOfBox;
-    private final addToFriendBoxImpl addToFriend;
+    private final addToFriendBoxImpl addToFriendBox;
     public SearchPageImpl() {
         searchTable.setStyleName("search-results",true);
         searchButton.addClickListener(new Button.ClickListener() {
@@ -33,7 +29,7 @@ public class SearchPageImpl extends SearchPage implements View {
                 updateTableOfSearchResult(profilesList);
             }
         });
-        addToFriend = new addToFriendBoxImpl();
+        addToFriendBox = new addToFriendBoxImpl();
     }
     public List<Profile> getSearchResult(String searchField){
         valueOfBox = (String) searchParametrBox.getValue();
@@ -77,14 +73,13 @@ public class SearchPageImpl extends SearchPage implements View {
     }
 
     public Window customizeWindowToAdd(Window windowToAdd){
-        createListenersToAddButton(addToFriend.getAddButton(), windowToAdd);
-        createListenersToDeclineButton(addToFriend.getDeclineButton(), windowToAdd);
-        windowToAdd.setContent(addToFriend);
+        createListenersToAddButton(addToFriendBox.getAddButton(), windowToAdd);
+        createListenersToDeclineButton(addToFriendBox.getDeclineButton(), windowToAdd);
+        windowToAdd.setContent(addToFriendBox);
         windowToAdd.setClosable(false);
-        //windowToAdd.setDraggable(false);
         windowToAdd.setResizable(false);
         windowToAdd.center();
-        //windowToAdd.setModal(true);
+        windowToAdd.setModal(true);
         windowToAdd.setWidth("30%");
         windowToAdd.setHeight("20%");
         return windowToAdd;

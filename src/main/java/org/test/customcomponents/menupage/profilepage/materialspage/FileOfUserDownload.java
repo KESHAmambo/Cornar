@@ -17,7 +17,7 @@ public class FileOfUserDownload {
         StreamResource.StreamSource source = new StreamResource.StreamSource() {
 
             public InputStream getStream() {
-                byte[] fileData = DatabaseManager.getFileByName(docName, Profile.getCurrentProfile().getId());
+                byte[] fileData = DatabaseManager.getFileDataByName(docName, Profile.getCurrentProfile().getId());
                 InputStream input = new ByteArrayInputStream(fileData);
                 return input;
             }

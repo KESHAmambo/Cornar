@@ -17,4 +17,6 @@ public interface UserDao extends DAO<UsersEntity> {
     List<UsersEntity> searchUserBySurname(String firstName);
 
     int getIdByEmail(String friendEmail);
+
+    UsersEntity getByEmailForCheck(String email);
 }

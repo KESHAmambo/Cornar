@@ -24,7 +24,6 @@ public class LessonsDaoImpl extends AbstractServiceSession implements LessonsDao
         Session session;
         session = openCurrentSessionWithTransaction();
         int count = (int) session.save(entity);
-        shutdownCurrentSession();
         return 0;
     }
 
@@ -42,13 +41,11 @@ public class LessonsDaoImpl extends AbstractServiceSession implements LessonsDao
         Session session;
         session = openCurrentSession();
         entityById = (LessonsEntity) session.get(LessonsEntity.class, id);
-        shutdownCurrentSession();
         return entityById;
     }
 
     //TODO  simplify this
     public Lesson fillLessonInfoById(int id){
-        System.out.println("lesson id " + id);
         LessonsEntity lessonsEntity;
         Session session;
         session = openCurrentSession();
@@ -73,6 +70,7 @@ public class LessonsDaoImpl extends AbstractServiceSession implements LessonsDao
         lesson.setStartDate(lessonsEntity.getStartDate());
         lesson.setEndDate(lessonsEntity.getFinalDate());
         lesson.setCourse(course);
+        getCurrentSession().close();
         return lesson;
     }
 
@@ -122,5 +120,17 @@ public class LessonsDaoImpl extends AbstractServiceSession implements LessonsDao
         lesson.setFinalDate(new java.sql.Timestamp(finalDate.getTime()));
         lesson.setPrice(price);
         create(lesson);
+        getCurrentSession().close();
+    }
+
+
+    public List<LessonsEntity> getAllTutorLesson(int tutorId){
+        Session session = openCurrentSessionWithTransaction();
+        Query query = session.createQuery("from LessonsEntity where course.user.userId = :Tutor");
+        query.setParameter("Tutor", tutorId);
+        List<LessonsEntity> lessons = query.list();
+        shutdownCurrentSession();
+        getCurrentSession().close();
+        return lessons;
     }
 }

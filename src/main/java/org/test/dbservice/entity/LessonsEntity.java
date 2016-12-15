@@ -72,7 +72,7 @@ public class LessonsEntity {
     }
 
     @JoinColumn(name = "course_id",insertable=false, updatable=false)
-    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     public CoursesEntity getCourse() {
         return course;
     }
