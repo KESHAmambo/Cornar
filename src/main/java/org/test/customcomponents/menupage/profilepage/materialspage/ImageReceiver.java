@@ -6,6 +6,9 @@ import com.vaadin.ui.Image;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Upload;
 import com.vaadin.ui.Window;
+import org.test.dbservice.DatabaseManager;
+import org.test.logic.Profile;
+import org.test.utils.UIHelper;
 
 import java.io.*;
 
@@ -49,7 +52,6 @@ public class ImageReceiver implements Upload.Receiver,
             Notification.show("Image doesn't exist");
             return null;
         }
-        //image.setSource(new FileResource(imageToUpload));
         return fileOutputStream;
     }
 
@@ -57,6 +59,10 @@ public class ImageReceiver implements Upload.Receiver,
     public void uploadSucceeded(Upload.SucceededEvent event) {
         image.setVisible(true);
         image.setSource(new FileResource(imageToUpload));
+        DatabaseManager.saveImage(Profile.getCurrentProfile().getId(), imageToUpload);
+        //TODO update profile image
+        Profile.getCurrentProfile().setImageResource(imageToUpload);
         image.markAsDirty();
+        UIHelper.showSuccessNotification("Image  has uploaded", "addedCourseNotification");
     }
 }

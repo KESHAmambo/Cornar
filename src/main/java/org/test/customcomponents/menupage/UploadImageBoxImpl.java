@@ -25,7 +25,6 @@ public class UploadImageBoxImpl extends UploadImageBox {
     public UploadImageBoxImpl(Window window) {
         controller = new UploadImageBoxController(this);
         this.window = window;
-        //TODO imageReceiver
         ImageReceiver receiver = new ImageReceiver();
         image.setVisible(false);
         receiver.setImage(image);

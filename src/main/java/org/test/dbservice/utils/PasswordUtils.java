@@ -40,14 +40,10 @@ public class PasswordUtils {
         }
     }
 
-    public static boolean isExpectedPassword(char[] password, byte[] expectedHash) {
-        byte[] passwordWithHash = hash(password);
-        Arrays.fill(password, Character.MIN_VALUE);
-        if (passwordWithHash.length != expectedHash.length) return false;
-        for (int i = 0; i < passwordWithHash.length; i++) {
-            if (passwordWithHash[i] != expectedHash[i]) return false;
-        }
-        return true;
+    public static boolean isExpectedPassword(String checkingPassword, String expectedHash) {
+        if (checkingPassword.equals(expectedHash))
+            return true;
+        return false;
     }
 
     public static String generateRandomPassword(int length) {

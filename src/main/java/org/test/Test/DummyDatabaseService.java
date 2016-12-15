@@ -7,7 +7,9 @@ import org.test.logic.Course;
 import org.test.logic.InboxMessage;
 import org.test.logic.Lesson;
 import org.test.logic.Profile;
+import org.test.tamplets.menupage.profilepage.materialspage.DocumentBox;
 
+import java.io.File;
 import java.util.*;
 
 /**
@@ -32,6 +34,18 @@ public class DummyDatabaseService implements DatabaseService {
     @Override
     public Profile fulfillProfile(String userEmail) {
         return DummyDatabase.getProfile(userEmail);
+        /*return DummyDatabase.getProfile(userEmail);
+        DummyUser user = DummyDatabase.getUserByEmail(userEmail);
+        if(user != null) {
+            profile.setId(user.getId());
+            profile.setName(user.getName());
+            profile.setSurname(user.getSurname());
+            profile.setBirthDate(user.getBirthDate());
+            profile.setEducation(user.getEducation());
+            profile.setEmail(user.getEmail());
+            profile.setImage(user.getImage());
+            profile.setFriends(user.getFriends());
+        }*/
     }
 
     @Override
@@ -79,6 +93,7 @@ public class DummyDatabaseService implements DatabaseService {
     @Override
     public Lesson addNewLesson(Lesson lesson) {
         return DummyDatabase.addNewLesson(lesson);
+        //TODO
     }
 
     @Override
@@ -125,4 +140,16 @@ public class DummyDatabaseService implements DatabaseService {
     public byte[] getFileByName(String docName, int ownerId) {
         return new byte[0];
     }
+
+    @Override
+    public Profile fullFillProfile(String userEmail) {
+        return null;
+    }
+
+    @Override
+    public void saveUserImage(int userId, File image) {
+
+    }
+
+
 }

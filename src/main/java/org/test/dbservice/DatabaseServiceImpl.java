@@ -1,13 +1,9 @@
 package org.test.dbservice;
 
-import com.vaadin.data.util.filter.Compare;
-import com.vaadin.ui.Notification;
-import org.test.controllers.MainPageController;
 import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
 import org.test.dbservice.dao.*;
 import org.test.dbservice.entity.*;
 import org.test.dbservice.impl.*;
-import org.test.dbservice.utils.PasswordUtils;
 import org.test.logic.Course;
 import org.test.logic.InboxMessage;
 import org.test.logic.Lesson;
@@ -16,6 +12,8 @@ import org.test.logic.Profile;
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,15 +27,19 @@ public class DatabaseServiceImpl implements DatabaseService {
     public int signUpUser(String firstName, String surname, String email, Date birthDate, String password, String education) {
         int unsuccessOfAddingUser = 1;
         UserDao userDao = new UserDaoImpl();
-        if (doesUserExist(email, password) == true)
+        if (doesUserExist(email) == true)
             return unsuccessOfAddingUser;
         UsersEntity user = new UsersEntity();
         user.setFirstName(firstName);
         user.setLastName(surname);
         user.setEmail(email);
         user.setPassword(password);
-        if (birthDate != null)
-            user.setBirthDate(new java.sql.Date(birthDate.getTime()));
+        System.out.println("password");
+        System.out.println(password);
+        if (birthDate == null) {
+             birthDate = new Date();
+        }
+        user.setBirthDate(new java.sql.Date(birthDate.getTime()));
         user.setPersonDescription(education);
         unsuccessOfAddingUser = userDao.create(user);
         return unsuccessOfAddingUser;
@@ -60,7 +62,24 @@ public class DatabaseServiceImpl implements DatabaseService {
         UsersEntity user = getUser(email, password);
         return user != null;
     }
+    @Override
+    public boolean doesUserExist(String email) {
+        UsersEntity user = getUser(email);
+        return user != null;
+    }
 
+    private UsersEntity getUser(String email) {
+        UserDao userDao = new UserDaoImpl();
+        UsersEntity user = userDao.getByEmailForCheck(email);
+        loggerDB.log(Level.INFO, user.getEmail());
+        if (user.getUserId() != -1) {
+            return user;
+        } else {
+            return null;
+        }    }
+
+
+    @Override
     public void fulfillProfile(Profile profile, String userEmail) {
         UsersEntity user = new UserDaoImpl().getUserByEmail(userEmail);
         profile = fillProfile(profile, user);
@@ -84,8 +103,11 @@ public class DatabaseServiceImpl implements DatabaseService {
             friend.setBirthDate(newFriend.getBirthDate());
             friend.setId(newFriend.getUserId());
             friend.setEducation(newFriend.getPersonDescription());
+            ImageDao imageDao = new ImageDaoImpl();
+            File image = imageDao.getImageByUserId(friend.getId());
+            if (image != null)
+                friend.setImageResource(image);
             friends.add(friend);
-            //TODO setting image from another table
         }
         return friends;
     }
@@ -96,6 +118,14 @@ public class DatabaseServiceImpl implements DatabaseService {
         return filesDao.getFileByNameToOwner(docName,ownerId);
     }
 
+    private Profile fillDataToProfile(Profile profile, UsersEntity user){
+        profile.setName(user.getFirstName());
+        profile.setSurname(user.getLastName());
+        profile.setEmail(user.getEmail());
+        profile.setId(user.getUserId());
+        return profile;
+    }
+
     private Profile fillProfile(Profile profile, UsersEntity user) {
         profile.setName(user.getFirstName());
         profile.setSurname(user.getLastName());
@@ -103,7 +133,10 @@ public class DatabaseServiceImpl implements DatabaseService {
         profile.setEducation(user.getPersonDescription());
         profile.setBirthDate(user.getBirthDate());
         profile.setId(user.getUserId());
-        //profile.setImageResource();
+        ImageDao imageDao = new ImageDaoImpl();
+        File image = imageDao.getImageByUserId(user.getUserId());
+        if (image != null)
+            profile.setImageResource(image);
         profile.setFriends(getAllFriendOfUser(user.getUserId()));
         loggerDB.log(Level.SEVERE, profile.toString());
         return profile;
@@ -162,7 +195,7 @@ public class DatabaseServiceImpl implements DatabaseService {
             course.setId(entity.getCourseId());
             List<Lesson> lessons = pullAllCourseLessons(course);
             if (lessons != null) {
-                Set<Lesson> setLessons = new HashSet<>(lessons);
+                Set<Lesson> setLessons = new LinkedHashSet<>(lessons);
                 course.setLessons(setLessons);
             }
             courses.add(course);
@@ -190,9 +223,21 @@ public class DatabaseServiceImpl implements DatabaseService {
     }
 
     @Override
-    public List<InboxMessage> pullInboxMessages(Profile profile) {
-        //TODO
-        return null;
+    public List<InboxMessage> pullInboxMessages(Profile receiver) {
+        List<InboxEntity> messageEntities = new InboxDaoImpl().getMessagesToUser(receiver.getId());
+        List<InboxMessage> messages = new ArrayList<>();
+        for (InboxEntity entity : messageEntities){
+            Profile sender = new Profile();
+            UserDao userDao = new UserDaoImpl();
+            sender = fillDataToProfile(sender, userDao.getById(entity.getSender_id()));
+            InboxMessage message = new InboxMessage(sender, receiver,
+                    new Date(entity.getDate().getTime()),
+                    entity.getTheme(),
+                    entity.getText(),
+                    entity.getWasRead());
+            messages.add(message);
+        }
+        return messages;
     }
 
     @Override
@@ -204,7 +249,8 @@ public class DatabaseServiceImpl implements DatabaseService {
 
     @Override
     public void storeInboxMessage(InboxMessage message) {
-        //TODO
+        InboxDao dao = new InboxDaoImpl();
+        dao.saveMessage(message);
     }
 
     public List<Lesson> pullAllCourseLessons(Course course){
@@ -238,6 +284,8 @@ public class DatabaseServiceImpl implements DatabaseService {
     @Override
     public List<Lesson> pullAllUserLessons(Profile currentProfile) {
         List<Lesson> lessons = getAllLessonBy(currentProfile.getId());
+        List<Lesson> tutorLessons = getAllTutoringLesson(currentProfile);
+        lessons.addAll(tutorLessons);
         Set<Course> courses = (Set<Course>) pullCourses();
         for (Course course: courses) {
             if (course.getTutorProfile().equals(currentProfile)){
@@ -254,11 +302,54 @@ public class DatabaseServiceImpl implements DatabaseService {
         return lessons;
     }
 
+    private List<Lesson> getAllTutoringLesson(Profile tutorProfile) {
+        LessonsDao lessonDao = new LessonsDaoImpl();
+        List<LessonsEntity> lessonEntities = lessonDao.getAllTutorLesson(tutorProfile.getId());
+        List<Lesson> lessons = new ArrayList<>();
+        for (LessonsEntity entity : lessonEntities){
+            Lesson lesson = new Lesson();
+            lesson.setId(entity.getLessonId());
+            CoursesEntity entityCourse = entity.getCourse();
+            Course course = new Course(tutorProfile,
+                    entityCourse.getCourseName(),
+                    entityCourse.getCourseDescription());
+            lesson.setCourse(course);
+            lesson.setName(entity.getLessonName());
+            lesson.setStartDate(new Date(entity.getStartDate().getTime()));
+            lesson.setEndDate(new Date(entity.getFinalDate().getTime()));
+            lesson.setCost(entity.getPrice());
+            lessons.add(lesson);
+        }
+        return lessons;
+    }
+
     public Profile fulfillProfile(String userEmail){
         Profile profile = new Profile();
         fulfillProfile(profile, userEmail);
         return profile;
     }
+
+    @Override
+    public void saveUserImage(int userId, File image) {
+        ImageDao imageDao = new ImageDaoImpl();
+        byte[] dataForSaving = new byte[(int)image.length()];
+        try {
+            FileInputStream fileInputStream = new FileInputStream(image);
+            fileInputStream.read(dataForSaving);
+            fileInputStream.close();
+        }catch (FileNotFoundException e){
+            loggerDB.log(Level.SEVERE, null, e + " Not found");
+        }catch (IOException e) {
+            loggerDB.log(Level.SEVERE, null, e.getStackTrace());
+        }
+        if (dataForSaving != null) {
+            imageDao.saveImage(userId, dataForSaving);
+            loggerDB.log(Level.INFO,"image has been uploaded");
+        }
+        else
+            loggerDB.log(Level.SEVERE, null, "Your data is cracked");
+    }
+
     public List<Lesson> getAllLessonBy(int userId){
         List<Lesson> lessons = new ArrayList<>();
         TransactionDao dbTransaction = new TransactionDaoImpl();

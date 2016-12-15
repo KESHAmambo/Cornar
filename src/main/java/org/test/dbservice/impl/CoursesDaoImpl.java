@@ -77,6 +77,7 @@ public class CoursesDaoImpl extends AbstractServiceSession implements CoursesDao
             System.err.println(entity.getLessonId());
         Set<LessonsEntity> lessonsEntities = courses.getLessons();
         shutdownCurrentSession();
+        getCurrentSession().close();
         return lessonsEntities;
     }
 
@@ -94,6 +95,7 @@ public class CoursesDaoImpl extends AbstractServiceSession implements CoursesDao
             System.out.println("user is NULL");
         course.setUser(userTutor);
         create(course);
+        getCurrentSession().close();
     }
 
     //TODO may be problem with others course
@@ -105,6 +107,7 @@ public class CoursesDaoImpl extends AbstractServiceSession implements CoursesDao
         crtForAll.setMaxResults(10);
         courses = crtForAll.list();
         shutdownCurrentSession();
+        getCurrentSession().close();
         return courses;
     }
 

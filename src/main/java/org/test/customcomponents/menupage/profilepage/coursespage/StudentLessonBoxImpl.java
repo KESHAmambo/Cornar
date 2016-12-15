@@ -33,7 +33,8 @@ public class StudentLessonBoxImpl extends StudentLessonBox {
                 lesson.getStartDate()));
         timeLabel.setValue(timeFormat.format(
                 lesson.getStartDate()) + " - " + timeFormat.format(lesson.getEndDate()));
-        costLabel.setValue(lesson.getCost().toString());
+        ;
+        costLabel.setValue(String.format("$ %-2s.00",lesson.getCost().toString()));
         customizePayButton();
     }
 

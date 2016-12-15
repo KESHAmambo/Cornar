@@ -55,6 +55,7 @@ public class TransactionDaoImpl extends AbstractServiceSession implements Transa
         transaction.setLessonsId(lesson_id);
         transaction.setUserId(user_id);
         create(transaction);
+        getCurrentSession().close();
     }
 
     @Override
@@ -65,6 +66,7 @@ public class TransactionDaoImpl extends AbstractServiceSession implements Transa
         List<TransactionEntity> transactions =  query.list();
         Logger.getLogger(TransactionDao.class.getName()).log(Level.INFO, "received transaction by user id");
         shutdownCurrentSession();
+        getCurrentSession().close();
         return transactions;
     }
     public List<TransactionEntity> getAllTransactionsToLesson(int lesson_id) {
@@ -74,6 +76,7 @@ public class TransactionDaoImpl extends AbstractServiceSession implements Transa
         List<TransactionEntity> transactions =  query.list();
         Logger.getLogger(TransactionDao.class.getName()).log(Level.INFO,"received transaction by lesson id");
         shutdownCurrentSession();
+        getCurrentSession().close();
         return transactions;
     }
 }

@@ -5,6 +5,7 @@ import com.vaadin.ui.Window;
 import org.test.logic.InboxMessage;
 import org.test.logic.Profile;
 import org.test.tamplets.menupage.profilepage.inboxpage.InboxMessageBox;
+import org.test.tamplets.menupage.profilepage.inboxpage.InboxReadPanel;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

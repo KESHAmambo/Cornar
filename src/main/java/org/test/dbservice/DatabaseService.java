@@ -7,6 +7,7 @@ import org.test.logic.InboxMessage;
 import org.test.logic.Lesson;
 import org.test.logic.Profile;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -22,6 +23,8 @@ public interface DatabaseService {
     UsersEntity getUser(String email, String password);
 
     boolean doesUserExist(String email, String password);
+
+    boolean doesUserExist(String email);
 
     List<Profile> getAllUsersWithNameLike(String firstName);
 
@@ -54,5 +57,7 @@ public interface DatabaseService {
 
     byte[] getFileByName(String docName, int ownerId);
 
-    Profile fulfillProfile(String userEmail);
+    Profile fullFillProfile(String userEmail);
+
+    void saveUserImage(int userId, File image);
 }

@@ -53,6 +53,7 @@ public class FriendsDaoImp extends AbstractServiceSession implements FriendsDao 
         friends = (List<FriendsEntity>) session.createCriteria(FriendsEntity.class)
                         .add(Restrictions.eq("userId", user_id)).list();
         shutdownCurrentSession();
+        getCurrentSession().close();
         return friends;
     }
     public void addNewFriends(int userId, int friendId){

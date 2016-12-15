@@ -5,6 +5,7 @@ import org.hibernate.criterion.Restrictions;
 import org.test.dbservice.dao.UserDao;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.dbservice.utils.PasswordUtils;
+import org.test.logic.Profile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,6 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
         Session session;
         session = openCurrentSession();
         entityById = (UsersEntity) session.get(UsersEntity.class,id);
-        shutdownCurrentSession();
         return entityById;
     }
 
@@ -49,6 +49,18 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
         UsersEntity user = getUserByEmail(friendEmail);
         return user.getUserId();
     }
+
+    @Override
+    public UsersEntity getByEmailForCheck(String email) {
+        UsersEntity user = getUserByEmail(email);
+        if (user!=null){
+            Logger.getLogger(UsersEntity.class.getName()).log(Level.INFO, null, user.getPassword());
+            return user;
+        }
+        user = new UsersEntity();
+        user.setUserId(-1);
+        return user;
+      }
 
     @Override
     public UsersEntity getByIdForFriends(int id) {
@@ -64,12 +76,18 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
         if (user!=null)
             Logger.getLogger(UsersEntity.class.getName()).log(Level.INFO, null, user.getPassword());
         char[] charPassword = password.toCharArray();
+        System.out.println(password);
         if (user !=null) {
-            return user;
             //TODO verification password TODAY!!! //TODO TODO MUST HAVE
-//            if (PasswordUtils.isExpectedPassword(charPassword, user.getPassword().getBytes())) {
-//                return user;
-//            }
+
+            String pass = new String(PasswordUtils.hash(charPassword));
+            if (Profile.getCurrentProfile()!= null) {
+                if (PasswordUtils.isExpectedPassword(pass, user.getPassword())) {
+                    System.out.println("Is expected password");
+                    return user;
+                }
+            }
+            return user;
         }
         user = new UsersEntity();
         user.setUserId(-1);
@@ -81,8 +99,10 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
         UsersEntity user = (UsersEntity) session.createCriteria(UsersEntity.class)
                 .add(Restrictions.eq("email", email)).uniqueResult();
         shutdownCurrentSession();
+        getCurrentSession().close();
         return user;
     }
+
 
     public List<UsersEntity> getAllUsers() {
         Session session = openCurrentSessionWithTransaction();
@@ -118,7 +138,6 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
         Query queryForSearch = session.createQuery("from UsersEntity as user where user.first_name like :searchFirstName");
         queryForSearch.setString("searchFirstName", "%" + firstName + "%");
         List<UsersEntity> allFindUsers = queryForSearch.list();
-        System.out.println(allFindUsers);
         shutdownAbsoluteleyCurrentSession();
 
         return  allFindUsers;

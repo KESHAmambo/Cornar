@@ -20,7 +20,7 @@ import java.util.List;
 public class SearchPageImpl extends SearchPage implements View {
     private List<Profile> profilesList;
     private String valueOfBox;
-    private final addToFriendBoxImpl addToFriendButton;
+    private final addToFriendBoxImpl addToFriendBox;
 
     public SearchPageImpl() {
         searchTable.setStyleName("search-results",true);
