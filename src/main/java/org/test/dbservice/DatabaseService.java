@@ -50,11 +50,9 @@ public interface DatabaseService {
 
     void addToFriends(int userId, String friendEmail);
 
-    void fulfillProfile(Profile profile, String userEmail);
-
     List<Profile> getAllFriendOfUser(int user_id);
 
     byte[] getFileByName(String docName, int ownerId);
 
-    Profile fullFillProfile(String userEmail);
+    Profile fulfillProfile(String userEmail);
 }

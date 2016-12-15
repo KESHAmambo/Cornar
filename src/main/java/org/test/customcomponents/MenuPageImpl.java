@@ -66,7 +66,7 @@ public class MenuPageImpl extends MenuPage implements View {
         }
     }
 
-    public void customizeWindowToUploadImage(){
+    private void customizeWindowToUploadImage(){
         windowToUpload.setContent(uploadImageBox);
         windowToUpload.center();
         windowToUpload.setWidth("30%");
@@ -82,7 +82,7 @@ public class MenuPageImpl extends MenuPage implements View {
         menuButtonsNavigator.addView(MENU + "/" + PROFILE,
                 new ProfilePageImpl(myUI));
         menuButtonsNavigator.addView(MENU + "/" + FRIENDS,
-                new FriendsPageImpl());
+                new FriendsPageImpl(myUI));
         menuButtonsNavigator.addView(MENU + "/" + SEARCH,
                 new SearchPageImpl());
         menuButtonsNavigator.addView(MENU + "/" + CLASS,

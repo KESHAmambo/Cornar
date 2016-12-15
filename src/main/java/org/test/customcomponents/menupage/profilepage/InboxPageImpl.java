@@ -24,7 +24,7 @@ public class InboxPageImpl extends InboxPage implements View {
     public InboxPageImpl(MyUI myUI) {
         controller = new InboxPageController(this);
 
-        //controller.fulfillMessagesLayout();
+        controller.fulfillMessagesLayout();
         controller.createListenerForComposeButton();
 
         myUI.setInboxPage(this);

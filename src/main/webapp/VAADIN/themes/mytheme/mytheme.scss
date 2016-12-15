@@ -491,61 +491,22 @@ $v-border-radius: 0px;
     -webkit-transition-duration: 0.6s;
     transition-duration: 0.6s;
   }
+
+  .v-button-addFileButton:hover {
+    background: #b3cacc;
+  }
+
+
   //--------- ChatPanel -------------------------------------
   .sliderPanel {
     background: #005159;
     font-size: 20px;
   }
 
+  .v-gridlayout-chatPageGridLayout {
 
-  //-----------SearchPage-----------------------------------
-  .v-button-searchButton {
-      background-color: #f6f6f6;
-      background-image: -webkit-gradient(linear, left top, left bottom, from(#31b2c3), to(#005159));
-      background-image: -webkit-linear-gradient(top, #31b2c3,#005159);
-      background-image: -moz-linear-gradient(top, #31b2c3, #005159);
-      background-image: -ms-linear-gradient(top, #31b2c3, #0483a0);
-      background-image: -o-linear-gradient(top, #31b2c3, #0483a0);
-      color: #dfdfdf;
-    }
-  .v-caption-searchTextArea {
-    background: #fafeff;
-    font-weight: bold;
   }
-  .v-icon-searchIcon{
-    color: #fff;
-    background: #005159;
-    z-index: 90;
-    font-size: 22px;
-    font-family: 'icomoon';
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    -webkit-font-smoothing: antialiased;
-  }
-  .v-textfield-searchPanel {
-    background-color: #f6f6f6;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#eae8e8));
-    background-image: -webkit-linear-gradient(top, #f6f6f6, #eae8e8);
-    background-image: -moz-linear-gradient(top, #f6f6f6, #eae8e8);
-    background-image: -ms-linear-gradient(top, #f6f6f6, #eae8e8);
-    background-image: -o-linear-gradient(top, #f6f6f6, #eae8e8);
-    background-image: linear-gradient(top, #f6f6f6, #eae8e8);
-    border-color: #dedede #bababa #aaa #bababa;
-    border-width: 1px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    -webkit-box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
-    -moz-box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
-    box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
-    overflow: hidden;
 
-    color: #999;
-    font: 16px Lucida Sans, Trebuchet MS, Tahoma, sans-serif;
-  }
   .v-verticallayout-mainChatLayout {
     padding-top: 20px;
     padding-right: 20px;
@@ -584,6 +545,133 @@ $v-border-radius: 0px;
 
   .v-textarea-messageTextArea {
     background: #91ccd1;
+  }
+
+  //-----------SearchPage-----------------------------------
+
+  .v-button-searchButton {
+    background-color: #f6f6f6;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#31b2c3), to(#005159));
+    background-image: -webkit-linear-gradient(top, #31b2c3,#005159);
+    background-image: -moz-linear-gradient(top, #31b2c3, #005159);
+    background-image: -ms-linear-gradient(top, #31b2c3, #0483a0);
+    background-image: -o-linear-gradient(top, #31b2c3, #0483a0);
+    color: #dfdfdf;
+  }
+
+  .v-textfield-searchTextField {
+    background: #fafeff;
+    font-size: 20px;
+  }
+
+  .v-filterselect-searchFilter {
+    font-size: 20px;
+  }
+
+  .v-textfield-searchPanel {
+    background-color: #f6f6f6;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#eae8e8));
+    background-image: -webkit-linear-gradient(top, #f6f6f6, #eae8e8);
+    background-image: -moz-linear-gradient(top, #f6f6f6, #eae8e8);
+    background-image: -ms-linear-gradient(top, #f6f6f6, #eae8e8);
+    background-image: -o-linear-gradient(top, #f6f6f6, #eae8e8);
+    background-image: linear-gradient(top, #f6f6f6, #eae8e8);
+    border-color: #dedede #bababa #aaa #bababa;
+    border-width: 1px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+    -moz-box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+    box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+    overflow: hidden;
+
+    color: #999;
+    font: 16px Lucida Sans, Trebuchet MS, Tahoma, sans-serif;
+  }
+
+  .v-grid-cell > .v-nativebutton {
+    width: 100%;
+    height: 100%;
+    color: blue;
+    background: lightblue;
+  }
+
+  .v-grid-searchResultsGrid {
+    .v-grid-tablewrapper {
+      font-weight: bold;
+
+      .v-grid-header {
+        font-size: 20px;
+      }
+    }
+
+    .v-grid-header {
+      font-size: 20px;
+    }
+    .v-grid-cell {
+      position: relative;
+    }
+    .v-grid-tablewrapper,
+    .v-grid-scroller {
+      border: none;
+    }
+
+    .v-grid-row {
+      overflow: hidden;
+    }
+
+    .v-nativebutton {
+      background: #fff;
+      color: black;
+      width: 100%;
+      height: 100%;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      line-height: 1em;
+      width: 1.5em;
+      font-weight: bold;
+      font-size: 15px;
+    }
+  }
+
+  .v-verticallayout-addFriendBoxLayout{
+    background: lightblue;
+
+    .v-button{
+      color: #fafeff;
+      font-size: 1.3em;
+    }
+
+    .v-button-addFriendButton {
+      background: #82bf8b;
+      -webkit-transition-duration: 0.6s;
+      transition-duration: 0.6s;
+    }
+
+    .v-button-addFriendButton:hover {
+      background: #9ee5a7;
+    }
+
+    .v-button-declineButton {
+      background: #569095;
+      -webkit-transition-duration: 0.6s;
+      transition-duration: 0.6s;
+    }
+
+    .v-button-declineButton:hover {
+      background: #71b4b9;
+    }
+
+    .v-label {
+      font-size: 2em;
+      color: #fafeff;
+      line-height: normal;
+    }
+  }
+  .adding_button{
+    .v-button {
+      font-size: 124px;
+    }
   }
 
   //-----------Upload Box-------------------
@@ -641,6 +729,7 @@ $v-border-radius: 0px;
   .v-button-inboxButton {
     background: #569095;
     color: #fafeff;
+    font-size: 20px;
     -webkit-transition-duration: 0.6s;
     transition-duration: 0.6s;
   }
@@ -777,57 +866,8 @@ $v-border-radius: 0px;
     color: #fafeff;
   }
 
-  //--------- Adding Friends In Search page----------------------------------------
+  //--------- SearchPage ----------------------------------------
 
-  .v-grid-cell > .v-nativebutton {
-    width: 100%;
-    height: 100%;
-    color: blue;
-    background: lightblue;
-  }
-
-  .search-results {
-      .v-grid-tablewrapper,
-      .v-grid-cell,
-      .v-grid-scroller {
-        border: none;
-      }
-      .v-grid-row {
-        overflow: hidden;
-      }
-
-      .v-grid-cell {
-        position: relative;
-      }
-
-      .v-nativebutton {
-        background: #fff;
-        color: black;
-        width: 100%;
-        height: 100%;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        line-height: 1em;
-        width: 1.5em;
-        font-weight: bold;
-        font-size: 15px;
-      }
-    }
-
-  .add_friend{
-    background: lightblue;
-    .v-button{
-      background: #569095;
-    }
-    .v-label-stylename {
-      font-size: 24px;
-      line-height: normal;
-    }
-  }
-  .adding_button{
-    .v-button {
-      font-size: 124px;
-    }
-  }
 
   // Insert your own theme rules here
 }

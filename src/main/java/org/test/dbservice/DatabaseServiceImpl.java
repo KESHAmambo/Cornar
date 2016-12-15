@@ -61,7 +61,6 @@ public class DatabaseServiceImpl implements DatabaseService {
         return user != null;
     }
 
-    @Override
     public void fulfillProfile(Profile profile, String userEmail) {
         UsersEntity user = new UserDaoImpl().getUserByEmail(userEmail);
         profile = fillProfile(profile, user);
@@ -255,7 +254,7 @@ public class DatabaseServiceImpl implements DatabaseService {
         return lessons;
     }
 
-    public Profile fullFillProfile(String userEmail){
+    public Profile fulfillProfile(String userEmail){
         Profile profile = new Profile();
         fulfillProfile(profile, userEmail);
         return profile;

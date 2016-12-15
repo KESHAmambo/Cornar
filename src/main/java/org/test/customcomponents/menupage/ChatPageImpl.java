@@ -18,22 +18,27 @@ public class ChatPageImpl extends ChatPage {
     private Map<Integer, DialogPanelImpl> dialogs = new HashMap<>();
 
     public ChatPageImpl(MyUI myUI) {
-        createFriendPanels(Profile.getCurrentProfile().getFriends());
+        fulfill(Profile.getCurrentProfile().getFriends());
+
         myUI.setChatPage(this);
     }
 
-    private void createFriendPanels(List<Profile> friends) {
+    private void fulfill(List<Profile> friends) {
         for (Profile friendProfile: friends) {
-            FriendDialogPanelImpl friendPanel = new FriendDialogPanelImpl(friendProfile);
-            DialogPanelImpl dialogPanel = createAndRegisterDialogPanel(friendProfile);
-
-            friendPanel.addLayoutClickListener(e -> {
-                layoutForDialogPanel.removeAllComponents();
-                layoutForDialogPanel.addComponent(dialogPanel);
-            });
-
-            gridLayout.addComponent(friendPanel);
+            addFriendDialogPanel(friendProfile);
         }
+    }
+
+    public void addFriendDialogPanel(Profile profile) {
+        FriendDialogPanelImpl friendPanel = new FriendDialogPanelImpl(profile);
+        DialogPanelImpl dialogPanel = createAndRegisterDialogPanel(profile);
+
+        friendPanel.addLayoutClickListener(e -> {
+            layoutForDialogPanel.removeAllComponents();
+            layoutForDialogPanel.addComponent(dialogPanel);
+        });
+
+        gridLayout.addComponent(friendPanel);
     }
 
     private DialogPanelImpl createAndRegisterDialogPanel(Profile friendProfile) {

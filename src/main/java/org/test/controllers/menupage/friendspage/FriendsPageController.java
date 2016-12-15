@@ -12,16 +12,22 @@ import java.util.List;
  */
 public class FriendsPageController {
     private final FriendsPageImpl friendsPage;
+    private final VerticalLayout mainLayout;
 
     public FriendsPageController(FriendsPageImpl friendsPage) {
         this.friendsPage = friendsPage;
+
+        mainLayout = friendsPage.getMainLayout();
     }
 
     public void fulfillPage() {
         List<Profile> friends = Profile.getCurrentProfile().getFriends();
-        VerticalLayout mainLayout = friendsPage.getMainLayout();
         for (Profile profile: friends) {
-            mainLayout.addComponent(new ProfileBoxImpl(profile));
+            addFriendBox(profile);
         }
+    }
+
+    public void addFriendBox(Profile profile) {
+        mainLayout.addComponent(new ProfileBoxImpl(profile));
     }
 }

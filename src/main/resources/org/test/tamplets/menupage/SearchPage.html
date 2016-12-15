@@ -6,18 +6,18 @@
  </head> 
  <body> 
   <vaadin-panel size-full> 
-   <vaadin-vertical-layout size-full> 
-    <vaadin-horizontal-layout width-full margin> 
-     <vaadin-text-field input-prompt="Search..." style-name="searchTextArea" width-full _id="searchName" :bottom :center :expand></vaadin-text-field> 
-     <vaadin-combo-box input-prompt="" _id="searchParametrBox"> 
+   <vaadin-vertical-layout size-full margin> 
+    <vaadin-horizontal-layout spacing width-full margin-bottom> 
+     <vaadin-text-field input-prompt="Search..." style-name="searchTextField" width-full height="50px" _id="searchName" :bottom :center :expand></vaadin-text-field> 
+     <vaadin-combo-box input-prompt="Filter..." style-name="searchFilter" height="50px" _id="searchParametrBox"> 
       <option>name</option> 
       <option>surname</option> 
      </vaadin-combo-box> 
-     <vaadin-button icon="fonticon://FontAwesome/f002" style-name="borderless searchButton searchIcon" plain-text _id="searchButton" :middle>
+     <vaadin-button icon="fonticon://FontAwesome/f002" style-name="borderless searchIcon inboxButton" height="50px" plain-text _id="searchButton" :middle>
        Search 
      </vaadin-button> 
     </vaadin-horizontal-layout> 
-    <vaadin-grid visible="false" immediate size-full _id="searchTable" :bottom :center :expand> 
+    <vaadin-grid visible="false" style-name="searchResultsGrid" immediate size-full _id="searchTable" :bottom :center :expand> 
      <table> 
       <colgroup> 
        <col property-id="User Name" sortable> 
