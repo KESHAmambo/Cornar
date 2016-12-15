@@ -155,8 +155,8 @@ public class DummyDatabase {
         inboxMessages.add(message2);
     }
 
-    private static int nextLessonId = 0;
-    private static int nextCourseId = 0;
+    private static int nextLessonId = 2;
+    private static int nextCourseId = 3;
 
     private static int getNextLessonId() {
         return nextLessonId++;
@@ -171,15 +171,6 @@ public class DummyDatabase {
         return loginStore.contains(user);
     }
 
-    static DummyUser getUserByEmail(String email) {
-        for(DummyUser user: loginStore) {
-            if(user.getEmail().equals(email)) {
-                return user;
-            }
-        }
-        return null;
-    }
-
     static Collection<Course> pullCourses() {
         return courses;
     }
@@ -192,6 +183,7 @@ public class DummyDatabase {
 
     static Lesson addNewLesson(Lesson lesson) {
         lesson.setId(getNextLessonId());
+        lesson.getCourse().getLessons().add(lesson);
         return lesson;
     }
 

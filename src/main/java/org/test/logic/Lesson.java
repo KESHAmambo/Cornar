@@ -19,6 +19,7 @@ public class Lesson {
     public Lesson(){
         assignedStudents = new ArrayList<>();
     }
+
     public Lesson(int id, String name, Course course, Long cost, Date startDate, Date endDate, List<Profile> assignedStudents) {
         this.id = id;
         this.name = name;
