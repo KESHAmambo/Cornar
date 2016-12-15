@@ -104,7 +104,8 @@ public class DatabaseServiceImpl implements DatabaseService {
         profile.setEducation(user.getPersonDescription());
         profile.setBirthDate(user.getBirthDate());
         profile.setId(user.getUserId());
-        profile.setFriends(     getAllFriendOfUser(user.getUserId()));
+        //profile.setImageResource();
+        profile.setFriends(getAllFriendOfUser(user.getUserId()));
         loggerDB.log(Level.SEVERE, profile.toString());
         return profile;
     }
@@ -254,7 +255,11 @@ public class DatabaseServiceImpl implements DatabaseService {
         return lessons;
     }
 
-    //TODO transaction creation
+    public Profile fullFillProfile(String userEmail){
+        Profile profile = new Profile();
+        fulfillProfile(profile, userEmail);
+        return profile;
+    }
     public List<Lesson> getAllLessonBy(int userId){
         List<Lesson> lessons = new ArrayList<>();
         TransactionDao dbTransaction = new TransactionDaoImpl();

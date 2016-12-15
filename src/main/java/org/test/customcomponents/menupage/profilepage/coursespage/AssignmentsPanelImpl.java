@@ -4,6 +4,7 @@ import org.test.controllers.menupage.profilepage.coursespage.AssignmentsPanelCon
 import org.test.logic.Profile;
 import org.test.tamplets.menupage.profilepage.coursespage.AssignmentsPanel;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Set;
 public class AssignmentsPanelImpl extends AssignmentsPanel {
     private final AssignmentsPanelController controller;
 
-    public AssignmentsPanelImpl(Set<Profile> assignedStudents) {
+    public AssignmentsPanelImpl(List<Profile> assignedStudents) {
         controller = new AssignmentsPanelController(this);
 
         controller.fulfillPage(assignedStudents);

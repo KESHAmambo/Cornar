@@ -4,9 +4,14 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FileResource;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.Window;
 import org.test.MyUI;
 import org.test.controllers.MenuPageController;
 import org.test.customcomponents.menupage.*;
+import org.test.customcomponents.menupage.profilepage.materialspage.UploadBoxImpl;
 import org.test.logic.Profile;
 import org.test.customcomponents.menupage.ClassPageImpl;
 import org.test.customcomponents.menupage.FriendsPageImpl;
@@ -31,11 +36,16 @@ public class MenuPageImpl extends MenuPage implements View {
     private final MenuPageController controller;
     private final MyUI myUI;
     private final Navigator menuButtonsNavigator;
+    private UploadImageBoxImpl uploadImageBox;
+    private Window windowToUpload;
 
     public MenuPageImpl(MyUI myUI, Navigator generalNavigator) {
         controller = new MenuPageController(this);
         this.myUI = myUI;
-
+        //TODO new window
+        windowToUpload = new Window();
+        uploadImageBox = new UploadImageBoxImpl(windowToUpload);
+        customizeWindowToUploadImage();
         majorHorizontalLayout.addComponent(createSlidePanelForChatPage());
         fulfillAvatarImage();
 
@@ -47,6 +57,7 @@ public class MenuPageImpl extends MenuPage implements View {
     }
 
     private void fulfillAvatarImage() {
+        avatarImage.addClickListener(event -> UI.getCurrent().addWindow(windowToUpload));
         Profile profile = Profile.getCurrentProfile();
         File profileImage = profile.getImageResource();
         if(profileImage != null) {
@@ -55,6 +66,13 @@ public class MenuPageImpl extends MenuPage implements View {
         }
     }
 
+    public void customizeWindowToUploadImage(){
+        windowToUpload.setContent(uploadImageBox);
+        windowToUpload.center();
+        windowToUpload.setWidth("30%");
+        windowToUpload.setModal(true);
+        windowToUpload.setHeight("40%");
+    }
     private Navigator createNavigatorForMenuButtons() {
         Navigator menuButtonsNavigator = new Navigator(myUI, mainPanel);
 

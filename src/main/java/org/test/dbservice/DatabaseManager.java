@@ -45,8 +45,7 @@ public class DatabaseManager {
     }
 
     public static void fulfillProfile(Profile profile, String userEmail) {
-        service.fulfillProfile(profile, userEmail);
-
+        service.fulfillProfile(profile,userEmail);
     }
     public static List<Profile>  getAllUsersWithNameLike(String firstName) {
         return service.getAllUsersWithNameLike(firstName);
@@ -107,5 +106,9 @@ public class DatabaseManager {
 
     public static byte[] getFileByName(String docName,int ownerId) {
        return service.getFileByName(docName,ownerId);
+    }
+
+    public static Profile fulfillProfile(String userEmail) {
+        return service.fullFillProfile(userEmail);
     }
 }

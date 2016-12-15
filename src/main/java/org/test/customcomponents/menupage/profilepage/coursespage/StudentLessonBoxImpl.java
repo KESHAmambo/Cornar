@@ -7,6 +7,7 @@ import org.test.paymentservice.PaymentService;
 import org.test.tamplets.menupage.profilepage.coursespage.StudentLessonBox;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -49,7 +50,7 @@ public class StudentLessonBoxImpl extends StudentLessonBox {
 
     private boolean checkAssignment() {
         Profile profile = Profile.getCurrentProfile();
-        Set<Profile> assignedStudents = lesson.getAssignedStudents();
+        List<Profile> assignedStudents = lesson.getAssignedStudents();
         return assignedStudents.contains(profile);
     }
 

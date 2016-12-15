@@ -71,33 +71,12 @@ public class SearchPageImpl extends SearchPage implements View {
             @Override
             public void select(SelectionEvent event)
             {
-                UI.getCurrent().addWindow(customizewindowToAdd(new Window()));
+                UI.getCurrent().addWindow(customizeWindowToAdd(new Window()));
             }
         } );
     }
 
-    //TODO add style
-    public Window customizewindowToAdd(Window windowToAdd){
-//        addToFriend
-//        VerticalLayout content = new VerticalLayout();
-//        content.setWidth("100%");
-//        content.setHeight("100%");
-//        content.addComponentAsFirst(new Label("Do you want to add this person?"));
-//        HorizontalLayout buttonsLayout = new HorizontalLayout();
-//        HorizontalLayout layoutAdd = new HorizontalLayout();
-//        HorizontalLayout layoutDecline = new HorizontalLayout();
-//        Button addButton = new Button("Add to friend");
-//        Button decline = new Button("Decline");
-//        createListenersToAddButton(addButton, windowToAdd);
-//        createListenersToDeclineButton(decline, windowToAdd);
-//        //content.setSpacing(true);
-//        layoutAdd.addComponent(addButton);
-//        layoutDecline.addComponent(decline);
-//        buttonsLayout.addComponent(layoutAdd);
-//        buttonsLayout.addComponent(layoutDecline);
-//        buttonsLayout.addStyleName("adding_button");
-//        content.addComponent(buttonsLayout);
-//        content.addStyleName("add_friend");
+    public Window customizeWindowToAdd(Window windowToAdd){
         createListenersToAddButton(addToFriend.getAddButton(), windowToAdd);
         createListenersToDeclineButton(addToFriend.getDeclineButton(), windowToAdd);
         windowToAdd.setContent(addToFriend);

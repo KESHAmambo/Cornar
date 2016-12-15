@@ -6,14 +6,14 @@
  </head> 
  <body> 
   <vaadin-vertical-layout style-name="uploadMainLayout" size-full> 
-   <vaadin-label style-name="uploadLabel" height="48px" plain-text :middle :center>
-     Upload to Materials 
+   <vaadin-label style-name="uploadLabel" height="46px" plain-text>
+     Upload Your Avatar 
    </vaadin-label> 
-   <vaadin-horizontal-layout style-name="uploadBackground" size-full :expand> 
-    <vaadin-progress-bar style-name="point, uploadingBar" width="50%" _id="progressBar" :bottom :center></vaadin-progress-bar> 
+   <vaadin-horizontal-layout size-full :expand> 
+    <vaadin-image width="50%" height-full _id="image" :middle :center></vaadin-image> 
    </vaadin-horizontal-layout> 
-   <vaadin-horizontal-layout style-name="uploadBackground" spacing width-full height="43px" _id="uloadLayout" :middle :center> 
-    <vaadin-upload style-name="uploadButton" _id="uploadButton" :bottom :center></vaadin-upload> 
+   <vaadin-horizontal-layout width-full height="69px" :middle :center> 
+    <vaadin-upload style-name="uploadButton" _id="uploadImageButton" :bottom :center></vaadin-upload> 
    </vaadin-horizontal-layout> 
   </vaadin-vertical-layout>  
  </body>

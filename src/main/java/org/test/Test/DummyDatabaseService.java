@@ -31,7 +31,6 @@ public class DummyDatabaseService implements DatabaseService {
         return DummyDatabase.doesUserExist(email, password);
     }
 
-    @Override
     public Profile fulfillProfile(String userEmail) {
         return DummyDatabase.getProfile(userEmail);
         /*return DummyDatabase.getProfile(userEmail);
@@ -128,6 +127,11 @@ public class DummyDatabaseService implements DatabaseService {
 
     @Override
     public void addToFriends(int userId, String friendEmail) {
+
+    }
+
+    @Override
+    public void fulfillProfile(Profile profile, String userEmail) {
 
     }
 

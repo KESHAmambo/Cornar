@@ -100,7 +100,7 @@ public class Profile {
     }
 
     public static Profile fulfillProfile(String userEmail) {
-        return DatabaseManager.fulfillProfile(userEmail);
+            return  DatabaseManager.fulfillProfile(userEmail);
     }
 
     @Override

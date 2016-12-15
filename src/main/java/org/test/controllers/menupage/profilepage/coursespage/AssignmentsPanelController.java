@@ -18,7 +18,7 @@ public class AssignmentsPanelController {
         this.assignmentsPanel = assignmentsPanel;
     }
 
-    public void fulfillPage(Set<Profile> assignedStudents) {
+    public void fulfillPage(List<Profile> assignedStudents) {
         VerticalLayout mainLayout = assignmentsPanel.getMainLayout();
         for (Profile profile: assignedStudents) {
             mainLayout.addComponentAsFirst(new ProfileBoxImpl(profile));
