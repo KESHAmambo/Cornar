@@ -1,7 +1,12 @@
 package org.test.customcomponents.menupage.profilepage.coursespage;
 
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.Window;
+import org.test.customcomponents.menupage.profilepage.inboxpage.InboxComposePanelImpl;
 import org.test.logic.Lesson;
 import org.test.tamplets.menupage.profilepage.coursespage.TutorLessonBox;
+import org.test.utils.UIHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -32,6 +37,23 @@ public class TutorLessonBoxImpl extends TutorLessonBox {
     }
 
     private void createListenerForAssignsButton() {
-        //TODO
+        assignsButton.addClickListener(e -> {
+            if(lesson.getAssignedStudents().size() > 0) {
+                Window composeWindow = createComposeWindow();
+                UI.getCurrent().addWindow(composeWindow);
+            } else {
+                UIHelper.showWarningNotification("No assigns have been added yet.");
+            }
+        });
+    }
+
+    private Window createComposeWindow() {
+        Window window = new Window();
+        window.setContent(new AssignmentsPanelImpl(lesson.getAssignedStudents()));
+        window.center();
+        window.setModal(true);
+        window.setWidth("60%");
+        window.setHeight("90%");
+        return window;
     }
 }

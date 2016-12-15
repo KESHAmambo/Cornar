@@ -25,17 +25,17 @@ public class ProfileBoxController {
 
     public void fulfillPage() {
         Profile profile = profileBox.getProfile();
-        setProfileImage(profile);
+        fulfillProfileImage(profile);
         profileBox.getNameLabel().setValue(profile.getName() + " " + profile.getSurname());
         profileBox.getBirthdayLabel().setValue(dateFormat.format(profile.getBirthDate()));
         profileBox.getEmailLabel().setValue(profile.getEmail());
         profileBox.getEducationLabel().setValue(profile.getEducation());
     }
 
-    private void setProfileImage(Profile profile) {
-        File profileImage = profile.getImage();
+    private void fulfillProfileImage(Profile profile) {
+        File profileImage = profile.getImageResource();
         if(profileImage != null) {
-            FileResource resource = new FileResource(profile.getImage());
+            FileResource resource = new FileResource(profile.getImageResource());
             profileBox.getImage().setSource(resource);
         }
     }

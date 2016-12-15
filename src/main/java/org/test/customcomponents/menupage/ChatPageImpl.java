@@ -2,7 +2,7 @@ package org.test.customcomponents.menupage;
 
 import org.test.MyUI;
 import org.test.customcomponents.menupage.chatpage.DialogPanelImpl;
-import org.test.customcomponents.menupage.chatpage.FriendPanelImpl;
+import org.test.customcomponents.menupage.chatpage.FriendDialogPanelImpl;
 import org.test.msgservice.ChatMessage;
 import org.test.logic.Profile;
 import org.test.tamplets.menupage.ChatPage;
@@ -24,7 +24,7 @@ public class ChatPageImpl extends ChatPage {
 
     private void createFriendPanels(List<Profile> friends) {
         for (Profile friendProfile: friends) {
-            FriendPanelImpl friendPanel = new FriendPanelImpl(friendProfile);
+            FriendDialogPanelImpl friendPanel = new FriendDialogPanelImpl(friendProfile);
             DialogPanelImpl dialogPanel = createAndRegisterDialogPanel(friendProfile);
 
             friendPanel.addLayoutClickListener(e -> {

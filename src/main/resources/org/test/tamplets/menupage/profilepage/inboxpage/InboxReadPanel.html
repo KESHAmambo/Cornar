@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;mytheme&quot;}">
+  <meta charset="UTF-8" name="vaadin-version" content="7.7.0">
+ </head> 
+ <body> 
+  <vaadin-vertical-layout size-full> 
+   <vaadin-vertical-layout spacing size-full margin> 
+    <vaadin-label style-name="inboxSlightReadLabel" size-auto plain-text _id="dateLabel">
+      00.00.0000 00:00 
+    </vaadin-label> 
+    <vaadin-horizontal-layout spacing width-full> 
+     <vaadin-vertical-layout :expand> 
+      <vaadin-label style-name="inboxSlightReadLabel" plain-text _id="senderNameLabel">
+        Sender Name 
+      </vaadin-label> 
+      <vaadin-horizontal-layout spacing> 
+       <vaadin-label style-name="inboxSlightReadLabel" size-auto plain-text>
+         Email: 
+       </vaadin-label> 
+       <vaadin-label style-name="inboxSlightReadLabel" size-auto plain-text _id="senderEmailLabel">
+         sender@mail.com 
+       </vaadin-label> 
+      </vaadin-horizontal-layout> 
+     </vaadin-vertical-layout> 
+     <vaadin-vertical-layout style-name="inboxReadIconLayout" width="50px" height="50px" :middle :center></vaadin-vertical-layout> 
+     <vaadin-vertical-layout :expand> 
+      <vaadin-label style-name="inboxSlightReadLabel" size-auto plain-text _id="receiverNameLabel" :bottom :right>
+        Receiver Name 
+      </vaadin-label> 
+      <vaadin-horizontal-layout spacing :bottom :right> 
+       <vaadin-label style-name="inboxSlightReadLabel" size-auto plain-text>
+         Email: 
+       </vaadin-label> 
+       <vaadin-label style-name="inboxSlightReadLabel" width-auto height="39px" plain-text _id="receiverEmailLabel" :right>
+         receiver@mail.com 
+       </vaadin-label> 
+      </vaadin-horizontal-layout> 
+     </vaadin-vertical-layout> 
+    </vaadin-horizontal-layout> 
+    <vaadin-label style-name="inboxReadThemeLabel" size-auto plain-text _id="themeLabel">
+      Message theme 
+    </vaadin-label> 
+    <vaadin-rich-text-area style-name="inboxComposeRichTextArea" size-full _id="richTextArea" :expand></vaadin-rich-text-area> 
+   </vaadin-vertical-layout> 
+  </vaadin-vertical-layout>  
+ </body>
+</html>

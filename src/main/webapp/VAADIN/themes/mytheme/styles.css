@@ -12865,6 +12865,28 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: bold;
 }
 
+.mytheme .v-button-signInButton {
+	background: #82bf8b;
+	color: #fafeff;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-signInButton:hover {
+	background: #9ee5a7;
+}
+
+.mytheme .v-button-signUpButton {
+	background: #569095;
+	color: #fafeff;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-signUpButton:hover {
+	background: #71b4b9;
+}
+
 .mytheme .v-horizontallayout-signUpMajorLayout {
 	background: whitesmoke;
 	border-top: 3px solid rgba(181, 181, 181, 0.72);
@@ -12932,10 +12954,19 @@ div.v-layout.v-horizontal.v-widget {
 	width: 20vw;
 }
 
-.mytheme .v-verticallayout-avatarLayout {
+.mytheme .v-verticallayout-menuAvatarLayout {
 	background: #fafeff;
 	border-radius: 80px;
 	border: 4px solid #01747f;
+}
+
+.mytheme .v-image-menuAvatarImage {
+	background: url("images/man_friend.jpg");
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-radius: 50%;
 }
 
 .mytheme .v-button-menuButton {
@@ -12969,10 +13000,12 @@ div.v-layout.v-horizontal.v-widget {
 	min-width: 40px;
 }
 
-.mytheme .v-verticallayout-photoLayout {
-	background: #5e948b;
-	width: 20vw;
-	height: 40vh;
+.mytheme .v-image-profileImage {
+	background: url("images/man_friend.jpg");
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 
 .mytheme .v-label-nameLabel {
@@ -13053,14 +13086,14 @@ div.v-layout.v-horizontal.v-widget {
 	color: #fafeff;
 }
 
-.mytheme .v-button-payButton {
+.mytheme .v-button-assignsButton {
 	background: #57a061;
 	color: #fafeff;
 	-webkit-transition-duration: 0.6s;
 	transition-duration: 0.6s;
 }
 
-.mytheme .v-button-payButton:hover {
+.mytheme .v-button-assignsButton:hover {
 	background: #5eaa68;
 }
 
@@ -13261,13 +13294,8 @@ div.v-layout.v-horizontal.v-widget {
 	padding-bottom: 20px;
 }
 
-.mytheme .v-verticallayout-friendPanelMainLayout {
+.mytheme .v-verticallayout-dialogFriendPanelMainLayout {
 	background: url("images/man_chat.jpg");
-}
-
-.mytheme .v-panel-friendsPanel {
-	background: transparent;
-	border: none;
 }
 
 .mytheme .v-horizontallayout-dialogNameLayout {

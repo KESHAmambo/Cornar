@@ -23,7 +23,7 @@ public interface DatabaseService {
 
     boolean doesUserExist(String email, String password);
 
-    void fulfillProfile(Profile profile, String userEmail);
+    Profile fulfillProfile(String userEmail);
 
     List<Profile> getAllUsersWithNameLike(String firstName);
 

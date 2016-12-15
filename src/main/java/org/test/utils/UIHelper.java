@@ -19,4 +19,10 @@ public class UIHelper {
         notification.setStyleName(styleName);
         notification.show(Page.getCurrent());
     }
+
+    public static void showWarningNotification(String caption) {
+        Notification notification = new Notification(caption, Notification.Type.WARNING_MESSAGE);
+        notification.setDelayMsec(3000);
+        notification.show(Page.getCurrent());
+    }
 }

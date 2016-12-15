@@ -3,9 +3,11 @@ package org.test.customcomponents;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.FileResource;
 import org.test.MyUI;
 import org.test.controllers.MenuPageController;
 import org.test.customcomponents.menupage.*;
+import org.test.logic.Profile;
 import org.test.customcomponents.menupage.ClassPageImpl;
 import org.test.customcomponents.menupage.FriendsPageImpl;
 import org.test.customcomponents.menupage.SearchPageImpl;
@@ -17,6 +19,8 @@ import org.vaadin.sliderpanel.SliderPanel;
 import org.vaadin.sliderpanel.SliderPanelBuilder;
 import org.vaadin.sliderpanel.client.SliderMode;
 import org.vaadin.sliderpanel.client.SliderTabPosition;
+
+import java.io.File;
 
 import static org.test.logic.PageName.*;
 
@@ -33,12 +37,22 @@ public class MenuPageImpl extends MenuPage implements View {
         this.myUI = myUI;
 
         majorHorizontalLayout.addComponent(createSlidePanelForChatPage());
+        fulfillAvatarImage();
 
         menuButtonsNavigator = createNavigatorForMenuButtons();
         createListenersForMenuButtons();
         controller.createListenerForLogOutButton(generalNavigator);
 
         menuButtonsNavigator.navigateTo(MENU + "/" + PROFILE);
+    }
+
+    private void fulfillAvatarImage() {
+        Profile profile = Profile.getCurrentProfile();
+        File profileImage = profile.getImageResource();
+        if(profileImage != null) {
+            FileResource resource = new FileResource(profile.getImageResource());
+            avatarImage.setSource(resource);
+        }
     }
 
     private Navigator createNavigatorForMenuButtons() {

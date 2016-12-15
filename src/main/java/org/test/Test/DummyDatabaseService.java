@@ -32,7 +32,9 @@ public class DummyDatabaseService implements DatabaseService {
     }
 
     @Override
-    public void fulfillProfile(Profile profile, String userEmail) {
+    public Profile fulfillProfile(String userEmail) {
+        return DummyDatabase.getProfile(userEmail);
+        /*return DummyDatabase.getProfile(userEmail);
         DummyUser user = DummyDatabase.getUserByEmail(userEmail);
         if(user != null) {
             profile.setId(user.getId());
@@ -41,8 +43,9 @@ public class DummyDatabaseService implements DatabaseService {
             profile.setBirthDate(user.getBirthDate());
             profile.setEducation(user.getEducation());
             profile.setEmail(user.getEmail());
+            profile.setImage(user.getImage());
             profile.setFriends(user.getFriends());
-        }
+        }*/
     }
 
     @Override
@@ -60,8 +63,7 @@ public class DummyDatabaseService implements DatabaseService {
         Calendar calendar = new GregorianCalendar();
         calendar.set(2014, 4, 5);
         documents.add(new DocumentBoxImpl(
-                "File with a very long name such as that: adkjfladj adsf adjffakjsdf asdffa fdjf" +
-                        "File with a very long name such as that: adkjfladj adsf adjffakjsdf asdffa fdjf",
+                "File_with_a_long_name",
                 new Date(calendar.getTimeInMillis())));
         calendar.set(2016, 8, 6);
         documents.add(new DocumentBoxImpl(
