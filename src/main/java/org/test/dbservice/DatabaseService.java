@@ -57,7 +57,7 @@ public interface DatabaseService {
 
     byte[] getFileByName(String docName, int ownerId);
 
-    void saveUserImage(int userId, File image);
-
     Profile fulfillProfile(String userEmail);
+
+    void saveUserImage(int userId, File image);
 }

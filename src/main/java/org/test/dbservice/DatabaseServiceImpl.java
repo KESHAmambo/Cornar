@@ -117,7 +117,6 @@ public class DatabaseServiceImpl implements DatabaseService {
         return filesDao.getFileByNameToOwner(docName,ownerId);
     }
 
-
     private Profile fillDataToProfile(Profile profile, UsersEntity user){
         profile.setName(user.getFirstName());
         profile.setSurname(user.getLastName());
