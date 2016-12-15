@@ -2,6 +2,7 @@ package org.test.customcomponents;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.ui.Notification;
 import org.test.MyUI;
 import org.test.controllers.MainPageController;
 import org.test.tamplets.MainPage;
@@ -15,7 +16,7 @@ public class MainPageImpl extends MainPage implements View {
 
     public MainPageImpl() {
         controller = new MainPageController(this);
-
+//
         signPanel = new SignPanelImpl();
         underSignLayout.addComponent(signPanel);
 
