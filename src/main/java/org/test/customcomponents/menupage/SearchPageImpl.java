@@ -10,6 +10,7 @@ import org.test.dbservice.DatabaseManager;
 import org.test.logic.Profile;
 import org.test.msgservice.UIAlterationManager;
 import org.test.tamplets.menupage.SearchPage;
+import org.test.utils.UIHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,13 +93,21 @@ public class SearchPageImpl extends SearchPage implements View {
             Object rowId = searchTable.getSelectedRow();
             Container container = searchTable.getContainerDataSource();
             String  friendEmail = (String) container.getContainerProperty(rowId,"Email").getValue();
-            int userId = Profile.getCurrentProfile().getId();
-
-            DatabaseManager.addToFriends(userId, friendEmail);
-            showAddedFriendInAllUIs(friendEmail);
-
-            Notification.show("Added to friends " + friendEmail);
-//            updateFriendListInCurrentSession(userId);
+            boolean isFriendExist = false;
+            for(Profile friend: Profile.getCurrentProfile().getFriends()){
+                if (friend.getEmail().equals(friendEmail))
+                    isFriendExist = true;
+            }
+            if (!isFriendExist) {
+                int userId = Profile.getCurrentProfile().getId();
+                DatabaseManager.addToFriends(userId, friendEmail);
+                Profile friendProfile = DatabaseManager.getProfile(friendEmail);
+                Profile.getCurrentProfile().getFriends().add(friendProfile);
+                showAddedFriendInAllUIs(friendEmail);
+                Notification.show("Added to friends " + friendEmail);
+            }else {
+                UIHelper.showWarningNotification("It is already your friend!");
+            }
             windowToAdd.close();
         });
     }

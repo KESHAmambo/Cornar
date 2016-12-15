@@ -16,7 +16,6 @@ public class MainPageImpl extends MainPage implements View {
 
     public MainPageImpl() {
         controller = new MainPageController(this);
-//
         signPanel = new SignPanelImpl();
         underSignLayout.addComponent(signPanel);
 

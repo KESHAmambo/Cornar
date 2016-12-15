@@ -34,7 +34,6 @@ public class InboxDaoImpl extends AbstractServiceSession implements InboxDao {
         Session session;
         session = openCurrentSession();
         message = (InboxEntity) session.get(InboxEntity.class,id);
-        shutdownCurrentSession();
         return message;
     }
 
@@ -58,6 +57,7 @@ public class InboxDaoImpl extends AbstractServiceSession implements InboxDao {
         inboxEntity.setTheme(message.getTheme());
         inboxEntity.setWasRead(message.isWasRead());
         create(inboxEntity);
+        getCurrentSession().close();
     }
 
     @Override
@@ -66,6 +66,7 @@ public class InboxDaoImpl extends AbstractServiceSession implements InboxDao {
         Session session = openCurrentSessionWithTransaction();
         messages = (List<InboxEntity>) session.createCriteria(InboxEntity.class)
                     .add(Restrictions.eq("receiver_id", userId)).list();
+        getCurrentSession().close();
         return messages;
     }
 }

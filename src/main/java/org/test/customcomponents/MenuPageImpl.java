@@ -63,6 +63,8 @@ public class MenuPageImpl extends MenuPage implements View {
         if(profileImage != null) {
             FileResource resource = new FileResource(profile.getImageResource());
             avatarImage.setSource(resource);
+        }else {
+            avatarImage.setSource(null);
         }
     }
 

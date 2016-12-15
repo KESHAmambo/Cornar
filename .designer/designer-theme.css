@@ -13337,7 +13337,11 @@ div.v-layout.v-horizontal.v-widget {
 	font-size: 20px;
 }
 
-.mytheme .v-grid-searchResultsGrid .v-grid-cell {
+.mytheme .v-grid-searchResultsGrid .v-grid-tablewrapper, .mytheme .v-grid-searchResultsGrid .v-grid-scroller {
+	border: none;
+}
+
+.mytheme .v-grid-cell {
 	position: relative;
 	background: lightblue;
 }

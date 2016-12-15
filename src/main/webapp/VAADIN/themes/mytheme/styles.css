@@ -13322,13 +13322,6 @@ div.v-layout.v-horizontal.v-widget {
 	font: 16px Lucida Sans, Trebuchet MS, Tahoma, sans-serif;
 }
 
-.mytheme .v-grid-cell > .v-nativebutton {
-	width: 100%;
-	height: 100%;
-	color: blue;
-	background: lightblue;
-}
-
 .mytheme .v-grid-searchResultsGrid .v-grid-tablewrapper {
 	font-weight: bold;
 }
@@ -13337,7 +13330,11 @@ div.v-layout.v-horizontal.v-widget {
 	font-size: 20px;
 }
 
-.mytheme .v-grid-searchResultsGrid .v-grid-cell {
+.mytheme .v-grid-searchResultsGrid .v-grid-tablewrapper, .mytheme .v-grid-searchResultsGrid .v-grid-scroller {
+	border: none;
+}
+
+.mytheme .v-grid-cell {
 	position: relative;
 	background: lightblue;
 }

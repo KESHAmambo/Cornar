@@ -587,12 +587,12 @@ $v-border-radius: 0px;
     font: 16px Lucida Sans, Trebuchet MS, Tahoma, sans-serif;
   }
 
-  .v-grid-cell > .v-nativebutton {
-    width: 100%;
-    height: 100%;
-    color: blue;
-    background: lightblue;
-  }
+  //.v-grid-cell > .v-nativebutton {
+  //  width: 100%;
+  //  height: 100%;
+  //  color: blue;
+  //  background: lightblue;
+  //}
 
   .v-grid-searchResultsGrid {
     .v-grid-tablewrapper {
@@ -601,12 +601,16 @@ $v-border-radius: 0px;
         font-size: 20px;
       }
     }
-    .v-grid-cell {
-      position: relative;
-      background: lightblue;
+    .v-grid-tablewrapper,
+    .v-grid-scroller {
+      border: none;
     }
-  }
 
+  }
+  .v-grid-cell {
+    position: relative;
+    background: lightblue;
+  }
 
     .v-grid-tablewrapper,
     .v-grid-scroller {

@@ -154,7 +154,7 @@ public class DatabaseServiceImpl implements DatabaseService {
         for (UsersEntity user :
                 usersList) {
             Profile profileOfUser = new Profile();
-            usersProfileList.add(fillProfile(profileOfUser, user));
+            usersProfileList.add(fillDataToProfile(profileOfUser, user));
         }
         return usersProfileList;
     }
