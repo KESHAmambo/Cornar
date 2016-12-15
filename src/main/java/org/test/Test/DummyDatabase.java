@@ -34,7 +34,7 @@ public class DummyDatabase {
         }
 
         String tarasImagePath = "C:\\Users\\abara\\Desktop\\Projects\\Cornar\\src\\main\\webapp\\VAADIN\\themes\\mytheme\\images\\tarasImage.jpg";
-        String arkadyImagePath = "C:\\Users\\abara\\Desktop\\Projects\\Cornar\\src\\main\\webapp\\VAADIN\\themes\\mytheme\\images\\arkadyImage.jpg";
+//        String arkadyImagePath = "C:\\Users\\abara\\Desktop\\Projects\\Cornar\\src\\main\\webapp\\VAADIN\\themes\\mytheme\\images\\arkadyImage.jpg";
         String yodaImagePath = "C:\\Users\\abara\\Desktop\\Projects\\Cornar\\src\\main\\webapp\\VAADIN\\themes\\mytheme\\images\\yodaImage.jpg";
 
         List<Profile> tarasFriends = new ArrayList<>();
@@ -48,7 +48,7 @@ public class DummyDatabase {
         arkadyProfile.setEmail("arkady@mail.ru");
         arkadyProfile.setBirthDate(new Date());
         arkadyProfile.setEducation("MIPT");
-        arkadyProfile.setImageResource(new File(arkadyImagePath));
+//        arkadyProfile.setImageResource(new File(arkadyImagePath));
         arkadyProfile.setFriends(arkadyFriends);
 
         yodaProfile = new Profile();

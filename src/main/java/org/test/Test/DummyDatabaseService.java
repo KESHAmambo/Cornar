@@ -146,10 +146,6 @@ public class DummyDatabaseService implements DatabaseService {
         return new byte[0];
     }
 
-    public Profile fullFillProfile(String userEmail) {
-        return null;
-    }
-
     @Override
     public void saveUserImage(int userId, File image) {
 

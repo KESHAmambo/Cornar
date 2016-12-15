@@ -7,6 +7,7 @@ import org.test.customcomponents.menupage.profilepage.inboxpage.InboxComposePane
 import org.test.dbservice.DatabaseManager;
 import org.test.logic.InboxMessage;
 import org.test.logic.Profile;
+import org.test.msgservice.MailManager;
 import org.test.msgservice.UIAlterationManager;
 import org.test.utils.UIHelper;
 
@@ -35,14 +36,19 @@ public class InboxComposePanelController {
                         "There is no use in messaging with yourself...",
                         Notification.Type.WARNING_MESSAGE);
             } else {
-                InboxMessage message = formMessage(receiverProfile);
-                UIAlterationManager.sendInboxMessage(message);
-                UI.getCurrent().removeWindow(window);
-                UIHelper.showSuccessNotification(
-                        "Message was successfully sent!",
-                        "addedCourseNotification");
+                sendMessage(window, receiverProfile);
             }
         });
+    }
+
+    private void sendMessage(Window window, Profile receiverProfile) {
+        InboxMessage message = formMessage(receiverProfile);
+        UI.getCurrent().removeWindow(window);
+        UIAlterationManager.sendInboxMessage(message);
+        MailManager.sendMail(message);
+        UIHelper.showSuccessNotification(
+                "Message was successfully sent!",
+                "addedCourseNotification");
     }
 
     private InboxMessage formMessage(Profile receiveProfile) {
