@@ -15,10 +15,12 @@ import org.test.controllers.MyUIController;
 import org.test.customcomponents.MainPageImpl;
 import org.test.customcomponents.MenuPageImpl;
 import org.test.customcomponents.menupage.ChatPageImpl;
+import org.test.customcomponents.menupage.FriendsPageImpl;
 import org.test.customcomponents.menupage.profilepage.InboxPageImpl;
 import org.test.logic.InboxMessage;
+import org.test.logic.Profile;
 import org.test.msgservice.ChatMessage;
-import org.test.msgservice.MessageManager;
+import org.test.msgservice.UIAlterationManager;
 
 import java.util.Locale;
 
@@ -35,11 +37,12 @@ import static org.test.logic.PageName.MENU;
 @Push
 @PreserveOnRefresh
 @Theme("mytheme")
-public class MyUI extends UI implements MessageManager.MessageListener {
+public class MyUI extends UI implements UIAlterationManager.UIAlterationListener {
     private Navigator navigator;
     private MyUIController controller;
     private ChatPageImpl chatPage;
     private InboxPageImpl inboxPage;
+    private FriendsPageImpl friendsPage;
 
     @Override
     public Navigator getNavigator() {
@@ -52,6 +55,10 @@ public class MyUI extends UI implements MessageManager.MessageListener {
 
     public void setInboxPage(InboxPageImpl inboxPage) {
         this.inboxPage = inboxPage;
+    }
+
+    public void setFriendsPage(FriendsPageImpl friendsPage) {
+        this.friendsPage = friendsPage;
     }
 
     @Override
@@ -103,6 +110,12 @@ public class MyUI extends UI implements MessageManager.MessageListener {
         access(() -> {
             inboxPage.addMessageBox(message);
         });
+    }
+
+    @Override
+    public void showAddedFriend(Profile profile) {
+        friendsPage.addNewFriendBox(profile);
+        chatPage.addFriendDialogPanel(profile);
     }
 
     @Override

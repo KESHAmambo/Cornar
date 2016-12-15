@@ -113,6 +113,6 @@ public class DatabaseManager {
     }
 
     public static Profile fulfillProfile(String userEmail) {
-        return service.fullFillProfile(userEmail);
+        return service.fulfillProfile(userEmail);
     }
 }

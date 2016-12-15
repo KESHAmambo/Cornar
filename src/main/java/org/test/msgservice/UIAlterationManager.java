@@ -4,6 +4,7 @@ import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.UI;
 import org.test.dbservice.DatabaseManager;
 import org.test.logic.InboxMessage;
+import org.test.logic.Profile;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -11,7 +12,7 @@ import java.util.TreeMap;
 /**
  * Created by abara on 17.11.2016.
  */
-public class MessageManager {
+public class UIAlterationManager {
     private static Map<Integer, VaadinSession> sessions = new TreeMap<>();
 
     public static void registerSession(int userId, VaadinSession session) {
@@ -49,13 +50,19 @@ public class MessageManager {
     private static void sendChatMessageToAllReceiverUIs(ChatMessage message) {
         int receiverId = message.getReceiverId();
         for(UI ui: sessions.get(receiverId).getUIs()) {
-            ((MessageListener) ui).receiveChatMessage(message);
+            ((UIAlterationListener) ui).receiveChatMessage(message);
         }
     }
 
     private static void showSentChatMessageInAllSenderUIs(ChatMessage message) {
         for (UI ui : VaadinSession.getCurrent().getUIs()) {
-            ((MessageListener) ui).showSentChatMessage(message);
+            ((UIAlterationListener) ui).showSentChatMessage(message);
+        }
+    }
+
+    public static void showAddedFriendInAllUIs(Profile profile) {
+        for (UI ui : VaadinSession.getCurrent().getUIs()) {
+            ((UIAlterationListener) ui).showAddedFriend(profile);
         }
     }
 
@@ -67,7 +74,7 @@ public class MessageManager {
 
     private static void showSentInboxMessageInAllSenderUIs(InboxMessage message) {
         for(UI ui: VaadinSession.getCurrent().getUIs()) {
-            ((MessageListener) ui).showSentInboxMessage(message);
+            ((UIAlterationListener) ui).showSentInboxMessage(message);
         }
     }
 
@@ -76,18 +83,20 @@ public class MessageManager {
         VaadinSession receiverSession = sessions.get(receiverId);
         if(receiverSession != null) {
             for (UI ui: receiverSession.getUIs()) {
-                ((MessageListener) ui).receiveInboxMessage(message);
+                ((UIAlterationListener) ui).receiveInboxMessage(message);
             }
         }
     }
 
 
-    public interface MessageListener {
+    public interface UIAlterationListener {
         void receiveChatMessage(ChatMessage message);
         void showSentChatMessage(ChatMessage message);
 
         void receiveInboxMessage(InboxMessage message);
         void showSentInboxMessage(InboxMessage message);
+
+        void showAddedFriend(Profile profile);
     }
 
     public static class NoSuchSessionException extends Exception {

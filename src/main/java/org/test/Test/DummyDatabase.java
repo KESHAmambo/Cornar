@@ -71,9 +71,9 @@ public class DummyDatabase {
         tarasProfile.setImageResource(new File(tarasImagePath));
         tarasProfile.setFriends(tarasFriends);
 
-        arkadyFriends.add(tarasProfile);
+//        arkadyFriends.add(tarasProfile);
         arkadyFriends.add(yodaProfile);
-        tarasFriends.add(arkadyProfile);
+//        tarasFriends.add(arkadyProfile);
         tarasFriends.add(yodaProfile);
         yodaFriends.add(arkadyProfile);
         yodaFriends.add(tarasProfile);
@@ -213,13 +213,6 @@ public class DummyDatabase {
             }
         }
         return null;
-        /*if (email.equals(arkadyProfile.getEmail())) {
-            return arkadyProfile;
-        } else if(email.equals((tarasProfile.getEmail()))) {
-            return tarasProfile;
-        } else {
-            return null;
-        }*/
     }
 
     static void storeInboxMessage(InboxMessage message) {
@@ -244,5 +237,30 @@ public class DummyDatabase {
 
     static void assignProfileToLesson(Lesson lesson, Profile profile) {
 //        lesson.getAssignedStudents().add(profile);
+    }
+
+    public static List<Profile> getAllUsersWithNameLike(String firstName) {
+        List<Profile> result = new ArrayList<>();
+        for(Profile profile: profiles) {
+            if(profile.getName().contains(firstName)) {
+                result.add(profile);
+            }
+        }
+        return result;
+    }
+
+    public static void addFriend(int userId, String friendEmail) {
+        Profile newFriend = null;
+        for(Profile profile: profiles) {
+            if(profile.getEmail().equals(friendEmail)) {
+                newFriend = profile;
+                break;
+            }
+        }
+        for(Profile profile: profiles) {
+            if(profile.getId() == userId) {
+                profile.getFriends().add(newFriend);
+            }
+        }
     }
 }

@@ -1,7 +1,6 @@
 package org.test.Test;
 
 import org.test.customcomponents.menupage.profilepage.materialspage.DocumentBoxImpl;
-import org.test.dbservice.DatabaseManager;
 import org.test.dbservice.DatabaseService;
 import org.test.dbservice.entity.UsersEntity;
 import org.test.logic.Course;
@@ -32,6 +31,7 @@ public class DummyDatabaseService implements DatabaseService {
         return DummyDatabase.doesUserExist(email, password);
     }
 
+    @Override
     public Profile fulfillProfile(String userEmail) {
         return DummyDatabase.getProfile(userEmail);
         /*return DummyDatabase.getProfile(userEmail);
@@ -50,7 +50,7 @@ public class DummyDatabaseService implements DatabaseService {
 
     @Override
     public List<Profile> getAllUsersWithNameLike(String firstName) {
-        return null;
+        return DummyDatabase.getAllUsersWithNameLike(firstName);
     }
 
     @Override
@@ -128,12 +128,7 @@ public class DummyDatabaseService implements DatabaseService {
 
     @Override
     public void addToFriends(int userId, String friendEmail) {
-
-    }
-
-    @Override
-    public void fulfillProfile(Profile profile, String userEmail) {
-
+        DummyDatabase.addFriend(userId, friendEmail);
     }
 
     @Override

@@ -1,19 +1,13 @@
 package org.test.controllers.menupage.chatpage;
 
 import com.vaadin.server.Page;
-import com.vaadin.server.SessionExpiredException;
-import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.Position;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextArea;
-import com.vaadin.ui.UI;
-import org.test.MyUI;
 import org.test.customcomponents.menupage.chatpage.DialogPanelImpl;
 import org.test.msgservice.ChatMessage;
-import org.test.msgservice.MessageManager;
+import org.test.msgservice.UIAlterationManager;
 import org.test.logic.Profile;
-
-import java.util.Collection;
 
 /**
  * Created by abara on 17.11.2016.
@@ -44,9 +38,9 @@ public class DialogPanelController {
 
     private void sendMessage(TextArea messageTextArea, ChatMessage message) {
         try {
-            MessageManager.sendChatMessage(message);
+            UIAlterationManager.sendChatMessage(message);
             messageTextArea.setValue("");
-        } catch (MessageManager.NoSuchSessionException e) {
+        } catch (UIAlterationManager.NoSuchSessionException e) {
             showCanNotSendNotification();
         }
     }

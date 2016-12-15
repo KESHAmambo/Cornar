@@ -8,6 +8,7 @@ import com.vaadin.ui.*;
 import org.test.customcomponents.menupage.searchpage.addToFriendBoxImpl;
 import org.test.dbservice.DatabaseManager;
 import org.test.logic.Profile;
+import org.test.msgservice.UIAlterationManager;
 import org.test.tamplets.menupage.SearchPage;
 
 import java.util.ArrayList;
@@ -17,9 +18,10 @@ import java.util.List;
  * Created by abara on 09.11.2016.
  */
 public class SearchPageImpl extends SearchPage implements View {
-    List<Profile> profilesList;
-    String valueOfBox;
+    private List<Profile> profilesList;
+    private String valueOfBox;
     private final addToFriendBoxImpl addToFriendBox;
+
     public SearchPageImpl() {
         searchTable.setStyleName("search-results",true);
         searchButton.addClickListener(new Button.ClickListener() {
@@ -29,24 +31,23 @@ public class SearchPageImpl extends SearchPage implements View {
                 updateTableOfSearchResult(profilesList);
             }
         });
-        addToFriendBox = new addToFriendBoxImpl();
+        addToFriendButton = new addToFriendBoxImpl();
     }
-    public List<Profile> getSearchResult(String searchField){
+
+    private List<Profile> getSearchResult(String searchField){
         valueOfBox = (String) searchParametrBox.getValue();
         switch (valueOfBox){
             case "name":{
-                List<Profile> usersList = DatabaseManager.getAllUsersWithNameLike(searchField);
-                return usersList;
+                return DatabaseManager.getAllUsersWithNameLike(searchField);
             }
             case "surname":{
-                List<Profile> usersList = DatabaseManager.getAllUsersWithSurnameLike(searchField);
-                return usersList;
+                return DatabaseManager.getAllUsersWithSurnameLike(searchField);
             }
         }
         return new ArrayList<>();
     }
 
-    public void updateTableOfSearchResult(List<Profile> profiles){
+    private void updateTableOfSearchResult(List<Profile> profiles){
         searchTable.getContainerDataSource().removeAllItems();
         if (valueOfBox.equals("name") || valueOfBox.equals("surname"))
             for (Profile user: profiles)
@@ -72,32 +73,42 @@ public class SearchPageImpl extends SearchPage implements View {
         } );
     }
 
-    public Window customizeWindowToAdd(Window windowToAdd){
-        createListenersToAddButton(addToFriendBox.getAddButton(), windowToAdd);
-        createListenersToDeclineButton(addToFriendBox.getDeclineButton(), windowToAdd);
-        windowToAdd.setContent(addToFriendBox);
+    private Window customizeWindowToAdd(Window windowToAdd){
+        createListenersToAddButton(addToFriendButton.getAddButton(), windowToAdd);
+        createListenersToDeclineButton(addToFriendButton.getDeclineButton(), windowToAdd);
+        windowToAdd.setContent(addToFriendButton);
         windowToAdd.setClosable(false);
+        //windowToAdd.setDraggable(false);
         windowToAdd.setResizable(false);
         windowToAdd.center();
         windowToAdd.setModal(true);
-        windowToAdd.setWidth("30%");
-        windowToAdd.setHeight("20%");
+        windowToAdd.setWidth("-1px");
+        windowToAdd.setHeight("");
         return windowToAdd;
     }
 
-    void createListenersToAddButton(Button addButton, Window windowToAdd){
+    private void createListenersToAddButton(Button addButton, Window windowToAdd){
         addButton.addClickListener(event -> {
             Object rowId = searchTable.getSelectedRow();
             Container container = searchTable.getContainerDataSource();
             String  friendEmail = (String) container.getContainerProperty(rowId,"Email").getValue();
             int userId = Profile.getCurrentProfile().getId();
+
             DatabaseManager.addToFriends(userId, friendEmail);
+            showAddedFriendInAllUIs(friendEmail);
+
             Notification.show("Added to friends " + friendEmail);
-            updateFriendListInCurrentSession(userId);
+//            updateFriendListInCurrentSession(userId);
             windowToAdd.close();
         });
     }
-    void createListenersToDeclineButton(Button decline, Window windowToAdd){
+
+    private void showAddedFriendInAllUIs(String friendEmail) {
+        Profile newFriend = DatabaseManager.getProfile(friendEmail);
+        UIAlterationManager.showAddedFriendInAllUIs(newFriend);
+    }
+
+    private void createListenersToDeclineButton(Button decline, Window windowToAdd){
         decline.addClickListener(event -> {
             windowToAdd.close();
         });
@@ -106,8 +117,8 @@ public class SearchPageImpl extends SearchPage implements View {
     private void updateFriendListInCurrentSession(int userId){
         List<Profile> friends = DatabaseManager.getAllFriendOfUser(userId);
         Profile.getCurrentProfile().setFriends(friends);
-        Profile.getCurrentProfile().getFriends().forEach(System.out::println);
     }
+
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
 

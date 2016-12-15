@@ -118,15 +118,4 @@ public class Profile {
         return id;
     }
 
-    @Override
-    public String toString() {
-        return "Profile{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
-                ", education='" + education + '\'' +
-                ", birthDate=" + birthDate +
-                '}';
-    }
 }

@@ -13,9 +13,7 @@ import org.test.customcomponents.MenuPageImpl;
 import org.test.customcomponents.SignPanelImpl;
 import org.test.customcomponents.SignUpPanelImpl;
 import org.test.dbservice.DatabaseManager;
-import org.test.dbservice.utils.PasswordUtils;
-import org.test.msgservice.MessageManager;
-import org.test.dbservice.DatabaseService;
+import org.test.msgservice.UIAlterationManager;
 import org.test.logic.Profile;
 
 import java.util.Collection;
@@ -57,7 +55,7 @@ public class MainPageController {
     private void signOutPreviousProfile() {
         Profile previousProfile = (Profile) VaadinSession.getCurrent().getAttribute("profile");
         if(previousProfile != null) {
-            MessageManager.unregisterSession(previousProfile.getId());
+            UIAlterationManager.unregisterSession(previousProfile.getId());
         }
     }
 
@@ -65,7 +63,7 @@ public class MainPageController {
         Profile profile = Profile.fulfillProfile(userEmail);
         VaadinSession session = VaadinSession.getCurrent();
         session.setAttribute("profile", profile);
-        MessageManager.registerSession(profile.getId(), session);
+        UIAlterationManager.registerSession(profile.getId(), session);
     }
 
     private void navigateToMenuPageInAllUIs(Collection<UI> uis) {

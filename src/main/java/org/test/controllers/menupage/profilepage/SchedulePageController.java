@@ -40,7 +40,6 @@ public class SchedulePageController {
     }
 
     private void fulfillCalendar(Calendar calendar) {
-        //TODO pulling lessons to calendar
         List<Lesson> lessons = DatabaseManager.pullAllUserLessons(Profile.getCurrentProfile());
         for(Lesson lesson: lessons) {
             BasicEvent lessonEvent = createLessonEvent(lesson);

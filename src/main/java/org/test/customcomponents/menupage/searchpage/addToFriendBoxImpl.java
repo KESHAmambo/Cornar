@@ -10,6 +10,7 @@ public class addToFriendBoxImpl extends addToFriendBox {
     public Button getAddButton(){
         return addButton;
     }
+
     public Button getDeclineButton(){
         return decline;
     }

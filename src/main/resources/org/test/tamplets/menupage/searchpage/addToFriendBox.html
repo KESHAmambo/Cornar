@@ -5,23 +5,20 @@
   <meta charset="UTF-8" name="vaadin-version" content="7.7.0">
  </head> 
  <body> 
-  <vaadin-vertical-layout style-name="add_friend" size-full> 
-   <vaadin-vertical-layout size-full :center> 
-    <vaadin-label style-name="large" width="80%" height="40%" plain-text :middle :center>
-      Do you want to add this person? 
+  <vaadin-vertical-layout style-name="addFriendBoxLayout" size-auto> 
+   <vaadin-vertical-layout size-full margin-left margin-right margin-top :center> 
+    <vaadin-label size-auto plain-text :middle>
+      Do you want to add this person to your friends? 
     </vaadin-label> 
    </vaadin-vertical-layout> 
-   <vaadin-horizontal-layout size-full> 
-    <vaadin-horizontal-layout size-full :middle> 
-     <vaadin-button style-name="borderless" width="80%" height="50%" plain-text _id="addButton" :middle :center>
-       Add 
-     </vaadin-button> 
-    </vaadin-horizontal-layout> 
-    <vaadin-horizontal-layout size-full> 
-     <vaadin-button style-name="borderless" width="80%" height="50%" plain-text _id="decline" :middle :center>
-       Decline 
-     </vaadin-button> 
-    </vaadin-horizontal-layout> 
+   <vaadin-horizontal-layout spacing margin :right> 
+    <vaadin-label plain-text :expand></vaadin-label> 
+    <vaadin-button style-name="borderless addFriendButton" width="150px" height="50px" plain-text _id="addButton" :middle :right>
+      Add 
+    </vaadin-button> 
+    <vaadin-button style-name="borderless declineButton" width="150px" height="50px" plain-text _id="decline" :middle :right>
+      Decline 
+    </vaadin-button> 
    </vaadin-horizontal-layout> 
   </vaadin-vertical-layout>  
  </body>

@@ -2,7 +2,9 @@ package org.test.customcomponents.menupage;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import org.test.MyUI;
 import org.test.controllers.menupage.friendspage.FriendsPageController;
+import org.test.logic.Profile;
 import org.test.tamplets.menupage.FriendsPage;
 
 /**
@@ -11,14 +13,20 @@ import org.test.tamplets.menupage.FriendsPage;
 public class FriendsPageImpl extends FriendsPage implements View {
     private final FriendsPageController controller;
 
-    public FriendsPageImpl() {
+    public FriendsPageImpl(MyUI myUI) {
         controller = new FriendsPageController(this);
+        controller.fulfillPage();
 
+        myUI.setFriendsPage(this);
     }
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
-        mainLayout.removeAllComponents();
-        controller.fulfillPage();
+//        mainLayout.removeAllComponents();
+
+    }
+
+    public void addNewFriendBox(Profile profile) {
+        controller.addFriendBox(profile);
     }
 }
