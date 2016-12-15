@@ -20,7 +20,7 @@ import java.util.List;
 public class SearchPageImpl extends SearchPage implements View {
     private List<Profile> profilesList;
     private String valueOfBox;
-    private final addToFriendBoxImpl addToFriendBox;
+    addToFriendBoxImpl addToFriendBox;
 
     public SearchPageImpl() {
         searchTable.setStyleName("search-results",true);
@@ -31,7 +31,7 @@ public class SearchPageImpl extends SearchPage implements View {
                 updateTableOfSearchResult(profilesList);
             }
         });
-        addToFriendButton = new addToFriendBoxImpl();
+        addToFriendBox = new addToFriendBoxImpl();
     }
 
     private List<Profile> getSearchResult(String searchField){
@@ -74,9 +74,9 @@ public class SearchPageImpl extends SearchPage implements View {
     }
 
     private Window customizeWindowToAdd(Window windowToAdd){
-        createListenersToAddButton(addToFriendButton.getAddButton(), windowToAdd);
-        createListenersToDeclineButton(addToFriendButton.getDeclineButton(), windowToAdd);
-        windowToAdd.setContent(addToFriendButton);
+        createListenersToAddButton(addToFriendBox.getAddButton(), windowToAdd);
+        createListenersToDeclineButton(addToFriendBox.getDeclineButton(), windowToAdd);
+        windowToAdd.setContent(addToFriendBox);
         windowToAdd.setClosable(false);
         //windowToAdd.setDraggable(false);
         windowToAdd.setResizable(false);

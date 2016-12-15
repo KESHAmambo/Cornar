@@ -79,8 +79,7 @@ public class DatabaseServiceImpl implements DatabaseService {
         }    }
 
 
-    @Override
-    public void fulfillProfile(Profile profile, String userEmail) {
+    private void fulfillProfile(Profile profile, String userEmail) {
         UsersEntity user = new UserDaoImpl().getUserByEmail(userEmail);
         profile = fillProfile(profile, user);
     }
@@ -117,6 +116,7 @@ public class DatabaseServiceImpl implements DatabaseService {
         FilesDao filesDao = new FilesDaoImpl();
         return filesDao.getFileByNameToOwner(docName,ownerId);
     }
+
 
     private Profile fillDataToProfile(Profile profile, UsersEntity user){
         profile.setName(user.getFirstName());

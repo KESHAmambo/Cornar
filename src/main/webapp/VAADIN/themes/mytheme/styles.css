@@ -13337,23 +13337,21 @@ div.v-layout.v-horizontal.v-widget {
 	font-size: 20px;
 }
 
-.mytheme .v-grid-searchResultsGrid .v-grid-header {
-	font-size: 20px;
-}
-
 .mytheme .v-grid-searchResultsGrid .v-grid-cell {
 	position: relative;
+	background: lightblue;
 }
 
-.mytheme .v-grid-searchResultsGrid .v-grid-tablewrapper, .mytheme .v-grid-searchResultsGrid .v-grid-scroller {
+.mytheme .v-grid-tablewrapper, .mytheme .v-grid-scroller {
 	border: none;
 }
 
-.mytheme .v-grid-searchResultsGrid .v-grid-row {
+.mytheme .v-grid-row {
+	background: lightblue;
 	overflow: hidden;
 }
 
-.mytheme .v-grid-searchResultsGrid .v-nativebutton {
+.mytheme .v-nativebutton {
 	background: #fff;
 	color: black;
 	width: 100%;

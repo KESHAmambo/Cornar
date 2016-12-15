@@ -78,8 +78,6 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
         char[] charPassword = password.toCharArray();
         System.out.println(password);
         if (user !=null) {
-            //TODO verification password TODAY!!! //TODO TODO MUST HAVE
-
             String pass = new String(PasswordUtils.hash(charPassword));
             if (Profile.getCurrentProfile()!= null) {
                 if (PasswordUtils.isExpectedPassword(pass, user.getPassword())) {
@@ -87,7 +85,6 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
                     return user;
                 }
             }
-            return user;
         }
         user = new UsersEntity();
         user.setUserId(-1);

@@ -40,7 +40,7 @@ $v-border-radius: 0px;
   // MainPage ------------------------------------------------
 
   .v-horizontallayout-mainPageLayout {
-    background: url("images/main_background.jpg")  no-repeat center fixed;
+    background: url("images/main_background.jpg") no-repeat center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -81,7 +81,6 @@ $v-border-radius: 0px;
     font-size: 1.1em;
     font-weight: bold;
   }
-
 
   // SignPanel -----------------------------------------------------
 
@@ -225,10 +224,10 @@ $v-border-radius: 0px;
   }
 
   .v-button-menuButton:focus {
-     background: #005159;
-     padding-left: 6vw;
-     font-size: 26px;
-   }
+    background: #005159;
+    padding-left: 6vw;
+    font-size: 26px;
+  }
 
   .v-button-menuButtonFocused {
     background: #005159;
@@ -432,7 +431,6 @@ $v-border-radius: 0px;
     box-shadow: inset 0 0 7px 7px #91ccd2;
   }
 
-
   //-------------------- MaterialsPage ----------------------
 
   .v-csslayout-docImage {
@@ -483,7 +481,7 @@ $v-border-radius: 0px;
     background: #89a0a2;
   }
 
-  .v-button-addFileButton{
+  .v-button-addFileButton {
     background: #74bfba;
     font-size: 20px;
     color: #fafeff;
@@ -495,7 +493,6 @@ $v-border-radius: 0px;
   .v-button-addFileButton:hover {
     background: #b3cacc;
   }
-
 
   //--------- ChatPanel -------------------------------------
   .sliderPanel {
@@ -552,7 +549,7 @@ $v-border-radius: 0px;
   .v-button-searchButton {
     background-color: #f6f6f6;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#31b2c3), to(#005159));
-    background-image: -webkit-linear-gradient(top, #31b2c3,#005159);
+    background-image: -webkit-linear-gradient(top, #31b2c3, #005159);
     background-image: -moz-linear-gradient(top, #31b2c3, #005159);
     background-image: -ms-linear-gradient(top, #31b2c3, #0483a0);
     background-image: -o-linear-gradient(top, #31b2c3, #0483a0);
@@ -581,9 +578,9 @@ $v-border-radius: 0px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    -webkit-box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
-    -moz-box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
-    box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+    -webkit-box-shadow: 0 3px 3px rgba(255, 255, 255, .1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+    -moz-box-shadow: 0 3px 3px rgba(255, 255, 255, .1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+    box-shadow: 0 3px 3px rgba(255, 255, 255, .1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
     overflow: hidden;
 
     color: #999;
@@ -600,24 +597,23 @@ $v-border-radius: 0px;
   .v-grid-searchResultsGrid {
     .v-grid-tablewrapper {
       font-weight: bold;
-
       .v-grid-header {
         font-size: 20px;
       }
     }
-
-    .v-grid-header {
-      font-size: 20px;
-    }
     .v-grid-cell {
       position: relative;
+      background: lightblue;
     }
+  }
+
+
     .v-grid-tablewrapper,
     .v-grid-scroller {
       border: none;
     }
-
     .v-grid-row {
+      background: lightblue;
       overflow: hidden;
     }
 
@@ -632,7 +628,6 @@ $v-border-radius: 0px;
       font-weight: bold;
       font-size: 15px;
     }
-  }
 
   .v-verticallayout-addFriendBoxLayout{
     background: lightblue;

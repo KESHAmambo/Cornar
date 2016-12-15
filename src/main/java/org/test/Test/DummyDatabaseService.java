@@ -32,6 +32,11 @@ public class DummyDatabaseService implements DatabaseService {
     }
 
     @Override
+    public boolean doesUserExist(String email) {
+        return false;
+    }
+
+    @Override
     public Profile fulfillProfile(String userEmail) {
         return DummyDatabase.getProfile(userEmail);
         /*return DummyDatabase.getProfile(userEmail);
@@ -141,7 +146,6 @@ public class DummyDatabaseService implements DatabaseService {
         return new byte[0];
     }
 
-    @Override
     public Profile fullFillProfile(String userEmail) {
         return null;
     }
