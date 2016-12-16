@@ -14,6 +14,7 @@ import org.test.logic.Profile;
 
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by Taras on 30.11.2016.
@@ -50,7 +51,6 @@ public class LessonsDaoImpl extends AbstractServiceSession implements LessonsDao
         Session session;
         session = openCurrentSession();
         lessonsEntity = (LessonsEntity) session.get(LessonsEntity.class, id);
-        System.out.println(lessonsEntity.getLessonId() + " " + lessonsEntity.getLessonName());
         Lesson dummyLesson = new Lesson();
         dummyLesson.setId(-1);
         if (lessonsEntity == null)
@@ -70,6 +70,7 @@ public class LessonsDaoImpl extends AbstractServiceSession implements LessonsDao
         lesson.setStartDate(lessonsEntity.getStartDate());
         lesson.setEndDate(lessonsEntity.getFinalDate());
         lesson.setCourse(course);
+        lesson.setId(lessonsEntity.getLessonId());
         getCurrentSession().close();
         return lesson;
     }
@@ -108,18 +109,24 @@ public class LessonsDaoImpl extends AbstractServiceSession implements LessonsDao
         query.setInteger("ID", course.getTutorProfile().getId());
         userTutor = (UsersEntity) query.uniqueResult();
         shutdownCurrentSession();
+        getCurrentSession().close();
         LessonsEntity lesson = new LessonsEntity();
         CoursesEntity coursesEntity = new CoursesEntity();
         coursesEntity.setCourseId(course.getId());
         coursesEntity.setCourseName(course.getName());
         coursesEntity.setCourseDescription(course.getDescription());
         coursesEntity.setUser(userTutor);
-        lesson.setCourse(coursesEntity);
+        session = openCurrentSession();
+        session.beginTransaction();
+        session.load(LessonsEntity.class, 15);
         lesson.setLessonName(nameOfLesson);
         lesson.setStartDate(new java.sql.Timestamp(startDate.getTime()));
         lesson.setFinalDate(new java.sql.Timestamp(finalDate.getTime()));
         lesson.setPrice(price);
-        create(lesson);
+        lesson.setCourse(coursesEntity);
+        session.save(lesson);
+        session.getTransaction().commit();
+        //create(lesson);
         getCurrentSession().close();
     }
 

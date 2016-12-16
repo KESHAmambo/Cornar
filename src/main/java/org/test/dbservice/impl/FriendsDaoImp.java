@@ -49,7 +49,6 @@ public class FriendsDaoImp extends AbstractServiceSession implements FriendsDao 
     public List<FriendsEntity> getAllFriendBy(int user_id) {
         List<FriendsEntity> friends;
         Session session = openCurrentSessionWithTransaction();
-        //Query query = session.createQuery("from FriendsEntity where userId=")
         friends = (List<FriendsEntity>) session.createCriteria(FriendsEntity.class)
                         .add(Restrictions.eq("userId", user_id)).list();
         shutdownCurrentSession();

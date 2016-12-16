@@ -71,7 +71,7 @@ public class LessonsEntity {
         this.finalDate = finalDate;
     }
 
-    @JoinColumn(name = "course_id",insertable=false, updatable=false)
+    @JoinColumn(name = "course_id",insertable=true, updatable=true)
     @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     public CoursesEntity getCourse() {
         return course;

@@ -91,6 +91,7 @@ public class CoursesEntity {
     public void setLessons(Set<LessonsEntity> getLesson) {
         this.lessons = getLesson;
     }
+
     public void addToLessons(LessonsEntity lesson){
         lesson.setCourse(this);
         getLessons().add(lesson);

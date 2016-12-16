@@ -26,11 +26,14 @@ public class LessonConnection {
     }
 
     void addStudentListener(Profile profile, VaadinSession session) {
+        System.out.println("ADD: " + this + " " + profile.getName());
         studentListeners.add(new Listener(profile, session));
     }
 
     public void sendBoardMessage(String text) {
+        System.out.println("Send: " + this);
         ClassBoardMessageImpl classBoardMessage = new ClassBoardMessageImpl(text);
+        System.out.println("SIZE OF STUDENT LIST " +studentListeners.size());
         for(Listener listener: studentListeners) {
             for(UI ui: listener.getSession().getUIs()) {
                 ((LessonConnectionListener) ui).receiveClassBoardMessage(classBoardMessage);

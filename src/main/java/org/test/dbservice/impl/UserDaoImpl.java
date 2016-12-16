@@ -107,6 +107,7 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
         Criteria crtForAll = session.createCriteria(UsersEntity.class);
         listOfUsers = crtForAll.list();
         shutdownCurrentSession();
+        getCurrentSession().close();
         return listOfUsers;
     }
 
@@ -132,7 +133,7 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
     @Override
     public List<UsersEntity> searchUserByName(String firstName){
         Session session = openCurrentSessionWithTransaction();
-        Query queryForSearch = session.createQuery("from UsersEntity as user where user.first_name like :searchFirstName");
+        Query queryForSearch = session.createQuery("from UsersEntity as user where lower (user.first_name) like :searchFirstName");
         queryForSearch.setString("searchFirstName", "%" + firstName + "%");
         List<UsersEntity> allFindUsers = queryForSearch.list();
         shutdownCurrentSession();
@@ -147,6 +148,7 @@ public class UserDaoImpl extends AbstractServiceSession implements UserDao {
         queryForSearch.setString("searchFirstName", "%" + surname + "%");
         List<UsersEntity> allFindUsers = queryForSearch.list();
         shutdownCurrentSession();
+        getCurrentSession().close();
         return  allFindUsers;
     }
 }

@@ -313,6 +313,7 @@ public class DatabaseServiceImpl implements DatabaseService {
                     entityCourse.getCourseName(),
                     entityCourse.getCourseDescription());
             lesson.setCourse(course);
+            lesson.setId(entity.getLessonId());
             lesson.setName(entity.getLessonName());
             lesson.setStartDate(new Date(entity.getStartDate().getTime()));
             lesson.setEndDate(new Date(entity.getFinalDate().getTime()));

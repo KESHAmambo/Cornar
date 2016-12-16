@@ -19,13 +19,16 @@ public class LessonsManager {
 
     public static LessonConnection connectToLessonAsStudent(Lesson lesson) {
         Integer lessonId = lesson.getId();
+        System.out.println(" NOT IF " +lessonId);
         LessonConnection connection;
         if(lessonConnections.containsKey(lessonId)) {
             connection = lessonConnections.get(lessonId);
+            System.out.println("IF: " + connection);
             connection.addStudentListener(
                     Profile.getCurrentProfile(), VaadinSession.getCurrent());
         } else {
             connection = new LessonConnection(lesson);
+            System.out.println("ELSE: " + connection);
             connection.addStudentListener(
                     Profile.getCurrentProfile(), VaadinSession.getCurrent());
             lessonConnections.put(lessonId, connection);

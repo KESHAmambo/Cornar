@@ -19,6 +19,7 @@ public class InboxEntity {
     private Boolean wasRead;
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "message_id", nullable = false)
     public int getMessageId() {
         return messageId;

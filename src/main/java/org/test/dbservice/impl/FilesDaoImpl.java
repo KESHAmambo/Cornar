@@ -60,6 +60,7 @@ public class FilesDaoImpl extends AbstractServiceSession implements FilesDao {
         Date currentDate = new Date(dateFormat.format(cal.getTime()));
         file.setCreation_date(new java.sql.Timestamp(currentDate.getTime()));
         create(file);
+        getCurrentSession().close();
     }
 
     @Override
@@ -68,6 +69,7 @@ public class FilesDaoImpl extends AbstractServiceSession implements FilesDao {
         FilesEntity file = (FilesEntity) session.createCriteria(FilesEntity.class)
                 .add(Restrictions.eq("file_name", filename)).uniqueResult();
         shutdownCurrentSession();
+        getCurrentSession().close();
         return file.getFileData();
     }
 
@@ -78,6 +80,7 @@ public class FilesDaoImpl extends AbstractServiceSession implements FilesDao {
                 .add(Restrictions.eq("file_name", filename))
                 .add(Restrictions.eq("owner_id", ownerId)).uniqueResult();
         shutdownCurrentSession();
+        getCurrentSession().close();
         return file.getFileData();
     }
 
