@@ -1,50 +1,45 @@
 <!doctype html>
 <html>
- <head>
+ <head>  
   <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;mytheme&quot;}">
   <meta charset="UTF-8" name="vaadin-version" content="7.7.0">
+  <meta charset="UTF-8" name="package-mapping" content="org_test_customcomponents:org.test.customcomponents">
  </head> 
  <body> 
-  <vaadin-vertical-layout size-full> 
+  <vaadin-horizontal-layout size-full> 
    <vaadin-horizontal-layout size-full _id="majorHorizontalLayout"> 
-    <vaadin-vertical-layout style-name="menuVerticalLayout" width="300px" height-full> 
-     <vaadin-vertical-layout height="250px"> 
+    <vaadin-vertical-layout style-name="menuVerticalLayout" width-auto height-full> 
+     <vaadin-vertical-layout height="250px" :middle :center> 
       <vaadin-label width-auto height-full plain-text :expand></vaadin-label> 
-      <vaadin-vertical-layout style-name="avatarLayout" width="160px" height="160px" :middle :center> 
-       <vaadin-image width="128px" height="128px" _id="avatarImage" :middle :center></vaadin-image> 
+      <vaadin-vertical-layout style-name="menuAvatarLayout" width="160px" height="160px" _id="imageLayout" :middle :center> 
+       <vaadin-image style-name="menuAvatarImage" size-full _id="avatarImage" :expand></vaadin-image> 
       </vaadin-vertical-layout> 
       <vaadin-label width-auto height-full plain-text :expand></vaadin-label> 
      </vaadin-vertical-layout> 
      <vaadin-vertical-layout size-full :expand> 
-      <vaadin-button icon="fonticon://FontAwesome/f007" style-name="menuButton borderless" width-full height="50px" plain-text _id="profileButton">
+      <vaadin-button icon="fonticon://FontAwesome/f007" style-name="menuButton borderless" height="50px" plain-text _id="profileButton">
         Profile 
       </vaadin-button> 
-      <vaadin-button icon="fonticon://FontAwesome/f002" style-name="menuButton borderless" width-full height="50px" plain-text _id="searchButton">
-        Search 
-      </vaadin-button> 
-      <vaadin-button icon="fonticon://FontAwesome/f0c0" style-name="menuButton borderless" width-full height="50px" plain-text _id="friendsButton">
+      <vaadin-button icon="fonticon://FontAwesome/f0c0" style-name="menuButton borderless" height="50px" plain-text _id="friendsButton">
         Friends 
       </vaadin-button> 
-      <vaadin-button icon="fonticon://FontAwesome/f040" style-name="menuButton borderless" width-full height="50px" plain-text _id="classButton">
+      <vaadin-button icon="fonticon://FontAwesome/f002" style-name="menuButton borderless" height="50px" plain-text _id="searchButton">
+        Search 
+      </vaadin-button> 
+      <vaadin-button icon="fonticon://FontAwesome/f040" style-name="menuButton borderless" height="50px" plain-text _id="classButton">
         Class 
       </vaadin-button> 
-      <vaadin-button icon="fonticon://FontAwesome/f015" style-name="menuButton borderless" width-full height="50px" plain-text _id="hometaskButton">
-        Hometask 
+      <vaadin-button icon="fonticon://FontAwesome/f0ae" style-name="menuButton borderless" height="50px" plain-text _id="tasksButton">
+        Tasks 
       </vaadin-button> 
-      <vaadin-button icon="fonticon://FontAwesome/f01c" style-name="menuButton borderless" width-full height="50px" plain-text _id="inboxButton">
-        Inbox 
-      </vaadin-button> 
-      <vaadin-button icon="fonticon://FontAwesome/f073" style-name="menuButton borderless" width-full height="50px" plain-text _id="calendarButton">
-        Calendar 
-      </vaadin-button> 
-      <vaadin-button icon="fonticon://FontAwesome/f1c0" style-name="menuButton borderless" width-full height="50px" plain-text _id="materials">
-        Materials 
+      <vaadin-button icon="fonticon://FontAwesome/f08b" style-name="menuButton borderless" height="50px" plain-text _id="logOutButton">
+        Log Out 
       </vaadin-button> 
       <vaadin-label style-name="menuButton" width-auto height-full plain-text :expand></vaadin-label> 
      </vaadin-vertical-layout> 
     </vaadin-vertical-layout> 
-    <vaadin-label plain-text :expand></vaadin-label> 
+    <vaadin-panel size-full _id="mainPanel" :expand></vaadin-panel> 
    </vaadin-horizontal-layout> 
-  </vaadin-vertical-layout>  
+  </vaadin-horizontal-layout>  
  </body>
 </html>

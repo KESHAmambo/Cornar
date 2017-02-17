@@ -1,11 +1,13 @@
 package org.test.dbservice.entity;
 
+
 import javax.persistence.*;
 import java.sql.Date;
 
 /**
  * Created by Taras on 29.10.2016.
  */
+//TODO checking password
 @Entity
 @Table(name = "users", schema = "project_cornar", catalog = "cornar")
 public class UsersEntity {
@@ -18,8 +20,6 @@ public class UsersEntity {
     private String person_description;
     private Integer person_rating;
     private String password;
-
-
     private Date birth_date;
 
     @Column(name = "\"userid\"", nullable = false)

@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;mytheme&quot;}">
+  <meta charset="UTF-8" name="vaadin-version" content="7.7.0">
+ </head> 
+ <body> 
+  <vaadin-horizontal-layout style-name="docLayout" spacing width-full height="130px"> 
+   <vaadin-css-layout style-name="docImage" width="70px" height="70px" :middle :center></vaadin-css-layout> 
+   <vaadin-vertical-layout spacing :expand> 
+    <vaadin-horizontal-layout style-name="docNameLayout" spacing width-full> 
+     <vaadin-label style-name="docLabelBold" size-auto plain-text>
+       Name: 
+     </vaadin-label> 
+     <vaadin-label style-name="docLabelSlight" plain-text _id="nameLabel" :expand>
+       Label 
+     </vaadin-label> 
+    </vaadin-horizontal-layout> 
+    <vaadin-horizontal-layout style-name="docDateLayout" spacing width-full :bottom> 
+     <vaadin-label style-name="docLabelBold" size-auto plain-text :bottom>
+       Date: 
+     </vaadin-label> 
+     <vaadin-label style-name="docLabelSlight" plain-text _id="dateLabel" :bottom :expand>
+       Label 
+     </vaadin-label> 
+    </vaadin-horizontal-layout> 
+   </vaadin-vertical-layout> 
+   <vaadin-vertical-layout width="80px" height-full :middle :center> 
+    <vaadin-button icon="fonticon://FontAwesome/f06e" style-name="docButton borderless" width="60px" height="45px" plain-text _id="viewDocButton" :center></vaadin-button> 
+    <vaadin-button icon="fonticon://FontAwesome/f019" style-name="docButton borderless" width="60px" height="45px" plain-text _id="saveDocButton" :bottom :center></vaadin-button> 
+   </vaadin-vertical-layout> 
+  </vaadin-horizontal-layout>  
+ </body>
+</html>

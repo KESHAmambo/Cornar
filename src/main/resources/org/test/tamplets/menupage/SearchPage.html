@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;mytheme&quot;}">
+  <meta charset="UTF-8" name="vaadin-version" content="7.7.0">
+ </head> 
+ <body> 
+  <vaadin-panel size-full> 
+   <vaadin-vertical-layout size-full margin> 
+    <vaadin-horizontal-layout spacing width-full margin-bottom> 
+     <vaadin-text-field input-prompt="Search..." style-name="searchTextField" width-full height="50px" _id="searchName" :bottom :center :expand></vaadin-text-field> 
+     <vaadin-combo-box input-prompt="Filter..." style-name="searchFilter" height="50px" _id="searchParametrBox"> 
+      <option>name</option> 
+      <option>surname</option> 
+     </vaadin-combo-box> 
+     <vaadin-button icon="fonticon://FontAwesome/f002" style-name="borderless searchIcon inboxButton" height="50px" plain-text _id="searchButton" :middle>
+       Search 
+     </vaadin-button> 
+    </vaadin-horizontal-layout> 
+    <vaadin-grid visible="false" style-name="searchResultsGrid" immediate size-full _id="searchTable" :bottom :center :expand> 
+     <table> 
+      <colgroup> 
+       <col property-id="User Name" sortable> 
+       <col property-id="Email" sortable> 
+      </colgroup> 
+      <thead> 
+       <tr default> 
+        <th plain-text>User Name</th> 
+        <th plain-text>Email</th> 
+       </tr> 
+      </thead> 
+      <tbody></tbody> 
+     </table> 
+    </vaadin-grid> 
+   </vaadin-vertical-layout> 
+  </vaadin-panel>  
+ </body>
+</html>

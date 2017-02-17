@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;mytheme&quot;}">
+  <meta charset="UTF-8" name="vaadin-version" content="7.7.0">
+ </head> 
+ <body> 
+  <vaadin-vertical-layout> 
+   <vaadin-vertical-layout style-name="studentCourseBoxMainLayout" spacing _id="mainLayout"> 
+    <vaadin-horizontal-layout spacing width-full> 
+     <vaadin-vertical-layout style-name="courseStudentIconLayout" width="64px" height="64px"></vaadin-vertical-layout> 
+     <vaadin-label style-name="courseNameLabel" plain-text _id="courseNameLabel" :middle :center :expand>
+       Course Name 
+     </vaadin-label> 
+    </vaadin-horizontal-layout> 
+    <vaadin-horizontal-layout spacing width-full> 
+     <vaadin-vertical-layout spacing size-auto> 
+      <vaadin-label size-auto plain-text :center>
+        Tutor Name: 
+      </vaadin-label> 
+      <vaadin-label width="137px" plain-text :center>
+        Description: 
+      </vaadin-label> 
+      <vaadin-button style-name="borderless studentCourseBoxButton" width="200px" height="50px" plain-text _id="inviteFriendButton" :bottom :center>
+        Invite Friend 
+      </vaadin-button> 
+      <vaadin-button style-name="borderless studentCourseBoxButton" width="200px" height="50px" plain-text _id="showLessonsButton" :bottom :center>
+        Show Lessons 
+      </vaadin-button> 
+     </vaadin-vertical-layout> 
+     <vaadin-vertical-layout spacing height="100.93%" :expand> 
+      <vaadin-label plain-text _id="tutorNameLabel"></vaadin-label> 
+      <vaadin-panel style-name="borderless studentCourseDescriptionPanel" size-full :expand> 
+       <vaadin-label plain-text _id="descriptionLabel"></vaadin-label> 
+      </vaadin-panel> 
+     </vaadin-vertical-layout> 
+    </vaadin-horizontal-layout> 
+   </vaadin-vertical-layout> 
+  </vaadin-vertical-layout>  
+ </body>
+</html>

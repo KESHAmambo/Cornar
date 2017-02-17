@@ -23,7 +23,7 @@ public class SignPanel extends VerticalLayout {
     protected TextField emailTextField;
     protected PasswordField passwordTextField;
     protected Button signInButton;
-    protected Button signUpButton;
+    protected Button openingSignUpWindowButton;
 
     public SignPanel() {
         Design.read(this);

@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;mytheme&quot;}">
+  <meta charset="UTF-8" name="vaadin-version" content="7.7.0">
+ </head> 
+ <body> 
+  <vaadin-panel size-full> 
+   <vaadin-vertical-layout spacing margin> 
+    <vaadin-horizontal-layout spacing :expand> 
+     <vaadin-image style-name="profileImage" width="280px" height="280px" _id="profileImage"></vaadin-image> 
+     <vaadin-vertical-layout spacing :expand> 
+      <vaadin-label style-name="nameLabel" plain-text _id="nameLabel">
+        Arkady Baranok 
+      </vaadin-label> 
+      <vaadin-label caption="Birthday:" style-name="profileLabel profileLabelCaption" size-auto plain-text _id="birthdayLabel">
+        Undefined 
+      </vaadin-label> 
+      <vaadin-label caption="E-mail:" style-name="profileLabel profileLabelCaption" size-auto plain-text _id="emailLabel">
+        Undefined 
+      </vaadin-label> 
+      <vaadin-label caption="Education:" style-name="profileLabel profileLabelCaption" width="400px" plain-text _id="educationLabel">
+        Undefined 
+      </vaadin-label> 
+     </vaadin-vertical-layout> 
+    </vaadin-horizontal-layout> 
+    <vaadin-horizontal-layout spacing width-full> 
+     <vaadin-button icon="fonticon://FontAwesome/f01c" style-name="profileButtons borderless" width-full height="50px" plain-text _id="inboxButton">
+       Inbox 
+     </vaadin-button> 
+     <vaadin-button icon="fonticon://FontAwesome/f19c" style-name="profileButtons borderless" width-full height="50px" plain-text _id="coursesButton">
+       Courses 
+     </vaadin-button> 
+     <vaadin-button icon="fonticon://FontAwesome/f073" style-name="profileButtons borderless" width-full height="50px" plain-text _id="scheduleButton">
+       Schedule 
+     </vaadin-button> 
+     <vaadin-button icon="fonticon://FontAwesome/f1c0" style-name="profileButtons borderless" width-full height="50px" plain-text _id="materialsButton">
+       Materials 
+     </vaadin-button> 
+    </vaadin-horizontal-layout> 
+    <vaadin-vertical-layout _id="layoutForInnerPages"></vaadin-vertical-layout> 
+   </vaadin-vertical-layout> 
+  </vaadin-panel>  
+ </body>
+</html>
