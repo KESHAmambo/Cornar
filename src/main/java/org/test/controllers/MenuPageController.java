@@ -5,52 +5,39 @@ import com.vaadin.ui.Button;
 import org.test.customcomponents.MenuPageImpl;
 import org.test.logic.Profile;
 
-import static org.test.logic.PageName.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by abara on 09.11.2016.
  */
 public class MenuPageController {
     private final MenuPageImpl menuPage;
+    private List<Button> menuButtons = new ArrayList<>();
 
     public MenuPageController(MenuPageImpl menuPage) {
         this.menuPage = menuPage;
     }
 
-    public void createListenerForLogOutButton(Button logOutButton, Navigator navigator) {
-        logOutButton.addClickListener(e -> {
-            Profile.clearCurrentProfile();
+    public void createListenerForLogOutButton(Navigator navigator) {
+        menuPage.getLogOutButton().addClickListener(e -> {
             navigator.navigateTo("");
         });
     }
 
-    public void createListenerForProfileButton(Button profileButton, Navigator navigator) {
-        profileButton.addClickListener(e -> {
-            navigator.navigateTo(MENU_PAGE + "/" + PROFILE_PAGE);
+    public void createListenerForMenuButton(
+            Button button, Navigator navigator, String navigationState) {
+        menuButtons.add(button);
+        button.addClickListener(e -> {
+            navigator.navigateTo(navigationState);
+            focusCurrentButton(button);
         });
     }
 
-    public void createListenerForFriendsButton(Button friendsButton, Navigator navigator) {
-        friendsButton.addClickListener(e -> {
-            navigator.navigateTo(MENU_PAGE + "/" + FRIENDS);
-        });
-    }
-
-    public void createListenerForSearchButton(Button searchButton, Navigator navigator) {
-        searchButton.addClickListener(e -> {
-            navigator.navigateTo(MENU_PAGE + "/" + SEARCH);
-        });
-    }
-
-    public void createListenerForClassButton(Button classButton, Navigator navigator) {
-        classButton.addClickListener(e -> {
-            navigator.navigateTo(MENU_PAGE + "/" + CLASS);
-        });
-    }
-
-    public void createListenerForTasksButton(Button tasksButton, Navigator navigator) {
-        tasksButton.addClickListener(e -> {
-            navigator.navigateTo(MENU_PAGE + "/" + TASKS);
-        });
+    private void focusCurrentButton(Button button) {
+        for(Button menuButton: menuButtons) {
+            menuButton.removeStyleName("menuButtonFocused");
+        }
+        button.addStyleName("menuButtonFocused");
     }
 }

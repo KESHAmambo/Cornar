@@ -3,20 +3,30 @@ package org.test.customcomponents;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.ui.Component;
+import com.vaadin.server.FileResource;
+import com.vaadin.server.VaadinService;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Window;
+import org.test.MyUI;
 import org.test.controllers.MenuPageController;
+import org.test.customcomponents.menupage.*;
+import org.test.customcomponents.menupage.profilepage.materialspage.UploadBoxImpl;
+import org.test.logic.Profile;
 import org.test.customcomponents.menupage.ClassPageImpl;
 import org.test.customcomponents.menupage.FriendsPageImpl;
 import org.test.customcomponents.menupage.SearchPageImpl;
 import org.test.customcomponents.menupage.TasksPageImpl;
 import org.test.logic.Profile;
 import org.test.tamplets.MenuPage;
+import org.test.tamplets.menupage.ProfilePage;
 import org.vaadin.sliderpanel.SliderPanel;
 import org.vaadin.sliderpanel.SliderPanelBuilder;
 import org.vaadin.sliderpanel.client.SliderMode;
 import org.vaadin.sliderpanel.client.SliderTabPosition;
+
+import java.io.File;
 
 import static org.test.logic.PageName.*;
 
@@ -25,62 +35,88 @@ import static org.test.logic.PageName.*;
  */
 public class MenuPageImpl extends MenuPage implements View {
     private final MenuPageController controller;
+    private final MyUI myUI;
+    private final Navigator menuButtonsNavigator;
+    private UploadImageBoxImpl uploadImageBox;
+    private Window windowToUpload;
 
-    public MenuPageImpl(Navigator navigator) {
+    public MenuPageImpl(MyUI myUI, Navigator generalNavigator) {
         controller = new MenuPageController(this);
+        this.myUI = myUI;
+        //TODO new window
+        windowToUpload = new Window();
+        uploadImageBox = new UploadImageBoxImpl(windowToUpload);
+        customizeWindowToUploadImage();
+        majorHorizontalLayout.addComponent(createSlidePanelForChatPage());
+        fulfillAvatarImage();
 
-        majorHorizontalLayout.addComponent(createChatSlidePanel());
-        mainPanel.setContent(new ProfilePageImpl(Profile.getCurrentProfile()));
+        menuButtonsNavigator = createNavigatorForMenuButtons();
+        createListenersForMenuButtons();
+        controller.createListenerForLogOutButton(generalNavigator);
 
-        provideNavigationForMenuButtons();
+        menuButtonsNavigator.navigateTo(MENU + "/" + PROFILE);
     }
 
+    private void fulfillAvatarImage() {
+        avatarImage.addClickListener(event -> UI.getCurrent().addWindow(windowToUpload));
+        Profile profile = Profile.getCurrentProfile();
+        File profileImage = profile.getImageResource();
+        if(profileImage != null) {
+            FileResource resource = new FileResource(profile.getImageResource());
+            avatarImage.setSource(resource);
+        }else {
+            avatarImage.setSource(null);
+        }
+    }
 
+    private void customizeWindowToUploadImage(){
+        windowToUpload.setContent(uploadImageBox);
+        windowToUpload.center();
+        windowToUpload.setWidth("30%");
+        windowToUpload.setModal(true);
+        windowToUpload.setHeight("40%");
+    }
+    private Navigator createNavigatorForMenuButtons() {
+        Navigator menuButtonsNavigator = new Navigator(myUI, mainPanel);
 
-    private void provideNavigationForMenuButtons() {
-        Navigator navigator = new Navigator(UI.getCurrent(), mainPanel);
+        menuButtonsNavigator.addView("", (View) viewChangeEvent -> {});
+        menuButtonsNavigator.addView(MENU.toString(), (View) viewChangeEvent -> {});
 
-        // UNEXPECTED BEHAVIOUR: mock for unexpected navigator's behaviour
-        navigator.addView("", new ClassPageImpl());
-
-        navigator.addView(MENU_PAGE + "/" + PROFILE_PAGE,
-                new ProfilePageImpl(Profile.getCurrentProfile()));
-        navigator.addView(MENU_PAGE + "/" + FRIENDS,
-                new FriendsPageImpl());
-        navigator.addView(MENU_PAGE + "/" + SEARCH,
+        menuButtonsNavigator.addView(MENU + "/" + PROFILE,
+                new ProfilePageImpl(myUI));
+        menuButtonsNavigator.addView(MENU + "/" + FRIENDS,
+                new FriendsPageImpl(myUI));
+        menuButtonsNavigator.addView(MENU + "/" + SEARCH,
                 new SearchPageImpl());
-        navigator.addView(MENU_PAGE + "/" + CLASS,
-                new ClassPageImpl());
-        navigator.addView(MENU_PAGE + "/" + TASKS,
+        menuButtonsNavigator.addView(MENU + "/" + CLASS,
+                new ClassPageImpl(myUI));
+        menuButtonsNavigator.addView(MENU + "/" + TASKS,
                 new TasksPageImpl());
 
-        controller.createListenerForProfileButton(profileButton, navigator);
-        controller.createListenerForFriendsButton(friendsButton, navigator);
-        controller.createListenerForSearchButton(searchButton, navigator);
-        controller.createListenerForClassButton(classButton, navigator);
-        controller.createListenerForTasksButton(tasksButton, navigator);
+        return menuButtonsNavigator;
     }
 
-    private SliderPanel createChatSlidePanel() {
-        return new SliderPanelBuilder(createChatPanelContent())
+    private void createListenersForMenuButtons() {
+        controller.createListenerForMenuButton(
+                profileButton, menuButtonsNavigator, MENU + "/" + PROFILE);
+        controller.createListenerForMenuButton(
+                friendsButton, menuButtonsNavigator, MENU + "/" + FRIENDS);
+        controller.createListenerForMenuButton(
+                searchButton, menuButtonsNavigator, MENU + "/" + SEARCH);
+        controller.createListenerForMenuButton(
+                classButton, menuButtonsNavigator, MENU + "/" + CLASS);
+        controller.createListenerForMenuButton(
+                tasksButton, menuButtonsNavigator, MENU + "/" + TASKS);
+    }
+
+    private SliderPanel createSlidePanelForChatPage() {
+        return new SliderPanelBuilder(new ChatPageImpl(myUI))
                     .expanded(false)
                     .caption("Dialogs")
                     .mode(SliderMode.RIGHT)
-                    .style("chatPanelMajorLayout")
+                    .style("sliderPanel")
                     .tabPosition(SliderTabPosition.MIDDLE)
                     .build();
-    }
-
-    private Component createChatPanelContent() {
-        VerticalLayout verticalLayout = new VerticalLayout();
-        verticalLayout.setHeightUndefined();
-        verticalLayout.setWidth("400");
-        verticalLayout.setHeight("100%");
-        return verticalLayout;
-    }
-
-    public void provideNavigationForLogOut(Navigator navigator) {
-        controller.createListenerForLogOutButton(logOutButton, navigator);
     }
 
     @Override

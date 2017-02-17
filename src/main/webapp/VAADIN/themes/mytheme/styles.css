@@ -12804,7 +12804,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-horizontallayout-mainPageLayout {
-	background: url("images/475348769.jpg") no-repeat center fixed;
+	background: url("images/main_background.jpg") no-repeat center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -12863,6 +12863,28 @@ div.v-layout.v-horizontal.v-widget {
 	color: #046e91;
 	font-size: 1.1em;
 	font-weight: bold;
+}
+
+.mytheme .v-button-signInButton {
+	background: #82bf8b;
+	color: #fafeff;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-signInButton:hover {
+	background: #9ee5a7;
+}
+
+.mytheme .v-button-signUpButton {
+	background: #569095;
+	color: #fafeff;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-signUpButton:hover {
+	background: #71b4b9;
 }
 
 .mytheme .v-horizontallayout-signUpMajorLayout {
@@ -12932,10 +12954,19 @@ div.v-layout.v-horizontal.v-widget {
 	width: 20vw;
 }
 
-.mytheme .v-verticallayout-avatarLayout {
+.mytheme .v-verticallayout-menuAvatarLayout {
 	background: #fafeff;
 	border-radius: 80px;
 	border: 4px solid #01747f;
+}
+
+.mytheme .v-image-menuAvatarImage {
+	background: url("images/man_friend.jpg");
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-radius: 50%;
 }
 
 .mytheme .v-button-menuButton {
@@ -12955,6 +12986,12 @@ div.v-layout.v-horizontal.v-widget {
 	font-size: 26px;
 }
 
+.mytheme .v-button-menuButtonFocused {
+	background: #005159;
+	padding-left: 6vw;
+	font-size: 26px;
+}
+
 .mytheme .v-button-menuButton:hover {
 	background: #01747f;
 }
@@ -12963,10 +13000,12 @@ div.v-layout.v-horizontal.v-widget {
 	min-width: 40px;
 }
 
-.mytheme .v-verticallayout-photoLayout {
-	background: #5e948b;
-	width: 20vw;
-	height: 40vh;
+.mytheme .v-image-profileImage {
+	background: url("images/man_friend.jpg");
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 
 .mytheme .v-label-nameLabel {
@@ -12995,7 +13034,583 @@ div.v-layout.v-horizontal.v-widget {
 	background: #91e4ec;
 }
 
-.mytheme .chatPanelMajorLayout {
+.mytheme .v-button-profileButtonsFocused {
+	background: #91e4ec;
+}
+
+.mytheme .v-verticallayout-profileInnerPagesLayouts {
+	border-top: 3px #91e4ec solid;
+	border-right: 3px #91e4ec solid;
+}
+
+.mytheme .v-button-addCourseButton {
+	background: #82bf8b;
+	font-size: 20px;
+	color: #fafeff;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-addCourseButton:hover {
+	background: #9ee5a7;
+}
+
+.mytheme .v-verticallayout-lessonIconLayout {
+	background: url(images/lesson.png);
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.mytheme .v-verticallayout-studentLessonLayout {
+	padding: 1em;
+	background: #569095;
+	color: #fafeff;
+}
+
+.mytheme .v-button-lessonPayButton {
+	background: #44767b;
+	color: #fafeff;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-lessonPayButton:hover {
+	background: #4e8287;
+}
+
+.mytheme .v-verticallayout-tutorLessonLayout {
+	padding: 1em;
+	background: #68b872;
+	color: #fafeff;
+}
+
+.mytheme .v-button-assignsButton {
+	background: #57a061;
+	color: #fafeff;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-assignsButton:hover {
+	background: #5eaa68;
+}
+
+.mytheme .v-verticallayout-tutorCourseBoxMainLayout {
+	padding: 1em;
+	background: #9ee5a7;
+	font-size: 1.6em;
+	color: #fafeff;
+}
+
+.mytheme .v-verticallayout-courseTutorIconLayout {
+	background: url(images/professor.png);
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.mytheme .v-label-courseNameLabel {
+	font-size: 1.8em;
+}
+
+.mytheme .v-button-tutorCourseBoxButton {
+	background: #68b872;
+	color: #ffffff;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-tutorCourseBoxButton:hover {
+	background: #8dd096;
+}
+
+.mytheme .v-textarea-descriptionTextArea {
+	font-weight: 100;
+}
+
+.mytheme .v-Notification-addedCourseNotification {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	padding: 30px;
+	font-weight: bold;
+}
+
+.mytheme .v-panel-tutorCourseDescriptionPanel {
+	-webkit-box-shadow: inset 0 0 7px 7px #9ee5a7;
+	-moz-box-shadow: inset 0 0 7px 7px #9ee5a7;
+	box-shadow: inset 0 0 7px 7px #9ee5a7;
+}
+
+.mytheme .v-verticallayout-studentCourseBoxMainLayout {
+	padding: 1em;
+	background: #91ccd2;
+	font-size: 1.6em;
+	color: #fafeff;
+}
+
+.mytheme .v-verticallayout-courseStudentIconLayout {
+	background: url(images/student.png);
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.mytheme .v-button-studentCourseBoxButton {
+	background: #569095;
+	color: #ffffff;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-studentCourseBoxButton:hover {
+	background: #71b4b9;
+}
+
+.mytheme .v-panel-studentCourseDescriptionPanel {
+	-webkit-box-shadow: inset 0 0 7px 7px #91ccd2;
+	-moz-box-shadow: inset 0 0 7px 7px #91ccd2;
+	box-shadow: inset 0 0 7px 7px #91ccd2;
+}
+
+.mytheme .v-csslayout-docImage {
+	background-image: url(images/document.png);
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.mytheme .v-horizontallayout-docLayout {
+	background: #b3cacc;
+	padding: 1em;
+}
+
+.mytheme .v-horizontallayout-docNameLayout {
+	margin-top: 0.5em;
+}
+
+.mytheme .v-horizontallayout-docDateLayout {
+	margin-bottom: 0.6em;
+}
+
+.mytheme .v-label-docLabelBold {
+	color: #ffffff;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.mytheme .v-label-docLabelSlight {
+	overflow: hidden;
+	color: #ffffff;
+	font-size: 1.5em;
+}
+
+.mytheme .v-button-docButton {
+	font-size: 1.5em;
+	color: #ffffff;
+	-webkit-border-radius: 40px;
+	-moz-border-radius: 40px;
+	border-radius: 40px;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-docButton:hover {
+	background: #89a0a2;
+}
+
+.mytheme .v-button-addFileButton {
+	background: #74bfba;
+	font-size: 20px;
+	color: #fafeff;
+	height: 50px;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-addFileButton:hover {
+	background: #b3cacc;
+}
+
+.mytheme .sliderPanel {
 	background: #005159;
 	font-size: 20px;
+}
+
+.mytheme .v-verticallayout-mainChatLayout {
+	padding-top: 20px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+}
+
+.mytheme .v-verticallayout-dialogFriendPanelMainLayout {
+	background: url("images/man_chat.jpg");
+}
+
+.mytheme .v-horizontallayout-dialogNameLayout {
+	background: #01747f;
+}
+
+.mytheme .v-label-dialogNameLabel {
+	color: #fafeff;
+	font-size: 20px;
+	font-weight: bold;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.mytheme .v-panel-messagesPanel {
+	background: #91ccd1;
+}
+
+.mytheme .v-verticallayout-messagesLayout {
+	padding: 10px;
+}
+
+.mytheme .v-button-sendMessageButton {
+	background: #01747f;
+	color: #fafeff;
+	font-size: 2em;
+}
+
+.mytheme .v-textarea-messageTextArea {
+	background: #91ccd1;
+}
+
+.mytheme .v-button-searchButton {
+	background-color: #f6f6f6;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#31b2c3), to(#005159));
+	background-image: -webkit-linear-gradient(top, #31b2c3, #005159);
+	background-image: -moz-linear-gradient(top, #31b2c3, #005159);
+	background-image: -ms-linear-gradient(top, #31b2c3, #0483a0);
+	background-image: -o-linear-gradient(top, #31b2c3, #0483a0);
+	color: #dfdfdf;
+}
+
+.mytheme .v-textfield-searchTextField {
+	background: #fafeff;
+	font-size: 20px;
+}
+
+.mytheme .v-filterselect-searchFilter {
+	font-size: 20px;
+}
+
+.mytheme .v-textfield-searchPanel {
+	background-color: #f6f6f6;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#eae8e8));
+	background-image: -webkit-linear-gradient(top, #f6f6f6, #eae8e8);
+	background-image: -moz-linear-gradient(top, #f6f6f6, #eae8e8);
+	background-image: -ms-linear-gradient(top, #f6f6f6, #eae8e8);
+	background-image: -o-linear-gradient(top, #f6f6f6, #eae8e8);
+	background-image: linear, top, #f6f6f6, #eae8e8;
+	border-color: #dedede #bababa #aaa #bababa;
+	border-width: 1px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 3px 3px rgba(255, 255, 255, 0.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+	-moz-box-shadow: 0 3px 3px rgba(255, 255, 255, 0.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+	box-shadow: 0 3px 3px rgba(255, 255, 255, 0.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+	overflow: hidden;
+	color: #999;
+	font: 16px Lucida Sans, Trebuchet MS, Tahoma, sans-serif;
+}
+
+.mytheme .v-grid-searchResultsGrid .v-grid-tablewrapper {
+	font-weight: bold;
+}
+
+.mytheme .v-grid-searchResultsGrid .v-grid-tablewrapper .v-grid-header {
+	font-size: 20px;
+}
+
+.mytheme .v-grid-searchResultsGrid .v-grid-tablewrapper, .mytheme .v-grid-searchResultsGrid .v-grid-scroller {
+	border: none;
+}
+
+.mytheme .v-grid-cell {
+	position: relative;
+	background: lightblue;
+}
+
+.mytheme .v-grid-tablewrapper, .mytheme .v-grid-scroller {
+	border: none;
+}
+
+.mytheme .v-grid-row {
+	background: lightblue;
+	overflow: hidden;
+}
+
+.mytheme .v-nativebutton {
+	background: #fff;
+	color: black;
+	width: 100%;
+	height: 100%;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	line-height: 1em;
+	width: 1.5em;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.mytheme .v-verticallayout-addFriendBoxLayout {
+	background: lightblue;
+}
+
+.mytheme .v-verticallayout-addFriendBoxLayout .v-button {
+	color: #fafeff;
+	font-size: 1.3em;
+}
+
+.mytheme .v-verticallayout-addFriendBoxLayout .v-button-addFriendButton {
+	background: #82bf8b;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-verticallayout-addFriendBoxLayout .v-button-addFriendButton:hover {
+	background: #9ee5a7;
+}
+
+.mytheme .v-verticallayout-addFriendBoxLayout .v-button-declineButton {
+	background: #569095;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-verticallayout-addFriendBoxLayout .v-button-declineButton:hover {
+	background: #71b4b9;
+}
+
+.mytheme .v-verticallayout-addFriendBoxLayout .v-label {
+	font-size: 2em;
+	color: #fafeff;
+	line-height: normal;
+}
+
+.mytheme .adding_button .v-button {
+	font-size: 124px;
+}
+
+.mytheme .v-label-uploadLabel {
+	font-size: 1.2em;
+	padding: 5px;
+	text-align: center;
+	font-family: Calibri;
+	border-bottom: 2px solid #91ccd1;
+}
+
+.mytheme .v-horizontallayout-uploadBackground {
+	background: #E0EEFF;
+	opacity: 0.9;
+}
+
+.mytheme .v-upload-uploadButton .v-button {
+	padding: 0 15px;
+	font-size: 20px;
+	background: #23aeff;
+	margin-bottom: 2%;
+}
+
+.mytheme .v-progressbar-uploadingBar {
+	color: #1e6b15;
+	margin-right: 5px;
+	margin-top: 5px;
+}
+
+.mytheme .v-verticallayout-receivedChatMessageLayout {
+	background: #9ee5a7;
+	-webkit-border-radius: 5px 20px 20px 20px;
+	-moz-border-radius: 5px 20px 20px 20px;
+	border-radius: 5px 20px 20px 20px;
+	-webkit-box-shadow: 3px 3px 3px grey;
+	-moz-box-shadow: 3px 3px 3px grey;
+	box-shadow: 3px 3px 3px grey;
+	padding: 10px;
+}
+
+.mytheme .v-verticallayout-sentChatMessageLayout {
+	background: #9dadd9;
+	-webkit-border-radius: 20px 5px 20px 20px;
+	-moz-border-radius: 20px 5px 20px 20px;
+	border-radius: 20px 5px 20px 20px;
+	-webkit-box-shadow: 3px 3px 3px grey;
+	-moz-box-shadow: 3px 3px 3px grey;
+	box-shadow: 3px 3px 3px grey;
+	padding: 10px;
+}
+
+.mytheme .v-button-inboxButton {
+	background: #569095;
+	color: #fafeff;
+	font-size: 20px;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-inboxButton:hover {
+	background: #71b4b9;
+}
+
+.mytheme .v-verticallayout-sentInboxMessageBoxLayout {
+	padding: 1em;
+	background: #9ee5a7;
+	color: #fafeff;
+	font-size: 1.6em;
+}
+
+.mytheme .v-verticallayout-receivedInboxMessageBoxLayout {
+	padding: 1em;
+	background: #91CCD2;
+	color: #fafeff;
+	font-size: 1.6em;
+}
+
+.mytheme .v-verticallayout-iconInboxMessageLayout {
+	background: url(images/mail.png);
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.mytheme .v-label-inboxMessageThemeLabel {
+	font-size: 1.3em;
+}
+
+.mytheme .v-button-sentInboxMessageReadButton {
+	background: #68b872;
+	color: #ffffff;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-sentInboxMessageReadButton:hover {
+	background: #8dd096;
+}
+
+.mytheme .v-button-receivedInboxMessageReadButton {
+	background: #569095;
+	color: #ffffff;
+	-webkit-transition-duration: 0.6s;
+	transition-duration: 0.6s;
+}
+
+.mytheme .v-button-receivedInboxMessageReadButton:hover {
+	background: #71b4b9;
+}
+
+.mytheme .v-verticallayout-inboxMessageIconLayout {
+	background: url(images/flying_mail.png);
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.mytheme .v-richtextarea-inboxComposeRichTextArea {
+	border: 3px solid rgba(181, 181, 181, 0.72);
+}
+
+.mytheme .v-label-inboxSlightReadLabel {
+	font-size: 1.2em;
+	color: #b5b5b5;
+}
+
+.mytheme .v-button-inboxReadIconButton {
+	color: #b5b5b5;
+}
+
+.mytheme .v-label-inboxReadThemeLabel {
+	color: #b5b5b5;
+	font-size: 1.6em;
+}
+
+.mytheme .v-verticallayout-inboxReadIconLayout {
+	background: url(images/flying_mail_gray.png);
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.mytheme .v-calendar .v-calendar-event-tutorLesson {
+	background: #68b872;
+	color: #ffffff;
+}
+
+.mytheme .v-calendar .v-calendar-event-studentLesson {
+	background: #569095;
+	color: #ffffff;
+}
+
+.mytheme .v-horizontallayout-profileBoxMainLayout {
+	border-top: 3px #91e4ec solid;
+	border-right: 3px #91e4ec solid;
+	padding: 1em;
+}
+
+.mytheme .v-image-profileBoxImage {
+	background: url("images/man_friend.jpg");
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.mytheme .v-label-profileBoxLabel {
+	color: #01747f;
+	font-size: 1.2em;
+}
+
+.mytheme .v-button-profileBoxWriteMessageButton {
+	border-radius: 40px;
+	color: #91ccd2;
+	font-size: 2em;
+	-webkit-transition-duration: 0.8s;
+	transition-duration: 0.8s;
+}
+
+.mytheme .v-button-profileBoxWriteMessageButton:hover {
+	background: #91ccd2;
+	color: #fafeff;
+}
+
+.mytheme .v-label-classNoLessonLabel {
+	font-size: 2.5em;
+	color: #91DC5A;
+}
+
+.mytheme .v-verticallayout-classNoLessonImageLayout {
+	background: url("images/relax.png");
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.mytheme .v-verticallayout-studentClassPageLayout {
+	border: 3px solid rgba(181, 181, 181, 0.72);
+}
+
+.mytheme .v-verticallayout-classBoardMessageLayout {
+	background: #edf2f9;
+	-webkit-border-radius: 20px 5px 20px 20px;
+	-moz-border-radius: 20px 20px 20px 20px;
+	border-radius: 20px 20px 20px 20px;
+	-webkit-box-shadow: 3px 3px 3px grey;
+	-moz-box-shadow: 3px 3px 3px grey;
+	box-shadow: 3px 3px 3px grey;
+	padding: 15px;
+}
+
+.mytheme .v-label-classBoardMessageLabel {
+	font-size: 1.4em;
 }

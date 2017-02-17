@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;mytheme&quot;}">
+  <meta charset="UTF-8" name="vaadin-version" content="7.7.0">
+ </head> 
+ <body> 
+  <vaadin-vertical-layout spacing size-full margin-top> 
+   <vaadin-vertical-layout size-full :expand> 
+    <vaadin-horizontal-layout style-name="dialogNameLayout" width-full height="50px"> 
+     <vaadin-label style-name="dialogNameLabel" size-auto plain-text _id="friendNameLabel" :middle :center>
+       Name 
+     </vaadin-label> 
+    </vaadin-horizontal-layout> 
+    <vaadin-panel style-name="messagesPanel borderless" size-full :expand> 
+     <vaadin-vertical-layout style-name="messagesLayout" spacing _id="messagesLayout"></vaadin-vertical-layout> 
+    </vaadin-panel> 
+   </vaadin-vertical-layout> 
+   <vaadin-horizontal-layout width-full height="90px"> 
+    <vaadin-text-area style-name="messageTextArea borderless" size-full _id="messageTextArea" :expand></vaadin-text-area> 
+    <vaadin-button icon="fonticon://FontAwesome/f1d9" style-name="sendMessageButton borderless" width="90px" height="90px" plain-text _id="sendMessageButton"></vaadin-button> 
+   </vaadin-horizontal-layout> 
+  </vaadin-vertical-layout>  
+ </body>
+</html>

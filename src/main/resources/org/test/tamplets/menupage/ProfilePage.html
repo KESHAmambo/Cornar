@@ -8,7 +8,7 @@
   <vaadin-panel size-full> 
    <vaadin-vertical-layout spacing margin> 
     <vaadin-horizontal-layout spacing :expand> 
-     <vaadin-vertical-layout style-name="photoLayout" size-auto _id="photoLayout" :expand></vaadin-vertical-layout> 
+     <vaadin-image style-name="profileImage" width="280px" height="280px" _id="profileImage"></vaadin-image> 
      <vaadin-vertical-layout spacing :expand> 
       <vaadin-label style-name="nameLabel" plain-text _id="nameLabel">
         Arkady Baranok 
@@ -25,21 +25,20 @@
      </vaadin-vertical-layout> 
     </vaadin-horizontal-layout> 
     <vaadin-horizontal-layout spacing width-full> 
-     <vaadin-button icon="fonticon://FontAwesome/f073" style-name="profileButtons borderless" width-full height="50px" plain-text _id="scheduleButton">
-       Schedule 
-     </vaadin-button> 
      <vaadin-button icon="fonticon://FontAwesome/f01c" style-name="profileButtons borderless" width-full height="50px" plain-text _id="inboxButton">
        Inbox 
+     </vaadin-button> 
+     <vaadin-button icon="fonticon://FontAwesome/f19c" style-name="profileButtons borderless" width-full height="50px" plain-text _id="coursesButton">
+       Courses 
+     </vaadin-button> 
+     <vaadin-button icon="fonticon://FontAwesome/f073" style-name="profileButtons borderless" width-full height="50px" plain-text _id="scheduleButton">
+       Schedule 
      </vaadin-button> 
      <vaadin-button icon="fonticon://FontAwesome/f1c0" style-name="profileButtons borderless" width-full height="50px" plain-text _id="materialsButton">
        Materials 
      </vaadin-button> 
     </vaadin-horizontal-layout> 
-    <vaadin-vertical-layout> 
-     <vaadin-button width-full height="500px" plain-text>
-       Button 500px 
-     </vaadin-button> 
-    </vaadin-vertical-layout> 
+    <vaadin-vertical-layout _id="layoutForInnerPages"></vaadin-vertical-layout> 
    </vaadin-vertical-layout> 
   </vaadin-panel>  
  </body>

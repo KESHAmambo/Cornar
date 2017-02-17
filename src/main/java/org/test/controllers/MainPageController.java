@@ -2,18 +2,24 @@ package org.test.controllers;
 
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.Page;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.Window;
+import org.test.MyUI;
 import org.test.customcomponents.MainPageImpl;
+import org.test.customcomponents.MenuPageImpl;
 import org.test.customcomponents.SignPanelImpl;
 import org.test.customcomponents.SignUpPanelImpl;
 import org.test.dbservice.DatabaseManager;
-import org.test.dbservice.DatabaseService;
+import org.test.msgservice.UIAlterationManager;
 import org.test.logic.Profile;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static org.test.logic.PageName.*;
 
@@ -28,17 +34,52 @@ public class MainPageController {
     }
 
     public void createListenerForSingInButton(
-            Navigator navigator, SignPanelImpl signPanel) {
+            SignPanelImpl signPanel) {
         Button signInButton = signPanel.getSignInButton();
 
         signInButton.addClickListener(e -> {
             String userEmail = signPanel.getUserEmail();
             String userPassword = signPanel.getUserPassword();
+            signOutPreviousProfile();
             if(DatabaseManager.doesUserExist(userEmail, userPassword)) {
-                Profile.fulfillProfile(Profile.getCurrentProfile(), userEmail);
-                navigator.navigateTo(MENU_PAGE.toString());
+                Logger.getLogger(MainPageController.class.getName()).log(Level.INFO,"user exist");
+                signInNewProfile(userEmail);
+                navigateToMenuPageInAllUIs(VaadinSession.getCurrent().getUIs());
+                Logger.getLogger(MainPageController.class.getName()).log(Level.INFO,"user has signed in system");
+            } else {
+                showNoSuchUserNotification();
             }
         });
+    }
+
+    private void signOutPreviousProfile() {
+        Profile previousProfile = (Profile) VaadinSession.getCurrent().getAttribute("profile");
+        if(previousProfile != null) {
+            UIAlterationManager.unregisterSession(previousProfile.getId());
+        }
+    }
+
+    private void signInNewProfile(String userEmail) {
+        Profile profile = Profile.fulfillProfile(userEmail);
+        VaadinSession session = VaadinSession.getCurrent();
+        session.setAttribute("profile", profile);
+        UIAlterationManager.registerSession(profile.getId(), session);
+    }
+
+    private void navigateToMenuPageInAllUIs(Collection<UI> uis) {
+        for(UI ui: uis) {
+            Navigator navigator = ui.getNavigator();
+            navigator.removeView(MENU.toString());
+            navigator.addView(MENU.toString(), new MenuPageImpl((MyUI) ui, navigator));
+            navigator.navigateTo(MENU.toString());
+        }
+    }
+
+    private void showNoSuchUserNotification() {
+        Notification notification = new Notification(
+                "Wrong credentials", Notification.Type.WARNING_MESSAGE);
+        notification.setDelayMsec(3000);
+        notification.show(Page.getCurrent());
     }
 
     public void createListenerForSingUpButton(SignPanelImpl signPanel) {
@@ -53,7 +94,8 @@ public class MainPageController {
             String userPassword = signUpPanel.readPassword();
             String userEducation = signUpPanel.readEducation();
             Date userBirthDate = signUpPanel.readBirthDate();
-
+            if (userEmail == null || userPassword == null)
+                return;
             int signUpResult = DatabaseManager.signUpUser(
                     userName, userSurname, userEmail,
                     userBirthDate, userPassword, userEducation);

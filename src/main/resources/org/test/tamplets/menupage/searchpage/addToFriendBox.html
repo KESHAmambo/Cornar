@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;mytheme&quot;}">
+  <meta charset="UTF-8" name="vaadin-version" content="7.7.0">
+ </head> 
+ <body> 
+  <vaadin-vertical-layout style-name="addFriendBoxLayout" size-auto> 
+   <vaadin-vertical-layout size-full margin-left margin-right margin-top :center> 
+    <vaadin-label size-auto plain-text :middle>
+      Do you want to add this person to your friends? 
+    </vaadin-label> 
+   </vaadin-vertical-layout> 
+   <vaadin-horizontal-layout spacing margin :right> 
+    <vaadin-label plain-text :expand></vaadin-label> 
+    <vaadin-button style-name="borderless addFriendButton" width="150px" height="50px" plain-text _id="addButton" :middle :right>
+      Add 
+    </vaadin-button> 
+    <vaadin-button style-name="borderless declineButton" width="150px" height="50px" plain-text _id="decline" :middle :right>
+      Decline 
+    </vaadin-button> 
+   </vaadin-horizontal-layout> 
+  </vaadin-vertical-layout>  
+ </body>
+</html>

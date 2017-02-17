@@ -1,14 +1,17 @@
 package org.test.logic;
 
+import com.vaadin.server.VaadinSession;
 import org.test.dbservice.DatabaseManager;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Аркадий on 28.10.2016.
  */
 public class Profile {
-    private static Profile currentProfile = new Profile();
 
     private int id;
     private String name;
@@ -16,10 +19,8 @@ public class Profile {
     private String email;
     private String education;
     private Date birthDate;
-
-    public static Profile getCurrentProfile() {
-        return currentProfile;
-    }
+    private File imageResource;
+    private List<Profile> friends = new ArrayList<>();
 
     public Profile() {
 
@@ -73,23 +74,48 @@ public class Profile {
         this.birthDate = birthDate;
     }
 
-    public static void fulfillProfile(Profile profile, String userEmail) {
-        DatabaseManager.fulfillProfile(profile, userEmail);
+    public File getImageResource() {
+        return imageResource;
     }
 
-    public static void clearCurrentProfile() {
-        currentProfile = new Profile();
+    public void setImageResource(File imageResource) {
+        this.imageResource = imageResource;
+    }
+
+    public List<Profile> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<Profile> friends) {
+        this.friends = friends;
+    }
+
+    public static Profile getCurrentProfile() {
+        Profile profile = (Profile) VaadinSession.getCurrent().getAttribute("profile");
+        if(profile == null) {
+            return new Profile();
+        } else {
+            return profile;
+        }
+    }
+
+    public static Profile fulfillProfile(String userEmail) {
+            return  DatabaseManager.fulfillProfile(userEmail);
     }
 
     @Override
-    public String toString() {
-        return "Profile{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
-                ", education='" + education + '\'' +
-                ", birthDate=" + birthDate +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Profile profile = (Profile) o;
+
+        return id == profile.id;
     }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
+
 }
